@@ -1,86 +1,41 @@
 hostname: SPINE1
 is_deployed: true
 static_routes:
-- vrf: MGMT
+- vrf: mgmt
   destination_address_prefix: 0.0.0.0/0
   gateway: 172.100.100.1
 service_routing_protocols_model: multi-agent
+ip_routing: true
 vlan_internal_order:
   allocation: ascending
   range:
     beginning: 1006
     ending: 1199
-ip_name_servers:
-- ip_address: 192.0.0.2
-  vrf: MGMT
-- ip_address: 192.0.0.3
-  vrf: MGMT
-- ip_address: 192.0.2.2
-  vrf: '{{ mgmt_interface_vrf }}'
-- ip_address: 192.0.2.3
-  vrf: '{{ mgmt_interface_vrf }}'
 spanning_tree:
   mode: mstp
   mst_instances:
   - id: '0'
     priority: 4096
-  no_spanning_tree_vlan: '4094'
-local_users:
-- name: networkpw
-  privilege: 15
-  role: network-admin
-  sha512_password: $6$jw8oM5dlW5v.Fr./$lzoUKIUYpSh15xYzXZUpshSToBco1i/2MqiJ0I4bs4UDEuffxgL.oU45YVkcGbY1lx5cTAJsMUnPM4.NEeAlJ.
+  no_spanning_tree_vlan: 4093-4094
 clock:
   timezone: UTC
 vrfs:
-- name: MGMT
+- name: mgmt
   ip_routing: false
 management_interfaces:
 - name: Management1
   description: oob_management
   shutdown: false
-  vrf: MGMT
+  vrf: mgmt
   ip_address: 172.100.100.101/24
   gateway: 172.100.100.1
   type: oob
 management_api_http:
   enable_vrfs:
-  - name: MGMT
-  - name: '{{ mgmt_interface_vrf }}'
+  - name: mgmt
     access_group: Ansible-ACL_SM
   enable_https: true
   enable_http: false
-ntp:
-  local_interface:
-    name: '{{ custom_mgmt_interface }}'
-    vrf: '{{ mgmt_interface_vrf }}'
-  servers:
-  - name: time.google.com
-    vrf: MGMT
-    preferred: true
-  - name: pool.ntp.org
-    vrf: MGMT
-  - name: 172.16.169.44
-    vrf: '{{ mgmt_interface_vrf }}'
-    preferred: false
-  - name: 157.170.147.6
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 172.31.225.25
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 137.167.66.10
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 134.183.87.87
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 172.16.44.10
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 10.188.255.18
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 137.167.210.21
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 158.218.8.155
-    vrf: '{{ mgmt_interface_vrf }}'
-  - name: 172.24.254.250
-    vrf: '{{ mgmt_interface_vrf }}'
 snmp_server:
   engine_ids:
     local: 262d92645009e0be381fafaf9d42b44111ce8f6b
@@ -89,7 +44,7 @@ snmp_server:
       address: entstrap.itg.ti.com
     - id: 536576306E65406363652424
       address: sevonenms.itg.ti.com
-  location: DC1_FABRIC SPINE1
+  location: DC1_FABRIC [DC1/MDF] SPINE1
   users:
   - name: SNMPManager
     group: network-admin
@@ -100,7 +55,7 @@ snmp_server:
     priv: aes
     priv_passphrase: 86b1e1b5ff08943b08d8d148a3fb1ce0
   vrfs:
-  - name: MGMT
+  - name: mgmt
     enable: true
   communities:
   - name: vhbqmu2JRJQcjfX99inm
@@ -139,11 +94,16 @@ snmp_server:
     version: v3
     authentication: auth
   local_interfaces:
-  - name: '{{ custom_mgmt_interface }}'
-    vrf: '{{ mgmt_interface_vrf }}'
+  - name: Management1
+    vrf: mgmt
   traps:
     enable: true
 vlans:
+- id: 4093
+  tenant: system
+  name: LEAF_PEER_L3
+  trunk_groups:
+  - LEAF_PEER_L3
 - id: 4094
   tenant: system
   name: MLAG_PEER
@@ -159,6 +119,11 @@ vlans:
   name: ORANGE-NET
   tenant: MY_FABRIC
 vlan_interfaces:
+- name: Vlan4093
+  description: MLAG_PEER_L3_PEERING
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.168.0.2/31
 - name: Vlan4094
   description: MLAG_PEER
   shutdown: false
@@ -172,6 +137,7 @@ port_channel_interfaces:
   shutdown: false
   mode: trunk
   trunk_groups:
+  - LEAF_PEER_L3
   - MLAG
 - name: Port-Channel1
   description: RACK1_Po1
@@ -271,12 +237,28 @@ mlag_configuration:
   local_interface: Vlan4094
   peer_address: 192.168.0.1
   peer_link: Port-Channel47
-  reload_delay_mlag: '300'
-  reload_delay_non_mlag: '330'
+  reload_delay_mlag: '900'
+  reload_delay_non_mlag: '1020'
+loopback_interfaces:
+- name: Loopback0
+  description: Router_ID
+  shutdown: false
+  ip_address: 192.168.128.1/32
 ip_igmp_snooping:
   globally_enabled: true
+eos_cli: 'logging event congestion-drops interval 600
+
+  no logging repeat-messages
+
+  logging level all debugging
+
+  logging event link-status global
+
+  service unsupported-transceiver TexasInstruments ffd6c10c
+
+  '
 metadata:
-  platform: cEOS-LAB
+  platform: 7280R3
 aliases: 'alias ll dir
 
   alias q exit
@@ -301,9 +283,9 @@ aaa_server_groups:
   type: tacacs+
   servers:
   - server: 172.31.226.29
-    vrf: '{{ mgmt_interface_vrf }}'
+    vrf: mgmt
   - server: 172.32.226.32
-    vrf: '{{ mgmt_interface_vrf }}'
+    vrf: mgmt
 aaa_accounting:
   commands:
     default:
@@ -326,18 +308,54 @@ tacacs_servers:
   timeout: 20
   hosts:
   - host: 172.31.225.29
-    vrf: '{{ mgmt_interface_vrf }}'
+    vrf: mgmt
     key: 096D5C584C521659255F533D7B36036674
     key_type: '7'
   - host: 172.31.226.32
-    vrf: '{{ mgmt_interface_vrf }}'
+    vrf: mgmt
     key: 096D5C584C521659255F533D7B36036674
     key_type: '7'
   policy_unknown_mandatory_attribute_ignore: true
+local_users:
+- name: networkpw
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$jw8oM5dlW5v.Fr./$lzoUKIUYpSh15xYzXZUpshSToBco1i/2MqiJ0I4bs4UDEuffxgL.oU45YVkcGbY1lx5cTAJsMUnPM4.NEeAlJ.
 enable_password:
   hash_algorithm: sha512
   key: $6$MT87Q9wZNEXe.WzP$mT.NM1681S1WVKtnYw5/dP56iMGE7NPIupjNDhe7AIQRSN5xnJi4664w1i3kD5aDLdB28nxIERi2vQzgoOuyd1
+ip_name_servers:
+- ip_address: 192.0.2.2
+  vrf: mgmt
+- ip_address: 192.0.2.3
+  vrf: mgmt
 dns_domain: itg.ti.com
+ntp:
+  local_interface:
+    name: Management1
+    vrf: mgmt
+  servers:
+  - name: 172.16.169.44
+    vrf: mgmt
+    preferred: false
+  - name: 157.170.147.6
+    vrf: mgmt
+  - name: 172.31.225.25
+    vrf: mgmt
+  - name: 137.167.66.10
+    vrf: mgmt
+  - name: 134.183.87.87
+    vrf: mgmt
+  - name: 172.16.44.10
+    vrf: mgmt
+  - name: 10.188.255.18
+    vrf: mgmt
+  - name: 137.167.210.21
+    vrf: mgmt
+  - name: 158.218.8.155
+    vrf: mgmt
+  - name: 172.24.254.250
+    vrf: mgmt
 standard_access_lists:
 - name: Airwave-SNMP_Access
   counters_per_entry: false
@@ -483,17 +501,17 @@ standard_access_lists:
   - sequence: 60
     action: permit host 10.64.41.27
   - sequence: 70
-    action: remark {{ cvp_host_1_name }}
+    action: remark dxxcvp01
   - sequence: 80
-    action: permit host {{ cvp_host_1_ip }}
+    action: permit host 10.10.10.7
   - sequence: 90
-    action: remark {{ cvp_host_2_name }}
+    action: remark dxxcvp02
   - sequence: 100
-    action: permit host {{ cvp_host_2_ip }}
+    action: permit host 10.10.10.8
   - sequence: 110
-    action: remark {{ cvp_host_3_name }}
+    action: remark dxxcvp03
   - sequence: 120
-    action: permit host {{ cvp_host_3_ip }}
+    action: permit host 10.10.10.9
   - sequence: 130
     action: remark ents
   - sequence: 140
@@ -512,7 +530,7 @@ management_ssh:
   idle_timeout: 30
   enable: true
   vrfs:
-  - name: '{{ mgmt_interface_vrf }}'
+  - name: mgmt
     enable: true
 logging:
   console: disabled
@@ -529,8 +547,8 @@ logging:
     sequence_numbers: false
   facility: local7
   vrfs:
-  - name: '{{ mgmt_interface_vrf }}'
-    source_interface: '{{ custom_mgmt_interface }}'
+  - name: mgmt
+    source_interface: Management1
     hosts:
     - name: ents.itg.ti.com
       protocol: tcp
@@ -538,13 +556,13 @@ logging:
       - 514
 daemon_terminattr:
   cvaddrs:
-  - '{{ cvp_host_1_ip }}:9910'
-  - '{{ cvp_host_2_ip }}:9910'
-  - '{{ cvp_host_3_ip }}:9910'
+  - 10.10.10.7:9910
+  - 10.10.10.8:9910
+  - 10.10.10.9:9910
   cvauth:
     method: token
     token_file: /tmp/token
-  cvvrf: '{{ mgmt_interface_vrf }}'
+  cvvrf: mgmt
   smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
   ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
   disable_aaa: true

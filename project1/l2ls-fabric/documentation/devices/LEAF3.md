@@ -6,6 +6,7 @@
   - [Management Interfaces](#management-interfaces)
   - [DNS Domain](#dns-domain)
   - [IP Name Servers](#ip-name-servers)
+  - [Domain Lookup](#domain-lookup)
   - [Clock Settings](#clock-settings)
   - [NTP](#ntp)
   - [Management SSH](#management-ssh)
@@ -15,6 +16,7 @@
   - [Local Users](#local-users)
   - [Enable Password](#enable-password)
   - [TACACS Servers](#tacacs-servers)
+  - [IP TACACS Source Interfaces](#ip-tacacs-source-interfaces)
   - [AAA Server Groups](#aaa-server-groups)
   - [AAA Authentication](#aaa-authentication)
   - [AAA Authorization](#aaa-authorization)
@@ -66,13 +68,13 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 172.100.100.107/24 | 172.100.100.1 |
+| Management1 | oob_management | oob | mgmt | 172.100.100.107/24 | 172.100.100.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | oob_management | oob | mgmt | - | - |
 
 #### Management Interfaces Device Configuration
 
@@ -81,7 +83,7 @@
 interface Management1
    description oob_management
    no shutdown
-   vrf MGMT
+   vrf mgmt
    ip address 172.100.100.107/24
 ```
 
@@ -102,18 +104,28 @@ dns domain itg.ti.com
 
 | Name Server | VRF | Priority |
 | ----------- | --- | -------- |
-| 192.0.0.2 | MGMT | - |
-| 192.0.0.3 | MGMT | - |
-| 192.0.2.2 | {{ mgmt_interface_vrf }} | - |
-| 192.0.2.3 | {{ mgmt_interface_vrf }} | - |
+| 192.0.2.2 | mgmt | - |
+| 192.0.2.3 | mgmt | - |
 
 #### IP Name Servers Device Configuration
 
 ```eos
-ip name-server vrf MGMT 192.0.0.2
-ip name-server vrf MGMT 192.0.0.3
-ip name-server vrf {{ mgmt_interface_vrf }} 192.0.2.2
-ip name-server vrf {{ mgmt_interface_vrf }} 192.0.2.3
+ip name-server vrf mgmt 192.0.2.2
+ip name-server vrf mgmt 192.0.2.3
+```
+
+### Domain Lookup
+
+#### DNS Domain Lookup Summary
+
+| Source interface | vrf |
+| ---------------- | --- |
+| Management1 | mgmt |
+
+#### DNS Domain Lookup Device Configuration
+
+```eos
+ip domain lookup vrf mgmt source-interface Management1
 ```
 
 ### Clock Settings
@@ -137,42 +149,38 @@ clock timezone UTC
 
 | Interface | VRF |
 | --------- | --- |
-| {{ custom_mgmt_interface }} | {{ mgmt_interface_vrf }} |
+| Management1 | mgmt |
 
 ##### NTP Servers
 
 | Server | VRF | Preferred | Burst | iBurst | Version | Min Poll | Max Poll | Local-interface | Key |
 | ------ | --- | --------- | ----- | ------ | ------- | -------- | -------- | --------------- | --- |
-| 10.188.255.18 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 134.183.87.87 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 137.167.66.10 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 137.167.210.21 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 157.170.147.6 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 158.218.8.155 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 172.16.44.10 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 172.16.169.44 | {{ mgmt_interface_vrf }} | False | - | - | - | - | - | - | - |
-| 172.24.254.250 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| 172.31.225.25 | {{ mgmt_interface_vrf }} | - | - | - | - | - | - | - | - |
-| pool.ntp.org | MGMT | - | - | - | - | - | - | - | - |
-| time.google.com | MGMT | True | - | - | - | - | - | - | - |
+| 10.188.255.18 | mgmt | - | - | - | - | - | - | - | - |
+| 134.183.87.87 | mgmt | - | - | - | - | - | - | - | - |
+| 137.167.66.10 | mgmt | - | - | - | - | - | - | - | - |
+| 137.167.210.21 | mgmt | - | - | - | - | - | - | - | - |
+| 157.170.147.6 | mgmt | - | - | - | - | - | - | - | - |
+| 158.218.8.155 | mgmt | - | - | - | - | - | - | - | - |
+| 172.16.44.10 | mgmt | - | - | - | - | - | - | - | - |
+| 172.16.169.44 | mgmt | False | - | - | - | - | - | - | - |
+| 172.24.254.250 | mgmt | - | - | - | - | - | - | - | - |
+| 172.31.225.25 | mgmt | - | - | - | - | - | - | - | - |
 
 #### NTP Device Configuration
 
 ```eos
 !
-ntp local-interface vrf {{ mgmt_interface_vrf }} {{ custom_mgmt_interface }}
-ntp server vrf {{ mgmt_interface_vrf }} 10.188.255.18
-ntp server vrf {{ mgmt_interface_vrf }} 134.183.87.87
-ntp server vrf {{ mgmt_interface_vrf }} 137.167.66.10
-ntp server vrf {{ mgmt_interface_vrf }} 137.167.210.21
-ntp server vrf {{ mgmt_interface_vrf }} 157.170.147.6
-ntp server vrf {{ mgmt_interface_vrf }} 158.218.8.155
-ntp server vrf {{ mgmt_interface_vrf }} 172.16.44.10
-ntp server vrf {{ mgmt_interface_vrf }} 172.16.169.44
-ntp server vrf {{ mgmt_interface_vrf }} 172.24.254.250
-ntp server vrf {{ mgmt_interface_vrf }} 172.31.225.25
-ntp server vrf MGMT pool.ntp.org
-ntp server vrf MGMT time.google.com prefer
+ntp local-interface vrf mgmt Management1
+ntp server vrf mgmt 10.188.255.18
+ntp server vrf mgmt 134.183.87.87
+ntp server vrf mgmt 137.167.66.10
+ntp server vrf mgmt 137.167.210.21
+ntp server vrf mgmt 157.170.147.6
+ntp server vrf mgmt 158.218.8.155
+ntp server vrf mgmt 172.16.44.10
+ntp server vrf mgmt 172.16.169.44
+ntp server vrf mgmt 172.24.254.250
+ntp server vrf mgmt 172.31.225.25
 ```
 
 ### Management SSH
@@ -199,7 +207,7 @@ ntp server vrf MGMT time.google.com prefer
 
 | VRF | Status |
 | --- | ------ |
-| {{ mgmt_interface_vrf }} | Enabled |
+| mgmt | Enabled |
 
 #### Management SSH Device Configuration
 
@@ -209,7 +217,7 @@ management ssh
    idle-timeout 30
    no shutdown
    !
-   vrf {{ mgmt_interface_vrf }}
+   vrf mgmt
       no shutdown
 ```
 
@@ -239,8 +247,7 @@ management console
 
 | VRF Name | IPv4 ACL | IPv6 ACL |
 | -------- | -------- | -------- |
-| MGMT | - | - |
-| {{ mgmt_interface_vrf }} | Ansible-ACL_SM | - |
+| mgmt | Ansible-ACL_SM | - |
 
 #### Management API HTTP Device Configuration
 
@@ -251,10 +258,7 @@ management api http-commands
    no protocol http
    no shutdown
    !
-   vrf MGMT
-      no shutdown
-   !
-   vrf {{ mgmt_interface_vrf }}
+   vrf mgmt
       no shutdown
       ip access-group Ansible-ACL_SM
 ```
@@ -294,8 +298,8 @@ enable password sha512 <removed>
 
 | VRF | TACACS Servers | Single-Connection | Timeout |
 | --- | -------------- | ----------------- | ------- |
-| {{ mgmt_interface_vrf }} | 172.31.225.29 | False | - |
-| {{ mgmt_interface_vrf }} | 172.31.226.32 | False | - |
+| mgmt | 172.31.225.29 | False | - |
+| mgmt | 172.31.226.32 | False | - |
 
 Policy unknown-mandatory-attribute ignore is configured
 
@@ -305,10 +309,25 @@ Global timeout: 20 seconds
 
 ```eos
 !
-tacacs-server host 172.31.225.29 vrf {{ mgmt_interface_vrf }} key 7 <removed>
-tacacs-server host 172.31.226.32 vrf {{ mgmt_interface_vrf }} key 7 <removed>
+tacacs-server host 172.31.225.29 vrf mgmt key 7 <removed>
+tacacs-server host 172.31.226.32 vrf mgmt key 7 <removed>
 tacacs-server policy unknown-mandatory-attribute ignore
 tacacs-server timeout 20
+```
+
+### IP TACACS Source Interfaces
+
+#### IP TACACS Source Interfaces
+
+| VRF | Source Interface Name |
+| --- | --------------- |
+| mgmt | Management1 |
+
+#### IP TACACS Source Interfaces Device Configuration
+
+```eos
+!
+ip tacacs vrf mgmt source-interface Management1
 ```
 
 ### AAA Server Groups
@@ -317,16 +336,16 @@ tacacs-server timeout 20
 
 | Server Group Name | Type  | VRF | IP address |
 | ------------------| ----- | --- | ---------- |
-| tacacs_servers | tacacs+ | {{ mgmt_interface_vrf }} | 172.31.226.29 |
-| tacacs_servers | tacacs+ | {{ mgmt_interface_vrf }} | 172.32.226.32 |
+| tacacs_servers | tacacs+ | mgmt | 172.31.226.29 |
+| tacacs_servers | tacacs+ | mgmt | 172.32.226.32 |
 
 #### AAA Server Groups Device Configuration
 
 ```eos
 !
 aaa group server tacacs+ tacacs_servers
-   server 172.31.226.29 vrf {{ mgmt_interface_vrf }}
-   server 172.32.226.32 vrf {{ mgmt_interface_vrf }}
+   server 172.31.226.29 vrf mgmt
+   server 172.32.226.32 vrf mgmt
 ```
 
 ### AAA Authentication
@@ -402,14 +421,14 @@ alias shterminattr show version detail | grep TerminAttr-core
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | {{ cvp_host_1_ip }}:9910,{{ cvp_host_2_ip }}:9910,{{ cvp_host_3_ip }}:9910 | {{ mgmt_interface_vrf }} | token,/tmp/token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
+| gzip | 10.10.10.7:9910,10.10.10.8:9910,10.10.10.9:9910 | mgmt | token,/tmp/token | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
 
 #### TerminAttr Daemon Device Configuration
 
 ```eos
 !
 daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr={{ cvp_host_1_ip }}:9910,{{ cvp_host_2_ip }}:9910,{{ cvp_host_3_ip }}:9910 -cvauth=token,/tmp/token -cvvrf={{ mgmt_interface_vrf }} -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   exec /usr/bin/TerminAttr -cvaddr=10.10.10.7:9910,10.10.10.8:9910,10.10.10.9:9910 -cvauth=token,/tmp/token -cvvrf=mgmt -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
    no shutdown
 ```
 
@@ -434,11 +453,11 @@ daemon TerminAttr
 
 | VRF | Source Interface |
 | --- | ---------------- |
-| {{ mgmt_interface_vrf }} | {{ custom_mgmt_interface }} |
+| mgmt | Management1 |
 
 | VRF | Hosts | Ports | Protocol |
 | --- | ----- | ----- | -------- |
-| {{ mgmt_interface_vrf }} | ents.itg.ti.com | 514 | TCP |
+| mgmt | ents.itg.ti.com | 514 | TCP |
 
 **Syslog facility value:** local7
 
@@ -451,11 +470,11 @@ logging trap debugging
 no logging console
 logging monitor debugging
 logging synchronous level all
-logging vrf {{ mgmt_interface_vrf }} host ents.itg.ti.com 514 protocol tcp
+logging vrf mgmt host ents.itg.ti.com 514 protocol tcp
 logging format timestamp high-resolution
 logging format hostname fqdn
 logging facility local7
-logging vrf {{ mgmt_interface_vrf }} source-interface {{ custom_mgmt_interface }}
+logging vrf mgmt source-interface Management1
 ```
 
 ### SNMP
@@ -478,13 +497,13 @@ logging vrf {{ mgmt_interface_vrf }} source-interface {{ custom_mgmt_interface }
 
 | Local Interface | VRF |
 | --------------- | --- |
-| {{ custom_mgmt_interface }} | {{ mgmt_interface_vrf }} |
+| Management1 | mgmt |
 
 #### SNMP VRF Status
 
 | VRF | Status |
 | --- | ------ |
-| MGMT | Enabled |
+| mgmt | Enabled |
 
 #### SNMP Communities
 
@@ -519,7 +538,7 @@ snmp-server engineID local 5dcba5ee89ec951b71aaf1e3a770a8de36dfd875
 snmp-server location DC1_FABRIC LEAF3
 snmp-server engineID remote entstrap.itg.ti.com 536E4D705454
 snmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424
-snmp-server vrf {{ mgmt_interface_vrf }} local-interface {{ custom_mgmt_interface }}
+snmp-server vrf mgmt local-interface Management1
 snmp-server community <removed> rw ENTS-SNMP_Access
 snmp-server community <removed> ro ENTS-SNMP_Access
 snmp-server community <removed> ro SevOne-SNMP_Access
@@ -531,7 +550,7 @@ snmp-server group network-admin v3 auth
 snmp-server group network-operator v3 auth
 snmp-server user SNMPManager network-admin v3 localized 5dcba5ee89ec951b71aaf1e3a770a8de36dfd875 auth sha <removed> priv aes <removed>
 snmp-server enable traps
-snmp-server vrf MGMT
+snmp-server vrf mgmt
 ```
 
 ## MLAG
@@ -779,12 +798,12 @@ service routing protocols model multi-agent
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| MGMT | False |
+| mgmt | False |
 
 #### IP Routing Device Configuration
 
 ```eos
-no ip routing vrf MGMT
+no ip routing vrf mgmt
 ```
 
 ### IPv6 Routing
@@ -794,7 +813,7 @@ no ip routing vrf MGMT
 | VRF | Routing Enabled |
 | --- | --------------- |
 | default | False |
-| MGMT | false |
+| mgmt | false |
 
 ### Static Routes
 
@@ -802,13 +821,13 @@ no ip routing vrf MGMT
 
 | VRF | Destination Prefix | Next Hop IP | Exit interface | Administrative Distance | Tag | Route Name | Metric |
 | --- | ------------------ | ----------- | -------------- | ----------------------- | --- | ---------- | ------ |
-| MGMT | 0.0.0.0/0 | 172.100.100.1 | - | 1 | - | - | - |
+| mgmt | 0.0.0.0/0 | 172.100.100.1 | - | 1 | - | - | - |
 
 #### Static Routes Device Configuration
 
 ```eos
 !
-ip route vrf MGMT 0.0.0.0/0 172.100.100.1
+ip route vrf mgmt 0.0.0.0/0 172.100.100.1
 ```
 
 ## Multicast
@@ -849,12 +868,12 @@ ip route vrf MGMT 0.0.0.0/0 172.100.100.1
 | 40 | permit host 10.180.68.98 |
 | 50 | remark dflcvp01 |
 | 60 | permit host 10.64.41.27 |
-| 70 | remark {{ cvp_host_1_name }} |
-| 80 | permit host {{ cvp_host_1_ip }} |
-| 90 | remark {{ cvp_host_2_name }} |
-| 100 | permit host {{ cvp_host_2_ip }} |
-| 110 | remark {{ cvp_host_3_name }} |
-| 120 | permit host {{ cvp_host_3_ip }} |
+| 70 | remark dxxcvp01 |
+| 80 | permit host 10.10.10.7 |
+| 90 | remark dxxcvp02 |
+| 100 | permit host 10.10.10.8 |
+| 110 | remark dxxcvp03 |
+| 120 | permit host 10.10.10.9 |
 | 130 | remark ents |
 | 140 | permit host 172.31.227.10 |
 | 150 | remark tilde |
@@ -955,12 +974,12 @@ ip access-list standard Ansible-ACL_SM
    40 permit host 10.180.68.98
    50 remark dflcvp01
    60 permit host 10.64.41.27
-   70 remark {{ cvp_host_1_name }}
-   80 permit host {{ cvp_host_1_ip }}
-   90 remark {{ cvp_host_2_name }}
-   100 permit host {{ cvp_host_2_ip }}
-   110 remark {{ cvp_host_3_name }}
-   120 permit host {{ cvp_host_3_ip }}
+   70 remark dxxcvp01
+   80 permit host 10.10.10.7
+   90 remark dxxcvp02
+   100 permit host 10.10.10.8
+   110 remark dxxcvp03
+   120 permit host 10.10.10.9
    130 remark ents
    140 permit host 172.31.227.10
    150 remark tilde
@@ -1038,13 +1057,13 @@ ip access-list standard Statseeker-SNMP_Access
 
 | VRF Name | IP Routing |
 | -------- | ---------- |
-| MGMT | disabled |
+| mgmt | disabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
 !
-vrf instance MGMT
+vrf instance mgmt
 ```
 
 ## EOS CLI Device Configuration

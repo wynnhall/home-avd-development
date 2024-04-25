@@ -24,28 +24,45 @@ ansible_httpapi_use_ssl: true
 # Do not try to validate certs
 ansible_httpapi_validate_certs: false
 
-# Spine Switches (L2 only)
-spine:
+# Fabric defaults
+cvp_host_1_name: "dxxcvp01"
+cvp_host_1_ip: 10.10.10.7
+cvp_host_2_name: "dxxcvp02"
+cvp_host_2_ip: 10.10.10.8
+cvp_host_3_name: "dxxcvp03"
+cvp_host_3_ip: 10.10.10.9
+default_mgmt_method: oob
+mgmt_gateway: 172.100.100.1
+mgmt_interface_vrf: mgmt
+custom_mgmt_interface: Management1
+mgmt_vrf_routing: false
+
+# Spine Switches
+l3spine:
   defaults:
-    platform: cEOS-LAB
+    platform: 7280R3
     spanning_tree_mode: mstp
     spanning_tree_priority: 4096
-    mlag_peer_ipv4_pool: 192.168.0.0/24
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
     mlag_interfaces: [Ethernet47, Ethernet48]
+    loopback_ipv4_pool: 192.168.160.0/18
   node_groups:
     - group: SPINES
       nodes:
         - name: SPINE1
           id: 1
           mgmt_ip: 172.100.100.101/24
+          rack: "[DC1/MDF]"
         - name: SPINE2
           id: 2
           mgmt_ip: 172.100.100.102/24
+          rack: "[DC2/MDF]"
 
 # Leaf Switches
 leaf:
   defaults:
-    platform: cEOS-LAB
+    platform: 7050X3
     mlag_peer_ipv4_pool: 192.168.0.0/24
     uplink_switches: [SPINE1, SPINE2]
     uplink_interfaces: [Ethernet1, Ethernet2]

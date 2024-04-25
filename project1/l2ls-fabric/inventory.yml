@@ -4,12 +4,16 @@ DC1:
     DC1_FABRIC:
       children:
         DC1_SPINES:
+          vars:
+            type: l3spine
           hosts:
             SPINE1:
               ansible_host: 172.100.100.101
             SPINE2:
               ansible_host: 172.100.100.102
         DC1_LEAFS:
+          vars:
+            type: leaf
           hosts:
             LEAF1:
               ansible_host: 172.100.100.105
