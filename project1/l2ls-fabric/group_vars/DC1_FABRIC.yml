@@ -25,11 +25,11 @@ ansible_httpapi_use_ssl: true
 ansible_httpapi_validate_certs: false
 
 # Fabric defaults
-cvp_host_1_name: "dxxcvp01"
+cvp_host_1_name: dxxcvp01
 cvp_host_1_ip: 10.10.10.7
-cvp_host_2_name: "dxxcvp02"
+cvp_host_2_name: dxxcvp02
 cvp_host_2_ip: 10.10.10.8
-cvp_host_3_name: "dxxcvp03"
+cvp_host_3_name: dxxcvp03
 cvp_host_3_ip: 10.10.10.9
 default_mgmt_method: oob
 mgmt_gateway: 172.100.100.1
