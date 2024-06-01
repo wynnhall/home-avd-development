@@ -17,9 +17,9 @@ custom_structured_configuration_aaa_server_groups:
   - name: tacacs_servers
     type: "tacacs+"
     servers:
-      - server: 172.31.226.29
+      - server: 172.31.225.29
         vrf: "{{ mgmt_interface_vrf }}"
-      - server: 172.32.226.32
+      - server: 172.31.226.32
         vrf: "{{ mgmt_interface_vrf }}"
 
 # aaa accouting
@@ -82,12 +82,12 @@ custom_structured_configuration_local_users:
   - name: networkpw
     privilege: 15
     role: network-admin
-    sha512_password: "{{ vault.users.networkpw.sha512_password }}"
+    sha512_password: "{{ global_vault.users.networkpw.sha512_password }}"
 
 # enable_password
 custom_structured_configuration_enable_password:
   hash_algorithm: 'sha512'
-  key: "{{ vault.enable.password }}"
+  key: "{{ global_vault.enable.password }}"
 
 # dns servers.
 custom_structured_configuration_ip_name_servers:
@@ -410,6 +410,7 @@ custom_structured_configuration_logging:
           ports:
             - 514
 
+# Commands that have no keys, but TI desires
 eos_cli: |
   logging event congestion-drops interval 600
   no logging repeat-messages
@@ -417,6 +418,13 @@ eos_cli: |
   logging event link-status global
   service unsupported-transceiver TexasInstruments ffd6c10c
 
+# Fabric settings
+# description_prefix: "[L]"
+ip_icmp_redirect: false
+
+# DHCP supression in VXLAN-Fabric
+dhcp_relay:
+  tunnel_requests_disabled: true
 
 # Login Banner
 banners:
@@ -455,6 +463,8 @@ custom_structured_configuration_daemon_terminattr:
   smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
   ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
   disable_aaa: true
+  cvgnmi: true
+  cvconfig: true
 
 custom_structured_configuration_interface_defaults:
   ethernet:
