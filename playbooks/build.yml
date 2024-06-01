@@ -1,10 +1,60 @@
 ---
-
-# build.yml
-
-- name: Build Configs
-  hosts: DC1_FABRIC
+# Both clone - SHARED repository and build.yml playbooks
+  
+- hosts: localhost
   gather_facts: false
+  
+  tasks:
+    # - name: Clone the repository
+    #   ansible.builtin.git:
+    # #     repo: https://gitlab.aristanetworks.com/spandana/ti-shared.git
+    # #     dest: ../Global_Vars-FROM SHARED REPO-DO NOT MODIFY
+    #     repo: https://bitbucket.itg.ti.com/scm/avd/global-variables.git
+    #     dest: ../Global_Vars
+    #     clone: yes
+    #     update: no
+    #     force: yes
+
+    # - name: Pull the latest changes
+    #   ansible.builtin.git:
+    # #     repo: https://gitlab.aristanetworks.com/spandana/ti-shared.git
+    # #     dest: ../Global_Vars-FROM SHARED REPO-DO NOT MODIFY
+    #     repo: https://bitbucket.itg.ti.com/scm/avd/global-variables.git
+    #     dest: ../Global_Vars
+    #     clone: no
+    #     update: yes
+    #     force: yes
+- name: Include only SFLOW
+  hosts: SFLOW
+  gather_facts: false
+  tasks:
+    - name: generate sFLOW config to only SFLOW group devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/SFLOW.yml"
+
+- name: Include only devices that are using in-band MGMT
+  hosts: INBAND_MGMT
+  gather_facts: false
+  tasks:
+    - name: generate Inband MGMT config to only INBAND_MGMT group of devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/INBAND_MGMT.yml"
+
+
+- name: Include only devices that are deployed
+  hosts: NOTDEPLOYED
+  gather_facts: false
+  tasks:
+    - name: generate CVP Tasks for only NOTDEPLOYED group of devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/NOTDEPLOYED.yml"
+
+- hosts: "{{ fabric_name }}"
+  gather_facts: false
+
   tasks:
 
     - name: Generate AVD Structured Configurations and Fabric Documentation
@@ -14,3 +64,5 @@
     - name: Generate Device Configurations and Documentation
       ansible.builtin.import_role:
         name: arista.avd.eos_cli_config_gen
+
+      

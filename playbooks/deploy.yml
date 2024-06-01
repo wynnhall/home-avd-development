@@ -1,20 +1,25 @@
 ---
-
-# deploy.yml
-
-- name: Build and Deploy Configs
-  hosts: DC1_FABRIC
+- name: Include only devices that are deployed
+  hosts: NOTDEPLOYED
   gather_facts: false
   tasks:
+    - name: generate CVP Tasks for only NOTDEPLOYED group of devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/NOTDEPLOYED.yml"
 
-    - name: Generate AVD Structured Configurations and Fabric Documentation
-      ansible.builtin.import_role:
-        name: arista.avd.eos_designs
+- name: Provision CVP
+  hosts: cv_server
+  gather_facts: false
+  # Deploy to CVP
+  tasks:
+    - name: run CVP provisioning
+      import_role:
+        name: arista.avd.eos_config_deploy_cvp
+      vars:
+        cv_collection: v3
+        device_filter: 'all'  # default
+        state: present
+        execute_tasks: false  # Allow verification on CVP via Change Control
+        device_search_key: serialNumber
 
-    - name: Generate Device Configurations and Documentation
-      ansible.builtin.import_role:
-        name: arista.avd.eos_cli_config_gen
-
-    - name: Deploy Configurations to Devices
-      ansible.builtin.import_role:
-        name: arista.avd.eos_config_deploy_eapi
