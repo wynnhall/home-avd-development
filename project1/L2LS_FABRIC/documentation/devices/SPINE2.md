@@ -22,6 +22,9 @@
   - [AAA Authorization](#aaa-authorization)
   - [AAA Accounting](#aaa-accounting)
 - [Aliases Device Configuration](#aliases-device-configuration)
+- [DHCP Relay](#dhcp-relay)
+  - [DHCP Relay Summary](#dhcp-relay-summary)
+  - [DHCP Relay Device Configuration](#dhcp-relay-device-configuration)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
   - [Logging](#logging)
@@ -337,16 +340,16 @@ ip tacacs vrf mgmt source-interface Management1
 
 | Server Group Name | Type  | VRF | IP address |
 | ------------------| ----- | --- | ---------- |
-| tacacs_servers | tacacs+ | mgmt | 172.31.226.29 |
-| tacacs_servers | tacacs+ | mgmt | 172.32.226.32 |
+| tacacs_servers | tacacs+ | mgmt | 172.31.225.29 |
+| tacacs_servers | tacacs+ | mgmt | 172.31.226.32 |
 
 #### AAA Server Groups Device Configuration
 
 ```eos
 !
 aaa group server tacacs+ tacacs_servers
-   server 172.31.226.29 vrf mgmt
-   server 172.32.226.32 vrf mgmt
+   server 172.31.225.29 vrf mgmt
+   server 172.31.226.32 vrf mgmt
 ```
 
 ### AAA Authentication
@@ -414,6 +417,21 @@ alias shterminattr show version detail | grep TerminAttr-core
 !
 ```
 
+## DHCP Relay
+
+### DHCP Relay Summary
+
+- DHCP Relay is disabled for tunnelled requests
+- DHCP Relay is enabled for MLAG peer-link requests
+
+### DHCP Relay Device Configuration
+
+```eos
+!
+dhcp relay
+   tunnel requests disabled
+```
+
 ## Monitoring
 
 ### TerminAttr Daemon
@@ -429,7 +447,7 @@ alias shterminattr show version detail | grep TerminAttr-core
 ```eos
 !
 daemon TerminAttr
-   exec /usr/bin/TerminAttr -cvaddr=10.10.10.7:9910,10.10.10.8:9910,10.10.10.9:9910 -cvauth=token,/tmp/token -cvvrf=mgmt -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs
+   exec /usr/bin/TerminAttr -cvaddr=10.10.10.7:9910,10.10.10.8:9910,10.10.10.9:9910 -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig
    no shutdown
 ```
 
@@ -877,6 +895,7 @@ service routing protocols model multi-agent
 ```eos
 !
 ip routing
+no ip icmp redirect
 no ip routing vrf mgmt
 ```
 
