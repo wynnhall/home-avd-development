@@ -1,0 +1,1172 @@
+hostname: ISMS1ITSP02A
+is_deployed: false
+router_bgp:
+  as: '65120.31100'
+  router_id: 172.21.2.2
+  bgp_defaults:
+  - bgp asn notation asdot
+  - distance bgp 20 200 200
+  - timers bgp 5 15
+  - graceful-restart restart-time 300
+  - graceful-restart
+  - neighbor default send-community
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 128
+    ecmp: 128
+  updates:
+    wait_install: true
+  peer_groups:
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+    next_hop_unchanged: true
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+      next_hop:
+        address_family_ipv6:
+          enabled: true
+          originate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  neighbor_interfaces:
+  - name: Ethernet3/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31200'
+    peer: ISMS1ITBL01A
+    description: ISMS1ITBL01A_Ethernet26/1
+  - name: Ethernet3/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31303'
+    peer: IS11CIT01A
+    description: IS11CIT01A_Ethernet1/2/1
+  - name: Ethernet3/3/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31309'
+    peer: IS11KEIT01A
+    description: IS11KEIT01A_Ethernet1/2/1
+  - name: Ethernet3/4/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31315'
+    peer: ISM2WIT01A
+    description: ISM2WIT01A_Ethernet1/2/1
+  - name: Ethernet3/5/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31321'
+    peer: IS00AIT01A
+    description: IS00AIT01A_Ethernet1/2/1
+  - name: Ethernet3/6/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31327'
+    peer: IS02AIT01A
+    description: IS02AIT01A_Ethernet1/2/1
+  - name: Ethernet4/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31200'
+    peer: ISMS1ITBL02A
+    description: ISMS1ITBL02A_Ethernet26/1
+  - name: Ethernet4/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31304'
+    peer: IS11AIT01A
+    description: IS11AIT01A_Ethernet1/2/1
+  - name: Ethernet4/3/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31310'
+    peer: IS11HEIT01A
+    description: IS11HEIT01A_Ethernet1/2/1
+  - name: Ethernet4/4/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31316'
+    peer: ISM3XNIT01A
+    description: ISM3XNIT01A_Ethernet1/2/1
+  - name: Ethernet4/5/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31322'
+    peer: IS00BIT01A
+    description: IS00BIT01A_Ethernet1/2/1
+  - name: Ethernet4/6/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31328'
+    peer: IS02BIT01A
+    description: IS02BIT01A_Ethernet1/2/1
+  - name: Ethernet5/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31201'
+    peer: ISMITAGG01A
+    description: ISMITAGG01A_Ethernet50/1
+  - name: Ethernet5/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31305'
+    peer: IS11JWIT01A
+    description: IS11JWIT01A_Ethernet1/2/1
+  - name: Ethernet5/3/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31311'
+    peer: IS11DEIT01A
+    description: IS11DEIT01A_Ethernet1/2/1
+  - name: Ethernet5/4/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31317'
+    peer: ISM3XNIT02A
+    description: ISM3XNIT02A_Ethernet1/2/1
+  - name: Ethernet5/5/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31323'
+    peer: IS00CIT01A
+    description: IS00CIT01A_Ethernet1/2/1
+  - name: Ethernet5/6/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31329'
+    peer: IS03AIT01A
+    description: IS03AIT01A_Ethernet1/2/1
+  - name: Ethernet6/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31201'
+    peer: ISMITAGG02A
+    description: ISMITAGG02A_Ethernet50/1
+  - name: Ethernet6/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31306'
+    peer: IS11GWIT01A
+    description: IS11GWIT01A_Ethernet1/2/1
+  - name: Ethernet6/3/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31312'
+    peer: IS11BEIT01A
+    description: IS11BEIT01A_Ethernet1/2/1
+  - name: Ethernet6/4/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31318'
+    peer: ISM3XSIT01A
+    description: ISM3XSIT01A_Ethernet1/2/1
+  - name: Ethernet6/5/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31324'
+    peer: IS01AIT01A
+    description: IS01AIT01A_Ethernet1/2/1
+  - name: Ethernet6/6/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31330'
+    peer: IS03BIT01A
+    description: IS03BIT01A_Ethernet1/2/1
+  - name: Ethernet7/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31301'
+    peer: IS11JIT01A
+    description: IS11JIT01A_Ethernet1/2/1
+  - name: Ethernet7/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31307'
+    peer: IS11EWIT01A
+    description: IS11EWIT01A_Ethernet1/2/1
+  - name: Ethernet7/3/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31313'
+    peer: ISM0WIT01A
+    description: ISM0WIT01A_Ethernet1/2/1
+  - name: Ethernet7/4/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31319'
+    peer: ISM3XSIT02A
+    description: ISM3XSIT02A_Ethernet1/2/1
+  - name: Ethernet7/5/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31325'
+    peer: IS01BIT01A
+    description: IS01BIT01A_Ethernet1/2/1
+  - name: Ethernet7/6/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31331'
+    peer: ISM1YIT01A
+    description: ISM1YIT01A_Ethernet1/2/1
+  - name: Ethernet8/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31302'
+    peer: IS11GIT01A
+    description: IS11GIT01A_Ethernet1/2/1
+  - name: Ethernet8/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31308'
+    peer: IS11CWIT01A
+    description: IS11CWIT01A_Ethernet1/2/1
+  - name: Ethernet8/3/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31314'
+    peer: ISM1WIT01A
+    description: ISM1WIT01A_Ethernet1/2/1
+  - name: Ethernet8/4/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31320'
+    peer: ISM3WIT01A
+    description: ISM3WIT01A_Ethernet1/2/1
+  - name: Ethernet8/5/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31326'
+    peer: IS01CIT01A
+    description: IS01CIT01A_Ethernet1/2/1
+  - name: Ethernet8/6/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31332'
+    peer: ISM1VIT01A
+    description: ISM1VIT01A_Ethernet1/2/1
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  neighbors:
+  - ip_address: 172.21.2.28
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS00AIT01A
+    description: IS00AIT01A
+    remote_as: '65120.31321'
+  - ip_address: 172.21.2.29
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS00BIT01A
+    description: IS00BIT01A
+    remote_as: '65120.31322'
+  - ip_address: 172.21.2.30
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS00CIT01A
+    description: IS00CIT01A
+    remote_as: '65120.31323'
+  - ip_address: 172.21.2.31
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS01AIT01A
+    description: IS01AIT01A
+    remote_as: '65120.31324'
+  - ip_address: 172.21.2.32
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS01BIT01A
+    description: IS01BIT01A
+    remote_as: '65120.31325'
+  - ip_address: 172.21.2.33
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS01CIT01A
+    description: IS01CIT01A
+    remote_as: '65120.31326'
+  - ip_address: 172.21.2.34
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS02AIT01A
+    description: IS02AIT01A
+    remote_as: '65120.31327'
+  - ip_address: 172.21.2.35
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS02BIT01A
+    description: IS02BIT01A
+    remote_as: '65120.31328'
+  - ip_address: 172.21.2.36
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS03AIT01A
+    description: IS03AIT01A
+    remote_as: '65120.31329'
+  - ip_address: 172.21.2.37
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS03BIT01A
+    description: IS03BIT01A
+    remote_as: '65120.31330'
+  - ip_address: 172.21.2.11
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11AIT01A
+    description: IS11AIT01A
+    remote_as: '65120.31304'
+  - ip_address: 172.21.2.19
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11BEIT01A
+    description: IS11BEIT01A
+    remote_as: '65120.31312'
+  - ip_address: 172.21.2.10
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11CIT01A
+    description: IS11CIT01A
+    remote_as: '65120.31303'
+  - ip_address: 172.21.2.15
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11CWIT01A
+    description: IS11CWIT01A
+    remote_as: '65120.31308'
+  - ip_address: 172.21.2.18
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11DEIT01A
+    description: IS11DEIT01A
+    remote_as: '65120.31311'
+  - ip_address: 172.21.2.14
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11EWIT01A
+    description: IS11EWIT01A
+    remote_as: '65120.31307'
+  - ip_address: 172.21.2.9
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11GIT01A
+    description: IS11GIT01A
+    remote_as: '65120.31302'
+  - ip_address: 172.21.2.13
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11GWIT01A
+    description: IS11GWIT01A
+    remote_as: '65120.31306'
+  - ip_address: 172.21.2.17
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11HEIT01A
+    description: IS11HEIT01A
+    remote_as: '65120.31310'
+  - ip_address: 172.21.2.8
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11JIT01A
+    description: IS11JIT01A
+    remote_as: '65120.31301'
+  - ip_address: 172.21.2.12
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11JWIT01A
+    description: IS11JWIT01A
+    remote_as: '65120.31305'
+  - ip_address: 172.21.2.16
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: IS11KEIT01A
+    description: IS11KEIT01A
+    remote_as: '65120.31309'
+  - ip_address: 172.21.2.20
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM0WIT01A
+    description: ISM0WIT01A
+    remote_as: '65120.31313'
+  - ip_address: 172.21.2.39
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM1VIT01A
+    description: ISM1VIT01A
+    remote_as: '65120.31332'
+  - ip_address: 172.21.2.21
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM1WIT01A
+    description: ISM1WIT01A
+    remote_as: '65120.31314'
+  - ip_address: 172.21.2.38
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM1YIT01A
+    description: ISM1YIT01A
+    remote_as: '65120.31331'
+  - ip_address: 172.21.2.22
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM2WIT01A
+    description: ISM2WIT01A
+    remote_as: '65120.31315'
+  - ip_address: 172.21.2.27
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM3WIT01A
+    description: ISM3WIT01A
+    remote_as: '65120.31320'
+  - ip_address: 172.21.2.23
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM3XNIT01A
+    description: ISM3XNIT01A
+    remote_as: '65120.31316'
+  - ip_address: 172.21.2.24
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM3XNIT02A
+    description: ISM3XNIT02A
+    remote_as: '65120.31317'
+  - ip_address: 172.21.2.25
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM3XSIT01A
+    description: ISM3XSIT01A
+    remote_as: '65120.31318'
+  - ip_address: 172.21.2.26
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISM3XSIT02A
+    description: ISM3XSIT02A
+    remote_as: '65120.31319'
+  - ip_address: 172.21.2.6
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMITAGG01A
+    description: ISMITAGG01A
+    remote_as: '65120.31201'
+  - ip_address: 172.21.2.7
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMITAGG02A
+    description: ISMITAGG02A
+    remote_as: '65120.31201'
+  - ip_address: 172.21.2.4
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMS1ITBL01A
+    description: ISMS1ITBL01A
+    remote_as: '65120.31200'
+  - ip_address: 172.21.2.5
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMS1ITBL02A
+    description: ISMS1ITBL02A
+    remote_as: '65120.31200'
+service_routing_protocols_model: multi-agent
+ipv6_unicast_routing: true
+ip_routing_ipv6_interfaces: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: none
+clock:
+  timezone: UTC
+vrfs:
+- name: mgmt
+  ip_routing: false
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 10.210.80.61/21
+  gateway: null
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+    access_group: Ansible-ACL_SM
+  enable_https: true
+  enable_http: false
+snmp_server:
+  engine_ids:
+    local: 0f9e96634a57c13eea63c4140257a7913efc43c2
+    remotes:
+    - id: 536E4D705454
+      address: entstrap.itg.ti.com
+    - id: 536576306E65406363652424
+      address: sevonenms.itg.ti.com
+  location: SM_IT_FABRIC ISMS1ITSP02A
+  users:
+  - name: SNMPManager
+    group: network-admin
+    version: v3
+    localized: 0f9e96634a57c13eea63c4140257a7913efc43c2
+    auth: sha
+    auth_passphrase: 053698ee57eff1ae7696ea77f9df03ca4b3d60fa
+    priv: aes
+    priv_passphrase: 053698ee57eff1ae7696ea77f9df03ca
+  vrfs:
+  - name: mgmt
+    enable: true
+  communities:
+  - name: vhbqmu2JRJQcjfX99inm
+    access: ro
+    access_list_ipv4:
+      name: Airwave-SNMP_Access
+  - name: 8dp6e0eJW9DipeJRxreH
+    access: ro
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: 6XTUe5ZyUN0xQ25MNvdg
+    access: rw
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: r0gQaBrsDNEfgtKWsWmV
+    access: ro
+    access_list_ipv4:
+      name: NetBrain-SNMP_Access
+  - name: z778eYOT4g2god0qT8A3
+    access: ro
+    access_list_ipv4:
+      name: NetDisco-SNMP_Access
+  - name: HBHpL2ILnbWbuXuhYPiW
+    access: ro
+    access_list_ipv4:
+      name: SevOne-SNMP_Access
+  - name: Oij0ENt7meI3wjK2rxNv
+    access: ro
+    access_list_ipv4:
+      name: Statseeker-SNMP_Access
+  groups:
+  - name: network-admin
+    version: v3
+    authentication: auth
+  - name: network-operator
+    version: v3
+    authentication: auth
+  local_interfaces:
+  - name: Management0
+    vrf: mgmt
+  traps:
+    enable: true
+ethernet_interfaces:
+- name: Ethernet3/1/1
+  peer: ISMS1ITBL01A
+  peer_interface: Ethernet26/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISMS1ITBL01A_Ethernet26/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet3/2/1
+  peer: IS11CIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11CIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet3/3/1
+  peer: IS11KEIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11KEIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet3/4/1
+  peer: ISM2WIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM2WIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet3/5/1
+  peer: IS00AIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS00AIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet3/6/1
+  peer: IS02AIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS02AIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet4/1/1
+  peer: ISMS1ITBL02A
+  peer_interface: Ethernet26/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISMS1ITBL02A_Ethernet26/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet4/2/1
+  peer: IS11AIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11AIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet4/3/1
+  peer: IS11HEIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11HEIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet4/4/1
+  peer: ISM3XNIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM3XNIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet4/5/1
+  peer: IS00BIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS00BIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet4/6/1
+  peer: IS02BIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS02BIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet5/1/1
+  peer: ISMITAGG01A
+  peer_interface: Ethernet50/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISMITAGG01A_Ethernet50/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet5/2/1
+  peer: IS11JWIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11JWIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet5/3/1
+  peer: IS11DEIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11DEIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet5/4/1
+  peer: ISM3XNIT02A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM3XNIT02A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet5/5/1
+  peer: IS00CIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS00CIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet5/6/1
+  peer: IS03AIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS03AIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet6/1/1
+  peer: ISMITAGG02A
+  peer_interface: Ethernet50/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISMITAGG02A_Ethernet50/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet6/2/1
+  peer: IS11GWIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11GWIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet6/3/1
+  peer: IS11BEIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11BEIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet6/4/1
+  peer: ISM3XSIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM3XSIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet6/5/1
+  peer: IS01AIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS01AIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet6/6/1
+  peer: IS03BIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS03BIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet7/1/1
+  peer: IS11JIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11JIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet7/2/1
+  peer: IS11EWIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11EWIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet7/3/1
+  peer: ISM0WIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM0WIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet7/4/1
+  peer: ISM3XSIT02A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM3XSIT02A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet7/5/1
+  peer: IS01BIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS01BIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet7/6/1
+  peer: ISM1YIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM1YIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet8/1/1
+  peer: IS11GIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11GIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet8/2/1
+  peer: IS11CWIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS11CWIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet8/3/1
+  peer: ISM1WIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM1WIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet8/4/1
+  peer: ISM3WIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM3WIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet8/5/1
+  peer: IS01CIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_IS01CIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet8/6/1
+  peer: ISM1VIT01A
+  peer_interface: Ethernet1/2/1
+  peer_type: l3leaf
+  description: '[L]_P2P_LINK_TO_ISM1VIT01A_Ethernet1/2/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 172.21.2.2/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 172.21.2.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+metadata:
+  platform: 7300X3
+aliases: 'alias ll dir
+
+  alias q exit
+
+  alias senz show interface counter error | nz
+
+  alias shmc show int | awk ''/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }''
+
+  alias snz show interface counter | nz
+
+  alias spd show port-channel %1 detail all
+
+  alias sqnz show interface counter queue | nz
+
+  alias srnz show interface counter rate | nz
+
+  alias shterminattr show version detail | grep TerminAttr-core
+
+  '
+aaa_server_groups:
+- name: tacacs_servers
+  type: tacacs+
+  servers:
+  - server: 172.31.226.29
+    vrf: mgmt
+  - server: 172.32.226.32
+    vrf: mgmt
+aaa_accounting:
+  commands:
+    default:
+    - commands: 1,15
+      type: start-stop
+      group: tacacs_servers
+aaa_authentication:
+  login:
+    default: group tacacs_servers local
+    console: local
+  enable:
+    default: group tacacs_servers local
+  policies:
+    local:
+      allow_nopassword: false
+aaa_authorization:
+  exec:
+    default: group tacacs_servers local
+tacacs_servers:
+  timeout: 20
+  hosts:
+  - host: 172.31.225.29
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  - host: 172.31.226.32
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  policy_unknown_mandatory_attribute_ignore: true
+local_users:
+- name: networkpw
+  privilege: 15
+  role: network-admin
+  sha512_password: test
+enable_password:
+  hash_algorithm: sha512
+  key: test
+ip_name_servers:
+- ip_address: 192.0.2.2
+  vrf: mgmt
+- ip_address: 192.0.2.3
+  vrf: mgmt
+dns_domain: itg.ti.com
+ntp:
+  local_interface:
+    name: Management0
+    vrf: mgmt
+  servers:
+  - name: 172.16.169.44
+    vrf: mgmt
+    preferred: false
+  - name: 157.170.147.6
+    vrf: mgmt
+  - name: 172.31.225.25
+    vrf: mgmt
+  - name: 137.167.66.10
+    vrf: mgmt
+  - name: 134.183.87.87
+    vrf: mgmt
+  - name: 172.16.44.10
+    vrf: mgmt
+  - name: 10.188.255.18
+    vrf: mgmt
+  - name: 137.167.210.21
+    vrf: mgmt
+  - name: 158.218.8.155
+    vrf: mgmt
+  - name: 172.24.254.250
+    vrf: mgmt
+standard_access_lists:
+- name: Airwave-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.33
+  - sequence: 20
+    action: deny any log
+- name: ENTS-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.25
+  - sequence: 20
+    action: permit host 172.31.227.10
+  - sequence: 30
+    action: permit host 172.31.225.12
+  - sequence: 40
+    action: deny any log
+- name: NetBrain-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.55
+  - sequence: 20
+    action: permit host 172.31.225.43
+  - sequence: 30
+    action: permit host 172.31.226.49
+  - sequence: 40
+    action: permit host 172.31.226.54
+  - sequence: 50
+    action: deny any log
+- name: NetDisco-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.24
+  - sequence: 20
+    action: permit host 172.31.226.53
+  - sequence: 30
+    action: deny any log
+- name: SevOne-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.225.47
+  - sequence: 20
+    action: permit host 172.31.225.53
+  - sequence: 30
+    action: permit host 172.31.225.54
+  - sequence: 40
+    action: permit host 172.31.225.60
+  - sequence: 50
+    action: ' permit host 172.31.225.61'
+  - sequence: 60
+    action: ' permit host 172.31.225.62'
+  - sequence: 70
+    action: ' permit host 172.31.225.63'
+  - sequence: 80
+    action: ' permit host 172.31.225.64'
+  - sequence: 90
+    action: ' permit host 172.31.225.65'
+  - sequence: 100
+    action: ' permit host 172.31.225.66'
+  - sequence: 110
+    action: ' permit host 172.31.225.67'
+  - sequence: 120
+    action: ' permit host 172.31.225.68'
+  - sequence: 130
+    action: ' permit host 172.31.225.69'
+  - sequence: 140
+    action: ' permit host 172.31.225.86'
+  - sequence: 150
+    action: ' permit host 172.31.225.87'
+  - sequence: 160
+    action: ' permit host 172.31.225.88'
+  - sequence: 170
+    action: ' permit host 172.31.225.89'
+  - sequence: 180
+    action: ' permit host 172.31.225.90'
+  - sequence: 190
+    action: ' permit host 172.31.225.91'
+  - sequence: 200
+    action: ' permit host 172.31.226.100'
+  - sequence: 210
+    action: ' permit host 172.31.226.101'
+  - sequence: 220
+    action: ' permit host 172.31.226.102'
+  - sequence: 230
+    action: ' permit host 172.31.226.55'
+  - sequence: 240
+    action: ' permit host 172.31.226.58'
+  - sequence: 250
+    action: ' permit host 172.31.226.59'
+  - sequence: 260
+    action: ' permit host 172.31.226.63'
+  - sequence: 270
+    action: ' permit host 172.31.226.68'
+  - sequence: 280
+    action: ' permit host 172.31.226.74'
+  - sequence: 290
+    action: ' permit host 172.31.226.75'
+  - sequence: 300
+    action: ' permit host 172.31.226.76'
+  - sequence: 310
+    action: ' permit host 172.31.226.77'
+  - sequence: 320
+    action: ' permit host 172.31.226.79'
+  - sequence: 330
+    action: ' permit host 172.31.226.87'
+  - sequence: 340
+    action: ' permit host 172.31.226.90'
+  - sequence: 350
+    action: ' permit host 172.31.226.91'
+  - sequence: 360
+    action: ' permit host 172.31.226.97'
+  - sequence: 370
+    action: ' permit host 172.31.226.98'
+  - sequence: 380
+    action: ' permit host 172.31.226.99'
+  - sequence: 390
+    action: deny any log
+- name: Statseeker-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.35
+  - sequence: 20
+    action: deny any log
+- name: Ansible-ACL_SM
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: remark dlecvp01
+  - sequence: 20
+    action: permit host 10.180.68.99
+  - sequence: 30
+    action: remark dlecvp02
+  - sequence: 40
+    action: permit host 10.180.68.98
+  - sequence: 50
+    action: remark dflcvp01
+  - sequence: 60
+    action: permit host 10.64.41.27
+  - sequence: 70
+    action: remark dsmcvp01
+  - sequence: 80
+    action: permit host 10.210.80.7
+  - sequence: 90
+    action: remark dsmcvp02
+  - sequence: 100
+    action: permit host 10.210.80.8
+  - sequence: 110
+    action: remark dsmcvp03
+  - sequence: 120
+    action: permit host 10.210.80.9
+  - sequence: 130
+    action: remark ents
+  - sequence: 140
+    action: permit host 172.31.227.10
+  - sequence: 150
+    action: remark tilde
+  - sequence: 160
+    action: permit host 172.31.226.25
+  - sequence: 170
+    action: remark dotdot
+  - sequence: 180
+    action: permit host 172.31.225.12
+management_console:
+  idle_timeout: 30
+management_ssh:
+  idle_timeout: 30
+  enable: true
+  vrfs:
+  - name: mgmt
+    enable: true
+logging:
+  console: disabled
+  monitor: debugging
+  buffered:
+    size: 10000
+    level: debugging
+  trap: debugging
+  synchronous:
+    level: all
+  format:
+    timestamp: high-resolution
+    hostname: fqdn
+    sequence_numbers: false
+  facility: local7
+  vrfs:
+  - name: mgmt
+    source_interface: Management0
+    hosts:
+    - name: ents.itg.ti.com
+      protocol: tcp
+      ports:
+      - 514
+daemon_terminattr:
+  cvaddrs:
+  - 10.210.80.7:9910
+  - 10.210.80.8:9910
+  - 10.210.80.9:9910
+  cvauth:
+    method: token
+    token_file: /tmp/token
+  cvvrf: mgmt
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: true
+  cvgnmi: true
+  cvconfig: true
+interface_defaults:
+  ethernet:
+    shutdown: true
+  mtu: 9214
+switchport_default:
+  mode: routed
+internal_vlan_order:
+  allocation: ascending
+  range:
+    beginning: 3500
+    ending: 4000

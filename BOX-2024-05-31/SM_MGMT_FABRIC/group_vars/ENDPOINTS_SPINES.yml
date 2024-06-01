@@ -1,0 +1,21 @@
+---
+
+firewalls:
+  - name: ISMMGTPAN01
+    adapters:
+      - endpoint_ports: [Eth1/15, Eth1/16]
+        switch_ports: [Ethernet3/25, Ethernet3/25]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-FIREWALL
+        speed: 10g
+        port_channel:
+          mode: active
+  - name: ISMMGTPAN02
+    adapters:
+      - endpoint_ports: [Eth1/15, Eth1/16]
+        switch_ports: [Ethernet4/25, Ethernet4/25]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-FIREWALL
+        port_channel:
+          mode: active
+

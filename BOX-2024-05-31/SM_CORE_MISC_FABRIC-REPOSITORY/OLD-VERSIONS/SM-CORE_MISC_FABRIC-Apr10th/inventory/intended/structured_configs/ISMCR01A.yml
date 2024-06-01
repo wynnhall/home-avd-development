@@ -1,0 +1,1250 @@
+hostname: ISMCR01A
+is_deployed: true
+router_bgp:
+  as: '65120.1'
+  router_id: 172.21.0.245
+  bgp_defaults:
+  - bgp asn notation asdot
+  - timers bgp 5 15
+  - distance bgp 20 200 200
+  - neighbor default send-community
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  updates:
+    wait_install: true
+  peer_groups:
+  - name: MLAG-IPv4-UNDERLAY-PEER
+    type: ipv4
+    remote_as: '65120.1'
+    next_hop_self: true
+    description: ISMCR02A
+    maximum_routes: 12000
+    send_community: all
+    route_map_in: RM-MLAG-PEER-IN
+  - name: WANFW-EBGP-PEERS
+    type: ipv4
+    maximum_routes: 0
+    send_community: all
+    remote_as: '65120.40'
+    password: SuA6atsKvN4ki17RlFN19rsfx+G7TGUQiJQxTPol5Z0=
+  - name: IT-BL-EBGP-PEERS-IoTVRF
+    remote_as: '65120.31200'
+    maximum_routes: 0
+    password: Tql9/oFyk/NvJ9FsZnyBl6Sp8jgpinyzegmSv4JWB6Y=
+  - name: DMZFW-EBGP-PEERS
+    remote_as: '65120.98'
+    maximum_routes: 0
+    password: OWh7YwxG2dNHIcrWEkdC2ALnt7nf59nLIsNbm1CTj/c=
+  - name: IT-BLLF-EBGP-PEERS-ITVRF
+    remote_as: '65120.31200'
+    maximum_routes: 0
+    password: wU9DqejGII3G7AljGnp5M0884NhbXr6tJS9TZA9nUzI=
+  - name: MISC-CORES-EBGP-PEERS-ITVRF
+    remote_as: '65120.10'
+    maximum_routes: 0
+    password: UO4F8K06e1qsX/ccoo+Hupl+KrJkaTymBzFuV9cDwp8=
+  - name: SCADAFW-EBGP-PEERS
+    remote_as: '65120.60'
+    maximum_routes: 0
+    password: BkbQurq6UPXZPDAYfby/xIjsp4NOQxcAkxTQuGMov/Y=
+  - name: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    remote_as: '65120.11200'
+    maximum_routes: 0
+    password: gwho2qkVizVQIeBqyfGYfDZYNdvO6AG9IB7uAEyxTMM=
+  - name: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+    remote_as: '65120.12200'
+    maximum_routes: 0
+    password: PdqtDPdW6aF/x7P7Am0wcRTqLVuUIyZRWa+0xFyFxKs=
+  - name: DC1-BLLF-EBGP-PEERS-OTVRF
+    remote_as: '65120.11200'
+    maximum_routes: 0
+    password: rgdiNDHepAmnxV5wDLiwFb/LjNV+GQiLXuEo+u/DBYY=
+  - name: DC2-BLLF-EBGP-PEERS-OTVRF
+    remote_as: '65120.12200'
+    maximum_routes: 0
+    password: LyH/TPrsKXFFFbWVfFzFLxhEZnjJ+CEWkIvVGNXs6TQ=
+  - name: VENDORFW-EBGP-PEERS
+    remote_as: '65120.48'
+    maximum_routes: 0
+    password: fq/EstxhDYmknXCNro2Q4DKRrDX2gyGchqt37Haz0vE=
+  - name: MISC-CORES-EBGP-PEERS-OTVRF
+    remote_as: '65120.10'
+    maximum_routes: 0
+    password: 9Yi/OTIsleMGK9C78YLehuBJaEa/YZyj/HSXvm7xLgo=
+  address_family_ipv4:
+    peer_groups:
+    - name: MLAG-IPv4-UNDERLAY-PEER
+      activate: true
+    - name: WANFW-EBGP-PEERS
+      activate: true
+  neighbors:
+  - ip_address: 192.168.0.3
+    peer_group: MLAG-IPv4-UNDERLAY-PEER
+    peer: ISMCR02A
+    description: ISMCR02A
+  redistribute_routes:
+  - source_protocol: connected
+  vrfs:
+  - name: IoT
+    router_id: 172.21.0.245
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.0.5
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    - ip_address: 10.210.241.9
+      description: ISMS1ITBL01A-Eth1/1-IoTVRF
+      peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+    - ip_address: 10.210.241.13
+      description: ISMS1ITBL02A-Eth1/1-IoTVRF
+      peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+    - ip_address: 10.210.241.78
+      description: DMZFW-VIP-IoTVRF
+      peer_group: DMZFW-EBGP-PEERS
+      route_map_out: RM-DMZFW-IoT-VRF-OUT
+    address_family_ipv4:
+      neighbors:
+      - ip_address: 10.210.241.9
+        activate: true
+      - ip_address: 10.210.241.13
+        activate: true
+      - ip_address: 10.210.241.78
+        activate: true
+    updates:
+      wait_install: true
+  - name: IT
+    router_id: 172.21.0.245
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.0.5
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    - ip_address: 10.210.241.1
+      description: ISMS1ITBL01A-Eth1/1-ITVRF
+      peer_group: IT-BLLF-EBGP-PEERS-ITVRF
+    - ip_address: 10.210.241.5
+      description: ISMS1ITBL02A-Eth1/1-ITVRF
+      peer_group: IT-BLLF-EBGP-PEERS-ITVRF
+    - ip_address: 10.210.241.17
+      description: ISMITMSC01A-Eth49/1-ITVRF
+      peer_group: MISC-CORES-EBGP-PEERS-ITVRF
+    - ip_address: 10.210.241.21
+      description: ISMITMSC02A-Eth49/1-ITVRF
+      peer_group: MISC-CORES-EBGP-PEERS-ITVRF
+    - ip_address: 10.210.241.70
+      description: WANFW-IP-ITVRF
+      peer_group: WANFW-EBGP-PEERS
+      route_map_out: RM-IT-10.210.241.70-SET-NEXT-HOP-OUT
+    - ip_address: 10.210.241.86
+      description: SCADAFW-IP-ITVRF
+      peer_group: SCADAFW-EBGP-PEERS
+      route_map_out: RM-IT-10.210.241.86-SET-NEXT-HOP-OUT
+    address_family_ipv4:
+      neighbors:
+      - ip_address: 10.210.241.1
+        activate: true
+      - ip_address: 10.210.241.5
+        activate: true
+      - ip_address: 10.210.241.17
+        activate: true
+      - ip_address: 10.210.241.21
+        activate: true
+      - ip_address: 10.210.241.70
+        activate: true
+      - ip_address: 10.210.241.86
+        activate: true
+    updates:
+      wait_install: true
+  - name: IT-DC
+    router_id: 172.21.0.245
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.0.5
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    - ip_address: 10.210.226.25
+      description: DC1-BL1-Eth1/1-IT-DCVRF
+      peer_group: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    - ip_address: 10.210.226.29
+      description: DC1-BL2-Eth1/1-IT-DCVRF
+      peer_group: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    - ip_address: 10.210.226.70
+      description: WANFW-IP-IT-DCVRF
+      peer_group: WANFW-EBGP-PEERS
+      route_map_out: RM-IT-DC-10.210.226.70-SET-NEXT-HOP-OUT
+    - ip_address: 10.210.234.17
+      description: DC2-BL1-Eth1/1-IT-DCVRF
+      peer_group: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+    - ip_address: 10.210.234.21
+      description: DC2-BL2-Eth1/1-IT-DCVRF
+      peer_group: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+    address_family_ipv4:
+      neighbors:
+      - ip_address: 10.210.226.25
+        activate: true
+      - ip_address: 10.210.226.29
+        activate: true
+      - ip_address: 10.210.226.70
+        activate: true
+      - ip_address: 10.210.234.17
+        activate: true
+      - ip_address: 10.210.234.21
+        activate: true
+    updates:
+      wait_install: true
+  - name: OT
+    router_id: 172.21.0.245
+    redistribute_routes:
+    - source_protocol: connected
+    neighbors:
+    - ip_address: 192.168.0.5
+      peer_group: MLAG-IPv4-UNDERLAY-PEER
+    - ip_address: 10.210.226.1
+      description: DC1-BL1-OTVRF
+      peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+    - ip_address: 10.210.226.5
+      description: DC1-BL2-OTVRF
+      peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+    - ip_address: 10.210.234.1
+      description: DC2-BL1-OTVRF
+      peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+    - ip_address: 10.210.234.5
+      description: DC2-BL2-OTVRF
+      peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+    - ip_address: 10.210.241.25
+      description: ISMITMSC01A-Eth49/1-OTVRF
+      peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+    - ip_address: 10.210.241.29
+      description: ISMITMSC02A-Eth49/1-OTVRF
+      peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+    - ip_address: 10.210.249.67
+      description: WANFW-IP-OTVRF
+      peer_group: WANFW-EBGP-PEERS
+      route_map_out: RM-OT-10.210.249.67-SET-NEXT-HOP-OUT
+    - ip_address: 10.210.249.78
+      description: VENDORFW-IP-OTVRF
+      peer_group: VENDORFW-EBGP-PEERS
+      route_map_out: RM-OT-10.210.249.78-SET-NEXT-HOP-OUT
+    address_family_ipv4:
+      neighbors:
+      - ip_address: 10.210.226.1
+        activate: true
+      - ip_address: 10.210.226.5
+        activate: true
+      - ip_address: 10.210.234.1
+        activate: true
+      - ip_address: 10.210.234.5
+        activate: true
+      - ip_address: 10.210.241.25
+        activate: true
+      - ip_address: 10.210.241.29
+        activate: true
+      - ip_address: 10.210.249.67
+        activate: true
+      - ip_address: 10.210.249.78
+        activate: true
+    updates:
+      wait_install: true
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 10.210.80.1
+service_routing_protocols_model: multi-agent
+ip_routing: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: 4093-4094
+  edge_port:
+    bpduguard_default: true
+clock:
+  timezone: UTC
+vrfs:
+- name: mgmt
+  ip_routing: false
+- name: IoT
+  tenant: Core-Tenant-IoT
+  ip_routing: true
+- name: IT
+  tenant: Core-Tenant-IT
+  ip_routing: true
+- name: IT-DC
+  tenant: Core-Tenant-IT-DC
+  ip_routing: true
+- name: OT
+  tenant: Core-Tenant-OT
+  ip_routing: true
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 10.210.80.72/21
+  gateway: 10.210.80.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+    access_group: Ansible-ACL_SM
+  enable_https: true
+  enable_http: false
+snmp_server:
+  engine_ids:
+    local: 0ccf9aa2bda87ceef8666a1a294177b980f13ff1
+    remotes:
+    - id: 536E4D705454
+      address: entstrap.itg.ti.com
+    - id: 536576306E65406363652424
+      address: sevonenms.itg.ti.com
+  location: SM-CORE_MISC_FABRIC [MDF1] ISMCR01A
+  users:
+  - name: SNMPManager
+    group: network-admin
+    version: v3
+    localized: 0ccf9aa2bda87ceef8666a1a294177b980f13ff1
+    auth: sha
+    auth_passphrase: a3f822d921af82a351fda84fdd299d97c412a9b7
+    priv: aes
+    priv_passphrase: a3f822d921af82a351fda84fdd299d97
+  vrfs:
+  - name: mgmt
+    enable: true
+  communities:
+  - name: vhbqmu2JRJQcjfX99inm
+    access: ro
+    access_list_ipv4:
+      name: Airwave-SNMP_Access
+  - name: 8dp6e0eJW9DipeJRxreH
+    access: ro
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: 6XTUe5ZyUN0xQ25MNvdg
+    access: rw
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: r0gQaBrsDNEfgtKWsWmV
+    access: ro
+    access_list_ipv4:
+      name: NetBrain-SNMP_Access
+  - name: z778eYOT4g2god0qT8A3
+    access: ro
+    access_list_ipv4:
+      name: NetDisco-SNMP_Access
+  - name: HBHpL2ILnbWbuXuhYPiW
+    access: ro
+    access_list_ipv4:
+      name: SevOne-SNMP_Access
+  - name: Oij0ENt7meI3wjK2rxNv
+    access: ro
+    access_list_ipv4:
+      name: Statseeker-SNMP_Access
+  groups:
+  - name: network-admin
+    version: v3
+    authentication: auth
+  - name: network-operator
+    version: v3
+    authentication: auth
+  local_interfaces:
+  - name: Management0
+    vrf: mgmt
+  traps:
+    enable: true
+vlans:
+- id: 4093
+  tenant: system
+  name: LEAF_PEER_L3
+  trunk_groups:
+  - LEAF_PEER_L3
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+- id: 633
+  name: IoTFW-TRANSIT-IoTVRF
+  tenant: Core-Tenant-IoT
+- id: 4089
+  name: MLAG_iBGP_IoT
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: Core-Tenant-IoT
+- id: 525
+  name: WANFW-TRANSIT-ITVRF
+  tenant: Core-Tenant-IT
+- id: 541
+  name: SCADAFW-TRANSIT-ITVRF
+  tenant: Core-Tenant-IT
+- id: 4090
+  name: MLAG_iBGP_IT
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: Core-Tenant-IT
+- id: 510
+  name: WANFW-TRANSIT-IT-DCVRF
+  tenant: Core-Tenant-IT-DC
+- id: 4091
+  name: MLAG_iBGP_IT-DC
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: Core-Tenant-IT-DC
+- id: 533
+  name: WANFW-TRANSIT-OTVRF
+  tenant: Core-Tenant-OT
+- id: 542
+  name: VENDORFW-TRANSIT-OTVRF
+  tenant: Core-Tenant-OT
+- id: 4092
+  name: MLAG_iBGP_OT
+  trunk_groups:
+  - LEAF_PEER_L3
+  tenant: Core-Tenant-OT
+vlan_interfaces:
+- name: Vlan4093
+  description: MLAG_PEER_L3_PEERING
+  shutdown: false
+  mtu: 9214
+  ip_address: 192.168.0.2/31
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  ip_address: 192.168.0.0/31
+  no_autostate: true
+  mtu: 9214
+- name: Vlan633
+  tenant: Core-Tenant-IoT
+  description: IoTFW-TRANSIT-IoTVRF
+  shutdown: false
+  ip_address: 10.210.241.74/29
+  ip_virtual_router_addresses:
+  - 10.210.241.73
+  vrf: IoT
+- name: Vlan4089
+  tenant: Core-Tenant-IoT
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf IoT'
+  vrf: IoT
+  mtu: 9214
+  ip_address: 192.168.0.4/31
+- name: Vlan525
+  tenant: Core-Tenant-IT
+  description: WANFW-TRANSIT-ITVRF
+  shutdown: false
+  ip_address: 10.210.241.66/29
+  ip_virtual_router_addresses:
+  - 10.210.241.65
+  vrf: IT
+- name: Vlan541
+  tenant: Core-Tenant-IT
+  description: SCADAFW-TRANSIT-ITVRF
+  shutdown: false
+  ip_address: 10.210.241.82/29
+  ip_virtual_router_addresses:
+  - 10.210.241.81
+  vrf: IT
+- name: Vlan4090
+  tenant: Core-Tenant-IT
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf IT'
+  vrf: IT
+  mtu: 9214
+  ip_address: 192.168.0.4/31
+- name: Vlan510
+  tenant: Core-Tenant-IT-DC
+  description: WANFW-TRANSIT-IT-DCVRF
+  shutdown: false
+  ip_address: 10.210.226.66/29
+  ip_virtual_router_addresses:
+  - 10.210.226.65
+  vrf: IT-DC
+- name: Vlan4091
+  tenant: Core-Tenant-IT-DC
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf IT-DC'
+  vrf: IT-DC
+  mtu: 9214
+  ip_address: 192.168.0.4/31
+- name: Vlan533
+  tenant: Core-Tenant-OT
+  description: WANFW-TRANSIT-OTVRF
+  shutdown: false
+  ip_address: 10.210.249.66/29
+  ip_virtual_router_addresses:
+  - 10.210.249.65
+  vrf: OT
+- name: Vlan542
+  tenant: Core-Tenant-OT
+  description: VENDORFW-TRANSIT-OTVRF
+  shutdown: false
+  ip_address: 10.210.249.74/29
+  ip_virtual_router_addresses:
+  - 10.210.249.73
+  vrf: OT
+- name: Vlan4092
+  tenant: Core-Tenant-OT
+  type: underlay_peering
+  shutdown: false
+  description: 'MLAG_PEER_L3_iBGP: vrf OT'
+  vrf: OT
+  mtu: 9214
+  ip_address: 192.168.0.4/31
+port_channel_interfaces:
+- name: Port-Channel4094
+  description: '[L]_MLAG_PEER_ISMCR02A_Po4094'
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - LEAF_PEER_L3
+  - MLAG
+- name: Port-Channel351
+  description: '[L]_ISMTMGPAN40_MLAG PortChannel to WAN Firewalls'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 525,510,533
+  spanning_tree_portfast: edge
+  mlag: 351
+- name: Port-Channel451
+  description: '[L]_ISMTMGPAN41_MLAG PortChannel to WAN Firewalls'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 525,510,533
+  spanning_tree_portfast: edge
+  mlag: 451
+- name: Port-Channel51
+  description: '[L]_ISMPAN98_MLAG PortChannel to IoT Firewalls'
+  type: switched
+  shutdown: false
+  mode: access
+  vlans: '633'
+  spanning_tree_portfast: edge
+  mlag: 51
+- name: Port-Channel61
+  description: '[L]_ISMPAN99_MLAG PortChannel to IoT Firewalls'
+  type: switched
+  shutdown: false
+  mode: access
+  vlans: '633'
+  spanning_tree_portfast: edge
+  mlag: 61
+- name: Port-Channel53
+  description: '[L]_ISMTMGPAN48_MLAG PortChannel to Vendor Firewalls'
+  type: switched
+  shutdown: false
+  mode: access
+  vlans: '542'
+  spanning_tree_portfast: edge
+  mlag: 53
+- name: Port-Channel63
+  description: '[L]_ISMTMGPAN49_MLAG PortChannel to Vendor Firewalls'
+  type: switched
+  shutdown: false
+  mode: access
+  vlans: '542'
+  spanning_tree_portfast: edge
+  mlag: 63
+- name: Port-Channel52
+  description: '[L]_ISMPAN60_MLAG PortChannel to SCADA Firewalls'
+  type: switched
+  shutdown: false
+  mode: access
+  vlans: '541'
+  spanning_tree_portfast: edge
+  mlag: 52
+- name: Port-Channel62
+  description: '[L]_ISMPAN61_MLAG PortChannel to SCADA Firewalls'
+  type: switched
+  shutdown: false
+  mode: access
+  vlans: '541'
+  spanning_tree_portfast: edge
+  mlag: 62
+ethernet_interfaces:
+- name: Ethernet3/48/1
+  peer: ISMCR02A
+  peer_interface: Ethernet3/48/1
+  peer_type: mlag_peer
+  description: '[L]_MLAG_PEER_ISMCR02A_Ethernet3/48/1'
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 4094
+    mode: active
+  speed: 100g
+- name: Ethernet4/48/1
+  peer: ISMCR02A
+  peer_interface: Ethernet4/48/1
+  peer_type: mlag_peer
+  description: '[L]_MLAG_PEER_ISMCR02A_Ethernet4/48/1'
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 4094
+    mode: active
+  speed: 100g
+- name: Ethernet3/3/1.633
+  peer_type: l3_interface
+  ip_address: 10.210.241.8/31
+  shutdown: false
+  description: '[L]_ISMS1ITBL01A-Eth1/1-IoTVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 633
+  vrf: IoT
+- name: Ethernet4/3/1.633
+  peer_type: l3_interface
+  ip_address: 10.210.241.12/31
+  shutdown: false
+  description: '[L]_ISMS1ITBL02A-Eth1/1-IoTVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 633
+  vrf: IoT
+- name: Ethernet3/3/1.525
+  peer_type: l3_interface
+  ip_address: 10.210.241.0/31
+  shutdown: false
+  description: '[L]_ISMS1ITBL01A-Eth1/1-ITVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 525
+  vrf: IT
+- name: Ethernet4/3/1.525
+  peer_type: l3_interface
+  ip_address: 10.210.241.4/31
+  shutdown: false
+  description: '[L]_ISMS1ITBL02A-Eth1/1-ITVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 525
+  vrf: IT
+- name: Ethernet3/4/1.525
+  peer_type: l3_interface
+  ip_address: 10.210.241.16/31
+  shutdown: false
+  description: '[L]_ISMITMSC01A-Eth49/1-ITVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 525
+  vrf: IT
+- name: Ethernet4/4/1.525
+  peer_type: l3_interface
+  ip_address: 10.210.241.20/31
+  shutdown: false
+  description: '[L]_ISMITMSC02A-Eth49/1-ITVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 525
+  vrf: IT
+- name: Ethernet3/1/1.510
+  peer_type: l3_interface
+  ip_address: 10.210.226.24/31
+  shutdown: false
+  description: '[L]_ISMDC1BL01A-Eth1/1-IT-DCVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 510
+  vrf: IT-DC
+- name: Ethernet4/1/1.510
+  peer_type: l3_interface
+  ip_address: 10.210.226.28/31
+  shutdown: false
+  description: '[L]_ISMDC1BL02A-Eth1/1-IT-DCVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 510
+  vrf: IT-DC
+- name: Ethernet3/2/1.510
+  peer_type: l3_interface
+  ip_address: 10.210.234.16/31
+  shutdown: false
+  description: '[L]_ISMDC2BL01A-Eth1/1-IT-DCVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 510
+  vrf: IT-DC
+- name: Ethernet4/2/1.510
+  peer_type: l3_interface
+  ip_address: 10.210.234.20/31
+  shutdown: false
+  description: '[L]_ISMDC2BL02A-Eth1/1-IT-DCVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 510
+  vrf: IT-DC
+- name: Ethernet3/1/1.533
+  peer_type: l3_interface
+  ip_address: 10.210.226.0/31
+  shutdown: false
+  description: '[L]_ISMDC1BL01A-Eth1/1-OT-VRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 533
+  vrf: OT
+- name: Ethernet4/1/1.533
+  peer_type: l3_interface
+  ip_address: 10.210.226.4/31
+  shutdown: false
+  description: '[L]_ISMDC1BL02A-Eth1/1-OT-VRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 533
+  vrf: OT
+- name: Ethernet3/2/1.533
+  peer_type: l3_interface
+  ip_address: 10.210.234.0/31
+  shutdown: false
+  description: '[L]_ISMDC2BL01A-Eth1/1-OT-VRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 533
+  vrf: OT
+- name: Ethernet4/2/1.533
+  peer_type: l3_interface
+  ip_address: 10.210.234.4/31
+  shutdown: false
+  description: '[L]_ISMDC2BL02A-Eth1/1-OT-VRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 533
+  vrf: OT
+- name: Ethernet3/4/1.533
+  peer_type: l3_interface
+  ip_address: 10.210.241.24/31
+  shutdown: false
+  description: '[L]_ISMITMSC01A-Eth49/1-OTVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 533
+  vrf: OT
+- name: Ethernet4/4/1.533
+  peer_type: l3_interface
+  ip_address: 10.210.241.28/31
+  shutdown: false
+  description: '[L]_ISMITMSC02A-Eth49/1-OTVRF'
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 533
+  vrf: OT
+- name: Ethernet3/1/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet3/2/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet3/3/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet3/4/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet4/1/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet4/2/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet4/3/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet4/4/1
+  type: routed
+  peer_type: l3_interface
+  shutdown: false
+- name: Ethernet3/5/1
+  peer: ISMTMGPAN40
+  peer_interface: Ethernet1/41
+  peer_type: firewall
+  port_profile: TRUNK_100G_WAN Firewall
+  description: '[L]_ISMTMGPAN40_Ethernet1/41'
+  speed: 100g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 351
+    mode: active
+- name: Ethernet4/5/1
+  peer: ISMTMGPAN41
+  peer_interface: Ethernet1/42
+  peer_type: firewall
+  port_profile: TRUNK_100G_WAN Firewall
+  description: '[L]_ISMTMGPAN41_Ethernet1/42'
+  speed: 100g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 451
+    mode: active
+- name: Ethernet5/1
+  peer: ISMPAN98
+  peer_interface: Ethernet1/15
+  peer_type: firewall
+  port_profile: Access_10G_IoT_Firewall
+  description: '[L]_ISMPAN98_Ethernet1/15'
+  speed: 10g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 51
+    mode: active
+- name: Ethernet6/1
+  peer: ISMPAN99
+  peer_interface: Ethernet1/16
+  peer_type: firewall
+  port_profile: Access_10G_IoT_Firewall
+  description: '[L]_ISMPAN99_Ethernet1/16'
+  speed: 10g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 61
+    mode: active
+- name: Ethernet5/3
+  peer: ISMTMGPAN48
+  peer_interface: Ethernet1/23
+  peer_type: firewall
+  port_profile: Access_25G_Vendor_Firewall
+  description: '[L]_ISMTMGPAN48_Ethernet1/23'
+  speed: 25g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 53
+    mode: active
+- name: Ethernet6/3
+  peer: ISMTMGPAN49
+  peer_interface: Ethernet1/24
+  peer_type: firewall
+  port_profile: Access_25G_Vendor_Firewall
+  description: '[L]_ISMTMGPAN49_Ethernet1/24'
+  speed: 25g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 63
+    mode: active
+- name: Ethernet5/2
+  peer: ISMPAN60
+  peer_interface: Ethernet1/15
+  peer_type: firewall
+  port_profile: Access_25G_SCADA_Firewall
+  description: '[L]_ISMPAN60_Ethernet1/15'
+  speed: 25g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 52
+    mode: active
+- name: Ethernet6/2
+  peer: ISMPAN61
+  peer_interface: Ethernet1/16
+  peer_type: firewall
+  port_profile: Access_25G_SCADA_Firewall
+  description: '[L]_ISMPAN61_Ethernet1/16'
+  speed: 25g
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 62
+    mode: active
+mlag_configuration:
+  domain_id: MLAG
+  local_interface: Vlan4094
+  peer_address: 192.168.0.1
+  peer_link: Port-Channel4094
+  reload_delay_mlag: '900'
+  reload_delay_non_mlag: '1020'
+route_maps:
+- name: RM-MLAG-PEER-IN
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - origin incomplete
+    description: Make routes learned over MLAG Peer-link less preferred on spines to ensure optimal routing
+- name: RM-IT-10.210.241.70-SET-NEXT-HOP-OUT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - ip next-hop 10.210.241.65
+- name: RM-IT-10.210.241.86-SET-NEXT-HOP-OUT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - ip next-hop 10.210.241.81
+- name: RM-IT-DC-10.210.226.70-SET-NEXT-HOP-OUT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - ip next-hop 10.210.226.65
+- name: RM-OT-10.210.249.67-SET-NEXT-HOP-OUT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - ip next-hop 10.210.249.65
+- name: RM-OT-10.210.249.78-SET-NEXT-HOP-OUT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - ip next-hop 10.210.249.73
+- name: RM-DMZFW-IoT-VRF-OUT
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-DMZFW-DENY-HOST-ROUTES
+  - sequence: 20
+    type: permit
+    set:
+    - ip next-hop 10.210.241.73
+loopback_interfaces:
+- name: Loopback0
+  description: Router_ID
+  shutdown: false
+  ip_address: 172.21.0.245/32
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+eos_cli: 'logging event congestion-drops interval 600
+
+  no logging repeat-messages
+
+  logging level all debugging
+
+  logging event link-status global
+
+  service unsupported-transceiver TexasInstruments ffd6c10c
+
+  '
+metadata:
+  platform: 7800R3
+aliases: 'alias ll dir
+
+  alias q exit
+
+  alias senz show interface counter error | nz
+
+  alias shmc show int | awk ''/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }''
+
+  alias snz show interface counter | nz
+
+  alias spd show port-channel %1 detail all
+
+  alias sqnz show interface counter queue | nz
+
+  alias srnz show interface counter rate | nz
+
+  alias shterminattr show version detail | grep TerminAttr-core
+
+  '
+aaa_server_groups:
+- name: tacacs_servers
+  type: tacacs+
+  servers:
+  - server: 172.31.226.29
+    vrf: mgmt
+  - server: 172.32.226.32
+    vrf: mgmt
+aaa_accounting:
+  commands:
+    default:
+    - commands: 1,15
+      type: start-stop
+      group: tacacs_servers
+aaa_authentication:
+  login:
+    default: group tacacs_servers local
+    console: local
+  enable:
+    default: group tacacs_servers local
+  policies:
+    local:
+      allow_nopassword: false
+aaa_authorization:
+  exec:
+    default: group tacacs_servers local
+tacacs_servers:
+  timeout: 20
+  hosts:
+  - host: 172.31.225.29
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  - host: 172.31.226.32
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  policy_unknown_mandatory_attribute_ignore: true
+local_users:
+- name: newtorkpw
+  privilege: 15
+  role: network-admin
+  sha512_password: test
+enable_password:
+  hash_algorithm: sha512
+  key: test
+ip_name_servers:
+- ip_address: 192.0.2.2
+  vrf: mgmt
+- ip_address: 192.0.2.3
+  vrf: mgmt
+dns_domain: itg.ti.com
+ntp:
+  local_interface:
+    name: Management0
+    vrf: mgmt
+  servers:
+  - name: 172.16.169.44
+    vrf: mgmt
+    preferred: false
+  - name: 157.170.147.6
+    vrf: mgmt
+  - name: 172.31.225.25
+    vrf: mgmt
+  - name: 137.167.66.10
+    vrf: mgmt
+  - name: 134.183.87.87
+    vrf: mgmt
+  - name: 172.16.44.10
+    vrf: mgmt
+  - name: 10.188.255.18
+    vrf: mgmt
+  - name: 137.167.210.21
+    vrf: mgmt
+  - name: 158.218.8.155
+    vrf: mgmt
+  - name: 172.24.254.250
+    vrf: mgmt
+standard_access_lists:
+- name: Airwave-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.33
+  - sequence: 20
+    action: deny any log
+- name: ENTS-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.25
+  - sequence: 20
+    action: permit host 172.31.227.10
+  - sequence: 30
+    action: permit host 172.31.225.12
+  - sequence: 40
+    action: deny any log
+- name: NetBrain-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.55
+  - sequence: 20
+    action: permit host 172.31.225.43
+  - sequence: 30
+    action: permit host 172.31.226.49
+  - sequence: 40
+    action: permit host 172.31.226.54
+  - sequence: 50
+    action: deny any log
+- name: NetDisco-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.24
+  - sequence: 20
+    action: permit host 172.31.226.53
+  - sequence: 30
+    action: deny any log
+- name: SevOne-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.225.47
+  - sequence: 20
+    action: permit host 172.31.225.53
+  - sequence: 30
+    action: permit host 172.31.225.54
+  - sequence: 40
+    action: permit host 172.31.225.60
+  - sequence: 50
+    action: ' permit host 172.31.225.61'
+  - sequence: 60
+    action: ' permit host 172.31.225.62'
+  - sequence: 70
+    action: ' permit host 172.31.225.63'
+  - sequence: 80
+    action: ' permit host 172.31.225.64'
+  - sequence: 90
+    action: ' permit host 172.31.225.65'
+  - sequence: 100
+    action: ' permit host 172.31.225.66'
+  - sequence: 110
+    action: ' permit host 172.31.225.67'
+  - sequence: 120
+    action: ' permit host 172.31.225.68'
+  - sequence: 130
+    action: ' permit host 172.31.225.69'
+  - sequence: 140
+    action: ' permit host 172.31.225.86'
+  - sequence: 150
+    action: ' permit host 172.31.225.87'
+  - sequence: 160
+    action: ' permit host 172.31.225.88'
+  - sequence: 170
+    action: ' permit host 172.31.225.89'
+  - sequence: 180
+    action: ' permit host 172.31.225.90'
+  - sequence: 190
+    action: ' permit host 172.31.225.91'
+  - sequence: 200
+    action: ' permit host 172.31.226.100'
+  - sequence: 210
+    action: ' permit host 172.31.226.101'
+  - sequence: 220
+    action: ' permit host 172.31.226.102'
+  - sequence: 230
+    action: ' permit host 172.31.226.55'
+  - sequence: 240
+    action: ' permit host 172.31.226.58'
+  - sequence: 250
+    action: ' permit host 172.31.226.59'
+  - sequence: 260
+    action: ' permit host 172.31.226.63'
+  - sequence: 270
+    action: ' permit host 172.31.226.68'
+  - sequence: 280
+    action: ' permit host 172.31.226.74'
+  - sequence: 290
+    action: ' permit host 172.31.226.75'
+  - sequence: 300
+    action: ' permit host 172.31.226.76'
+  - sequence: 310
+    action: ' permit host 172.31.226.77'
+  - sequence: 320
+    action: ' permit host 172.31.226.79'
+  - sequence: 330
+    action: ' permit host 172.31.226.87'
+  - sequence: 340
+    action: ' permit host 172.31.226.90'
+  - sequence: 350
+    action: ' permit host 172.31.226.91'
+  - sequence: 360
+    action: ' permit host 172.31.226.97'
+  - sequence: 370
+    action: ' permit host 172.31.226.98'
+  - sequence: 380
+    action: ' permit host 172.31.226.99'
+  - sequence: 390
+    action: deny any log
+- name: Statseeker-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.35
+  - sequence: 20
+    action: deny any log
+- name: Ansible-ACL_SM
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: remark dlecvp01
+  - sequence: 20
+    action: permit host 10.180.68.99
+  - sequence: 30
+    action: remark dlecvp02
+  - sequence: 40
+    action: permit host 10.180.68.98
+  - sequence: 50
+    action: remark dflcvp01
+  - sequence: 60
+    action: permit host 10.64.41.27
+  - sequence: 70
+    action: remark dsmcvp01
+  - sequence: 80
+    action: permit host 10.210.80.7
+  - sequence: 90
+    action: remark dsmcvp02
+  - sequence: 100
+    action: permit host 10.210.80.8
+  - sequence: 110
+    action: remark dsmcvp03
+  - sequence: 120
+    action: permit host 10.210.80.9
+  - sequence: 130
+    action: remark ents
+  - sequence: 140
+    action: permit host 172.31.227.10
+  - sequence: 150
+    action: remark tilde
+  - sequence: 160
+    action: permit host 172.31.226.25
+  - sequence: 170
+    action: remark dotdot
+  - sequence: 180
+    action: permit host 172.31.225.12
+management_console:
+  idle_timeout: 15
+management_ssh:
+  idle_timeout: 15
+  enable: true
+  vrfs:
+  - name: mgmt
+    enable: true
+logging:
+  console: disabled
+  monitor: debugging
+  buffered:
+    size: 10000
+    level: debugging
+  trap: debugging
+  synchronous:
+    level: all
+  format:
+    timestamp: high-resolution
+    hostname: fqdn
+    sequence_numbers: false
+  facility: local7
+  vrfs:
+  - name: mgmt
+    source_interface: Management0
+    hosts:
+    - name: ents.itg.ti.com
+      protocol: tcp
+      ports:
+      - 514
+daemon_terminattr:
+  cvaddrs:
+  - 10.210.80.7:9910
+  - 10.210.80.8:9910
+  - 10.210.80.9:9910
+  cvauth:
+    method: token
+    token_file: /tmp/token
+  cvvrf: mgmt
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: true
+interface_defaults:
+  ethernet:
+    shutdown: true
+  mtu: 9214
+switchport_default:
+  mode: routed
+internal_vlan_order:
+  allocation: ascending
+  range:
+    beginning: 3500
+    ending: 4000

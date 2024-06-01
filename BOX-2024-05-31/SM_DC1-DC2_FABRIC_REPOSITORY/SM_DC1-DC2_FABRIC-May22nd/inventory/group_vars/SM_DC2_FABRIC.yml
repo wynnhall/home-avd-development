@@ -1,0 +1,241 @@
+---
+# L3LS Fabric Values - update these values with caution,
+# SOME CHANGES COULD BE DISRUPTIVE.
+
+fabric_name: SM_DC1-DC2_FABRIC
+
+dc_name: SM_DC2_FABRIC
+
+description_prefix: "[L]"
+
+#sflow collector
+sflow_dest: sflowle03
+
+design:
+  type: l3ls-evpn
+
+# Fabric CVP Variables for global.yml
+cvp_host_1_name: dsmcvp01
+cvp_host_1_ip: 10.210.80.7
+cvp_host_2_name: dsmcvp02
+cvp_host_2_ip: 10.210.80.8
+cvp_host_3_name: dsmcvp03
+cvp_host_3_ip: 10.210.80.9
+
+mgmt_gateway: 10.210.80.1
+mgmt_interface_vrf: mgmt
+custom_mgmt_interface: "{{ switch.mgmt_interface }}"
+
+# Disable vlan aware bundles
+evpn_vlan_aware_bundles: false
+
+# This feature allows IPv6 underlay routing protocol with RFC5549 addresses to be used along with IPv4 advertisements as VXLAN tunnel endpoints.
+underlay_rfc5549: true
+
+bgp_maximum_paths: 128
+bgp_ecmp: 128
+
+# To change the Trunk Group - LEAF_PEER_L3 used for MLAG L3 peering VLAN (Typically VLAN 4093) and MLAg VLAN - MLAG the same .
+trunk_groups:
+  mlag_l3:
+    name: "MLAG"
+
+# Spine Switches
+spine:
+  defaults:
+    platform: 7280R3
+    bgp_as: "65120.12100"
+    loopback_ipv4_pool: 172.21.1.0/24
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - neighbor default send-community
+  node_groups:
+    - group: DC1_SPINES
+      nodes:
+        ismdc2sp01a:
+          id: 1
+          mgmt_ip: 10.210.80.35/21
+        ismdc2sp02a:
+          id: 2
+          mgmt_ip: 10.210.80.36/21
+        ismdc2sp03a:
+          id: 3
+          mgmt_ip: 10.210.80.37/21
+
+# Leaf switch groups
+l3leaf:
+  defaults:
+    # virtual router mac for VNIs assigned to Leaf switches
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    platform: 7280R3
+    loopback_ipv4_pool: 172.21.1.0/24
+    loopback_ipv4_offset: 3
+    vtep_loopback_ipv4_pool: 10.210.232.0/24
+    uplink_switches: [ismdc2sp01a, ismdc2sp02a, ismdc2sp03a ]
+    uplink_interfaces: [ Ethernet49/1, Ethernet50/1, Ethernet51/1 ]
+    mlag_interfaces: [ Ethernet55/1, Ethernet56/1 ]
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
+    mlag_port_channel_id: 4094
+    mlag_domain_id: MLAG
+    spanning_tree_priority: 4096
+    spanning_tree_mode: mstp
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - neighbor default send-community
+  node_groups:
+    - group: DC2_LEAF1_2
+      bgp_as: "65120.12201"
+      nodes:
+        hsmdc2f401a:
+          id: 1
+          mgmt_ip: 10.210.80.40/21
+          uplink_switch_interfaces: [ Ethernet3/1, Ethernet3/1, Ethernet3/1 ]
+        hsmdc2f402a:
+          id: 2
+          mgmt_ip: 10.210.80.41/21
+          uplink_switch_interfaces: [ Ethernet4/1, Ethernet4/1, Ethernet4/1 ]
+    - group: DC2_LEAF3_4
+      bgp_as: "65120.12202"
+      nodes:
+        hsmdc2f501a:
+          id: 3
+          mgmt_ip: 10.210.80.42/21
+          uplink_switch_interfaces: [ Ethernet5/1, Ethernet5/1, Ethernet5/1 ]
+        hsmdc2f502a:
+          id: 4
+          mgmt_ip: 10.210.80.43/21
+          uplink_switch_interfaces: [ Ethernet6/1, Ethernet6/1, Ethernet6/1 ]
+    - group: DC2_LEAF5_6
+      bgp_as: "65120.12203"
+      nodes:
+        hsmdc2f601a:
+          id: 5
+          mgmt_ip: 10.210.80.44/21
+          uplink_switch_interfaces: [ Ethernet7/1, Ethernet7/1, Ethernet7/1 ]
+        hsmdc2f602a:
+          id: 6
+          mgmt_ip: 10.210.80.45/21
+          uplink_switch_interfaces: [ Ethernet8/1, Ethernet8/1, Ethernet8/1 ]
+    - group: DC2_LEAF7_8
+      bgp_as: "65120.12204"
+      nodes:
+        hsmdc2g401a:
+          id: 7
+          mgmt_ip: 10.210.80.46/21
+          uplink_switch_interfaces: [ Ethernet9/1, Ethernet9/1, Ethernet9/1 ]
+        hsmdc2g402a:
+          id: 8
+          mgmt_ip: 10.210.80.47/21
+          uplink_switch_interfaces: [ Ethernet10/1, Ethernet10/1, Ethernet10/1 ]
+    - group: DC2_LEAF9_10
+      bgp_as: "65120.12205"
+      nodes:
+        hsmdc2g601a:
+          id: 9
+          mgmt_ip: 10.210.80.48/21
+          uplink_switch_interfaces: [ Ethernet11/1, Ethernet11/1, Ethernet11/1 ]
+        hsmdc2g602a:
+          id: 10
+          mgmt_ip: 10.210.80.49/21
+          uplink_switch_interfaces: [ Ethernet12/1, Ethernet12/1, Ethernet12/1 ]
+    - group: DC2_LEAF11_12
+      bgp_as: "65120.12206"
+      nodes:
+        hsmdc2g701a:
+          id: 11
+          mgmt_ip: 10.210.80.50/21
+          uplink_switch_interfaces: [ Ethernet13/1, Ethernet13/1, Ethernet13/1 ]
+        hsmdc2g702a:
+          id: 12
+          mgmt_ip: 10.210.80.51/21
+          uplink_switch_interfaces: [ Ethernet14/1, Ethernet14/1, Ethernet14/1 ]
+    - group: DC2_LEAF13_14
+      bgp_as: "65120.12207"
+      nodes:
+        hsmdc2g801a:
+          id: 13
+          mgmt_ip: 10.210.80.52/21
+          uplink_switch_interfaces: [ Ethernet15/1, Ethernet15/1, Ethernet15/1 ]
+        hsmdc2g802a:
+          id: 14
+          mgmt_ip: 10.210.80.53/21
+          uplink_switch_interfaces: [ Ethernet16/1, Ethernet16/1, Ethernet16/1 ]
+    - group: DC2_LEAF15_16
+      bgp_as: "65120.12208"
+      nodes:
+        hsmdc2g901a:
+          id: 15
+          mgmt_ip: 10.210.80.54/21
+          uplink_switch_interfaces: [ Ethernet17/1, Ethernet17/1, Ethernet17/1 ]
+        hsmdc2g902a:
+          id: 16
+          mgmt_ip: 10.210.80.55/21
+          uplink_switch_interfaces: [ Ethernet18/1, Ethernet18/1, Ethernet18/1 ]
+    - group: DC2_LEAF17_18
+      bgp_as: "65120.12209"
+      nodes:
+        hsmdc2g1001a:
+          id: 17
+          mgmt_ip: 10.210.80.56/21
+          uplink_switch_interfaces: [ Ethernet19/1, Ethernet19/1, Ethernet19/1 ]
+        hsmdc2g1002a:
+          id: 18
+          mgmt_ip: 10.210.80.57/21
+          uplink_switch_interfaces: [ Ethernet20/1, Ethernet20/1, Ethernet20/1 ]
+    - group: DC2_LEAF19_20
+      bgp_as: "65120.12210"
+      nodes:
+        DC2-CL19:
+          id: 19
+          mgmt_ip: 10.210.80.58/21
+          uplink_switch_interfaces: [ Ethernet21/1, Ethernet21/1, Ethernet21/1 ]
+        DC2-CL20:
+          id: 20
+          mgmt_ip: 10.210.80.59/21
+          uplink_switch_interfaces: [ Ethernet22/1, Ethernet22/1, Ethernet22/1 ]
+    - group: DC2_BLEAFS
+      filter:
+        tags: [stretch]
+      bgp_as: "65120.12200"
+      uplink_interfaces: [ Ethernet25/1, Ethernet26/1, Ethernet27/1 ]
+      mlag_interfaces: [ Ethernet31/1, Ethernet32/1 ]
+      evpn_gateway:
+        remote_peers:
+          - hostname: ismdc1bl01a
+            ip_address: 10.210.80.13
+            bgp_as: "65120.11200"
+          - hostname: ismdc1bl02a
+            ip_address: 10.210.80.14
+            bgp_as: "65120.11200"
+        evpn_l2:
+          enabled: true
+        evpn_l3:
+          enabled: true
+          inter_domain: true
+      nodes:
+        ismdc2bl01a:
+          id: 21
+          mgmt_ip: 10.210.80.38/21
+          uplink_switch_interfaces: [ Ethernet1/1, Ethernet1/1, Ethernet1/1 ]
+        ismdc2bl02a:
+          id: 22
+          mgmt_ip: 10.210.80.39/21
+          uplink_switch_interfaces: [ Ethernet2/1, Ethernet2/1, Ethernet2/1 ]
+
+    
+p2p_uplinks_mtu: 9214
+
+# Adjust default bfd values
+bfd_multihop:
+  interval: 300
+  min_rx: 300
+  multiplier: 3
+
+fabric_ip_addressing:
+  mlag:
+    algorithm: same_subnet

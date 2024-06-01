@@ -1,0 +1,66 @@
+---
+
+port_profiles: 
+  TRUNK_10G_EDGE_ROUTERS:
+    mode: trunk
+    speed: 10g
+    spanning_tree_portfast: edge
+    vlans: 100,200
+  TRUNK_100G_WAN_FW:
+    mode: trunk
+    speed: 100g
+    spanning_tree_portfast: edge
+    vlans: 100
+  TRUNK_100G_MGMT_FW:
+    mode: trunk
+    speed: 100g
+    spanning_tree_portfast: edge
+    vlans: 200
+
+tenants:
+  - name: WAN_SEGMENT
+    l2vlans:
+      - id: 100
+        name: 'WAN-FW-TRANSIT'
+      - id: 200
+        name: 'MGMT-FW-TRANSIT'
+
+routers:
+  - name: ISMWAN40
+    adapters:
+      - endpoint_ports: [ Eth0, Eth1 ] #TBA
+        switch_ports: [ Ethernet11, Ethernet11 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_10G_EDGE_ROUTERS
+  - name: ISMWAN41
+    adapters:
+      - endpoint_ports: [ Eth0, Eth1 ] #TBA
+        switch_ports: [ Ethernet12, Ethernet12 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_10G_EDGE_ROUTERS
+
+firewalls:
+  - name: ISMTMGPAN40
+    adapters:
+      - endpoint_ports: [ Eth1/21, Eth1/22 ]
+        switch_ports: [ Ethernet1, Ethernet1 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_WAN_FW
+  - name: ISMTMGPAN41
+    adapters:
+      - endpoint_ports: [ Eth1/21, Eth1/22 ]
+        switch_ports: [ Ethernet2, Ethernet2 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_WAN_FW
+  - name: ISMMGTPAN01
+    adapters:
+      - endpoint_ports: [ Eth1/13, Eth1/14 ]
+        switch_ports: [ Ethernet5, Ethernet5 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_MGMT_FW
+  - name: ISMMGTPAN02 
+    adapters:
+      - endpoint_ports: [ Eth1/13, Eth1/14 ]
+        switch_ports: [ Ethernet6, Ethernet6 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_MGMT_FW

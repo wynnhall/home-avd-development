@@ -1,0 +1,4 @@
+---
+# #Override global.yml variables to suit MGMT-FABRIC
+mgmt_interface_vrf : "{{ inband_mgmt_vrf }}"
+custom_mgmt_interface: "{{ inband_mgmt_interface }}"

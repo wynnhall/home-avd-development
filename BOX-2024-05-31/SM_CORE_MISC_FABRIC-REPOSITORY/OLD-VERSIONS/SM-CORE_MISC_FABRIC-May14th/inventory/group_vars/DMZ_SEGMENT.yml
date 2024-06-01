@@ -1,0 +1,45 @@
+---
+
+connected_endpoints_keys:
+- description: circuits
+  key: circuits
+  type: circuits
+- description: Firewall
+  key: firewalls
+  type: firewall
+
+port_profiles: 
+  PP_DMZ-FW:
+    mode: access
+    speed: 10g
+    enabled: true
+
+# tenants:
+#   - name: DMZ_SEGMENT
+#     l2vlans:
+#       - id: 100
+#         name: 'DMZ-FW-TRANSIT'
+
+circuits:
+  - name: CSMISP02
+    adapters:
+      - endpoint_ports: [ ISP#1 Circuit]
+        switch_ports: [ Ethernet49 ]
+        switches: [ HSMDMZ100A ]
+        mode: "access"
+        enabled: true
+        speed: 10g
+
+firewalls:
+  - name: ISMPAN98
+    adapters:
+      - endpoint_ports: [ Eth13, Eth14 ]
+        switch_ports: [ Ethernet51, Ethernet51 ]
+        switches: [ HSMDMZ100A, HSMDMZ101A ]
+        profile: PP_DMZ-FW
+  - name: ISMPAN99
+    adapters:
+      - endpoint_ports: [ Eth13, Eth14 ]
+        switch_ports: [ Ethernet52, Ethernet52 ]
+        switches: [ HSMDMZ100A, HSMDMZ101A ]
+        profile: PP_DMZ-FW

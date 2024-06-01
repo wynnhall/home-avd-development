@@ -1,0 +1,118 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_server:
+          # section for CVP primary node address
+          ansible_httpapi_host: 10.18.148.47
+          ansible_host: 10.18.148.47
+          ansible_user: svc_token
+          ansible_password: "{{ vault.users.cvpadmin.sm_password }}"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: false
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          fabric_name: FABRIC
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+          
+    SM:
+      children:
+        SM_CORE_MISC_FABRIC:
+          children:
+            CAMPUS_CORES:
+              hosts:
+                ismcr01a:
+                  ansible_host: 10.210.80.72
+                  type: l3leaf
+                ismcr02a:
+                  ansible_host: 10.210.80.73
+                  type: l3leaf
+                  serial_number: TMO23140950
+            MISC_CORES:
+              hosts:
+                ismitmsc01a:
+                  ansible_host: 10.210.80.74
+                  type: l3leaf
+                ismitmsc02a:
+                  ansible_host: 10.210.80.75
+                  type: l3leaf
+                  serial_number: JMX2329A679
+            WAN_SEGMENT:
+              hosts:
+                hsmwan40a:
+                  ansible_host: 10.210.80.76
+                  type: l2leaf
+                hsmwan41a:
+                  ansible_host: 10.210.80.77
+                  type: l2leaf
+                  serial_number: IMG0101303
+            DMZ_SEGMENT:
+              hosts:
+                hsmdmz100a:
+                  ansible_host: 10.210.80.78
+                  type: l2leaf
+                hsmdmz101a:
+                  ansible_host: 10.210.80.79
+                  type: l2leaf
+                  serial_number: HBG234001LR
+            VENDOR_SEGMENT:
+              hosts:
+                hsmvnd01A:
+                  ansible_host: 10.210.80.80
+                  type: l2leaf
+                hs00bot01a:
+                  ansible_host: 10.215.241.20
+                  type: l2leaf
+                hs00bot02a:
+                  ansible_host: 10.215.241.21
+                  type: l2leaf
+
+    CORE_TENANTS:
+      children:
+        CAMPUS_CORES:
+    MISC_CORES_TENANTS:
+      children:
+        MISC_CORES:
+  
+    MISC_CORES_ENDPOINTS:
+      children:
+        MISC_CORES:
+
+    WAN_TENANTS_ENDPOINTS:
+      children:
+        WAN_SEGMENT:
+
+    VENDOR_TENANTS_ENDPOINTS:
+      children:
+        VENDOR_SEGMENT:
+
+    DMZ_TENANTS_ENDPOINTS:
+      children:
+        DMZ_SEGMENT:
+    
+
+    SFLOW:
+      children:
+        CAMPUS_CORES:
+    
+    # Group to exclude from CVP Task assignment
+    NOTDEPLOYED:
+      hosts:
+        # CAMPUS_CORES:
+        ismcr01a:
+        ismcr02a:
+        # MISC_CORES:
+        ismitmsc01a:
+        ismitmsc02a:
+        # WAN_SEGMENT:
+        hsmwan40a:
+        # DMZ_SEGMENT:
+        hsmdmz100a:
+        hsmdmz101a:
+        # VENDOR_SEGMENT:
+        hsmvnd01A:
+        hs00bot01a:
+        hs00bot02a:

@@ -1,0 +1,59 @@
+---
+network_services_keys:
+  - name: Misc-Core-Tenant-OT
+  - name: Misc-Core-Tenant-IT
+  - name: Misc-Core-Tenant-ehs
+  - name: Misc-Core-Tenant-Gnet
+
+new_network_services_bgp_vrf_config: true
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    # raw_eos_cli: "no logging event link-status\nno snmp trap link-change\nload-interval 30"
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP_WLAN_CONTROLLER
+    mtu: 1500
+    mode: trunk
+    vlans: 851,863,971,862,852
+
+svi_profiles:
+  - profile: svi_l3_defaults
+    raw_eos_cli: |
+      no ip proxy-arp
+      no autostate
+
+ip_dhcp_relay:
+  information_option: true
+
+custom_structured_configuration_prefix_lists:
+  - name: PL-LOCAL-NETWORKS
+    # sequence_numbers:
+    #   - sequence: 10
+    #     action: permit 10.215.192.0/23
+
+custom_structured_configuration_route_maps:
+  - name: RM-LOCAL-NETWORKS
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list PL-LOCAL-NETWORKS
+custom_structured_configuration_router_bgp:
+  redistribute_routes:
+    - source_protocol: connected
+      route_map: RM-LOCAL-NETWORKS
+  peer_groups:
+  - name: IPv4-UNDERLAY-PEERS
+    type: null
+    maximum_routes: null
+    send_community: null
+  address_family_ipv4:
+    peer_groups:
+      - name: IPv4-UNDERLAY-PEERS
+        activate: null
+  eos_cli: 'no neighbor IPv4-UNDERLAY-PEERS peer group'

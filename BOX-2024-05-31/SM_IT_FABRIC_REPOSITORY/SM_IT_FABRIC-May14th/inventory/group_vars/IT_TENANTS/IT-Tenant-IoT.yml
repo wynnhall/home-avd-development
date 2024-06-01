@@ -1,0 +1,143 @@
+---
+# IT-Tenant-IoT Networks
+
+IT-Tenant-IoT:
+  - name: "IT-Tenant-IoT"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "IoT"
+        vrf_vni: 5004
+        svis:
+          224:
+            name: 10.211.3.0/23_SM1-AV
+            enabled: true
+            tags: [S1]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.3.1/23
+          227:
+            name: 10.211.6.0/23_SM1-BMS
+            enabled: true
+            tags: [S1]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.6.1/23
+          305:
+            name: 10.215.80.0/24_SM-AV
+            enabled: true
+            tags: [SM]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.80.1/24
+          307:
+            name: 10.215.82.0/24_SM-Security
+            enabled: true
+            tags: [SM]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.82.1/24
+          309:
+            name: 10.215.84.0/24_SM-BMS
+            enabled: true
+            tags: [SM]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.84.1/24
+          243:
+            name: 10.215.18.0/24_S0-AV
+            enabled: true
+            tags: [S0]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.18.1/24
+          245:
+            name: 10.215.20.0/24_S0-Security
+            enabled: true
+            tags: [S0]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.20.1/24
+          247:
+            name: 10.215.22.0/24_S0-BMS
+            enabled: true
+            tags: [S0]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.22.1/24
+        l3_interfaces:
+          - interfaces:
+                - Ethernet1/1.633
+                - Ethernet2/1.633
+                - Ethernet1/1.633
+                - Ethernet2/1.633
+            nodes:
+                - ISMS1ITBL01A
+                - ISMS1ITBL01A
+                - ISMS1ITBL02A
+                - ISMS1ITBL02A
+            ip_addresses:
+                - 10.210.241.9/31
+                - 10.210.241.13/31
+                - 10.210.241.11/31
+                - 10.210.241.15/31
+            descriptions:
+              - '[L]_ISMCR01A-Eth3/3/1-IoTVRF'
+              - '[L]_ISMCR02A-Eth3/3/1-IoTVRF'
+              - '[L]_ISMCR01A-Eth4/3/1-IoTVRF'
+              - '[L]_ISMCR02A-Eth4/3/1-IoTVRF'
+        bgp_peer_groups:
+          - name: CORES-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMS1ITBL01A
+              - ISMS1ITBL01A
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+          - ip_address: 10.210.241.8
+            description: ISMCR01A-Eth3/3/1-IoTVRF
+            peer_group: CORES-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMS1ITBL01A
+          - ip_address: 10.210.241.12
+            description: ISMCR02A-Eth3/3/1-IoTVRF
+            peer_group: CORES-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMS1ITBL01A
+          - ip_address: 10.210.241.10
+            description: ISMCR01A-Eth4/3/1-IoTVRF
+            peer_group: CORES-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMS1ITBL02A
+          - ip_address: 10.210.241.14
+            description: ISMCR02A-Eth4/3/1-IoTVRF
+            peer_group: CORES-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMS1ITBL02A
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IoT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+    l2vlans:
+      224:
+        name: 10.211.3.0/23_SM1-AV
+        # tags: [SM1] #TBD
+      225:
+        name: 10.211.4.0/23_SM1-Security
+        # tags: [SM1] #TBD
+      227:
+        name: 10.211.6.0/23_SM1-BMS
+        # tags: [SM1] #TBD
+      305:
+        name: 10.215.80.0/24_SM-AV
+        # tags: [SM1] #TBD
+      307:
+        name: 10.215.82.0/24_SM-Security
+        # tags: [SM1] #TBD
+      309:
+        name: 10.215.84.0/24_SM-BMS
+        # tags: [SM1] #TBD
+      243:
+        name: 10.215.18.0/24_S0-AV
+        # tags: [SM1] #TBD
+      245:
+        name: 10.215.20.0/24_S0-Security
+        # tags: [SM1] #TBD
+      247:
+        name: 10.215.22.0/24_S0-BMS
+        # tags: [SM1] #TBD

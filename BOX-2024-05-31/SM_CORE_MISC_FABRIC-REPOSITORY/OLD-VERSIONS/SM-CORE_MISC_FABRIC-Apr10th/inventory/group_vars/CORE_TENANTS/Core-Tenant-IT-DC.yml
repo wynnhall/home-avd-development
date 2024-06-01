@@ -1,0 +1,120 @@
+---
+Core-Tenant-IT-DC:
+  - name: "Core-Tenant-IT-DC"
+    vrfs:
+      - name: IT-DC
+        mlag_ibgp_peering_vlan: "4091"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          510:
+            name: WANFW-TRANSIT-IT-DCVRF
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.210.226.65
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.226.66/29
+              - node: ISMCR02A
+                ip_address: 10.210.226.67/29
+        l3_interfaces:
+          - interfaces:
+                - Ethernet3/1/1.510
+                - Ethernet4/1/1.510
+                - Ethernet3/2/1.510
+                - Ethernet4/2/1.510
+                - Ethernet3/1/1.510
+                - Ethernet4/1/1.510
+                - Ethernet3/2/1.510
+                - Ethernet4/2/1.510
+            nodes:
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+                - 10.210.226.24/31
+                - 10.210.226.28/31
+                - 10.210.234.16/31
+                - 10.210.234.20/31
+                - 10.210.226.26/31
+                - 10.210.226.30/31
+                - 10.210.234.18/31
+                - 10.210.234.22/31
+            descriptions:
+              - '[L]_ISMDC1BL01A-Eth1/1-IT-DCVRF'
+              - '[L]_ISMDC1BL02A-Eth1/1-IT-DCVRF'
+              - '[L]_ISMDC2BL01A-Eth1/1-IT-DCVRF'
+              - '[L]_ISMDC2BL02A-Eth1/1-IT-DCVRF'
+              - '[L]_ISMDC1BL01A-Eth2/1-IT-DCVRF'
+              - '[L]_ISMDC1BL02A-Eth2/1-IT-DCVRF'
+              - '[L]_ISMDC2BL01A-Eth2/1-IT-DCVRF'
+              - '[L]_ISMDC2BL02A-Eth2/1-IT-DCVRF'
+        bgp_peer_groups:
+          - name: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.11200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='DC1-BLLF-EBGP-PEERS-IT-DCVRF') }}"
+          - name: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.12200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='DC2-BLLF-EBGP-PEERS-IT-DCVRF') }}"
+        bgp_peers:
+          - ip_address: 10.210.226.25
+            description: DC1-BL1-Eth1/1-IT-DCVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.226.29
+            description: DC1-BL2-Eth1/1-IT-DCVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.226.27
+            description: DC1-BL1-Eth2/1-IT-DCVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.226.31
+            description: DC1-BL2-Eth2/1-IT-DCVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.234.17
+            description: DC2-BL1-Eth1/1-IT-DCVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.234.21
+            description: DC2-BL2-Eth1/1-IT-DCVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.234.19
+            description: DC2-BL1-Eth2/1-IT-DCVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.234.23
+            description: DC2-BL2-Eth2/1-IT-DCVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ISMCR02A
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+          - ip_address: 10.210.226.70
+            description: WANFW-IP-IT-DCVRF
+            peer_group: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+            set_ipv4_next_hop: 10.210.226.65

@@ -1,0 +1,94 @@
+---
+Misc-Core-Tenant-IT:
+  - name: "Misc-Core-Tenant-IT"
+    vrfs:
+      - name: IT
+        mlag_ibgp_peering_vlan: "4090"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          851:
+            name: 10.215.160.0/19_SM-HALEKOA
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.215.160.1
+            nodes:
+              - node: ISMITMSC01A
+                ip_address: 10.215.160.2/19
+              - node: ISMITMSC02A
+                ip_address: 10.215.160.3/19
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.525
+                - Ethernet50/1.525
+                - Ethernet49/1.525
+                - Ethernet50/1.525
+            nodes:
+                - ISMITMSC01A
+                - ISMITMSC01A
+                - ISMITMSC02A
+                - ISMITMSC02A
+            ip_addresses: 
+                - 10.210.241.16/31
+                - 10.210.241.18/31
+                - 10.210.241.20/31
+                - 10.210.241.22/31
+            descriptions:
+              - '[L]_ISMCR01A-Eth3/4/1-ITVRF'
+              - '[L]_ISMCR02A-Eth3/4/1-ITVRF'
+              - '[L]_ISMCR01A-Eth4/4/1-ITVRF'
+              - '[L]_ISMCR02A-Eth4/4/1-ITVRF'
+        bgp_peer_groups: 
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+              - ISMITMSC02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.17
+            description: ISMCR01A-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.19
+            description: ISMCR02A-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.21
+            description: ISMCR01A-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC02A
+          - ip_address: 10.210.241.23
+            description: ISMCR02A-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC02A
+        static_routes:
+          - destination_address_prefix: 10.4.12.119/32
+            gateway: 137.167.10.129 #WAN firewall IT VRF VIP (same with dynamic route)
+            name: Gnet-Captive-Portal
+        structured_config:
+          prefix_lists:
+            - name: PL-LOCAL-NETWORKS-ITVRF
+              sequence_numbers:
+                - sequence: 10
+                  action: permit 10.215.160.0/19
+          route_maps:
+            - name: RM-LOCAL-NETWORKS-ITVRF
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - "ip address prefix-list PL-LOCAL-NETWORKS-ITVRF"
+          router_bgp:
+            vrfs:
+              - name: IT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS-ITVRF

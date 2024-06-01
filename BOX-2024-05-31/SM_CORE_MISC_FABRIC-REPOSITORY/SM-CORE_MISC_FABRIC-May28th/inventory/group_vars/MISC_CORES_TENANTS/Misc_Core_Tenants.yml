@@ -1,0 +1,80 @@
+---
+
+network_services_keys:
+  - name: Misc_Core_Tenant_OT
+  - name: Misc_Core_Tenant_IT
+  - name: Misc_Core_Tenant_ehs
+  - name: Misc_Core_Tenant_Gnet
+
+new_network_services_bgp_vrf_config: true
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    # raw_eos_cli: "no logging event link-status\nno snmp trap link-change\nload-interval 30"
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP_WLAN_CONTROLLER
+    mtu: 1500
+    mode: trunk
+    vlans: 851,863,971,862,852
+    enabled: true
+  - profile: PP_vl387
+    mode: access
+    vlans: 387
+    enabled: true
+  - profile: PP_vl403
+    mode: access
+    vlans: 403
+    enabled: true
+
+svi_profiles:
+  - profile: svi_l3_defaults
+    raw_eos_cli: |
+      no ip proxy-arp
+      no autostate
+
+ip_dhcp_relay:
+  information_option: true
+
+custom_structured_configuration_prefix_lists:
+  - name: PL-LOCAL-NETWORKS
+    sequence_numbers:
+      - sequence: 10
+        action: "permit 10.208.0.0/13 le 29" # Supernet assigned to SM site
+      - sequence: 20
+        action: "permit 172.21.0.0/22 eq 32" # Supernet for Loopbacks at SM site
+      - sequence: 30
+        action: "permit 192.168.160.0/20 eq 32" # Global Loopbacks
+      - sequence: 40
+        action: "permit 10.74.56.0/21" # EHS
+      - sequence: 50
+        action: "permit 10.70.38.0/23" # Guestnet
+      - sequence: 60
+        action: "permit 10.72.40.0/24" # CPN84
+
+custom_structured_configuration_route_maps:
+  - name: RM-LOCAL-NETWORKS
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list PL-LOCAL-NETWORKS
+
+custom_structured_configuration_router_bgp:
+  redistribute_routes:
+    - source_protocol: connected
+      route_map: RM-LOCAL-NETWORKS
+  peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      type: null
+      maximum_routes: null
+      send_community: null
+  address_family_ipv4:
+    peer_groups:
+      - name: IPv4-UNDERLAY-PEERS
+        activate: null
+  eos_cli: 'no neighbor IPv4-UNDERLAY-PEERS peer group'

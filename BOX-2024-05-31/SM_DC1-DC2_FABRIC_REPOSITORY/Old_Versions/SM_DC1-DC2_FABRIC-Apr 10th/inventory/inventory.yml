@@ -1,0 +1,239 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_server:
+          # section for CVP primary node address
+          ansible_httpapi_host: 10.255.117.14
+          ansible_host: 10.255.117.14
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          fabric_name: FABRIC
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+
+    SHERMAN_FABRIC:
+      children:
+        # node_groups indented below the fabric var will create containers
+        SM-DC1_FABRIC:
+          children:
+            DC1_SPINES:
+              hosts:
+                ISMDC1SP01A:
+                  # ansible_host var required for validation role.
+                  ansible_host: 10.210.80.10/21
+                ISMDC1SP02A:
+                  ansible_host: 10.210.80.11/21
+                ISMDC1SP03A:
+                  ansible_host: 10.210.80.12/21
+            DC1_BLEAFS:
+                hosts:
+                  ISMDC1BL01A:
+                    ansible_host: 10.210.80.13/21
+                  ISMDC1BL02A:
+                    ansible_host: 10.210.80.14/21
+            DC1_LEAFS:
+              children:
+                DC1_LEAF1_2:
+                  hosts:
+                    DC1-CL1:
+                      ansible_host: 10.210.80.15/21
+                    DC1-CL2:
+                      ansible_host: 10.210.80.16/21
+                DC1_LEAF3_4:
+                  hosts:
+                    DC1-CL3:
+                      ansible_host: 10.210.80.17/21
+                    DC1-CL4:
+                      ansible_host: 10.210.80.18/21
+                DC1_LEAF5_6:
+                  hosts:
+                    DC1-CL5:
+                      ansible_host: 10.210.80.19/21
+                    DC1-CL6:
+                      ansible_host: 10.210.80.20/21
+                DC1_LEAF7_8:
+                  hosts:
+                    DC1-CL7:
+                      ansible_host: 10.210.80.21/21
+                    DC1-CL8:
+                      ansible_host: 10.210.80.22/21
+                DC1_LEAF9_10:
+                  hosts:
+                    DC1-CL9:
+                      ansible_host: 10.210.80.23/21
+                    DC1-CL10:
+                      ansible_host: 10.210.80.24/21
+                DC1_LEAF11_12:
+                  hosts:
+                    DC1-CL11:
+                      ansible_host: 10.210.80.25/21
+                    DC1-CL12:
+                      ansible_host: 10.210.80.26/21
+                DC1_LEAF13_14:
+                  hosts:
+                    DC1-CL13:
+                      ansible_host: 10.210.80.27/21
+                    DC1-CL14:
+                      ansible_host: 10.210.80.28/21
+                DC1_LEAF15_16:
+                  hosts:
+                    DC1-CL15:
+                      ansible_host: 10.210.80.29/21
+                    DC1-CL16:
+                      ansible_host: 10.210.80.30/21
+                DC1_LEAF17_18:
+                  hosts:
+                    DC1-CL17:
+                      ansible_host: 10.210.80.31/21
+                    DC1-CL18:
+                      ansible_host: 10.210.80.32/21
+                DC1_LEAF19_20:
+                  hosts:
+                    DC1-CL19:
+                      ansible_host: 10.210.80.33/21
+                    DC1-CL20:
+                      ansible_host: 10.210.80.34/21
+        SM-DC2_FABRIC:
+          children:
+            DC2_SPINES:
+              hosts:
+                ISMDC2SP01A:
+                  # ansible_host var required for validation role.
+                  ansible_host: 10.210.80.35/21
+                ISMDC2SP02A:
+                  ansible_host: 10.210.80.36/21
+                ISMDC2SP03A:
+                  ansible_host: 10.210.80.37/21
+            DC2_BLEAFS:
+              hosts:
+                ISMDC2BL01A:
+                  ansible_host: 10.210.80.38/21
+                ISMDC2BL02A:
+                  ansible_host: 10.210.80.39/21
+            DC2_LEAFS:
+              children:
+                DC2_LEAF1_2:
+                  hosts:
+                    DC2-CL1:
+                      ansible_host: 10.210.80.40/21
+                    DC2-CL2:
+                      ansible_host: 10.210.80.41/21
+                DC2_LEAF3_4:
+                  hosts:
+                    DC2-CL3:
+                      ansible_host: 10.210.80.42/21
+                    DC2-CL4:
+                      ansible_host: 10.210.80.43/21
+                DC2_LEAF5_6:
+                  hosts:
+                    DC2-CL5:
+                      ansible_host: 10.210.80.44/21
+                    DC2-CL6:
+                      ansible_host: 10.210.80.45/21
+                DC2_LEAF7_8:
+                  hosts:
+                    DC2-CL7:
+                      ansible_host: 10.210.80.46/21
+                    DC2-CL8:
+                      ansible_host: 10.210.80.47/21
+                DC2_LEAF9_10:
+                  hosts:
+                    DC2-CL9:
+                      ansible_host: 10.210.80.48/21
+                    DC2-CL10:
+                      ansible_host: 10.210.80.49/21
+                DC2_LEAF11_12:
+                  hosts:
+                    DC2-CL11:
+                      ansible_host: 10.210.80.50/21
+                    DC2-CL12:
+                      ansible_host: 10.210.80.51/21
+                DC2_LEAF13_14:
+                  hosts:
+                    DC2-CL13:
+                      ansible_host: 10.210.80.52/21
+                    DC2-CL14:
+                      ansible_host: 10.210.80.53/21
+                DC2_LEAF15_16:
+                  hosts:
+                    DC2-CL15:
+                      ansible_host: 10.210.80.54/21
+                    DC2-CL16:
+                      ansible_host: 10.210.80.55/21
+                DC2_LEAF17_18:
+                  hosts:
+                    DC2-CL17:
+                      ansible_host: 10.210.80.56/21
+                    DC2-CL18:
+                      ansible_host: 10.210.80.57/21
+                DC2_LEAF19_20:
+                  hosts:
+                    DC2-CL19:
+                      ansible_host: 10.210.80.58/21
+                    DC2-CL20:
+                      ansible_host: 10.210.80.59/21
+    DCI:
+      children:
+        DC1_BLEAFS:
+        DC2_BLEAFS:
+
+    DC1_TENANTS:
+      children:
+        DC1_LEAFS:
+        DC1_BLEAFS:
+
+    DC2_TENANTS:
+      children:
+        DC2_LEAFS:
+        DC2_BLEAFS:
+
+    SPAN:
+      children:
+        DC1_BLEAFS:
+        DC2_BLEAFS:
+    sFLOW:
+      children:
+        DC1DC2_LEAFS:
+
+    DC1DC2_SPINES:
+      children:
+        DC1_SPINES:
+        DC2_SPINES:
+    DC1DC2_LEAFS:
+      children:
+        DC1_LEAFS:
+        DC2_LEAFS:
+        DC1_BLEAFS:
+        DC2_BLEAFS:
+      
+    ENDPOINTS:
+      children:
+        DC1_ENDPOINTS:
+          children:
+            DC1_LEAF1_2:
+            DC1_LEAF3_4:
+            DC1_LEAF5_6:
+            DC1_LEAF7_8:
+            DC1_LEAF9_10:
+            DC1_LEAF11_12:
+            DC1_LEAF13_14:
+            DC1_LEAF15_16:
+            DC1_LEAF17_18:
+            DC1_LEAF19_20:
+        DC2_ENDPOINTS:
+          children:
+            DC2_LEAF1_2:
+            DC2_LEAF3_4:
+            DC2_LEAF5_6:
+            DC2_LEAF7_8:
+            DC2_LEAF9_10:
+            DC2_LEAF11_12:
+            DC2_LEAF13_14:
+            DC2_LEAF15_16:
+            DC2_LEAF17_18:
+            DC2_LEAF19_20:

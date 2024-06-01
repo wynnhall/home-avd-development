@@ -1,0 +1,8 @@
+---
+
+inband_mgmt_subnet: 10.215.242.0/23
+inband_mgmt_gateway: 10.215.242.1
+inband_mgmt_interface: vlan463
+inband_mgmt_vrf: default
+inband_mgmt_vlan: 463
+inband_mgmt_description: 10.215.242.0/23-SUPPORT-Mgmt
