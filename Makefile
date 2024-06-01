@@ -71,3 +71,15 @@ S1_OT_FABRIC-build: ## Run ansible-playbook to build S1_OT_FABRIC
 .PHONY: S1_OT_FABRIC-deploy
 S1_OT_FABRIC-deploy: ## Run ansible playbook to deploy configs to CVP
 	ansible-playbook playbooks/deploy.yml -i sm/S1_OT_FABRIC_REPOSITORY/inventory.yml --ask-vault-pass -e "fabric_name=S1_OT_FABRIC container_root=SM"
+
+
+################################################################################
+#  L2LS_FABRIC
+################################################################################
+.PHONY: L2LS_FABRIC-build
+L2LS_FABRIC-build: ## Run ansible-playbook to build S1_OT_FABRIC
+	ansible-playbook playbooks/build.yml -i project1/L2LS_FABRIC/inventory.yml --ask-vault-pass -e fabric_name=DC1_FABRIC
+
+.PHONY: L2LS_FABRIC-deploy
+L2LS_FABRIC-deploy: ## Run ansible playbook to deploy configs to CVP
+	ansible-playbook playbooks/deploy.yml -i project1/L2LS_FABRIC/inventory.yml --ask-vault-pass -e "fabric_name=DC1_FABRIC container_root=DC1"
