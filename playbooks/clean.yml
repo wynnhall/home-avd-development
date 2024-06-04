@@ -5,15 +5,16 @@
   gather_facts: false
   
   tasks:
-# - hosts: "{{ fabric_name }}"
-#   name: Build Switch configuration
-#   connection: local
-#   gather_facts: no
-#   tasks:
-#     - name: 'Build local folders for output'
-#       tags: [build]
-#       ansible.builtin.import_role:
-#         name: arista.avd.build_output_folders
+
+- hosts: "{{ fabric_name }}"
+  name: Build Switch configuration
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: 'Build local folders for output'
+      tags: [build]
+      ansible.builtin.import_role:
+        name: arista.avd.build_output_folders
 
 - name: Include only SFLOW
   hosts: SFLOW
