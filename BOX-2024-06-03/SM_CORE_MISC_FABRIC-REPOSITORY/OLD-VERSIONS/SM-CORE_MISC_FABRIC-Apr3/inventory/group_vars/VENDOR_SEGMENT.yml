@@ -1,0 +1,58 @@
+---
+
+port_profiles: 
+  TRUNK_10G_VENDOR_FW:
+    mode: trunk
+    speed: 10g
+    spanning_tree_portfast: edge
+
+tenants:
+  - name: VENDOR_SEGMENT
+    l2vlans:
+      - id: 100
+        tags: [VENDOR]
+        name: VENDOR-VLAN1
+      - id: 200
+        tags: [BOT1]
+        name: VENDOR-VLAN2
+      - id: 300
+        tags: [BOT2]
+        name: VENDOR-VLAN3
+
+firewalls:
+  - name: ISMTMGPAN48
+    adapters:
+      - endpoint_ports: [ Eth1/25 ]
+        switch_ports: [ Ethernet1/1 ]
+        switches: [ HSMVND01A ]
+        profile: TRUNK_10G_VENDOR_FW
+  - name: ISMTMGPAN49
+    adapters:
+      - endpoint_ports: [ Eth1/25 ]
+        switch_ports: [ Ethernet2/1 ]
+        switches: [ HSMVND01A ]
+        profile: TRUNK_10G_VENDOR_FW
+  - name: ISMTMGPAN48
+    adapters:
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet49 ]
+        switches: [ HS00BOT01A ]
+        profile: TRUNK_10G_VENDOR_FW
+  - name: ISMTMGPAN49
+    adapters:
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet50 ]
+        switches: [ HS00BOT01A ]
+        profile: TRUNK_10G_VENDOR_FW
+  - name: ISMTMGPAN48
+    adapters:
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet49 ]
+        switches: [ HS00BOT02A ]
+        profile: TRUNK_10G_VENDOR_FW
+  - name: ISMTMGPAN49
+    adapters:
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet50 ]
+        switches: [ HS00BOT02A ]
+        profile: TRUNK_10G_VENDOR_FW

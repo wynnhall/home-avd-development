@@ -1,0 +1,199 @@
+---
+# DC2-OT VRF Related configs
+
+DC2-Tenant-OT:
+  - name: "DC2-Tenant-OT"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "OT"
+        vrf_vni: 5001
+        svis:
+          1012:
+            name: 10.210.0.0/21_VCF-WL-Edge-TEP  #VCF Wrkld Underlay Edge TEP
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.0.1/21
+          1013:
+            name: 10.210.8.0/21_VCF-WL-Host-TEP #VCF-Wrkld Underlay Host TEP
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.8.1/21
+          1014:
+            name: 10.210.16.0/24_VCF-MU-Edge-TEP #VCF Mgmt Underlay Edge TEP
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.16.1/24
+          1015:
+            name: 10.210.17.0/24_VCF-MU-Host-TEP #VCF Mgmt Underlay Host TEP
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.17.1/24
+          238:
+            name: 10.210.18.0/24_NAS-STRGE-PUB-NET #NAS Storage Public Network
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.18.1/24
+          1016:
+            name: 10.210.100.0/24_VCF-MDOMAIN-VSAN #VCF Mgmt Domain VSAN
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.100.1/24
+          323:
+            name: 10.210.103.0/28_DC-METROCL-INTCL #DC Metrocluster InterCluster
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.103.1/28
+          355:
+            name: 10.210.103.32/27_ORCLERAC-PRVNET #Oracle RAC Private Network
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.103.33/27
+          451:
+            name: 10.210.103.128/27_GAD-PNET-iSCSI  #GAD Public Network iSCSI
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.103.129/27
+          1011:
+            name: 10.210.105.0/24_NSX-EDGE-NET-DC2 #NSX Edge Network  DC1
+            tags: [non-stretch]
+            enabled: true
+            ip_address_virtual: 10.210.104.1/24
+          1017:
+            name: 10.210.106.0/24_VCF-WD-ESXI-MGMT #VCF Wrld Domain ESXI Mgmt 
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.106.1/24
+          1018:
+            name: 10.210.107.0/24_VC-MD-ESXI-MGMT #VCF Mgmt Domain ESXI Mgmt 
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.107.1/24
+          1019:
+            name: 10.210.108.0/23_VCF-WD-VMOTION #VCF Wrkld Domain V-Motion
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.108.1/23
+          1020:
+            name: 10.210.110.0/24_VCF-MD-VMOTION #VCF Mgmt Domain V-Motion
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.110.1/24
+          1021:
+            name: 10.210.111.0/24_VMWare-FT ##VMWare Fault Tolerance
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.111.1/24 
+          # Currently in use at LDC
+          1022:
+            name: 10.210.128.0/19_NSX-MNGD-VMNET-P #NSX Managed VM network (Public_Net)
+            tags: [stretch]
+            enabled: true
+            ip_address_virtual: 10.210.128.1/19
+        # L3 p2p subinterfaces to CAMPUS_CORE switches & SM1-OT Border leaf switches in OT VRF
+        l3_interfaces:
+          - interfaces:
+              # to the CAMPUS_CORES
+                - Ethernet1/1.533
+                - Ethernet2/1.533
+                - Ethernet1/1.533
+                - Ethernet2/1.533
+              # to the SM1-OT Borders
+                - Ethernet5/1.533
+                - Ethernet6/1.533
+                - Ethernet5/1.533
+                - Ethernet6/1.533
+            nodes:
+            # to the CAMPUS_CORES
+                - ISMDC2BL01A
+                - ISMDC2BL01A
+                - ISMDC2BL02A
+                - ISMDC2BL02A
+            # to the SM1-OT Borders
+                - ISMDC2BL01A
+                - ISMDC2BL01A
+                - ISMDC2BL02A
+                - ISMDC2BL02A
+            ip_addresses:
+            # to the CAMPUS_CORES 
+                - 10.210.234.1/31
+                - 10.210.234.3/31
+                - 10.210.234.5/31
+                - 10.210.234.7/31
+            # to the SM1-OT Borders
+                - 10.210.234.9/31
+                - 10.210.234.11/31
+                - 10.210.234.13/31
+                - 10.210.234.15/31
+            descriptions:
+            # to the CAMPUS_CORES
+              - CORE1-Eth3/2/1-OT-VRF
+              - CORE2-Eth3/2/1-OT-VRF
+              - CORE1-Eth4/2/1-OT-VRF
+              - CORE2-Eth4/2/1-OT-VRF
+            # to the SM1-OT Borders
+              - SM1-OT-BL1-Eth3/1-OT-VRF
+              - SM1-OT-BL2-Eth3/1-OT-VRF
+              - SM1-OT-BL1-Eth4/1-OT-VRF
+              - SM1-OT-BL2-Eth4/1-OT-VRF
+        bgp_peer_groups:
+        # to the CAMPUS_CORES 
+          - name: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL01A
+              - ISMDC2BL02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='CORES-EBGP-PEERS-OTVRF') }}"
+          # to the SM1-OT Borders
+          - name: SM1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL01A
+              - ISMDC2BL02A
+            remote_as: "65120.21200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='SM1-OT-BL-EBGP-PEERS-OTVRF') }}"
+        bgp_peers:
+        # to the CAMPUS_CORES 
+          - ip_address: 10.210.234.0
+            description: CORE1-Eth3/2/1-OT-VRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL01A
+          - ip_address: 10.210.234.2
+            description: CORE2-Eth3/2/1-OT-VRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL01A
+          - ip_address: 10.210.234.4
+            description: CORE1-Eth4/2/1-OT-VRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL02A
+          - ip_address: 10.210.234.6
+            description: CORE2-Eth4/2/1-OT-VRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL02A
+        # to the SM1-OT Borders 
+          - ip_address: 10.210.234.8
+            description: SM1-OT-BL1-Eth3/1-OT-VRF
+            peer_group: SM1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL01A
+          - ip_address: 10.210.234.11
+            description: SM1-OT-BL2-Eth3/1-OT-VRF
+            peer_group: SM1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL01A
+          - ip_address: 10.210.234.13
+            description: SM1-OT-BL1-Eth4/1-OT-VRF
+            peer_group: SM1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL02A
+          - ip_address: 10.210.234.15
+            description: SM1-OT-BL2-Eth4/1-OT-VRF
+            peer_group: SM1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMDC2BL02A
+

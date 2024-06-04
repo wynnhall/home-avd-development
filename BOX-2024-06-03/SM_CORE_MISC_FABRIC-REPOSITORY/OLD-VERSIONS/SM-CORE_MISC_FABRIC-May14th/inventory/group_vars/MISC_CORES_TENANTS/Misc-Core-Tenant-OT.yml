@@ -1,0 +1,77 @@
+---
+Misc-Core-Tenant-OT:
+  - name: "Misc-Core-Tenant-OT"
+    vrfs:
+      - name: OT
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          852:
+            name: 10.215.192.0/23_SM-MURRAWOLKA
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.215.192.1
+            nodes:
+              - node: ISMITMSC01A
+                ip_address: 10.215.192.2/23
+              - node: ISMITMSC02A
+                ip_address: 10.215.192.3/23
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.533
+                - Ethernet50/1.533
+                - Ethernet49/1.533
+                - Ethernet50/1.533
+            nodes:
+                - ISMITMSC01A
+                - ISMITMSC01A
+                - ISMITMSC02A
+                - ISMITMSC02A
+            ip_addresses: 
+                - 10.210.241.24/31
+                - 10.210.241.26/31
+                - 10.210.241.28/31
+                - 10.210.241.30/31
+            descriptions:
+              - '[L]_ISMCR01A-Eth3/4/1-OTVRF'
+              - '[L]_ISMCR02A-Eth3/4/1-OTVRF'
+              - '[L]_ISMCR01A-Eth4/4/1-OTVRF'
+              - '[L]_ISMCR02A-Eth4/4/1-OTVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMITMSC01A
+              - ISMITMSC02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.25
+            description: ISMCR01A-Eth3/4/1-OTVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.27
+            description: ISMCR02A-Eth3/4/1-OTVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.29
+            description: ISMCR01A-Eth4/4/1-OTVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMITMSC02A
+          - ip_address: 10.210.241.31
+            description: ISMCR02A-Eth4/4/1-OTVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMITMSC02A
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: OT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS

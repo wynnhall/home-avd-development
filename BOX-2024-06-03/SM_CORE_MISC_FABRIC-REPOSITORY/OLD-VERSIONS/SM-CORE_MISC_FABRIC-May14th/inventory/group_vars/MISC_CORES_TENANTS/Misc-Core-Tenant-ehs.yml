@@ -1,0 +1,95 @@
+---
+Misc-Core-Tenant-ehs:
+  - name: "Misc-Core-Tenant-ehs"
+    vrfs:
+      - name: ehs
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          863:
+            name: 10.74.56.0/21_SM-EHS
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.74.56.1
+            nodes:
+              - node: ISMITMSC01A
+                ip_address: 10.74.56.2/21
+              - node: ISMITMSC02A
+                ip_address: 10.74.56.3/21
+          862:
+            name:  10.72.40.0/24_SM-CPN84
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              -  10.72.40.1
+            nodes:
+              - node: ISMITMSC01A
+                ip_address:  10.72.40.2/24
+              - node: ISMITMSC02A
+                ip_address:  10.72.40.3/24
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.581
+                - Ethernet50/1.581
+                - Ethernet49/1.581
+                - Ethernet50/1.581
+            nodes:
+                - ISMITMSC01A
+                - ISMITMSC01A
+                - ISMITMSC02A
+                - ISMITMSC02A
+            ip_addresses: 
+                - 10.210.241.33/31
+                - 10.210.241.35/31
+                - 10.210.241.37/31
+                - 10.210.241.39/31
+            descriptions:
+              - '[L]_ISMCR01A-Eth3/4/1-ehsVRF'
+              - '[L]_ISMCR02A-Eth3/4/1-ehsVRF'
+              - '[L]_ISMCR01A-Eth4/4/1-ehsVRF'
+              - '[L]_ISMCR02A-Eth4/4/1-ehsVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-ehsVRF
+            nodes:
+              - ISMITMSC01A
+              - ISMITMSC02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.32
+            description: ISMCR01A-Eth3/4/1-ehsVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ehsVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.34
+            description: ISMCR02A-Eth3/4/1-ehsVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ehsVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.36
+            description: ISMCR01A-Eth4/4/1-ehsVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ehsVRF
+            nodes:
+              - ISMITMSC02A
+          - ip_address: 10.210.241.38
+            description: ISMCR02A-Eth4/4/1-ehsVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ehsVRF
+            nodes:
+              - ISMITMSC02A
+        ip_helpers:
+            - ip_helper: 10.210.103.70
+              source_interface: Loopback0
+              source_vrf: IT
+            - ip_helper: 10.210.103.86
+              source_interface: Loopback0
+              source_vrf: IT
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: ehs
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS

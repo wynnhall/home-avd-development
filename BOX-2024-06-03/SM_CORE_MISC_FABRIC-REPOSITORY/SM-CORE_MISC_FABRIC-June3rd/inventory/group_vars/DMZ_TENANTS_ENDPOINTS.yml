@@ -1,0 +1,51 @@
+---
+
+connected_endpoints_keys:
+- description: circuits
+  key: circuits
+  type: circuits
+- description: Firewall
+  key: firewalls
+  type: firewall
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP-vlx #TBA
+    mode: trunk
+    # vlans: 
+    enabled: true
+
+# tenants:
+#   - name: DMZ_SEGMENT
+#     l2vlans:
+#       - id: 100
+#         name: 'DMZ-FW-TRANSIT'
+
+circuits: #TBA
+  - name: CSMISP02
+    adapters:
+      - endpoint_ports: [ ISP#1 Circuit]
+        switch_ports: [ Ethernet49 ]
+        switches: [ hsmdmz100a ]
+        mode: "access"
+        enabled: true
+
+firewalls:
+  - name: ismpan98
+    adapters:
+      - endpoint_ports: [ Eth13, Eth14 ]
+        switch_ports: [ Ethernet51, Ethernet51 ]
+        switches: [ hsmdmz100a, hsmdmz101a ]
+        profile: PP-vlx
+  - name: ismpan99
+    adapters:
+      - endpoint_ports: [ Eth13, Eth14 ]
+        switch_ports: [ Ethernet52, Ethernet52 ]
+        switches: [ hsmdmz100a, hsmdmz101a ]
+        profile: PP-vlx

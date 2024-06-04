@@ -1,0 +1,35 @@
+---
+l3_edge:
+  p2p_links_ip_pools:
+    dci_links: 10.210.226.8/29
+  p2p_links:
+    - id: 1
+      speed: 100g
+      ip_pool: dci_links
+      nodes: [ ISMDC1BL01A, ISMDC2BL01A ]
+      interfaces: [ Ethernet3/1, Ethernet3/1 ]
+      as: ["65120.11200", "65120.12200"]
+      include_in_underlay_protocol: false
+    - id: 2
+      speed: 100g
+      ip_pool: dci_links
+      nodes: [ ISMDC1BL01A, ISMDC2BL02A ]
+      interfaces: [ Ethernet4/1, Ethernet3/1 ]
+      as: ["65120.11200", "65120.12200"]
+      include_in_underlay_protocol: false
+    - id: 3
+      speed: 100g
+      ip_pool: dci_links
+      nodes: [ ISMDC1BL02A, ISMDC2BL01A ]
+      interfaces: [ Ethernet3/1, Ethernet4/1 ]
+      as: ["65120.11200", "65120.12200"]
+      include_in_underlay_protocol: false
+    - id: 4
+      speed: 100g
+      ip_pool: dci_links
+      nodes: [ ISMDC1BL02A , ISMDC2BL02A ]
+      interfaces: [ Ethernet4/1, Ethernet4/1 ]
+      as: ["65120.11200", "65120.12200"]
+      include_in_underlay_protocol: false
+
+

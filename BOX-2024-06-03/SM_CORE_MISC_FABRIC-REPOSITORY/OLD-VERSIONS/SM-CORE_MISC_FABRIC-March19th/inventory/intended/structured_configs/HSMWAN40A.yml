@@ -1,0 +1,166 @@
+hostname: HSMWAN40A
+is_deployed: true
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 10.210.80.1
+service_routing_protocols_model: multi-agent
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: '4094'
+vrfs:
+- name: mgmt
+  ip_routing: false
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 10.210.80.76/21
+  gateway: 10.210.80.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+  enable_https: true
+vlans:
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+- id: 100
+  name: WAN-FW-TRANSIT
+  tenant: WAN_SEGMENT
+- id: 200
+  name: MGMT-FW-TRANSIT
+  tenant: WAN_SEGMENT
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  ip_address: 192.168.0.0/31
+  no_autostate: true
+  mtu: 9214
+port_channel_interfaces:
+- name: Port-Channel551
+  description: MLAG_PEER_HSMWAN41A_Po551
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - MLAG
+ethernet_interfaces:
+- name: Ethernet55/1
+  peer: HSMWAN41A
+  peer_interface: Ethernet55/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_HSMWAN41A_Ethernet55/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 551
+    mode: active
+  speed: 100g
+- name: Ethernet56/1
+  peer: HSMWAN41A
+  peer_interface: Ethernet56/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_HSMWAN41A_Ethernet56/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 551
+    mode: active
+  speed: 100g
+- name: Ethernet1
+  peer: ISMTMGPAN40
+  peer_interface: Eth1/21
+  peer_type: firewall
+  port_profile: TRUNK_100G_WAN_FW
+  description: ISMTMGPAN40_Eth1/21
+  speed: 100g
+  shutdown: false
+  type: switched
+  mode: trunk
+  vlans: '100'
+  spanning_tree_portfast: edge
+- name: Ethernet2
+  peer: ISMTMGPAN41
+  peer_interface: Eth1/21
+  peer_type: firewall
+  port_profile: TRUNK_100G_WAN_FW
+  description: ISMTMGPAN41_Eth1/21
+  speed: 100g
+  shutdown: false
+  type: switched
+  mode: trunk
+  vlans: '100'
+  spanning_tree_portfast: edge
+- name: Ethernet5
+  peer: ISMMGTPAN01
+  peer_interface: Eth1/13
+  peer_type: firewall
+  port_profile: TRUNK_100G_MGMT_FW
+  description: ISMMGTPAN01_Eth1/13
+  speed: 100g
+  shutdown: false
+  type: switched
+  mode: trunk
+  vlans: '200'
+  spanning_tree_portfast: edge
+- name: Ethernet6
+  peer: ISMMGTPAN02
+  peer_interface: Eth1/13
+  peer_type: firewall
+  port_profile: TRUNK_100G_MGMT_FW
+  description: ISMMGTPAN02_Eth1/13
+  speed: 100g
+  shutdown: false
+  type: switched
+  mode: trunk
+  vlans: '200'
+  spanning_tree_portfast: edge
+- name: Ethernet11
+  peer: ISMWAN40
+  peer_interface: Eth0
+  peer_type: router
+  port_profile: TRUNK_10G_EDGE_ROUTERS
+  description: ISMWAN40_Eth0
+  speed: 10g
+  shutdown: false
+  type: switched
+  mode: trunk
+  vlans: 100,200
+  spanning_tree_portfast: edge
+- name: Ethernet12
+  peer: ISMWAN41
+  peer_interface: Eth0
+  peer_type: router
+  port_profile: TRUNK_10G_EDGE_ROUTERS
+  description: ISMWAN41_Eth0
+  speed: 10g
+  shutdown: false
+  type: switched
+  mode: trunk
+  vlans: 100,200
+  spanning_tree_portfast: edge
+mlag_configuration:
+  domain_id: WAN_SEGMENT
+  local_interface: Vlan4094
+  peer_address: 192.168.0.1
+  peer_link: Port-Channel551
+  reload_delay_mlag: '900'
+  reload_delay_non_mlag: '1020'
+ip_igmp_snooping:
+  globally_enabled: true
+metadata:
+  platform: 7280R3

@@ -1,0 +1,51 @@
+---
+
+#Setting serdes rates to 10G for speed-groups 10 (Et37-40), 11 (Et41-44), and 12 (ET45-48). # Additional configurations may be added in the future.
+hardware:
+  speed_groups:
+    - speed_group: 10-12
+      # Serdes speed like "10g" or "25g"
+      serdes: 10g
+      
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP_DC2_VMware_Workload
+    mode: trunk
+    spanning_tree_portfast: edge
+    vlans: 1012,1013,1017,1019,1021,1024
+    parent_profile: PP-DEFAULTS
+  - profile: PP_DC2_VMware_Hosts
+    mode: trunk
+    spanning_tree_portfast: edge
+    vlans: 1014,1015,1016,1011,1018,1020
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl322
+    mode: access
+    vlans: 322
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl238
+    mode: access
+    vlans: 238
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl316
+    mode: access
+    vlans: 316
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl323
+    mode: access
+    vlans: 323
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl355
+    mode: access
+    vlans: 355
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl451
+    mode: access
+    vlans: 451
+    parent_profile: PP-DEFAULTS

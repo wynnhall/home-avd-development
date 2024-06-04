@@ -1,0 +1,58 @@
+---
+Misc-Core-Tenant-IT:
+  - name: "Misc-Core-Tenant-IT"
+    vrfs:
+      - name: IT
+        mlag_ibgp_peering_vlan: "4090"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.130
+                - Ethernet50/1.130
+                - Ethernet49/1.130
+                - Ethernet50/1.130
+            nodes:
+                - ISMITMSC01A
+                - ISMITMSC01A
+                - ISMITMSC02A
+                - ISMITMSC02A
+            ip_addresses: 
+                - 10.210.241.17/31
+                - 10.210.241.19/31
+                - 10.210.241.21/31
+                - 10.210.241.23/31
+            descriptions:
+              - ISMCR01A-Eth3/4/1-ITVRF
+              - ISMCR02A-Eth3/4/1-ITVRF
+              - ISMCR01A-Eth4/4/1-ITVRF
+              - ISMCR02A-Eth4/4/1-ITVRF
+        bgp_peer_groups: 
+          - name: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+              - ISMITMSC02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='CAMPUS-CORES-EBGP-PEERS-ITVRF') }}"
+        bgp_peers:
+          - ip_address: 10.210.241.18
+            description: ISMCR01A-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.20
+            description: ISMCR02A-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.22
+            description: ISMCR01A-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC02A
+          - ip_address: 10.210.241.24
+            description: ISMCR02A-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC02A

@@ -1,0 +1,27 @@
+---
+
+network_ports:
+  - switches:
+    - hs00amgt01a
+    - hs00bmgt01a
+    - hs00cmgt01a
+    - hs01amgt01a
+    - hs01bmgt01a
+    - hs01cmgt01a
+    - hs02amgt01a
+    - hs02bmgt01a
+    - hs03amgt01a
+    - hs03bmgt01a
+    switch_ports:
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+      - Ethernet1-48
+    profile: PP-ADMIN_vl462
+    description: VL462-ADMIN-Mgmt

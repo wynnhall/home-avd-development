@@ -1,0 +1,225 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_server:
+          # section for CVP primary node address
+          ansible_httpapi_host: 10.210.80.7
+          ansible_host: 10.210.80.7
+          ansible_user: svc_account
+          ansible_password: "{{ vault.users.cvpadmin.sm_password }}"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: false
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          fabric_name: FABRIC
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+
+    SHERMAN_FABRIC:
+      children:
+        # node_groups indented below the fabric var will create containers
+        SM_IT_FABRIC:
+          children:
+            IT_SPINES:
+              hosts:
+                ISMS1ITSP01A :
+                  # ansible_host var required for validation role.
+                  ansible_host: 10.210.80.60
+                ISMS1ITSP02A:
+                  ansible_host: 10.210.80.61
+                ISMS1ITSP03A:
+                  ansible_host: 10.210.80.62
+            IT_BLEAFS:
+              hosts:
+                ISMS1ITBL01A:
+                  ansible_host: 10.210.80.63
+                ISMS1ITBL02A:
+                  ansible_host: 10.210.80.64
+            IT_AGG_LEAFS:
+              children:
+                IT_AGG_LF1_2:
+                  hosts:
+                    ISMITAGG01A:
+                      ansible_host: 10.210.80.65
+                    ISMITAGG02A:
+                      ansible_host: 10.210.80.66
+            IT_LEAFS:
+              hosts:
+                IS11JIT01A:
+                  ansible_host: 10.211.240.10
+                IS11GIT01A:
+                  ansible_host: 10.211.240.11
+                IS11CIT01A:
+                  ansible_host: 10.211.240.12
+                IS11AIT01A:
+                  ansible_host: 10.211.240.13
+                IS11JWIT01A:
+                  ansible_host: 10.211.240.14
+                IS11GWIT01A:
+                  ansible_host: 10.211.240.15
+                IS11EWIT01A:
+                  ansible_host: 10.211.240.16
+                IS11CWIT01A:
+                  ansible_host: 10.211.240.17
+                IS11KEIT01A:	
+                  ansible_host: 10.211.240.18
+                IS11HEIT01A:	
+                  ansible_host:	10.211.240.19
+                IS11DEIT01A:	
+                  ansible_host:	10.211.240.20
+                IS11BEIT01A:	
+                  ansible_host:	10.211.240.21
+                ISM0WIT01A:	
+                  ansible_host:	10.215.242.10
+                ISM1WIT01A:	
+                  ansible_host:	10.215.242.11
+                ISM2WIT01A:	
+                  ansible_host:	10.215.242.12
+                ISM3XNIT01A:	
+                  ansible_host:	10.215.242.13
+                ISM3XNIT02A:	
+                  ansible_host:	10.215.242.14
+                ISM3XSIT01A:	
+                  ansible_host:	10.215.242.15
+                ISM3XSIT02A:	
+                  ansible_host:	10.215.242.16
+                ISM3WIT01A:	
+                  ansible_host:	10.215.242.17
+                IS00AIT01A:	
+                  ansible_host:	10.215.241.10
+                IS00BIT01A:	
+                  ansible_host:	10.215.241.11
+                IS00CIT01A:	
+                  ansible_host:	10.215.241.12
+                IS01AIT01A:	
+                  ansible_host:	10.215.241.13
+                IS01BIT01A:	
+                  ansible_host:	10.215.241.14
+                IS01CIT01A:	
+                  ansible_host:	10.215.241.15
+                IS02AIT01A:	
+                  ansible_host:	10.215.241.16
+                IS02BIT01A:	
+                  ansible_host:	10.215.241.17
+                IS03AIT01A:	
+                  ansible_host:	10.215.241.18
+                IS03BIT01A:	
+                  ansible_host:	10.215.241.19
+                ISM1YIT01A:	
+                  ansible_host:	10.215.242.18
+                ISM1VIT01A:	
+                  ansible_host:	10.215.242.19   
+            IT_L2LEAFS:
+              hosts:
+                HSM2VIT01A:
+                  ansible_host:	10.215.242.20
+                HSM2VIT02A:
+                  ansible_host:	10.215.242.21
+                HSMPGIT01A:
+                  ansible_host:	10.215.242.22
+                HSM3VIT01A:
+                  ansible_host:	10.215.242.23
+                HSM3VIT02A:
+                  ansible_host:	10.215.242.24
+                HS1LLKK01A:
+                  ansible_host:	10.211.240.22
+                HS1LLKK02A:
+                  ansible_host:	10.211.240.23
+                HS1CUPIT01A:
+                  ansible_host:	10.211.240.24
+                HS1CUPIT02A:
+                  ansible_host:	10.211.240.25
+        IT_L3LEAFS:
+          children:
+            IT_BLEAFS:
+            IT_AGG_LEAFS:
+            IT_LEAFS:
+            
+        IT_TENANTS:
+          children:
+            IT_BLEAFS:
+            IT_AGG_LEAFS:
+            IT_LEAFS:
+            IT_L2LEAFS:
+
+        SFLOW:
+          children:
+            IT_BLEAFS:
+            IT_AGG_LEAFS:
+            IT_LEAFS:
+
+        ENDPOINTS:
+          children:
+            IT_AGG_LEAFS_ENDPOINTS:
+              children:
+                IT_AGG_LEAFS:
+            IT_LEAFS_ENDPOINTS:
+              children:
+                IT_LEAFS:
+            IT_L2LEAFS_ENDPOINTS:
+              children:
+                IT_L2LEAFS:
+            IT_BLEAFS_ENDPOINTS:
+              children:
+                IT_L2LEAFS:
+
+        NOTDEPLOYED:
+          vars:
+            is_deployed: false
+          hosts:
+            # IT_SPINES:
+            ISMS1ITSP01A:
+            ISMS1ITSP02A:
+            ISMS1ITSP03A:
+            #IT_BLEAFS:
+            ISMS1ITBL01A:
+            ISMS1ITBL02A:
+            #IT_AGG_LEAFS:
+            ISMITAGG01A:
+            ISMITAGG02A:
+            #IT_LEAFS:
+            IS11JIT01A:
+            IS11GIT01A:
+            IS11CIT01A:
+            IS11AIT01A:
+            IS11JWIT01A:
+            IS11GWIT01A:
+            IS11EWIT01A:
+            IS11CWIT01A:
+            IS11KEIT01A:	
+            IS11HEIT01A:	
+            IS11DEIT01A:	
+            IS11BEIT01A:	
+            ISM0WIT01A:	
+            ISM1WIT01A:	
+            ISM2WIT01A:	
+            ISM3XNIT01A:	
+            ISM3XNIT02A:	
+            ISM3XSIT01A:	
+            ISM3XSIT02A:	
+            ISM3WIT01A:	
+            IS00AIT01A:	
+            IS00BIT01A:	
+            IS00CIT01A:	
+            IS01AIT01A:	
+            IS01BIT01A:
+            IS01CIT01A:	
+            IS02AIT01A:	
+            IS02BIT01A:	
+            IS03AIT01A:
+            IS03BIT01A:
+            ISM1YIT01A:	
+            ISM1VIT01A:
+            #IT_L2LEAFS
+            HSM2VIT01A:
+            HSM2VIT02A:
+            HSMPGIT01A:
+            HSM3VIT01A:
+            HSM3VIT02A:
+            HS1LLKK01A:
+            HS1LLKK02A:
+            HS1CUPIT01A:
+            HS1CUPIT02A:

@@ -1,0 +1,9 @@
+---
+
+monitor_sessions:
+  - name: SPANSession-to-BL-FilterSwitch
+    sources:
+      - name: Ethernet1-48 #TBD
+        direction: "both"
+    destinations:
+      - Ethernet29/1

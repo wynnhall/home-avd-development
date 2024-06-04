@@ -1,0 +1,60 @@
+---
+Misc-Core-Tenant-IT:
+  - name: "Misc-Core-Tenant-IT"
+    vrfs:
+      - name: IT
+        mlag_ibgp_peering_vlan: "4090"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.525
+                - Ethernet50/1.525
+                - Ethernet49/1.525
+                - Ethernet50/1.525
+            nodes:
+                - ISMITMSC01A
+                - ISMITMSC01A
+                - ISMITMSC02A
+                - ISMITMSC02A
+            ip_addresses: 
+                - 10.210.241.16/31
+                - 10.210.241.18/31
+                - 10.210.241.20/31
+                - 10.210.241.22/31
+            descriptions:
+              - ISMCR01A-Eth3/4/1-ITVRF
+              - ISMCR02A-Eth3/4/1-ITVRF
+              - ISMCR01A-Eth4/4/1-ITVRF
+              - ISMCR02A-Eth4/4/1-ITVRF
+        bgp_peer_groups: 
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+              - ISMITMSC02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='CAMPUS-CORES-EBGP-PEERS-ITVRF') }}"
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.17
+            description: ISMCR01A-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.19
+            description: ISMCR02A-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.21
+            description: ISMCR01A-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC02A
+          - ip_address: 10.210.241.23
+            description: ISMCR02A-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMITMSC02A

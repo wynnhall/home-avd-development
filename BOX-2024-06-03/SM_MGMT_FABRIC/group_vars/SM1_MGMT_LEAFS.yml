@@ -1,0 +1,8 @@
+---
+
+inband_mgmt_subnet: 10.211.240.0/22
+inband_mgmt_gateway: 10.211.240.1
+inband_mgmt_interface: vlan461
+inband_mgmt_vrf: default
+inband_mgmt_vlan: 461
+inband_mgmt_description: 10.211.240.0/22-SM1-Mgmt

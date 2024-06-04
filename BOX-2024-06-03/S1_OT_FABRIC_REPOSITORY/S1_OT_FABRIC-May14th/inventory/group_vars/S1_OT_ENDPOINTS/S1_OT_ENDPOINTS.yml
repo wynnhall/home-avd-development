@@ -1,0 +1,21 @@
+---
+
+mac_access_lists:
+    # MAC Access-list Name
+  - name: block_mcast
+    entries:
+      - sequence: 10
+        action: "deny any 01:00:00:00:00:00 fe:ff:ff:ff:ff:ff"
+      - sequence: 20
+        action: "20 permit any any"
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+      mac access-group block_mcast in
+

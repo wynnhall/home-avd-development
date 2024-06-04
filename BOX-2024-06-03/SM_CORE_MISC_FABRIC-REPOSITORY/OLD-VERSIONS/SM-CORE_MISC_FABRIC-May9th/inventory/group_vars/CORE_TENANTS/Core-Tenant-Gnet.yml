@@ -1,0 +1,100 @@
+---
+Core-Tenant-Gnet:
+  - name: "Core-Tenant-Gnet"
+    vrfs:
+      - name: Gnet
+        mlag_ibgp_peering_vlan: "4087"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          589:
+            name: DMZFW-TRANSIT-GnetVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.129
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.241.130/29
+              - node: ISMCR02A
+                ip_address: 10.210.241.131/29
+        l3_interfaces:
+          - interfaces:
+                - Ethernet3/4/1.589
+                - Ethernet4/4/1.589
+                - Ethernet3/4/1.589
+                - Ethernet4/4/1.589
+            nodes:
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+                - 10.210.241.40/31
+                - 10.210.241.42/31
+                - 10.210.241.44/31
+                - 10.210.241.46/31
+            descriptions:
+              - '[L]_ISMITMSC01A-Eth49/1-GnetVRF'
+              - '[L]_ISMITMSC02A-Eth49/1-GnetVRF'
+              - '[L]_ISMITMSC01A-Eth50/1-GnetVRF'
+              - '[L]_ISMITMSC02A-Eth50/1-GnetVRF'
+        bgp_peer_groups:
+          - name: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.10"
+            maximum_routes: 0
+          # to the DMZ Firewall
+          - name: DMZFW-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.98"
+            maximum_routes: 0
+        bgp_peers:
+          # to the Misc-Core 
+          - ip_address: 10.210.241.41
+            description: ISMITMSC01A-Eth49/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.43
+            description: ISMITMSC02A-Eth49/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.45
+            description: ISMITMSC01A-Eth50/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.47
+            description: ISMITMSC02A-Eth50/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.134
+            description: DMZFW-VIP-GnetVRF
+            peer_group: DMZFW-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+            set_ipv4_next_hop: 10.210.241.129
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: Gnet
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+        static_routes:
+        - destination_address_prefix: 0.0.0.0/0
+          gateway: 10.210.241.134
+          name: ISMPAN98&99-GnetVRF
+          metric: 225
+          distance: 225
+          nodes:
+            - ISMCR01A
+            - ISMCR02A

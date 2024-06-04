@@ -1,0 +1,530 @@
+---
+# Fabric Name - must match an Ansible Inventory Group
+fabric_name: SM_MGMT_FABRIC
+
+# Design Type
+design:
+  type: l2ls
+
+description_prefix: "[L]"
+
+# Fabric CVP Variables for global.yml
+cvp_host_1_name: dsmcvp01
+cvp_host_1_ip: 10.210.80.7
+cvp_host_2_name: dsmcvp02
+cvp_host_2_ip: 10.210.80.8
+cvp_host_3_name: dsmcvp03
+cvp_host_3_ip: 10.210.80.9
+
+# sFlow destination for Fabric
+sflow_dest: sflowle03
+
+# MLAG names for Trunk Groups
+trunk_groups:
+  # mlag:
+  #   name: "MLAG"
+  mlag_l3:
+    name: "MLAG"
+
+node_type_keys:
+  - key: l3spine
+    type: l3spine
+    connected_endpoints: true
+    default_overlay_routing_protocol: none
+    default_underlay_routing_protocol: none
+    mlag_support: true
+    network_services:
+      l2: true
+      l3: true
+    interface_descriptions:
+      underlay_ethernet_interfaces: 'custom_templates/interface_descriptions/underlay/ethernet-interfaces.j2'
+      underlay_port_channel_interfaces: 'custom_templates/interface_descriptions/underlay/port-channel-interfaces.j2'
+      mlag_ethernet_interfaces: 'custom_templates/interface_descriptions/mlag/ethernet-interfaces.j2'
+      mlag_port_channel_interfaces: 'custom_templates/interface_descriptions/mlag/port-channel-interfaces.j2'
+      connected_endpoints_ethernet_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/ethernet-interfaces.j2'
+      connected_endpoints_port_channel_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/port-channel-interfaces.j2'
+  - key: leaf
+    type: leaf
+    connected_endpoints: true
+    mlag_support: true
+    network_services:
+      l2: true
+    underlay_router: false
+    uplink_type: port-channel
+    interface_descriptions:
+      underlay_ethernet_interfaces: 'custom_templates/interface_descriptions/underlay/ethernet-interfaces.j2'
+      underlay_port_channel_interfaces: 'custom_templates/interface_descriptions/underlay/port-channel-interfaces.j2'
+      mlag_ethernet_interfaces: 'custom_templates/interface_descriptions/mlag/ethernet-interfaces.j2'
+      mlag_port_channel_interfaces: 'custom_templates/interface_descriptions/mlag/port-channel-interfaces.j2'
+      connected_endpoints_ethernet_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/ethernet-interfaces.j2'
+      connected_endpoints_port_channel_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/port-channel-interfaces.j2'
+
+
+# inband settings for Global_variables
+default_mgmt_method: "inband"
+
+# change the default underlay_peers name to FW peers and encrypt password.
+# bgp_peer_groups:
+#   ipv4_underlay_peers:
+#     name: MGMTFW-EBGP-PEERS
+#     # password: "{{ '{{ global.vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='MGMTFW-EBGP-PEERS') }}"
+#   mlag_ipv4_underlay_peer:
+#     # password: "{{ '{{ global.vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='mlag_ipv4_underlay_peer') }}"
+
+underlay_routing_protocol: ebgp
+overlay_routing_protocol: none
+    
+#Documentation
+eos_designs_documentation:
+  connected_endpoints: true
+
+# Spine switches - L3  
+l3spine:
+  defaults:
+    platform: 7300X3
+    bgp_as: "65120.510"
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - neighbor default send-community
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    loopback_ipv4_pool: 172.21.0.248/30
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
+    mlag_port_channel_id: 4094
+    mlag_domain_id: MLAG
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    mlag_interfaces: [Ethernet3/52/1, Ethernet4/52/1]
+    inband_mgmt_subnet: 10.210.80.0/21
+    inband_mgmt_gateway: 10.210.80.1
+    inband_mgmt_interface: vlan300
+    inband_mgmt_vlan: 300
+    inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt
+  node_groups:
+    - group: MGMT_SPINES
+      nodes:
+        - name: ismmgtsp01a
+          id: 1
+          inband_mgmt_ip: 10.210.80.99/21
+        - name: ismmgtsp02a
+          id: 2
+          inband_mgmt_ip: 10.210.80.100/21
+leaf:
+  defaults:
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 16384
+    inband_ztp: true
+  node_groups:
+    - group: DC1_MGMT_AGG_LEAFS
+      platform: 7050X3
+      mlag_peer_ipv4_pool: 192.168.0.0/31
+      mlag_port_channel_id: 4094
+      mlag_domain_id: MLAG
+      mlag_interfaces: [Ethernet103/1, Ethernet104/1]
+      uplink_switches: [ismmgtsp01a, ismmgtsp02a]
+      uplink_interfaces: [Ethernet97/1, Ethernet98/1]
+      inband_mgmt_subnet: 10.210.80.0/21
+      inband_mgmt_gateway: 10.210.80.1
+      inband_mgmt_interface: vlan300
+      inband_mgmt_vlan: 300
+      inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt
+      # Setting Po-Number statically to avoid the AVD limitation of generating PO number-3491 while it must be between 1 and 2000 for MLAG switches
+      uplink_switch_port_channel_id: 349
+      filter:
+        tags: [DC&MDF]
+      nodes:
+        - name: hsmdc1mgtagg01a
+          id: 3
+          inband_mgmt_ip: 10.210.80.101/21
+          uplink_switch_interfaces: [Ethernet3/49/1, Ethernet3/49/1]
+        - name: hsmdc1mgtagg02a
+          id: 4
+          inband_mgmt_ip: 10.210.80.102/21
+          uplink_switch_interfaces: [Ethernet4/49/1, Ethernet4/49/1]
+    - group: DC1_MGMT_LEAFS
+      mlag: false
+      platform: 722XP
+      uplink_switches: [hsmdc1mgtagg01a, hsmdc1mgtagg02a]
+      uplink_interfaces: [Ethernet49, Ethernet50]
+      inband_mgmt_subnet: 10.210.80.0/21
+      inband_mgmt_gateway: 10.210.80.1
+      inband_mgmt_interface: vlan300
+      inband_mgmt_vlan: 300
+      inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt
+      filter:
+        tags: [DC&MDF]
+      nodes:
+        - name: hsmdc1mgt01a
+          id: 5
+          inband_mgmt_ip: 10.210.80.103/21
+          uplink_switch_interfaces: [Ethernet1, Ethernet1]
+        - name: hsmdc1mgt02a
+          id: 6
+          inband_mgmt_ip: 10.210.80.104/21
+          uplink_switch_interfaces: [Ethernet2, Ethernet2]
+        - name: hsmdc1mgt03a
+          id: 7
+          inband_mgmt_ip: 10.210.80.105/21
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+        - name: hsmdc1mgt04a
+          id: 8
+          inband_mgmt_ip: 10.210.80.106/21
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]
+        - name: hsmdc1mgt05a
+          id: 9
+          inband_mgmt_ip: 10.210.80.107/21
+          uplink_switch_interfaces: [Ethernet5, Ethernet5]
+        - name: hsmdc1mgt06a
+          id: 10
+          inband_mgmt_ip: 10.210.80.108/21
+          uplink_switch_interfaces: [Ethernet6, Ethernet6]
+        - name: hsmdc1mgt07a
+          id: 11
+          inband_mgmt_ip: 10.210.80.109/21
+          uplink_switch_interfaces: [Ethernet7, Ethernet7]
+        - name: hsmdc1mgt08a
+          id: 12
+          inband_mgmt_ip: 10.210.80.110/21
+          uplink_switch_interfaces: [Ethernet8, Ethernet8]
+        - name: hsmdc1mgt09a
+          id: 13
+          inband_mgmt_ip: 10.210.80.111/21
+          uplink_switch_interfaces: [Ethernet9, Ethernet9]
+      # Spares configuration
+        # - name: hsmdc1mgt10a
+        #   id: 14
+        #   inband_mgmt_ip: 10.210.80.112/21
+        #   uplink_switch_interfaces: [Ethernet10, Ethernet10]
+    - group: DC2_MGMT_AGG_LEAFS
+      platform: 7050X3
+      mlag: true
+      mlag_interfaces: [Ethernet103/1, Ethernet104/1]
+      mlag_peer_ipv4_pool: 192.168.0.0/31
+      mlag_port_channel_id: 4094
+      mlag_domain_id: MLAG
+      uplink_switches: [ismmgtsp01a, ismmgtsp02a]
+      uplink_interfaces: [Ethernet97/1, Ethernet98/1]
+      inband_mgmt_subnet: 10.210.80.0/21
+      inband_mgmt_gateway: 10.210.80.1
+      inband_mgmt_interface: vlan300
+      inband_mgmt_vlan: 300
+      inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt
+      # Setting Po-Number statically to avoid the AVD limitation of generating PO number-5491 while it must be between 1 and 2000 for MLAG switches
+      uplink_switch_port_channel_id: 549
+      filter:
+        tags: [DC&MDF]
+      nodes:
+        - name: hsmdc2mgtagg01a
+          id: 15
+          inband_mgmt_ip: 10.210.80.113/21
+          uplink_switch_interfaces: [Ethernet5/49/1, Ethernet5/49/1]
+        - name: hsmdc2mgtagg02a
+          id: 16
+          inband_mgmt_ip: 10.210.80.114/21
+          uplink_switch_interfaces: [Ethernet6/49/1, Ethernet6/49/1]
+    - group: DC2_MGMT_LEAFS
+      platform: 722XP
+      mlag: false
+      uplink_switches: [hsmdc2mgtagg01a, hsmdc2mgtagg02a]
+      uplink_interfaces: [Ethernet49, Ethernet50]
+      inband_mgmt_subnet: 10.210.80.0/21
+      inband_mgmt_gateway: 10.210.80.1
+      inband_mgmt_interface: vlan300
+      inband_mgmt_vlan: 300
+      inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt
+      filter:
+        tags: [DC&MDF]
+      nodes:
+        - name: hsmdc2mgt01a
+          id: 17
+          inband_mgmt_ip: 10.210.80.115/21
+          uplink_switch_interfaces: [Ethernet1, Ethernet1]
+        - name: hsmdc2mgt02a
+          id: 18
+          inband_mgmt_ip: 10.210.80.116/21
+          uplink_switch_interfaces: [Ethernet2, Ethernet2]
+        - name: hsmdc2mgt03a
+          id: 19
+          inband_mgmt_ip: 10.210.80.117/21
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+        - name: hsmdc2mgt04a
+          id: 20
+          inband_mgmt_ip: 10.210.80.118/21
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]
+        - name: hsmdc2mgt05a
+          id: 21
+          inband_mgmt_ip: 10.210.80.119/21
+          uplink_switch_interfaces: [Ethernet5, Ethernet5]
+        - name: hsmdc2mgt06a
+          id: 22
+          inband_mgmt_ip: 10.210.80.120/21
+          uplink_switch_interfaces: [Ethernet6, Ethernet6]
+        - name: hsmdc2mgt07a
+          id: 23
+          inband_mgmt_ip: 10.210.80.121/21
+          uplink_switch_interfaces: [Ethernet7, Ethernet7]
+        - name: hsmdc2mgt08a
+          id: 24
+          inband_mgmt_ip: 10.210.80.122/21
+          uplink_switch_interfaces: [Ethernet8, Ethernet8]
+        - name: hsmdc2mgt09a
+          id: 25
+          inband_mgmt_ip: 10.210.80.123/21
+          uplink_switch_interfaces: [Ethernet9, Ethernet9]
+      # Spares configuration
+        # - name: hsmdc2mgt10a
+        #   id: 26
+        #   inband_mgmt_ip: 10.210.80.124/21
+        #   uplink_switch_interfaces: [Ethernet10, Ethernet10]
+    - group: MDF_MGMT_LEAFS
+      platform: 722XP
+      mlag: false
+      uplink_switches: [ismmgtsp01a, ismmgtsp02a]
+      uplink_interfaces: [Ethernet49, Ethernet50]
+      inband_mgmt_subnet: 10.210.80.0/21
+      inband_mgmt_gateway: 10.210.80.1
+      inband_mgmt_interface: vlan300
+      inband_mgmt_vlan: 300
+      inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt
+      filter:
+        tags: [DC&MDF]
+      nodes:
+        - name: hsmmdf1mgt01a
+          id: 27
+          inband_mgmt_ip: 10.210.80.125/21
+          uplink_switch_interfaces: [Ethernet5/7, Ethernet5/7]
+        - name: hsmmdf2mgt01a
+          id: 28
+          inband_mgmt_ip: 10.210.80.126/21
+          uplink_switch_interfaces: [Ethernet6/7, Ethernet6/7]
+    - group: SM1_MGMT_LEAFS
+      platform: 722XP
+      mlag: false
+      uplink_switches: [ismmgtsp01a, ismmgtsp02a]
+      uplink_interfaces: [Ethernet49, Ethernet50]
+      inband_mgmt_subnet: 10.211.240.0/22
+      inband_mgmt_gateway: 10.211.240.1
+      inband_mgmt_interface: vlan461
+      inband_mgmt_vlan: 461
+      inband_mgmt_description: 10.211.240.0/22-SM1-Mgmt
+      nodes:
+        - name: hs11jmgt01a
+          filter:
+            tags: [SM1]
+          id: 29
+          inband_mgmt_ip: 10.215.241.14/22
+          uplink_switch_interfaces: [Ethernet3/1, Ethernet3/1]
+        - name: hs11jmgt02a
+          filter:
+            tags: [SM1]
+          id: 30
+          inband_mgmt_ip: 10.215.241.15/22
+          uplink_switch_interfaces: [Ethernet4/1, Ethernet4/1]
+        - name: hs11gmgt01a
+          filter:
+            tags: [SM1]
+          id: 31
+          inband_mgmt_ip: 10.215.241.16/22
+          uplink_switch_interfaces: [Ethernet5/1, Ethernet5/1]
+        - name: hs11gmgt02a
+          filter:
+            tags: [SM1]
+          id: 32
+          inband_mgmt_ip: 10.215.241.17/22
+          uplink_switch_interfaces: [Ethernet6/1, Ethernet6/1]
+        - name: hs11cmgt01a
+          filter:
+            tags: [SM1]
+          id: 33
+          inband_mgmt_ip: 10.215.241.18/22
+          uplink_switch_interfaces: [Ethernet7/1, Ethernet7/1]
+        - name: hs11cmgt21a
+          filter:
+            tags: [SM1]
+          id: 34
+          inband_mgmt_ip: 10.215.241.19/22
+          uplink_switch_interfaces: [Ethernet3/2, Ethernet3/2]
+        - name: hs11amgt01a
+          filter:
+            tags: [SM1]
+          id: 35
+          inband_mgmt_ip: 10.215.241.20/22
+          uplink_switch_interfaces: [Ethernet4/2, Ethernet4/2]
+        - name: hs11amgt02a
+          filter:
+            tags: [SM1]
+          id: 36
+          inband_mgmt_ip: 10.215.241.21/22
+          uplink_switch_interfaces: [Ethernet5/2, Ethernet5/2]
+        - name: hs11jwmgt01a
+          filter:
+            tags: [SM1]
+          id: 37
+          inband_mgmt_ip: 10.215.241.22/22
+          uplink_switch_interfaces: [Ethernet6/2, Ethernet6/2]
+        - name: hs11gwmgt01a
+          filter:
+            tags: [SM1]
+          id: 38
+          inband_mgmt_ip: 10.215.241.23/22
+          uplink_switch_interfaces: [Ethernet7/2, Ethernet7/2]
+        - name: hs11ewmgt01a
+          filter:
+            tags: [SM1]
+          id: 39
+          inband_mgmt_ip: 10.215.241.24/22
+          uplink_switch_interfaces: [Ethernet3/3, Ethernet3/3]
+        - name: hs11cwmgt01a 
+          filter:
+            tags: [SM1]
+          id: 40
+          inband_mgmt_ip: 10.215.241.25/22
+          uplink_switch_interfaces: [Ethernet4/3, Ethernet4/3]
+        - name: hs11kemgt01a  
+          filter:
+            tags: [SM1]
+          id: 41
+          inband_mgmt_ip: 10.215.241.26/22
+          uplink_switch_interfaces: [Ethernet5/3, Ethernet5/3]
+        - name: hs11hemgt01a 
+          filter:
+            tags: [SM1]
+          id: 42
+          inband_mgmt_ip: 10.215.241.27/22
+          uplink_switch_interfaces: [Ethernet6/3, Ethernet6/3]
+        - name: hs11demgt01a 
+          filter:
+            tags: [SM1]
+          id: 43
+          inband_mgmt_ip: 10.215.241.28/22
+          uplink_switch_interfaces: [Ethernet7/3, Ethernet7/3]
+        - name: hs11bemgt01a
+          filter:
+            tags: [SM1]
+          id: 44
+          inband_mgmt_ip: 10.215.241.29/22
+          uplink_switch_interfaces: [Ethernet3/4, Ethernet3/4]
+    - group: SUPPORT_MGMT_LEAFS
+      platform: 722XP
+      mlag: false
+      uplink_switches: [ismmgtsp01a, ismmgtsp02a]
+      uplink_interfaces: [Ethernet49, Ethernet50]
+      inband_mgmt_subnet: 10.215.242.0/23
+      inband_mgmt_gateway: 10.215.242.1
+      inband_mgmt_interface: vlan463
+      inband_mgmt_vlan: 463
+      inband_mgmt_description: 10.215.242.0/23-SUPPORT-Mgmt
+      nodes:
+        - name: hsm0wmgt01a # more 5 switches to add
+          filter:
+            tags: [SUPPORT]
+          id: 45
+          inband_mgmt_ip: 10.215.242.39/23
+          uplink_switch_interfaces: [Ethernet4/4, Ethernet4/4]
+        - name: hsm1wmgt01a
+          filter:
+            tags: [SUPPORT]
+          id: 46
+          inband_mgmt_ip: 10.215.242.40/23
+          uplink_switch_interfaces: [Ethernet5/4, Ethernet5/4]
+        - name: hsm2wmgt01a
+          filter:
+            tags: [SUPPORT]
+          id: 47
+          inband_mgmt_ip: 10.215.242.41/23
+          uplink_switch_interfaces: [Ethernet6/4, Ethernet6/4]
+        - name: hsm3xnmgt01a
+          filter:
+            tags: [SUPPORT]
+          id: 48
+          inband_mgmt_ip: 10.215.242.42/23
+          uplink_switch_interfaces: [Ethernet7/4, Ethernet7/4]
+        - name: hsm3xsmgt01a
+          filter:
+            tags: [SUPPORT]
+          id: 49
+          inband_mgmt_ip: 10.215.242.43/23
+          uplink_switch_interfaces: [Ethernet3/5, Ethernet3/5]
+        - name: hsm3wmgt01a
+          filter:
+            tags: [SUPPORT]
+          id: 50
+          inband_mgmt_ip: 10.215.242.44/23
+          uplink_switch_interfaces: [Ethernet4/5, Ethernet4/5]
+    - group: ADMIN_MGMT_LEAFS
+      platform: 722XP
+      mlag: false
+      uplink_switches: [ismmgtsp01a, ismmgtsp02a]
+      uplink_interfaces: [Ethernet49, Ethernet50]
+      inband_mgmt_subnet: 10.215.241.0/24
+      inband_mgmt_gateway: 10.215.241.1
+      inband_mgmt_interface: vlan462
+      inband_mgmt_vlan: 462
+      inband_mgmt_description: 10.215.241.0/24-ADMIN-Mgmt
+      nodes:
+        - name: hs00amgt01a # more 9 switches to add
+          filter:
+            tags: [ADMIN]
+          id: 51
+          inband_mgmt_ip: 10.215.241.22/24
+          uplink_switch_interfaces: [Ethernet5/5, Ethernet5/5]
+        - name: hs00bmgt01a 
+          filter:
+            tags: [ADMIN]
+          id: 52
+          inband_mgmt_ip: 10.215.241.23/24
+          uplink_switch_interfaces: [Ethernet6/5, Ethernet6/5]
+        - name: hs00cmgt01a
+          filter:
+            tags: [ADMIN]
+          id: 53
+          inband_mgmt_ip: 10.215.241.24/24
+          uplink_switch_interfaces: [Ethernet7/5, Ethernet7/5]
+        - name: hs01amgt01a
+          filter:
+            tags: [ADMIN]
+          id: 54
+          inband_mgmt_ip: 10.215.241.25/24
+          uplink_switch_interfaces: [Ethernet3/6, Ethernet3/6]
+        - name: hs01bmgt01a
+          filter:
+            tags: [ADMIN]
+          id: 55
+          inband_mgmt_ip: 10.215.241.26/24
+          uplink_switch_interfaces: [Ethernet4/6, Ethernet4/6]
+        - name: hs01cmgt01a
+          filter:
+            tags: [ADMIN]
+          id: 56
+          inband_mgmt_ip: 10.215.241.27/24
+          uplink_switch_interfaces: [Ethernet5/6, Ethernet5/6]
+        - name: hs02amgt01a
+          filter:
+            tags: [ADMIN]
+          id: 57
+          inband_mgmt_ip: 10.215.241.28/24
+          uplink_switch_interfaces: [Ethernet6/6, Ethernet6/6]
+        - name: hs02bmgt01a
+          filter:
+            tags: [ADMIN]
+          id: 58
+          inband_mgmt_ip: 10.215.241.29/24
+          uplink_switch_interfaces: [Ethernet7/6, Ethernet7/6]
+        - name: hs03amgt01a
+          filter:
+            tags: [ADMIN]
+          id: 59
+          inband_mgmt_ip: 10.215.241.30/24
+          uplink_switch_interfaces: [Ethernet3/7, Ethernet3/7]
+        - name: hs03bmgt01a
+          filter:
+            tags: [ADMIN]
+          id: 60
+          inband_mgmt_ip: 10.215.241.31/24
+          uplink_switch_interfaces: [Ethernet4/7, Ethernet4/7]
+
+fabric_ip_addressing:
+  mlag:
+    algorithm: "same_subnet"

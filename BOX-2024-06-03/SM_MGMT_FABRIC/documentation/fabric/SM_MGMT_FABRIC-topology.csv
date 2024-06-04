@@ -1,0 +1,2737 @@
+Node Type,Node,Node Interface,Peer Type,Peer Node,Peer Interface,Node Interface Enabled
+leaf,hs00amgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00amgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/5,True
+leaf,hs00amgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/5,True
+leaf,hs00bmgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00bmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/5,True
+leaf,hs00bmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/5,True
+leaf,hs00cmgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs00cmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet7/5,True
+leaf,hs00cmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet7/5,True
+leaf,hs01amgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01amgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/6,True
+leaf,hs01amgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/6,True
+leaf,hs01bmgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01bmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/6,True
+leaf,hs01bmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/6,True
+leaf,hs01cmgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs01cmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/6,True
+leaf,hs01cmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/6,True
+leaf,hs02amgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02amgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/6,True
+leaf,hs02amgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/6,True
+leaf,hs02bmgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs02bmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet7/6,True
+leaf,hs02bmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet7/6,True
+leaf,hs03amgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03amgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/7,True
+leaf,hs03amgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/7,True
+leaf,hs03bmgt01a,Ethernet1,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet2,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet3,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet4,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet5,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet6,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet7,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet8,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet9,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet10,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet11,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet12,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet13,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet14,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet15,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet16,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet17,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet18,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet19,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet20,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet21,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet22,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet23,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet24,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet25,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet26,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet27,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet28,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet29,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet30,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet31,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet32,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet33,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet34,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet35,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet36,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet37,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet38,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet39,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet40,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet41,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet42,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet43,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet44,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet45,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet46,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet47,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet48,network_port,VL462-ADMIN-Mgmt,,True
+leaf,hs03bmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/7,True
+leaf,hs03bmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/7,True
+leaf,hs11amgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/2,True
+leaf,hs11amgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/2,True
+leaf,hs11amgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/2,True
+leaf,hs11amgt02a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/2,True
+leaf,hs11amgt02a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11amgt02a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/4,True
+leaf,hs11bemgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/4,True
+leaf,hs11bemgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11bemgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet7/1,True
+leaf,hs11cmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet7/1,True
+leaf,hs11cmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/2,True
+leaf,hs11cmgt21a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/2,True
+leaf,hs11cmgt21a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cmgt21a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/3,True
+leaf,hs11cwmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/3,True
+leaf,hs11cwmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11cwmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet7/3,True
+leaf,hs11demgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet7/3,True
+leaf,hs11demgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11demgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/3,True
+leaf,hs11ewmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/3,True
+leaf,hs11ewmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11ewmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/1,True
+leaf,hs11gmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/1,True
+leaf,hs11gmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/1,True
+leaf,hs11gmgt02a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/1,True
+leaf,hs11gmgt02a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gmgt02a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet7/2,True
+leaf,hs11gwmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet7/2,True
+leaf,hs11gwmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11gwmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/3,True
+leaf,hs11hemgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/3,True
+leaf,hs11hemgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11hemgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/1,True
+leaf,hs11jmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/1,True
+leaf,hs11jmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/1,True
+leaf,hs11jmgt02a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/1,True
+leaf,hs11jmgt02a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jmgt02a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/2,True
+leaf,hs11jwmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/2,True
+leaf,hs11jwmgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11jwmgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/3,True
+leaf,hs11kemgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/3,True
+leaf,hs11kemgt01a,Ethernet 1,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 2,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 3,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 4,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 5,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 6,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 7,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 8,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 9,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 10,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 11,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 12,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 13,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 14,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 15,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 16,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 17,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 18,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 19,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 20,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 21,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 22,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 23,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 24,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 25,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 26,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 27,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 28,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 29,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 30,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 31,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 32,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 33,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 34,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 35,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 36,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 37,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 38,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 39,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 40,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 41,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 42,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 43,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 44,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 45,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 46,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 47,network_port,VL461-SM1-Mgmt,,True
+leaf,hs11kemgt01a,Ethernet 48,network_port,VL461-SM1-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/4,True
+leaf,hsm0wmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/4,True
+leaf,hsm0wmgt01a,Ethernet 1,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 2,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 3,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 4,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 5,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 6,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 7,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 8,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 9,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 10,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 11,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 12,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 13,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 14,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 15,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 16,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 17,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 18,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 19,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 20,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 21,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 22,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 23,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 24,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 25,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 26,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 27,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 28,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 29,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 30,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 31,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 32,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 33,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 34,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 35,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 36,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 37,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 38,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 39,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 40,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 41,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 42,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 43,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 44,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 45,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 46,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 47,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm0wmgt01a,Ethernet 48,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/4,True
+leaf,hsm1wmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/4,True
+leaf,hsm1wmgt01a,Ethernet 1,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 2,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 3,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 4,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 5,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 6,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 7,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 8,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 9,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 10,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 11,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 12,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 13,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 14,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 15,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 16,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 17,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 18,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 19,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 20,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 21,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 22,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 23,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 24,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 25,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 26,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 27,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 28,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 29,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 30,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 31,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 32,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 33,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 34,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 35,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 36,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 37,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 38,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 39,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 40,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 41,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 42,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 43,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 44,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 45,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 46,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 47,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm1wmgt01a,Ethernet 48,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/4,True
+leaf,hsm2wmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/4,True
+leaf,hsm2wmgt01a,Ethernet 1,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 2,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 3,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 4,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 5,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 6,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 7,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 8,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 9,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 10,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 11,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 12,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 13,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 14,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 15,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 16,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 17,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 18,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 19,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 20,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 21,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 22,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 23,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 24,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 25,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 26,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 27,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 28,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 29,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 30,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 31,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 32,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 33,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 34,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 35,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 36,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 37,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 38,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 39,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 40,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 41,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 42,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 43,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 44,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 45,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 46,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 47,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm2wmgt01a,Ethernet 48,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet4/5,True
+leaf,hsm3wmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet4/5,True
+leaf,hsm3wmgt01a,Ethernet 1,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 2,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 3,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 4,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 5,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 6,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 7,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 8,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 9,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 10,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 11,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 12,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 13,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 14,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 15,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 16,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 17,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 18,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 19,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 20,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 21,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 22,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 23,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 24,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 25,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 26,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 27,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 28,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 29,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 30,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 31,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 32,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 33,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 34,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 35,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 36,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 37,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 38,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 39,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 40,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 41,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 42,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 43,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 44,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 45,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 46,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 47,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3wmgt01a,Ethernet 48,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet7/4,True
+leaf,hsm3xnmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet7/4,True
+leaf,hsm3xnmgt01a,Ethernet 1,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 2,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 3,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 4,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 5,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 6,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 7,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 8,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 9,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 10,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 11,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 12,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 13,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 14,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 15,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 16,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 17,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 18,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 19,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 20,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 21,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 22,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 23,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 24,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 25,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 26,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 27,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 28,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 29,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 30,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 31,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 32,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 33,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 34,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 35,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 36,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 37,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 38,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 39,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 40,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 41,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 42,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 43,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 44,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 45,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 46,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 47,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xnmgt01a,Ethernet 48,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet3/5,True
+leaf,hsm3xsmgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet3/5,True
+leaf,hsm3xsmgt01a,Ethernet 1,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 2,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 3,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 4,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 5,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 6,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 7,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 8,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 9,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 10,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 11,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 12,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 13,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 14,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 15,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 16,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 17,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 18,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 19,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 20,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 21,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 22,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 23,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 24,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 25,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 26,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 27,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 28,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 29,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 30,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 31,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 32,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 33,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 34,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 35,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 36,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 37,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 38,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 39,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 40,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 41,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 42,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 43,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 44,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 45,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 46,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 47,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsm3xsmgt01a,Ethernet 48,network_port,VL463-SUPPORT-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet1,True
+leaf,hsmdc1mgt01a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet1,True
+leaf,hsmdc1mgt01a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt01a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet2,True
+leaf,hsmdc1mgt02a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet2,True
+leaf,hsmdc1mgt02a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt02a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet3,True
+leaf,hsmdc1mgt03a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet3,True
+leaf,hsmdc1mgt03a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt03a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet4,True
+leaf,hsmdc1mgt04a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet4,True
+leaf,hsmdc1mgt04a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt04a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet5,True
+leaf,hsmdc1mgt05a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet5,True
+leaf,hsmdc1mgt05a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt05a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet6,True
+leaf,hsmdc1mgt06a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet6,True
+leaf,hsmdc1mgt06a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt06a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet7,True
+leaf,hsmdc1mgt07a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet7,True
+leaf,hsmdc1mgt07a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt07a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet8,True
+leaf,hsmdc1mgt08a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet8,True
+leaf,hsmdc1mgt08a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt08a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet49,leaf,hsmdc1mgtagg01a,Ethernet9,True
+leaf,hsmdc1mgt09a,Ethernet50,leaf,hsmdc1mgtagg02a,Ethernet9,True
+leaf,hsmdc1mgt09a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgt09a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc1mgtagg01a,Ethernet1,leaf,hsmdc1mgt01a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet2,leaf,hsmdc1mgt02a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet3,leaf,hsmdc1mgt03a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet4,leaf,hsmdc1mgt04a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet5,leaf,hsmdc1mgt05a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet6,leaf,hsmdc1mgt06a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet7,leaf,hsmdc1mgt07a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet8,leaf,hsmdc1mgt08a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet9,leaf,hsmdc1mgt09a,Ethernet49,True
+leaf,hsmdc1mgtagg01a,Ethernet97/1,l3spine,ismmgtsp01a,Ethernet3/49/1,True
+leaf,hsmdc1mgtagg01a,Ethernet98/1,l3spine,ismmgtsp02a,Ethernet3/49/1,True
+leaf,hsmdc1mgtagg01a,Ethernet103/1,mlag_peer,hsmdc1mgtagg02a,Ethernet103/1,True
+leaf,hsmdc1mgtagg01a,Ethernet104/1,mlag_peer,hsmdc1mgtagg02a,Ethernet104/1,True
+leaf,hsmdc1mgtagg02a,Ethernet1,leaf,hsmdc1mgt01a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet2,leaf,hsmdc1mgt02a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet3,leaf,hsmdc1mgt03a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet4,leaf,hsmdc1mgt04a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet5,leaf,hsmdc1mgt05a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet6,leaf,hsmdc1mgt06a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet7,leaf,hsmdc1mgt07a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet8,leaf,hsmdc1mgt08a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet9,leaf,hsmdc1mgt09a,Ethernet50,True
+leaf,hsmdc1mgtagg02a,Ethernet97/1,l3spine,ismmgtsp01a,Ethernet4/49/1,True
+leaf,hsmdc1mgtagg02a,Ethernet98/1,l3spine,ismmgtsp02a,Ethernet4/49/1,True
+leaf,hsmdc1mgtagg02a,Ethernet103/1,mlag_peer,hsmdc1mgtagg01a,Ethernet103/1,True
+leaf,hsmdc1mgtagg02a,Ethernet104/1,mlag_peer,hsmdc1mgtagg01a,Ethernet104/1,True
+leaf,hsmdc2mgt01a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet1,True
+leaf,hsmdc2mgt01a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet1,True
+leaf,hsmdc2mgt01a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt01a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet2,True
+leaf,hsmdc2mgt02a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet2,True
+leaf,hsmdc2mgt02a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt02a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet3,True
+leaf,hsmdc2mgt03a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet3,True
+leaf,hsmdc2mgt03a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt03a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet4,True
+leaf,hsmdc2mgt04a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet4,True
+leaf,hsmdc2mgt04a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt04a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet5,True
+leaf,hsmdc2mgt05a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet5,True
+leaf,hsmdc2mgt05a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt05a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet6,True
+leaf,hsmdc2mgt06a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet6,True
+leaf,hsmdc2mgt06a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt06a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet7,True
+leaf,hsmdc2mgt07a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet7,True
+leaf,hsmdc2mgt07a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt07a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet8,True
+leaf,hsmdc2mgt08a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet8,True
+leaf,hsmdc2mgt08a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt08a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet49,leaf,hsmdc2mgtagg01a,Ethernet9,True
+leaf,hsmdc2mgt09a,Ethernet50,leaf,hsmdc2mgtagg02a,Ethernet9,True
+leaf,hsmdc2mgt09a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgt09a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmdc2mgtagg01a,Ethernet1,leaf,hsmdc2mgt01a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet2,leaf,hsmdc2mgt02a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet3,leaf,hsmdc2mgt03a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet4,leaf,hsmdc2mgt04a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet5,leaf,hsmdc2mgt05a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet6,leaf,hsmdc2mgt06a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet7,leaf,hsmdc2mgt07a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet8,leaf,hsmdc2mgt08a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet9,leaf,hsmdc2mgt09a,Ethernet49,True
+leaf,hsmdc2mgtagg01a,Ethernet97/1,l3spine,ismmgtsp01a,Ethernet5/49/1,True
+leaf,hsmdc2mgtagg01a,Ethernet98/1,l3spine,ismmgtsp02a,Ethernet5/49/1,True
+leaf,hsmdc2mgtagg01a,Ethernet103/1,mlag_peer,hsmdc2mgtagg02a,Ethernet103/1,True
+leaf,hsmdc2mgtagg01a,Ethernet104/1,mlag_peer,hsmdc2mgtagg02a,Ethernet104/1,True
+leaf,hsmdc2mgtagg02a,Ethernet1,leaf,hsmdc2mgt01a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet2,leaf,hsmdc2mgt02a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet3,leaf,hsmdc2mgt03a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet4,leaf,hsmdc2mgt04a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet5,leaf,hsmdc2mgt05a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet6,leaf,hsmdc2mgt06a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet7,leaf,hsmdc2mgt07a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet8,leaf,hsmdc2mgt08a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet9,leaf,hsmdc2mgt09a,Ethernet50,True
+leaf,hsmdc2mgtagg02a,Ethernet97/1,l3spine,ismmgtsp01a,Ethernet6/49/1,True
+leaf,hsmdc2mgtagg02a,Ethernet98/1,l3spine,ismmgtsp02a,Ethernet6/49/1,True
+leaf,hsmdc2mgtagg02a,Ethernet103/1,mlag_peer,hsmdc2mgtagg01a,Ethernet103/1,True
+leaf,hsmdc2mgtagg02a,Ethernet104/1,mlag_peer,hsmdc2mgtagg01a,Ethernet104/1,True
+leaf,hsmmdf1mgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet5/7,True
+leaf,hsmmdf1mgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet5/7,True
+leaf,hsmmdf1mgt01a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf1mgt01a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet49,l3spine,ismmgtsp01a,Ethernet6/7,True
+leaf,hsmmdf2mgt01a,Ethernet50,l3spine,ismmgtsp02a,Ethernet6/7,True
+leaf,hsmmdf2mgt01a,Ethernet 1,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 2,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 3,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 4,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 5,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 6,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 7,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 8,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 9,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 10,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 11,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 12,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 13,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 14,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 15,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 16,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 17,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 18,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 19,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 20,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 21,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 22,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 23,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 24,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 25,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 26,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 27,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 28,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 29,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 30,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 31,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 32,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 33,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 34,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 35,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 36,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 37,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 38,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 39,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 40,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 41,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 42,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 43,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 44,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 45,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 46,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 47,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+leaf,hsmmdf2mgt01a,Ethernet 48,network_port,VL300-DC1/DC2/MDF-Mgmt,,True
+l3spine,ismmgtsp01a,Ethernet3/1,leaf,hs11jmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/2,leaf,hs11cmgt21a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/3,leaf,hs11ewmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/4,leaf,hs11bemgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/5,leaf,hsm3xsmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/6,leaf,hs01amgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/7,leaf,hs03amgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet3/25,firewall,ISMMGTPAN01,Eth1/15,True
+l3spine,ismmgtsp01a,Ethernet3/49/1,leaf,hsmdc1mgtagg01a,Ethernet97/1,True
+l3spine,ismmgtsp01a,Ethernet3/52/1,mlag_peer,ismmgtsp02a,Ethernet3/52/1,True
+l3spine,ismmgtsp01a,Ethernet4/1,leaf,hs11jmgt02a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/2,leaf,hs11amgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/3,leaf,hs11cwmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/4,leaf,hsm0wmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/5,leaf,hsm3wmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/6,leaf,hs01bmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/7,leaf,hs03bmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet4/25,firewall,ISMMGTPAN02,Eth1/15,True
+l3spine,ismmgtsp01a,Ethernet4/49/1,leaf,hsmdc1mgtagg02a,Ethernet97/1,True
+l3spine,ismmgtsp01a,Ethernet4/52/1,mlag_peer,ismmgtsp02a,Ethernet4/52/1,True
+l3spine,ismmgtsp01a,Ethernet5/1,leaf,hs11gmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/2,leaf,hs11amgt02a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/3,leaf,hs11kemgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/4,leaf,hsm1wmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/5,leaf,hs00amgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/6,leaf,hs01cmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/7,leaf,hsmmdf1mgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet5/49/1,leaf,hsmdc2mgtagg01a,Ethernet97/1,True
+l3spine,ismmgtsp01a,Ethernet6/1,leaf,hs11gmgt02a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/2,leaf,hs11jwmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/3,leaf,hs11hemgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/4,leaf,hsm2wmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/5,leaf,hs00bmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/6,leaf,hs02amgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/7,leaf,hsmmdf2mgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet6/49/1,leaf,hsmdc2mgtagg02a,Ethernet97/1,True
+l3spine,ismmgtsp01a,Ethernet7/1,leaf,hs11cmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet7/2,leaf,hs11gwmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet7/3,leaf,hs11demgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet7/4,leaf,hsm3xnmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet7/5,leaf,hs00cmgt01a,Ethernet49,True
+l3spine,ismmgtsp01a,Ethernet7/6,leaf,hs02bmgt01a,Ethernet49,True
+l3spine,ismmgtsp02a,Ethernet3/1,leaf,hs11jmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/2,leaf,hs11cmgt21a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/3,leaf,hs11ewmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/4,leaf,hs11bemgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/5,leaf,hsm3xsmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/6,leaf,hs01amgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/7,leaf,hs03amgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet3/25,firewall,ISMMGTPAN01,Eth1/16,True
+l3spine,ismmgtsp02a,Ethernet3/49/1,leaf,hsmdc1mgtagg01a,Ethernet98/1,True
+l3spine,ismmgtsp02a,Ethernet3/52/1,mlag_peer,ismmgtsp01a,Ethernet3/52/1,True
+l3spine,ismmgtsp02a,Ethernet4/1,leaf,hs11jmgt02a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/2,leaf,hs11amgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/3,leaf,hs11cwmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/4,leaf,hsm0wmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/5,leaf,hsm3wmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/6,leaf,hs01bmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/7,leaf,hs03bmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet4/25,firewall,ISMMGTPAN02,Eth1/16,True
+l3spine,ismmgtsp02a,Ethernet4/49/1,leaf,hsmdc1mgtagg02a,Ethernet98/1,True
+l3spine,ismmgtsp02a,Ethernet4/52/1,mlag_peer,ismmgtsp01a,Ethernet4/52/1,True
+l3spine,ismmgtsp02a,Ethernet5/1,leaf,hs11gmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/2,leaf,hs11amgt02a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/3,leaf,hs11kemgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/4,leaf,hsm1wmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/5,leaf,hs00amgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/6,leaf,hs01cmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/7,leaf,hsmmdf1mgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet5/49/1,leaf,hsmdc2mgtagg01a,Ethernet98/1,True
+l3spine,ismmgtsp02a,Ethernet6/1,leaf,hs11gmgt02a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/2,leaf,hs11jwmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/3,leaf,hs11hemgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/4,leaf,hsm2wmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/5,leaf,hs00bmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/6,leaf,hs02amgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/7,leaf,hsmmdf2mgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet6/49/1,leaf,hsmdc2mgtagg02a,Ethernet98/1,True
+l3spine,ismmgtsp02a,Ethernet7/1,leaf,hs11cmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet7/2,leaf,hs11gwmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet7/3,leaf,hs11demgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet7/4,leaf,hsm3xnmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet7/5,leaf,hs00cmgt01a,Ethernet50,True
+l3spine,ismmgtsp02a,Ethernet7/6,leaf,hs02bmgt01a,Ethernet50,True

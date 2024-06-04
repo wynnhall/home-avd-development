@@ -1,0 +1,121 @@
+---
+Misc_Core_Tenant_Gnet:
+  - name: "Misc_Core_Tenant_Gnet"
+    vrfs:
+      - name: Gnet
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          971:
+            name: 10.70.38.0/23-SM-GUESTNT-WIRELES
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.70.38.1
+            nodes:
+              - node: ismitmsc01a
+                ip_address: 10.70.38.2/23
+              - node: ismitmsc02a
+                ip_address: 10.70.38.3/23
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.589
+                - Ethernet50/1.589
+                - Ethernet49/1.589
+                - Ethernet50/1.589
+            nodes:
+                - ismitmsc01a
+                - ismitmsc01a
+                - ismitmsc02a
+                - ismitmsc02a
+            ip_addresses: 
+                - 10.210.241.41/31
+                - 10.210.241.43/31
+                - 10.210.241.45/31
+                - 10.210.241.47/31
+            descriptions:
+              - '[L]_ismcr01a-Eth3/4/1-GnetVRF'
+              - '[L]_ismcr02a-Eth3/4/1-GnetVRF'
+              - '[L]_ismcr01a-Eth4/4/1-GnetVRF'
+              - '[L]_ismcr02a-Eth4/4/1-GnetVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismitmsc01a
+              - ismitmsc02a
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.40
+            description: ismcr01a-Eth3/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismitmsc01a
+          - ip_address: 10.210.241.42
+            description: ismcr02a-Eth3/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismitmsc01a
+          - ip_address: 10.210.241.44
+            description: ismcr01a-Eth4/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismitmsc02a
+          - ip_address: 10.210.241.46
+            description: ismcr02a-Eth4/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismitmsc02a
+        structured_config:
+          prefix_lists:
+            - name: PL-captive-portal
+              sequence_numbers:
+                - sequence: 10
+                  action: permit 10.4.12.119/32
+            - name: PL-guest-net
+              sequence_numbers:
+                - sequence: 10
+                  action: permit 10.70.38.0/23
+          route_maps:
+            - name: RM-captive-portal
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - ip address prefix-list PL-captive-portal
+                  set:
+                    - distance 10
+            - name: RM-guest-net
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - ip address prefix-list PL-guest-net
+                  set:
+                    - distance 10
+          router_bgp:
+            vrfs:
+              - name: Gnet
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+          router_general:
+            vrfs:
+              - name: IT
+                leak_routes:
+                  - source_vrf: Gnet
+                    subscribe_policy: RM-guest-net
+              - name: Gnet
+                leak_routes:
+                  - source_vrf: IT
+                    subscribe_policy: RM-captive-portal
+        ip_helpers:
+            - ip_helper: 10.210.103.70
+              source_interface: Loopback0
+              source_vrf: IT
+            - ip_helper: 10.210.103.86
+              source_interface: Loopback0
+              source_vrf: IT
+        

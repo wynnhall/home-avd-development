@@ -1,0 +1,209 @@
+---
+Core-Tenant-OT:
+  - name: "Core-Tenant-OT"
+    vrfs:
+      - name: OT
+        mlag_ibgp_peering_vlan: "4092"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          10:
+            name: WANFW-TRANSIT-OTVRF
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.210.249.65
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.249.66/29
+              - node: ISMCR02A
+                ip_address: 10.210.249.67/29
+          110:
+            name: VENDORFW-TRANSIT-OTVRF
+            enabled: true
+            ip_virtual_router_addresses:
+              - 100.100.110.1
+            nodes:
+              - node: ISMCR01A
+                ip_address: 100.100.110.2/29
+              - node: ISMCR02A
+                ip_address: 100.100.110.3/29
+        l3_interfaces:
+          - interfaces:
+              # to the DC-Borders 
+                - Ethernet3/1/1.100
+                - Ethernet4/1/1.100
+                - Ethernet3/2/1.100
+                - Ethernet4/2/1.100
+                - Ethernet3/1/1.100
+                - Ethernet4/1/1.100
+                - Ethernet3/2/1.100
+                - Ethernet4/2/1.100
+              # to the Misc-Core 
+                - Ethernet3/4/1.110
+                - Ethernet4/4/1.110
+                - Ethernet3/4/1.110
+                - Ethernet4/4/1.110
+            nodes:
+            # to the DC-Borders 
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+                - ISMCR02A
+                - ISMCR02A
+              # to the Misc-Core 
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+            # to the DC-Borders 
+                - 10.210.226.0/31
+                - 10.210.226.4/31
+                - 10.210.234.0/31
+                - 10.210.234.4/31
+                - 10.210.226.2/31
+                - 10.210.226.6/31
+                - 10.210.234.2/31
+                - 10.210.234.6/31
+              # to the Misc-Core 
+                - 10.210.241.24/31
+                - 10.210.241.30/31
+                - 10.210.241.28/31
+                - 10.210.241.32/31
+            descriptions:
+            # to the DC-Borders 
+              - DC1-BL1-Eth1/1-OT-VRF
+              - DC1-BL2-Eth1/1-OT-VRF
+              - DC2-BL1-Eth1/1-OT-VRF
+              - DC2-BL2-Eth1/1-OT-VRF
+              - DC1-BL1-Eth2/1-OT-VRF
+              - DC1-BL2-Eth2/1-OT-VRF
+              - DC2-BL1-Eth2/1-OT-VRF
+              - DC2-BL2-Eth2/1-OT-VRF
+              # to the Misc-Core 
+              - ISMITMSC01A-Eth49/1-OTVRF
+              - ISMITMSC02A-Eth49/1-OTVRF
+              - ISMITMSC01A-Eth50/1-OTVRF
+              - ISMITMSC02A-Eth50/1-OTVRF
+        bgp_peer_groups:
+        # to the DC-Borders 
+          - name: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.11200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='DC1-BLLF-EBGP-PEERS-OTVRF') }}"
+          - name: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.12200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='DC2-BLLF-EBGP-PEERS-OTVRF') }}"
+          # to the WAN Firewall
+          - name: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.40"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='WANFW-EBGP-PEERS') }}"
+          # to the Vendor Firewall
+          - name: VENDORFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.48"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='VENDORFW-EBGP-PEERS') }}"
+          # to the Misc-Core 
+          - name: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.10"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='MISC-CORES-EBGP-PEERS-OTVRF') }}"
+        bgp_peers:
+        # to the DC-Borders 
+          - ip_address: 10.210.226.0
+            description: DC1-BL1-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.226.4
+            description: DC1-BL2-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.226.2
+            description: DC1-BL1-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.226.6
+            description: DC1-BL2-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.234.0
+            description: DC2-BL1-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.234.4
+            description: DC2-BL2-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.234.2
+            description: DC2-BL1-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.234.6
+            description: DC2-BL2-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          # to the Misc-Core 
+          - ip_address: 10.210.241.24
+            description: ISMITMSC01A-Eth49/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.30
+            description: ISMITMSC02A-Eth49/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.28
+            description: ISMITMSC01A-Eth50/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.32
+            description: ISMITMSC02A-Eth50/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          #WAN Firewall neighbors
+          - ip_address: 10.210.249.67
+            description: WANFW-IP-OTVRF
+            peer_group: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            set_ipv4_next_hop: 10.210.249.65
+          #VENDOR Firewall neighbors
+          - ip_address: 100.100.110.4
+            description: VENDORFW-IP-OTVRF
+            peer_group: VENDORFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            set_ipv4_next_hop: 100.100.110.1
+

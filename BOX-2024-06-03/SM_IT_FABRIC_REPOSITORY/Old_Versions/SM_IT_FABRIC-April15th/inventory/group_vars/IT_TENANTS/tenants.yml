@@ -1,0 +1,6 @@
+# IT Tenants Networks
+# Documentation of Tenant specific information - Vlans/VRFs
+
+network_services_keys:
+  - name: IT-Tenant-IT
+  - name: IT-Tenant-IoT

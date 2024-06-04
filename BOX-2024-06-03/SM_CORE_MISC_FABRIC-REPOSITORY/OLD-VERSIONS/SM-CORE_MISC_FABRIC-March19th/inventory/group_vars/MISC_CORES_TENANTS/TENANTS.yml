@@ -1,0 +1,10 @@
+---
+network_services_keys:
+  - name: Misc-Core-Tenant-OT
+  - name: Misc-Core-Tenant-IT
+
+new_network_services_bgp_vrf_config: true
+      
+bgp_peer_groups:
+  ipv4_underlay_peers:
+    name: CAMPUS-CORES-EBGP-PEERS-OTVRF

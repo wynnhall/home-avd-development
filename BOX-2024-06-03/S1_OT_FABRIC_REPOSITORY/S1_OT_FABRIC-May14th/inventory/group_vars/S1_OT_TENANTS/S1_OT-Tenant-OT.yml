@@ -1,0 +1,222 @@
+---
+# S1_OT-Tenant-OT VRF Networks
+
+S1-OT-Tenant-OT:
+  - name: "S1-OT-Tenant-OT"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "OT"
+        vrf_vni: 5001
+        svis:
+          253:
+            name: 10.211.32.1/21_SM1-AMHS-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.32.1/21
+          261:
+            name: 10.211.40.0/21_SM1-CMP-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.40.1/21
+          269:
+            name: 10.211.48.0/22_SM1-Implant-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.48.1/22
+          273:
+            name: 10.211.52.0/22_SM1-Photo-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.52.1/22
+          277:
+            name: 10.211.56.0/22_SM1-Furnace-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.56.1/22
+          281:
+            name: 10.211.60.0/22_SM1-EPI-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.60.1/22
+          285:
+            name: 10.211.64.1/22_SM1-Plasma-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.64.1/22
+          289:
+            name: 10.211.68.0/22_SM1-ThinFilm-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.68.1/22
+          293:
+            name: 10.211.72.0/22_SM1-RTP-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.72.1/22
+          297:
+            name: 10.211.76.0/22_SM1-Wet-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.76.1/22
+          301:
+            name: 10.211.80.0/22_SM1-YE/Metrology-Module
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.80.1/22
+          327:
+            name: 10.211.106.0/24_SM1-AMHS-Controller
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.106.1/24
+          329:
+            name: 10.211.108.0/22_SM1-AMHS-WLAN
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.108.1/22
+          313:
+            name: 10.215.88.0/21_SM-Parametric-Test
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.88.1/21
+          4020:
+            name: 10.215.17.0/24_S0-MFG-Engineering-Lab
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.17.1/24
+      # L3 p2p subinterfaces to DC1 & DC2 Border leaf switches in OT VRF
+        l3_interfaces:
+          - interfaces:
+              # to the DC1 Borders
+                - Ethernet1/1.533
+                - Ethernet2/1.533
+                - Ethernet1/1.533
+                - Ethernet2/1.533
+              # to the DC2 Borders
+                - Ethernet3/1.533
+                - Ethernet4/1.533
+                - Ethernet3/1.533
+                - Ethernet4/1.533
+            nodes:
+            # to the DC1 Borders
+                - ISMS1OTBL01A
+                - ISMS1OTBL01A
+                - ISMS1OTBL02A
+                - ISMS1OTBL02A
+            # to the DC2 Borders
+                - ISMS1OTBL01A
+                - ISMS1OTBL01A
+                - ISMS1OTBL02A
+                - ISMS1OTBL02A
+            ip_addresses:
+            # to the DC1 Borders 
+                - 10.210.226.16/31
+                - 10.210.226.20/31
+                - 10.210.226.18/31
+                - 10.210.226.22/31
+            # to the DC2 Borders
+                - 10.210.234.8/31
+                - 10.210.234.12/31
+                - 10.210.234.10/31
+                - 10.210.234.14/31
+            descriptions:
+            # to the DC1 Borders 
+              - '[L]_ISMDC1BL01A-Eth5/1-OT-VRF'
+              - '[L]_ISMDC1BL02A-Eth5/1-OT-VRF'
+              - '[L]_ISMDC1BL01A-Eth6/1-OT-VRF'
+              - '[L]_ISMDC1BL02A-Eth6/1-OT-VRF'
+            # to the DC2 Borders 
+              - '[L]_ISMDC2BL01A-Eth5/1-OT-VRF'
+              - '[L]_ISMDC2BL02A-Eth5/1-OT-VRF'
+              - '[L]_ISMDC2BL01A-Eth6/1-OT-VRF'
+              - '[L]_ISMDC2BL02A-Eth6/1-OT-VRF'
+        bgp_peer_groups:
+        # to the DC1 Borders 
+          - name: DC1-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL01A
+              - ISMS1OTBL02A
+            remote_as: "65120.11200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='DC1-BL-EBGP-PEERS-OTVRF') }}"
+          # to the DC1 Borders 
+          - name: DC2-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL01A
+              - ISMS1OTBL02A
+            remote_as: "65120.12200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='DC2-BL-EBGP-PEERS-OTVRF') }}"
+        bgp_peers:
+        # to the DC1 Borders 
+          - ip_address: 10.210.226.17
+            description: ISMDC1BL01A-Eth5/1-OT-VRF
+            peer_group: DC1-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL01A
+          - ip_address: 10.210.226.21
+            description: ISMDC1BL02A-Eth5/1-OT-VRF
+            peer_group: DC1-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL01A
+          - ip_address: 10.210.226.19
+            description: ISMDC1BL01A-Eth5/1-OT-VRF
+            peer_group: DC1-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL02A
+          - ip_address: 10.210.226.23
+            description: ISMDC1BL02A-Eth5/1-OT-VRF
+            peer_group: DC1-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL02A
+        # to the DC2 Borders 
+          - ip_address: 10.210.234.9
+            description: ISMDC2BL01A-Eth5/1-OT-VRF
+            peer_group: DC2-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL01A
+          - ip_address: 10.210.234.13
+            description: ISMDC2BL02A-Eth5/1-OT-VRF
+            peer_group: DC2-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL01A
+          - ip_address: 10.210.234.11
+            description: ISMDC2BL01A-Eth6/1-OT-VRF
+            peer_group: DC2-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL02A
+          - ip_address: 10.210.234.15
+            description: ISMDC2BL02A-Eth6/1-OT-VRF
+            peer_group: DC2-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMS1OTBL02A
+        
+    l2vlans:
+      253:
+        name: 10.211.32.1/21_SM1-AMHS-Module
+      261:
+        name: 10.211.40.0/21_SM1-CMP-Module
+      269:
+        name: 10.211.48.0/22_SM1-Implant-Module
+      273:
+        name: 10.211.52.0/22_SM1-Photo-Module
+      277:
+        name: 10.211.56.0/22_SM1-Furnace-Module
+      281:
+        name: 10.211.60.0/22_SM1-EPI-Module
+      285:
+        name: 10.211.64.1/22_SM1-Plasma-Module
+      289:
+        name: 10.211.68.0/22_SM1-ThinFilm-Module
+      293:
+        name: 10.211.72.0/22_SM1-RTP-Module
+      297:
+        name: 10.211.76.0/22_SM1-Wet-Module
+      301:
+        name: 10.211.80.0/22_SM1-YE/Metrology-Module
+      327:
+        name: 10.211.106.0/24_SM1-AMHS-Controller
+      329:
+        name: 10.211.108.0/22_SM1-AMHS-WLAN
+      4020: # TBA-Findout whether the vlan belongs to vendor segment?
+        name: 10.215.17.0/24_S0-MFG-Engineering-Lab

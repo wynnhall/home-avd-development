@@ -1,0 +1,13 @@
+---
+port_profiles:
+
+  TRUNK_25G_Compute_DC1:
+    mode: trunk
+    speed: 25g
+    spanning_tree_portfast: edge
+    vlans: 321,1012,1013,1014,1015,238,316,1016,323,355,451,1010,1017,1018,1019,1020,1021,1022 #TBA-confirm with TI
+  TRUNK_25G_Compute_DC2:
+    mode: trunk
+    speed: 10g
+    spanning_tree_portfast: edge
+    vlans: 322,1012,1013,1014,1015,238,316,1016,324,355,451,1011,1017,1018,1019,1020,1021,1022 #TBA-confirm with TI

@@ -1,0 +1,41 @@
+---
+
+network_ports:
+  - switches: 
+    - hs11jmgt01a
+    - hs11jmgt01a
+    - hs11jmgt02a
+    - hs11gmgt01a
+    - hs11gmgt02a
+    - hs11cmgt01a
+    - hs11cmgt21a
+    - hs11amgt01a
+    - hs11amgt02a
+    - hs11jwmgt01a
+    - hs11gwmgt01a
+    - hs11ewmgt01a
+    - hs11cwmgt01a
+    - hs11kemgt01a 
+    - hs11hemgt01a
+    - hs11demgt01a
+    - hs11bemgt01a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-SM1_vl461
+    description: VL461-SM1-Mgmt

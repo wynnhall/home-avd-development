@@ -1,0 +1,36 @@
+---
+servers:
+#WLAN Controllers
+  - name: OSMAMC01W
+    adapters:
+      - switch_ports: [ Ethernet1, Ethernet2, Ethernet1, Ethernet2 ]
+        switches: [ ISMITMSC01A, ISMITMSC01A, ISMITMSC02A, ISMITMSC02A ]
+        endpoint_ports: [ Port0, Port1, Port2, Port3 ]
+        profile: PP_WLAN_CONTROLLER
+        native_vlan: 851
+        port_channel:
+          mode: active
+          description: Po
+  - name: OSMAMC02W
+    adapters:
+      - switch_ports: [ Ethernet3, Ethernet4, Ethernet3, Ethernet4 ]
+        switches: [ ISMITMSC01A, ISMITMSC01A, ISMITMSC02A, ISMITMSC02A ]
+        endpoint_ports: [ Port0, Port1, Port2, Port3 ]
+        profile: PP_WLAN_CONTROLLER
+        native_vlan: 851
+        port_channel:
+          mode: active
+          description: Po
+#IB Appliances
+  - name: OSMIBSD01
+    adapters:
+      - switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ISMITMSC01A, ISMITMSC01A ]
+        endpoint_ports: [ LAN1, LAN2 ]
+        profile: PP_vl387
+  - name: OSMIBSD01
+    adapters:
+      - switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ISMITMSC02A, ISMITMSC02A ]
+        endpoint_ports: [ LAN1, LAN2 ]
+        profile: PP_vl403

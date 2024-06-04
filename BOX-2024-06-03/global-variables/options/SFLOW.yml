@@ -1,0 +1,22 @@
+---
+### group_vars/SFLOW.yml
+
+# Configure the relevant sFlow confguration
+sflow:
+  sample: 16384
+  # Polling interval in seconds
+  polling_interval: 10
+  vrfs:
+    - name: "{{ mgmt_interface_vrf }}"
+      destinations:
+        # Variable set in the FABRIC or per device
+        - destination: "{{ sflow_dest }}"
+          port: 6343
+      source_interface: "{{ custom_mgmt_interface }}"
+  destinations:
+    - destination: 127.0.0.1
+  extensions:
+    - name: bgp
+      enabled: true
+  run: true
+

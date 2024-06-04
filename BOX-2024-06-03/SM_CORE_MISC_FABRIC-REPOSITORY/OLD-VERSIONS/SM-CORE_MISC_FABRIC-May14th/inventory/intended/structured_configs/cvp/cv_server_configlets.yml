@@ -1,0 +1,1945 @@
+cvp_configlets:
+  AVD-SM_CORE_MISC_FABRIC-_HS00BOT01A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll
+    dir\nalias q exit\nalias senz show interface counter error | nz\nalias shmc show
+    int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz
+    show interface counter | nz\nalias spd show port-channel %1 detail all\nalias
+    sqnz show interface counter queue | nz\nalias srnz show interface counter rate
+    | nz\nalias shterminattr show version detail | grep TerminAttr-core\n\n!\ndaemon
+    TerminAttr\n   exec /usr/bin/TerminAttr -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910
+    -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management1\n!\nhostname
+    HS00BOT01A\nip domain lookup vrf mgmt source-interface Management1\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management1\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 7b3b33c8224035abc8b59d7170e0082d71c76f24\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HS00BOT01A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management1\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 7b3b33c8224035abc8b59d7170e0082d71c76f24 auth sha 2181e80e100277eaf74ff00f7c0be0b12692e5d5
+    priv aes 2181e80e100277eaf74ff00f7c0be0b1\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 200\n   name VENDOR-VLAN2\n!\nvrf
+    instance mgmt\n!\ninterface Ethernet49\n   description [L]_ISMTMGPAN48\n   no
+    shutdown\n   speed 10g\n   switchport mode trunk\n   switchport\n   spanning-tree
+    portfast\n!\ninterface Ethernet50\n   description [L]_ISMTMGPAN49\n   no shutdown\n
+    \  speed 10g\n   switchport mode trunk\n   switchport\n   spanning-tree portfast\n!\ninterface
+    Management1\n   description oob_management\n   no shutdown\n   vrf mgmt\n   ip
+    address 10.210.241.20/21\n!\nip access-list standard Airwave-SNMP_Access\n   10
+    permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard Ansible-ACL_SM\n
+    \  10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark dlecvp02\n
+    \  40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit host 10.64.41.27\n
+    \  70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90 remark dsmcvp02\n
+    \  100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120 permit host 10.210.80.9\n
+    \  130 remark ents\n   140 permit host 172.31.227.10\n   150 remark tilde\n   160
+    permit host 172.31.226.25\n   170 remark dotdot\n   180 permit host 172.31.225.12\n!\nip
+    access-list standard ENTS-SNMP_Access\n   10 permit host 172.31.226.25\n   20
+    permit host 172.31.227.10\n   30 permit host 172.31.225.12\n   40 deny any log\n!\nip
+    access-list standard NetBrain-SNMP_Access\n   10 permit host 172.31.226.55\n   20
+    permit host 172.31.225.43\n   30 permit host 172.31.226.49\n   40 permit host
+    172.31.226.54\n   50 deny any log\n!\nip access-list standard NetDisco-SNMP_Access\n
+    \  10 permit host 172.31.226.24\n   20 permit host 172.31.226.53\n   30 deny any
+    log\n!\nip access-list standard SevOne-SNMP_Access\n   10 permit host 172.31.225.47\n
+    \  20 permit host 172.31.225.53\n   30 permit host 172.31.225.54\n   40 permit
+    host 172.31.225.60\n   50  permit host 172.31.225.61\n   60  permit host 172.31.225.62\n
+    \  70  permit host 172.31.225.63\n   80  permit host 172.31.225.64\n   90  permit
+    host 172.31.225.65\n   100  permit host 172.31.225.66\n   110  permit host 172.31.225.67\n
+    \  120  permit host 172.31.225.68\n   130  permit host 172.31.225.69\n   140  permit
+    host 172.31.225.86\n   150  permit host 172.31.225.87\n   160  permit host 172.31.225.88\n
+    \  170  permit host 172.31.225.89\n   180  permit host 172.31.225.90\n   190  permit
+    host 172.31.225.91\n   200  permit host 172.31.226.100\n   210  permit host 172.31.226.101\n
+    \  220  permit host 172.31.226.102\n   230  permit host 172.31.226.55\n   240
+    \ permit host 172.31.226.58\n   250  permit host 172.31.226.59\n   260  permit
+    host 172.31.226.63\n   270  permit host 172.31.226.68\n   280  permit host 172.31.226.74\n
+    \  290  permit host 172.31.226.75\n   300  permit host 172.31.226.76\n   310  permit
+    host 172.31.226.77\n   320  permit host 172.31.226.79\n   330  permit host 172.31.226.87\n
+    \  340  permit host 172.31.226.90\n   350  permit host 172.31.226.91\n   360  permit
+    host 172.31.226.97\n   370  permit host 172.31.226.98\n   380  permit host 172.31.226.99\n
+    \  390 deny any log\n!\nip access-list standard Statseeker-SNMP_Access\n   10
+    permit host 172.31.226.35\n   20 deny any log\nno ip routing vrf mgmt\n!\nip route
+    vrf mgmt 0.0.0.0/0 10.210.241.1\n!\nip tacacs vrf mgmt source-interface Management1\n!\nbanner
+    login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_HS00BOT02A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll
+    dir\nalias q exit\nalias senz show interface counter error | nz\nalias shmc show
+    int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz
+    show interface counter | nz\nalias spd show port-channel %1 detail all\nalias
+    sqnz show interface counter queue | nz\nalias srnz show interface counter rate
+    | nz\nalias shterminattr show version detail | grep TerminAttr-core\n\n!\ndaemon
+    TerminAttr\n   exec /usr/bin/TerminAttr -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910
+    -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management1\n!\nhostname
+    HS00BOT02A\nip domain lookup vrf mgmt source-interface Management1\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management1\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 2feccd27cf9dd609cf57a638adc463517cf53459\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HS00BOT02A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management1\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 2feccd27cf9dd609cf57a638adc463517cf53459 auth sha 0c2d9f24556e8d43ef40be7f0b85333b13c35351
+    priv aes 0c2d9f24556e8d43ef40be7f0b85333b\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 300\n   name VENDOR-VLAN3\n!\nvrf
+    instance mgmt\n!\ninterface Ethernet49\n   description [L]_ISMTMGPAN48\n   no
+    shutdown\n   speed 10g\n   switchport mode trunk\n   switchport\n   spanning-tree
+    portfast\n!\ninterface Ethernet50\n   description [L]_ISMTMGPAN49\n   no shutdown\n
+    \  speed 10g\n   switchport mode trunk\n   switchport\n   spanning-tree portfast\n!\ninterface
+    Management1\n   description oob_management\n   no shutdown\n   vrf mgmt\n   ip
+    address 10.210.241.21/21\n!\nip access-list standard Airwave-SNMP_Access\n   10
+    permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard Ansible-ACL_SM\n
+    \  10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark dlecvp02\n
+    \  40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit host 10.64.41.27\n
+    \  70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90 remark dsmcvp02\n
+    \  100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120 permit host 10.210.80.9\n
+    \  130 remark ents\n   140 permit host 172.31.227.10\n   150 remark tilde\n   160
+    permit host 172.31.226.25\n   170 remark dotdot\n   180 permit host 172.31.225.12\n!\nip
+    access-list standard ENTS-SNMP_Access\n   10 permit host 172.31.226.25\n   20
+    permit host 172.31.227.10\n   30 permit host 172.31.225.12\n   40 deny any log\n!\nip
+    access-list standard NetBrain-SNMP_Access\n   10 permit host 172.31.226.55\n   20
+    permit host 172.31.225.43\n   30 permit host 172.31.226.49\n   40 permit host
+    172.31.226.54\n   50 deny any log\n!\nip access-list standard NetDisco-SNMP_Access\n
+    \  10 permit host 172.31.226.24\n   20 permit host 172.31.226.53\n   30 deny any
+    log\n!\nip access-list standard SevOne-SNMP_Access\n   10 permit host 172.31.225.47\n
+    \  20 permit host 172.31.225.53\n   30 permit host 172.31.225.54\n   40 permit
+    host 172.31.225.60\n   50  permit host 172.31.225.61\n   60  permit host 172.31.225.62\n
+    \  70  permit host 172.31.225.63\n   80  permit host 172.31.225.64\n   90  permit
+    host 172.31.225.65\n   100  permit host 172.31.225.66\n   110  permit host 172.31.225.67\n
+    \  120  permit host 172.31.225.68\n   130  permit host 172.31.225.69\n   140  permit
+    host 172.31.225.86\n   150  permit host 172.31.225.87\n   160  permit host 172.31.225.88\n
+    \  170  permit host 172.31.225.89\n   180  permit host 172.31.225.90\n   190  permit
+    host 172.31.225.91\n   200  permit host 172.31.226.100\n   210  permit host 172.31.226.101\n
+    \  220  permit host 172.31.226.102\n   230  permit host 172.31.226.55\n   240
+    \ permit host 172.31.226.58\n   250  permit host 172.31.226.59\n   260  permit
+    host 172.31.226.63\n   270  permit host 172.31.226.68\n   280  permit host 172.31.226.74\n
+    \  290  permit host 172.31.226.75\n   300  permit host 172.31.226.76\n   310  permit
+    host 172.31.226.77\n   320  permit host 172.31.226.79\n   330  permit host 172.31.226.87\n
+    \  340  permit host 172.31.226.90\n   350  permit host 172.31.226.91\n   360  permit
+    host 172.31.226.97\n   370  permit host 172.31.226.98\n   380  permit host 172.31.226.99\n
+    \  390 deny any log\n!\nip access-list standard Statseeker-SNMP_Access\n   10
+    permit host 172.31.226.35\n   20 deny any log\nno ip routing vrf mgmt\n!\nip route
+    vrf mgmt 0.0.0.0/0 10.210.241.1\n!\nip tacacs vrf mgmt source-interface Management1\n!\nbanner
+    login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_HSMDMZ100A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll
+    dir\nalias q exit\nalias senz show interface counter error | nz\nalias shmc show
+    int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz
+    show interface counter | nz\nalias spd show port-channel %1 detail all\nalias
+    sqnz show interface counter queue | nz\nalias srnz show interface counter rate
+    | nz\nalias shterminattr show version detail | grep TerminAttr-core\n\n!\ndaemon
+    TerminAttr\n   exec /usr/bin/TerminAttr -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910
+    -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management1\n!\nhostname
+    HSMDMZ100A\nip domain lookup vrf mgmt source-interface Management1\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management1\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 1ad383c71e1be179b33d525bd6a9861323556db2\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HSMDMZ100A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management1\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 1ad383c71e1be179b33d525bd6a9861323556db2 auth sha ebdc9c445bf49f025bb8b4d15b056c9cc530149a
+    priv aes ebdc9c445bf49f025bb8b4d15b056c9c\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvrf instance mgmt\n!\ninterface Ethernet49\n
+    \  description [L]_CSMISP02\n   no shutdown\n   speed 10g\n   switchport mode
+    access\n   switchport\n!\ninterface Ethernet51\n   description [L]_ISMPAN98\n
+    \  no shutdown\n   speed 10g\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet52\n   description [L]_ISMPAN99\n   no shutdown\n   speed 10g\n   switchport
+    mode access\n   switchport\n!\ninterface Management1\n   description oob_management\n
+    \  no shutdown\n   vrf mgmt\n   ip address 10.210.80.78/21\n!\nip access-list
+    standard Airwave-SNMP_Access\n   10 permit host 172.31.226.33\n   20 deny any
+    log\n!\nip access-list standard Ansible-ACL_SM\n   10 remark dlecvp01\n   20 permit
+    host 10.180.68.99\n   30 remark dlecvp02\n   40 permit host 10.180.68.98\n   50
+    remark dflcvp01\n   60 permit host 10.64.41.27\n   70 remark dsmcvp01\n   80 permit
+    host 10.210.80.7\n   90 remark dsmcvp02\n   100 permit host 10.210.80.8\n   110
+    remark dsmcvp03\n   120 permit host 10.210.80.9\n   130 remark ents\n   140 permit
+    host 172.31.227.10\n   150 remark tilde\n   160 permit host 172.31.226.25\n   170
+    remark dotdot\n   180 permit host 172.31.225.12\n!\nip access-list standard ENTS-SNMP_Access\n
+    \  10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n   30 permit
+    host 172.31.225.12\n   40 deny any log\n!\nip access-list standard NetBrain-SNMP_Access\n
+    \  10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n   30 permit
+    host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any log\n!\nip
+    access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n   20
+    permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard SevOne-SNMP_Access\n
+    \  10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n   30 permit
+    host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit host 172.31.225.61\n
+    \  60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n   80  permit
+    host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit host 172.31.225.66\n
+    \  110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n   130  permit
+    host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit host 172.31.225.87\n
+    \  160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n   180  permit
+    host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit host 172.31.226.100\n
+    \  210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n   230
+    \ permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\nno
+    ip routing vrf mgmt\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\n!\nip tacacs
+    vrf mgmt source-interface Management1\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_HSMDMZ101A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll
+    dir\nalias q exit\nalias senz show interface counter error | nz\nalias shmc show
+    int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz
+    show interface counter | nz\nalias spd show port-channel %1 detail all\nalias
+    sqnz show interface counter queue | nz\nalias srnz show interface counter rate
+    | nz\nalias shterminattr show version detail | grep TerminAttr-core\n\n!\ndaemon
+    TerminAttr\n   exec /usr/bin/TerminAttr -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910
+    -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management1\n!\nhostname
+    HSMDMZ101A\nip domain lookup vrf mgmt source-interface Management1\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management1\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 4025962958446a06c545d57351ad1bf0daed40af\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HSMDMZ101A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management1\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 4025962958446a06c545d57351ad1bf0daed40af auth sha 4bbf4cf5242a152f59eb8acacf82341ce78f8455
+    priv aes 4bbf4cf5242a152f59eb8acacf82341c\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvrf instance mgmt\n!\ninterface Ethernet51\n
+    \  description [L]_ISMPAN98\n   no shutdown\n   speed 10g\n   switchport mode
+    access\n   switchport\n!\ninterface Ethernet52\n   description [L]_ISMPAN99\n
+    \  no shutdown\n   speed 10g\n   switchport mode access\n   switchport\n!\ninterface
+    Management1\n   description oob_management\n   no shutdown\n   vrf mgmt\n   ip
+    address 10.210.80.79/21\n!\nip access-list standard Airwave-SNMP_Access\n   10
+    permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard Ansible-ACL_SM\n
+    \  10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark dlecvp02\n
+    \  40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit host 10.64.41.27\n
+    \  70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90 remark dsmcvp02\n
+    \  100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120 permit host 10.210.80.9\n
+    \  130 remark ents\n   140 permit host 172.31.227.10\n   150 remark tilde\n   160
+    permit host 172.31.226.25\n   170 remark dotdot\n   180 permit host 172.31.225.12\n!\nip
+    access-list standard ENTS-SNMP_Access\n   10 permit host 172.31.226.25\n   20
+    permit host 172.31.227.10\n   30 permit host 172.31.225.12\n   40 deny any log\n!\nip
+    access-list standard NetBrain-SNMP_Access\n   10 permit host 172.31.226.55\n   20
+    permit host 172.31.225.43\n   30 permit host 172.31.226.49\n   40 permit host
+    172.31.226.54\n   50 deny any log\n!\nip access-list standard NetDisco-SNMP_Access\n
+    \  10 permit host 172.31.226.24\n   20 permit host 172.31.226.53\n   30 deny any
+    log\n!\nip access-list standard SevOne-SNMP_Access\n   10 permit host 172.31.225.47\n
+    \  20 permit host 172.31.225.53\n   30 permit host 172.31.225.54\n   40 permit
+    host 172.31.225.60\n   50  permit host 172.31.225.61\n   60  permit host 172.31.225.62\n
+    \  70  permit host 172.31.225.63\n   80  permit host 172.31.225.64\n   90  permit
+    host 172.31.225.65\n   100  permit host 172.31.225.66\n   110  permit host 172.31.225.67\n
+    \  120  permit host 172.31.225.68\n   130  permit host 172.31.225.69\n   140  permit
+    host 172.31.225.86\n   150  permit host 172.31.225.87\n   160  permit host 172.31.225.88\n
+    \  170  permit host 172.31.225.89\n   180  permit host 172.31.225.90\n   190  permit
+    host 172.31.225.91\n   200  permit host 172.31.226.100\n   210  permit host 172.31.226.101\n
+    \  220  permit host 172.31.226.102\n   230  permit host 172.31.226.55\n   240
+    \ permit host 172.31.226.58\n   250  permit host 172.31.226.59\n   260  permit
+    host 172.31.226.63\n   270  permit host 172.31.226.68\n   280  permit host 172.31.226.74\n
+    \  290  permit host 172.31.226.75\n   300  permit host 172.31.226.76\n   310  permit
+    host 172.31.226.77\n   320  permit host 172.31.226.79\n   330  permit host 172.31.226.87\n
+    \  340  permit host 172.31.226.90\n   350  permit host 172.31.226.91\n   360  permit
+    host 172.31.226.97\n   370  permit host 172.31.226.98\n   380  permit host 172.31.226.99\n
+    \  390 deny any log\n!\nip access-list standard Statseeker-SNMP_Access\n   10
+    permit host 172.31.226.35\n   20 deny any log\nno ip routing vrf mgmt\n!\nip route
+    vrf mgmt 0.0.0.0/0 10.210.80.1\n!\nip tacacs vrf mgmt source-interface Management1\n!\nbanner
+    login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_HSMVND01A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll dir\nalias
+    q exit\nalias senz show interface counter error | nz\nalias shmc show int | awk
+    '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz show interface
+    counter | nz\nalias spd show port-channel %1 detail all\nalias sqnz show interface
+    counter queue | nz\nalias srnz show interface counter rate | nz\nalias shterminattr
+    show version detail | grep TerminAttr-core\n\n!\ndaemon TerminAttr\n   exec /usr/bin/TerminAttr
+    -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910 -cvauth=token,/tmp/token
+    -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management0\n!\nhostname
+    HSMVND01A\nip domain lookup vrf mgmt source-interface Management0\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management0\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 6e6a8e61ee600f80f7c634972230ee4db3126b87\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HSMVND01A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management0\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 6e6a8e61ee600f80f7c634972230ee4db3126b87 auth sha 913491ba6486e7f69d90417254c13d306c598314
+    priv aes 913491ba6486e7f69d90417254c13d30\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 100\n   name VENDOR-VLAN1\n!\nvrf
+    instance mgmt\n!\ninterface Ethernet1/1\n   description [L]_ISMTMGPAN48\n   no
+    shutdown\n   speed 10g\n   switchport mode trunk\n   switchport\n   spanning-tree
+    portfast\n!\ninterface Ethernet2/1\n   description [L]_ISMTMGPAN49\n   no shutdown\n
+    \  speed 10g\n   switchport mode trunk\n   switchport\n   spanning-tree portfast\n!\ninterface
+    Management0\n   description oob_management\n   no shutdown\n   vrf mgmt\n   ip
+    address 10.210.80.80/21\n!\nip access-list standard Airwave-SNMP_Access\n   10
+    permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard Ansible-ACL_SM\n
+    \  10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark dlecvp02\n
+    \  40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit host 10.64.41.27\n
+    \  70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90 remark dsmcvp02\n
+    \  100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120 permit host 10.210.80.9\n
+    \  130 remark ents\n   140 permit host 172.31.227.10\n   150 remark tilde\n   160
+    permit host 172.31.226.25\n   170 remark dotdot\n   180 permit host 172.31.225.12\n!\nip
+    access-list standard ENTS-SNMP_Access\n   10 permit host 172.31.226.25\n   20
+    permit host 172.31.227.10\n   30 permit host 172.31.225.12\n   40 deny any log\n!\nip
+    access-list standard NetBrain-SNMP_Access\n   10 permit host 172.31.226.55\n   20
+    permit host 172.31.225.43\n   30 permit host 172.31.226.49\n   40 permit host
+    172.31.226.54\n   50 deny any log\n!\nip access-list standard NetDisco-SNMP_Access\n
+    \  10 permit host 172.31.226.24\n   20 permit host 172.31.226.53\n   30 deny any
+    log\n!\nip access-list standard SevOne-SNMP_Access\n   10 permit host 172.31.225.47\n
+    \  20 permit host 172.31.225.53\n   30 permit host 172.31.225.54\n   40 permit
+    host 172.31.225.60\n   50  permit host 172.31.225.61\n   60  permit host 172.31.225.62\n
+    \  70  permit host 172.31.225.63\n   80  permit host 172.31.225.64\n   90  permit
+    host 172.31.225.65\n   100  permit host 172.31.225.66\n   110  permit host 172.31.225.67\n
+    \  120  permit host 172.31.225.68\n   130  permit host 172.31.225.69\n   140  permit
+    host 172.31.225.86\n   150  permit host 172.31.225.87\n   160  permit host 172.31.225.88\n
+    \  170  permit host 172.31.225.89\n   180  permit host 172.31.225.90\n   190  permit
+    host 172.31.225.91\n   200  permit host 172.31.226.100\n   210  permit host 172.31.226.101\n
+    \  220  permit host 172.31.226.102\n   230  permit host 172.31.226.55\n   240
+    \ permit host 172.31.226.58\n   250  permit host 172.31.226.59\n   260  permit
+    host 172.31.226.63\n   270  permit host 172.31.226.68\n   280  permit host 172.31.226.74\n
+    \  290  permit host 172.31.226.75\n   300  permit host 172.31.226.76\n   310  permit
+    host 172.31.226.77\n   320  permit host 172.31.226.79\n   330  permit host 172.31.226.87\n
+    \  340  permit host 172.31.226.90\n   350  permit host 172.31.226.91\n   360  permit
+    host 172.31.226.97\n   370  permit host 172.31.226.98\n   380  permit host 172.31.226.99\n
+    \  390 deny any log\n!\nip access-list standard Statseeker-SNMP_Access\n   10
+    permit host 172.31.226.35\n   20 deny any log\nno ip routing vrf mgmt\n!\nip route
+    vrf mgmt 0.0.0.0/0 10.210.80.1\n!\nip tacacs vrf mgmt source-interface Management0\n!\nbanner
+    login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_HSMWAN40A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll dir\nalias
+    q exit\nalias senz show interface counter error | nz\nalias shmc show int | awk
+    '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz show interface
+    counter | nz\nalias spd show port-channel %1 detail all\nalias sqnz show interface
+    counter queue | nz\nalias srnz show interface counter rate | nz\nalias shterminattr
+    show version detail | grep TerminAttr-core\n\n!\ndaemon TerminAttr\n   exec /usr/bin/TerminAttr
+    -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910 -cvauth=token,/tmp/token
+    -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management1\n!\nhostname
+    HSMWAN40A\nip domain lookup vrf mgmt source-interface Management1\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management1\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 93e7b9aa84e6bfbc861b6cd004fe430ec2a53aea\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HSMWAN40A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management1\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 93e7b9aa84e6bfbc861b6cd004fe430ec2a53aea auth sha fc8cc9477b6be796fe5ebfdace8cce654b672fe3
+    priv aes fc8cc9477b6be796fe5ebfdace8cce65\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 440\n   name WAN1-TRANSIT\n!\nvlan
+    504\n   name WAN2-TRANSIT\n!\nvrf instance mgmt\n!\ninterface Ethernet1\n   description
+    [L]_ISMTMGPAN40\n   no shutdown\n   switchport access vlan 440\n   switchport
+    mode access\n   switchport\n!\ninterface Ethernet2\n   description [L]_ISMTMGPAN41\n
+    \  no shutdown\n   switchport access vlan 440\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet5\n   description [L]_ISMMGTPAN01\n   no shutdown\n   switchport access
+    vlan 440\n   switchport mode access\n   switchport\n!\ninterface Ethernet6\n   description
+    [L]_ISMMGTPAN02\n   no shutdown\n   switchport access vlan 440\n   switchport
+    mode access\n   switchport\n!\ninterface Ethernet7\n   description [L]_ISMPAN98\n
+    \  no shutdown\n   speed 10g\n   switchport access vlan 440\n   switchport mode
+    access\n   switchport\n!\ninterface Ethernet8\n   description [L]_ISMPAN99\n   no
+    shutdown\n   speed 10g\n   switchport access vlan 440\n   switchport mode access\n
+    \  switchport\n!\ninterface Ethernet11\n   description [L]_ISMRR40\n   no shutdown\n
+    \  speed 10g\n   switchport access vlan 440\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet12\n   description [L]_ISMRR41\n   no shutdown\n   speed 10g\n   switchport
+    access vlan 440\n   switchport mode access\n   switchport\n!\ninterface Management1\n
+    \  description oob_management\n   no shutdown\n   vrf mgmt\n   ip address 10.210.80.76/21\n!\nip
+    access-list standard Airwave-SNMP_Access\n   10 permit host 172.31.226.33\n   20
+    deny any log\n!\nip access-list standard Ansible-ACL_SM\n   10 remark dlecvp01\n
+    \  20 permit host 10.180.68.99\n   30 remark dlecvp02\n   40 permit host 10.180.68.98\n
+    \  50 remark dflcvp01\n   60 permit host 10.64.41.27\n   70 remark dsmcvp01\n
+    \  80 permit host 10.210.80.7\n   90 remark dsmcvp02\n   100 permit host 10.210.80.8\n
+    \  110 remark dsmcvp03\n   120 permit host 10.210.80.9\n   130 remark ents\n   140
+    permit host 172.31.227.10\n   150 remark tilde\n   160 permit host 172.31.226.25\n
+    \  170 remark dotdot\n   180 permit host 172.31.225.12\n!\nip access-list standard
+    ENTS-SNMP_Access\n   10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n
+    \  30 permit host 172.31.225.12\n   40 deny any log\n!\nip access-list standard
+    NetBrain-SNMP_Access\n   10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n
+    \  30 permit host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any
+    log\n!\nip access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n
+    \  20 permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard
+    SevOne-SNMP_Access\n   10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n
+    \  30 permit host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit
+    host 172.31.225.61\n   60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n
+    \  80  permit host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit
+    host 172.31.225.66\n   110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n
+    \  130  permit host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit
+    host 172.31.225.87\n   160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n
+    \  180  permit host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit
+    host 172.31.226.100\n   210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n
+    \  230  permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\nno
+    ip routing vrf mgmt\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\n!\nip tacacs
+    vrf mgmt source-interface Management1\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_HSMWAN41A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll dir\nalias
+    q exit\nalias senz show interface counter error | nz\nalias shmc show int | awk
+    '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz show interface
+    counter | nz\nalias spd show port-channel %1 detail all\nalias sqnz show interface
+    counter queue | nz\nalias srnz show interface counter rate | nz\nalias shterminattr
+    show version detail | grep TerminAttr-core\n\n!\ndaemon TerminAttr\n   exec /usr/bin/TerminAttr
+    -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910 -cvauth=token,/tmp/token
+    -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management1\n!\nhostname
+    HSMWAN41A\nip domain lookup vrf mgmt source-interface Management1\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management1\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local d70457c2cff072fedc4b2ccf5f7d4a7965df4364\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] HSMWAN41A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management1\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized d70457c2cff072fedc4b2ccf5f7d4a7965df4364 auth sha bbc5567cd11a5a6d102181963e10459eb517c12d
+    priv aes bbc5567cd11a5a6d102181963e10459e\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nspanning-tree mst 0 priority 4096\n!\ntacacs-server
+    host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 440\n   name WAN1-TRANSIT\n!\nvlan
+    504\n   name WAN2-TRANSIT\n!\nvrf instance mgmt\n!\ninterface Ethernet1\n   description
+    [L]_ISMTMGPAN40\n   no shutdown\n   switchport access vlan 504\n   switchport
+    mode access\n   switchport\n!\ninterface Ethernet2\n   description [L]_ISMTMGPAN41\n
+    \  no shutdown\n   switchport access vlan 504\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet5\n   description [L]_ISMMGTPAN01\n   no shutdown\n   switchport access
+    vlan 504\n   switchport mode access\n   switchport\n!\ninterface Ethernet6\n   description
+    [L]_ISMMGTPAN02\n   no shutdown\n   switchport access vlan 504\n   switchport
+    mode access\n   switchport\n!\ninterface Ethernet7\n   description [L]_ISMPAN98\n
+    \  no shutdown\n   speed 10g\n   switchport access vlan 504\n   switchport mode
+    access\n   switchport\n!\ninterface Ethernet8\n   description [L]_ISMPAN99\n   no
+    shutdown\n   speed 10g\n   switchport access vlan 504\n   switchport mode access\n
+    \  switchport\n!\ninterface Ethernet11\n   description [L]_ISMRR40\n   no shutdown\n
+    \  speed 10g\n   switchport access vlan 504\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet12\n   description [L]_ISMRR41\n   no shutdown\n   speed 10g\n   switchport
+    access vlan 504\n   switchport mode access\n   switchport\n!\ninterface Management1\n
+    \  description oob_management\n   no shutdown\n   vrf mgmt\n   ip address 10.210.80.77/21\n!\nip
+    access-list standard Airwave-SNMP_Access\n   10 permit host 172.31.226.33\n   20
+    deny any log\n!\nip access-list standard Ansible-ACL_SM\n   10 remark dlecvp01\n
+    \  20 permit host 10.180.68.99\n   30 remark dlecvp02\n   40 permit host 10.180.68.98\n
+    \  50 remark dflcvp01\n   60 permit host 10.64.41.27\n   70 remark dsmcvp01\n
+    \  80 permit host 10.210.80.7\n   90 remark dsmcvp02\n   100 permit host 10.210.80.8\n
+    \  110 remark dsmcvp03\n   120 permit host 10.210.80.9\n   130 remark ents\n   140
+    permit host 172.31.227.10\n   150 remark tilde\n   160 permit host 172.31.226.25\n
+    \  170 remark dotdot\n   180 permit host 172.31.225.12\n!\nip access-list standard
+    ENTS-SNMP_Access\n   10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n
+    \  30 permit host 172.31.225.12\n   40 deny any log\n!\nip access-list standard
+    NetBrain-SNMP_Access\n   10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n
+    \  30 permit host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any
+    log\n!\nip access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n
+    \  20 permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard
+    SevOne-SNMP_Access\n   10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n
+    \  30 permit host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit
+    host 172.31.225.61\n   60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n
+    \  80  permit host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit
+    host 172.31.225.66\n   110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n
+    \  130  permit host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit
+    host 172.31.225.87\n   160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n
+    \  180  permit host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit
+    host 172.31.226.100\n   210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n
+    \  230  permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\nno
+    ip routing vrf mgmt\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\n!\nip tacacs
+    vrf mgmt source-interface Management1\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_ISMCR01A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll dir\nalias
+    q exit\nalias senz show interface counter error | nz\nalias shmc show int | awk
+    '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz show interface
+    counter | nz\nalias spd show port-channel %1 detail all\nalias sqnz show interface
+    counter queue | nz\nalias srnz show interface counter rate | nz\nalias shterminattr
+    show version detail | grep TerminAttr-core\n\n!\ndaemon TerminAttr\n   exec /usr/bin/TerminAttr
+    -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910 -cvauth=token,/tmp/token
+    -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management0\n!\nhostname
+    ISMCR01A\nip domain lookup vrf mgmt source-interface Management0\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management0\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 0ccf9aa2bda87ceef8666a1a294177b980f13ff1\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] ISMCR01A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management0\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 0ccf9aa2bda87ceef8666a1a294177b980f13ff1 auth sha a3f822d921af82a351fda84fdd299d97c412a9b7
+    priv aes a3f822d921af82a351fda84fdd299d97\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nno spanning-tree vlan-id 4093-4094\nspanning-tree
+    mst 0 priority 4096\n!\ntacacs-server host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 510\n   name WANFW-TRANSIT-IT-DCVRF\n!\nvlan
+    525\n   name WANFW-TRANSIT-ITVRF\n!\nvlan 533\n   name WANFW-TRANSIT-OTVRF\n!\nvlan
+    541\n   name SCADAFW-TRANSIT-ITVRF\n!\nvlan 542\n   name VENDORFW-TRANSIT-OTVRF\n!\nvlan
+    581\n   name DMZFW-TRANSIT-ehsVRF\n!\nvlan 589\n   name DMZFW-TRANSIT-GnetVRF\n!\nvlan
+    633\n   name IoTFW-TRANSIT-IoTVRF\n!\nvlan 4087\n   name MLAG_iBGP_Gnet\n   trunk
+    group MLAG\n!\nvlan 4088\n   name MLAG_iBGP_ehs\n   trunk group MLAG\n!\nvlan
+    4089\n   name MLAG_iBGP_IoT\n   trunk group MLAG\n!\nvlan 4090\n   name MLAG_iBGP_IT\n
+    \  trunk group MLAG\n!\nvlan 4091\n   name MLAG_iBGP_IT-DC\n   trunk group MLAG\n!\nvlan
+    4092\n   name MLAG_iBGP_OT\n   trunk group MLAG\n!\nvlan 4093\n   name LEAF_PEER_L3\n
+    \  trunk group MLAG\n!\nvlan 4094\n   name MLAG_PEER\n   trunk group MLAG\n!\nvrf
+    instance ehs\n!\nvrf instance Gnet\n!\nvrf instance IoT\n!\nvrf instance IT\n!\nvrf
+    instance IT-DC\n!\nvrf instance mgmt\n!\nvrf instance OT\n!\ninterface Port-Channel51\n
+    \  description [L]_ISMPAN98_MLAG PortChannel to DMZ Firewalls\n   no shutdown\n
+    \  switchport\n   switchport trunk allowed vlan 581,589,633\n   switchport mode
+    trunk\n   mlag 51\n!\ninterface Port-Channel52\n   description [L]_ISMPAN60_MLAG
+    PortChannel to SCADA Firewalls\n   no shutdown\n   switchport\n   switchport access
+    vlan 541\n   mlag 52\n!\ninterface Port-Channel53\n   description [L]_ISMTMGPAN48_MLAG
+    PortChannel to Vendor Firewalls\n   no shutdown\n   switchport\n   switchport
+    access vlan 542\n   mlag 53\n!\ninterface Port-Channel61\n   description [L]_ISMPAN99_MLAG
+    PortChannel to DMZ Firewalls\n   no shutdown\n   switchport\n   switchport trunk
+    allowed vlan 581,589,633\n   switchport mode trunk\n   mlag 61\n!\ninterface Port-Channel62\n
+    \  description [L]_ISMPAN61_MLAG PortChannel to SCADA Firewalls\n   no shutdown\n
+    \  switchport\n   switchport access vlan 541\n   mlag 62\n!\ninterface Port-Channel63\n
+    \  description [L]_ISMTMGPAN49_MLAG PortChannel to Vendor Firewalls\n   no shutdown\n
+    \  switchport\n   switchport access vlan 542\n   mlag 63\n!\ninterface Port-Channel351\n
+    \  description [L]_ISMTMGPAN40_MLAG PortChannel to WAN Firewalls\n   no shutdown\n
+    \  switchport\n   switchport trunk allowed vlan 525,510,533\n   switchport mode
+    trunk\n   mlag 351\n!\ninterface Port-Channel451\n   description [L]_ISMTMGPAN41_MLAG
+    PortChannel to WAN Firewalls\n   no shutdown\n   switchport\n   switchport trunk
+    allowed vlan 525,510,533\n   switchport mode trunk\n   mlag 451\n!\ninterface
+    Port-Channel4094\n   description [L]_MLAG_PEER_ISMCR02A_Po3481\n   no shutdown\n
+    \  switchport\n   switchport mode trunk\n   switchport trunk group MLAG\n!\ninterface
+    Ethernet3/1/1\n   no shutdown\n   no switchport\n!\ninterface Ethernet3/1/1.510\n
+    \  description [L]_ISMDC1BL01A-Eth1/1-IT-DCVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 510\n   vrf IT-DC\n   ip address 10.210.226.24/31\n!\ninterface Ethernet3/1/1.533\n
+    \  description [L]_ISMDC1BL01A-Eth1/1-OT-VRF\n   no shutdown\n   encapsulation
+    dot1q vlan 533\n   vrf OT\n   ip address 10.210.226.0/31\n!\ninterface Ethernet3/2/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet3/2/1.510\n   description
+    [L]_ISMDC2BL01A-Eth1/1-IT-DCVRF\n   no shutdown\n   encapsulation dot1q vlan 510\n
+    \  vrf IT-DC\n   ip address 10.210.234.16/31\n!\ninterface Ethernet3/2/1.533\n
+    \  description [L]_ISMDC2BL01A-Eth1/1-OT-VRF\n   no shutdown\n   encapsulation
+    dot1q vlan 533\n   vrf OT\n   ip address 10.210.234.0/31\n!\ninterface Ethernet3/3/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet3/3/1.525\n   description
+    [L]_ISMS1ITBL01A-Eth1/1-ITVRF\n   no shutdown\n   encapsulation dot1q vlan 525\n
+    \  vrf IT\n   ip address 10.210.241.0/31\n!\ninterface Ethernet3/3/1.633\n   description
+    [L]_ISMS1ITBL01A-Eth1/1-IoTVRF\n   no shutdown\n   encapsulation dot1q vlan 633\n
+    \  vrf IoT\n   ip address 10.210.241.8/31\n!\ninterface Ethernet3/4/1\n   no shutdown\n
+    \  no switchport\n!\ninterface Ethernet3/4/1.525\n   description [L]_ISMITMSC01A-Eth49/1-ITVRF\n
+    \  no shutdown\n   encapsulation dot1q vlan 525\n   vrf IT\n   ip address 10.210.241.16/31\n!\ninterface
+    Ethernet3/4/1.533\n   description [L]_ISMITMSC01A-Eth49/1-OTVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 533\n   vrf OT\n   ip address 10.210.241.24/31\n!\ninterface
+    Ethernet3/4/1.581\n   description [L]_ISMITMSC01A-Eth49/1-ehsVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 581\n   vrf ehs\n   ip address 10.210.241.32/31\n!\ninterface
+    Ethernet3/4/1.589\n   description [L]_ISMITMSC01A-Eth49/1-GnetVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 589\n   vrf Gnet\n   ip address 10.210.241.40/31\n!\ninterface
+    Ethernet3/5/1\n   description [L]_ISMTMGPAN40\n   no shutdown\n   speed 100g\n
+    \  channel-group 351 mode active\n!\ninterface Ethernet3/48/1\n   description
+    [L]_MLAG_PEER_ISMCR02A_Ethernet3/48/1\n   no shutdown\n   channel-group 4094 mode
+    active\n!\ninterface Ethernet4/1/1\n   no shutdown\n   no switchport\n!\ninterface
+    Ethernet4/1/1.510\n   description [L]_ISMDC1BL02A-Eth1/1-IT-DCVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 510\n   vrf IT-DC\n   ip address 10.210.226.28/31\n!\ninterface
+    Ethernet4/1/1.533\n   description [L]_ISMDC1BL02A-Eth1/1-OT-VRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 533\n   vrf OT\n   ip address 10.210.226.4/31\n!\ninterface
+    Ethernet4/2/1\n   no shutdown\n   no switchport\n!\ninterface Ethernet4/2/1.510\n
+    \  description [L]_ISMDC2BL02A-Eth1/1-IT-DCVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 510\n   vrf IT-DC\n   ip address 10.210.234.20/31\n!\ninterface Ethernet4/2/1.533\n
+    \  description [L]_ISMDC2BL02A-Eth1/1-OT-VRF\n   no shutdown\n   encapsulation
+    dot1q vlan 533\n   vrf OT\n   ip address 10.210.234.4/31\n!\ninterface Ethernet4/3/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet4/3/1.525\n   description
+    [L]_ISMS1ITBL02A-Eth1/1-ITVRF\n   no shutdown\n   encapsulation dot1q vlan 525\n
+    \  vrf IT\n   ip address 10.210.241.4/31\n!\ninterface Ethernet4/3/1.633\n   description
+    [L]_ISMS1ITBL02A-Eth1/1-IoTVRF\n   no shutdown\n   encapsulation dot1q vlan 633\n
+    \  vrf IoT\n   ip address 10.210.241.12/31\n!\ninterface Ethernet4/4/1\n   no
+    shutdown\n   no switchport\n!\ninterface Ethernet4/4/1.525\n   description [L]_ISMITMSC02A-Eth49/1-ITVRF\n
+    \  no shutdown\n   encapsulation dot1q vlan 525\n   vrf IT\n   ip address 10.210.241.20/31\n!\ninterface
+    Ethernet4/4/1.533\n   description [L]_ISMITMSC02A-Eth49/1-OTVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 533\n   vrf OT\n   ip address 10.210.241.28/31\n!\ninterface
+    Ethernet4/4/1.581\n   description [L]_ISMITMSC02A-Eth49/1-ehsVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 581\n   vrf ehs\n   ip address 10.210.241.34/31\n!\ninterface
+    Ethernet4/4/1.589\n   description [L]_ISMITMSC02A-Eth49/1-GnetVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 589\n   vrf Gnet\n   ip address 10.210.241.42/31\n!\ninterface
+    Ethernet4/5/1\n   description [L]_ISMTMGPAN41\n   no shutdown\n   speed 100g\n
+    \  channel-group 451 mode active\n!\ninterface Ethernet4/48/1\n   description
+    [L]_MLAG_PEER_ISMCR02A_Ethernet4/48/1\n   no shutdown\n   channel-group 4094 mode
+    active\n!\ninterface Ethernet5/1\n   description [L]_ISMPAN98\n   no shutdown\n
+    \  speed 10g\n   channel-group 51 mode active\n!\ninterface Ethernet5/2\n   description
+    [L]_ISMPAN60\n   no shutdown\n   speed 25g\n   channel-group 52 mode active\n!\ninterface
+    Ethernet5/3\n   description [L]_ISMTMGPAN48\n   no shutdown\n   speed 25g\n   channel-group
+    53 mode active\n!\ninterface Ethernet6/1\n   description [L]_ISMPAN99\n   no shutdown\n
+    \  speed 10g\n   channel-group 61 mode active\n!\ninterface Ethernet6/2\n   description
+    [L]_ISMPAN61\n   no shutdown\n   speed 25g\n   channel-group 62 mode active\n!\ninterface
+    Ethernet6/3\n   description [L]_ISMTMGPAN49\n   no shutdown\n   speed 25g\n   channel-group
+    63 mode active\n!\ninterface Loopback0\n   description Router_ID\n   no shutdown\n
+    \  ip address 172.21.0.245/32\n!\ninterface Management0\n   description oob_management\n
+    \  no shutdown\n   vrf mgmt\n   ip address 10.210.80.72/21\n!\ninterface Vlan510\n
+    \  description WANFW-TRANSIT-IT-DCVRF\n   no shutdown\n   vrf IT-DC\n   ip address
+    10.210.226.66/29\n   ip virtual-router address 10.210.226.65\n   no ip proxy-arp\n
+    \  no autostate\n\n!\ninterface Vlan525\n   description WANFW-TRANSIT-ITVRF\n
+    \  no shutdown\n   vrf IT\n   ip address 10.210.241.66/29\n   ip virtual-router
+    address 10.210.241.65\n   no ip proxy-arp\n   no autostate\n\n!\ninterface Vlan533\n
+    \  description WANFW-TRANSIT-OTVRF\n   no shutdown\n   vrf OT\n   ip address 10.210.249.66/29\n
+    \  ip virtual-router address 10.210.249.65\n   no ip proxy-arp\n   no autostate\n\n!\ninterface
+    Vlan541\n   description SCADAFW-TRANSIT-ITVRF\n   no shutdown\n   vrf IT\n   ip
+    address 10.210.241.82/29\n   ip virtual-router address 10.210.241.81\n   no ip
+    proxy-arp\n   no autostate\n\n!\ninterface Vlan542\n   description VENDORFW-TRANSIT-OTVRF\n
+    \  no shutdown\n   vrf OT\n   ip address 10.210.249.74/29\n   ip virtual-router
+    address 10.210.249.73\n   no ip proxy-arp\n   no autostate\n\n!\ninterface Vlan581\n
+    \  description DMZFW-TRANSIT-ehsVRF\n   no shutdown\n   vrf ehs\n   ip address
+    10.210.241.122/29\n   ip virtual-router address 10.210.241.121\n   no ip proxy-arp\n
+    \  no autostate\n\n!\ninterface Vlan589\n   description DMZFW-TRANSIT-GnetVRF\n
+    \  no shutdown\n   vrf Gnet\n   ip address 10.210.241.130/29\n   ip virtual-router
+    address 10.210.241.129\n   no ip proxy-arp\n   no autostate\n\n!\ninterface Vlan633\n
+    \  description IoTFW-TRANSIT-IoTVRF\n   no shutdown\n   vrf IoT\n   ip address
+    10.210.241.74/29\n   ip virtual-router address 10.210.241.73\n   no ip proxy-arp\n
+    \  no autostate\n\n!\ninterface Vlan4087\n   description MLAG_PEER_L3_iBGP: vrf
+    Gnet\n   no shutdown\n   mtu 9214\n   vrf Gnet\n   ip address 192.168.0.4/31\n!\ninterface
+    Vlan4088\n   description MLAG_PEER_L3_iBGP: vrf ehs\n   no shutdown\n   mtu 9214\n
+    \  vrf ehs\n   ip address 192.168.0.4/31\n!\ninterface Vlan4089\n   description
+    MLAG_PEER_L3_iBGP: vrf IoT\n   no shutdown\n   mtu 9214\n   vrf IoT\n   ip address
+    192.168.0.4/31\n!\ninterface Vlan4090\n   description MLAG_PEER_L3_iBGP: vrf IT\n
+    \  no shutdown\n   mtu 9214\n   vrf IT\n   ip address 192.168.0.4/31\n!\ninterface
+    Vlan4091\n   description MLAG_PEER_L3_iBGP: vrf IT-DC\n   no shutdown\n   mtu
+    9214\n   vrf IT-DC\n   ip address 192.168.0.4/31\n!\ninterface Vlan4092\n   description
+    MLAG_PEER_L3_iBGP: vrf OT\n   no shutdown\n   mtu 9214\n   vrf OT\n   ip address
+    192.168.0.4/31\n!\ninterface Vlan4093\n   description MLAG_PEER_L3_PEERING\n   no
+    shutdown\n   mtu 9214\n   ip address 192.168.0.2/31\n!\ninterface Vlan4094\n   description
+    MLAG_PEER\n   no shutdown\n   mtu 9214\n   no autostate\n   ip address 192.168.0.0/31\n!\nip
+    virtual-router mac-address 00:aa:aa:aa:aa:aa\n!\nip access-list standard Airwave-SNMP_Access\n
+    \  10 permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard
+    Ansible-ACL_SM\n   10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark
+    dlecvp02\n   40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit
+    host 10.64.41.27\n   70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90
+    remark dsmcvp02\n   100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120
+    permit host 10.210.80.9\n   130 remark ents\n   140 permit host 172.31.227.10\n
+    \  150 remark tilde\n   160 permit host 172.31.226.25\n   170 remark dotdot\n
+    \  180 permit host 172.31.225.12\n!\nip access-list standard ENTS-SNMP_Access\n
+    \  10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n   30 permit
+    host 172.31.225.12\n   40 deny any log\n!\nip access-list standard NetBrain-SNMP_Access\n
+    \  10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n   30 permit
+    host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any log\n!\nip
+    access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n   20
+    permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard SevOne-SNMP_Access\n
+    \  10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n   30 permit
+    host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit host 172.31.225.61\n
+    \  60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n   80  permit
+    host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit host 172.31.225.66\n
+    \  110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n   130  permit
+    host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit host 172.31.225.87\n
+    \  160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n   180  permit
+    host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit host 172.31.226.100\n
+    \  210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n   230
+    \ permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\n!\nip
+    routing\nip routing vrf ehs\nip routing vrf Gnet\nip routing vrf IoT\nip routing
+    vrf IT\nip routing vrf IT-DC\nno ip routing vrf mgmt\nip routing vrf OT\n!\nip
+    prefix-list PL-FW-ALLOW-NETWORKS\n   seq 10 permit 172.21.0.0/22 eq 32\n   seq
+    20 permit 192.168.160.0/20 eq 32\n   seq 30 permit 192.0.2.0/24 eq 32\n   seq
+    40 permit 198.51.100.0/24 eq 32\n!\nip prefix-list PL-FW-DENY-HOST-ROUTES\n   seq
+    10 deny 0.0.0.0/0 ge 30\n!\nip prefix-list PL-LOCAL-NETWORKS\n   seq 10 permit
+    10.208.0.0/13 le 29\n   seq 20 permit 172.21.0.0/22 eq 32\n   seq 30 permit 192.168.160.0/20
+    eq 32\n!\nmlag configuration\n   domain-id MLAG\n   local-interface Vlan4094\n
+    \  peer-address 192.168.0.1\n   peer-link Port-Channel4094\n   reload-delay mlag
+    900\n   reload-delay non-mlag 1020\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\nip
+    route vrf ehs 0.0.0.0/0 10.210.241.126 225 name ISMPAN98&99-ehsVRF metric 225\nip
+    route vrf Gnet 0.0.0.0/0 10.210.241.134 225 name ISMPAN98&99-GnetVRF metric 225\nip
+    route vrf IoT 0.0.0.0/0 10.210.241.78 225 name ISMPAN98&99-IoTVRF metric 225\nip
+    route vrf IT 0.0.0.0/0 10.210.241.70 225 name ISMTMGPAN40&41-ITVRF metric 225\nip
+    route vrf IT-DC 0.0.0.0/0 10.210.226.70 225 name ISMTMGPAN40&41-IT-DCVRF metric
+    225\nip route vrf OT 0.0.0.0/0 10.210.249.67 225 name ISMTMGPAN40&41-OTVRF metric
+    225\n!\nroute-map RM-ehs-10.210.241.126-SET-NEXT-HOP-OUT permit 10\n   set ip
+    next-hop 10.210.241.121\n!\nroute-map RM-Gnet-10.210.241.134-SET-NEXT-HOP-OUT
+    permit 10\n   set ip next-hop 10.210.241.129\n!\nroute-map RM-LOCAL-NETWORKS permit
+    10\n   match ip address prefix-list PL-LOCAL-NETWORKS\n!\nroute-map RM-MLAG-PEER-IN
+    permit 10\n   description Make routes learned over MLAG Peer-link less preferred
+    on spines to ensure optimal routing\n   set origin incomplete\n!\nroute-map RM-WANFW-IoTVRF-OUT
+    permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-IoTVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-IoTVRF-OUT permit 30\n   set ip next-hop 110.210.241.73\n!\nroute-map
+    RM-WANFW-IT-DCVRF-OUT permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-IT-DCVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-IT-DCVRF-OUT permit 30\n   set ip next-hop 10.210.226.65\n!\nroute-map
+    RM-WANFW-ITVRF-OUT permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-ITVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-ITVRF-OUT permit 30\n   set ip next-hop 10.210.241.65\n!\nroute-map RM-WANFW-OTVRF-OUT
+    permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-OTVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-OTVRF-OUT permit 30\n   set ip next-hop 10.210.249.65\n!\nrouter bgp
+    65120.1\n   router-id 172.21.0.245\n   maximum-paths 128 ecmp 128\n   update wait-install\n
+    \  no bgp default ipv4-unicast\n   bgp asn notation asdot\n   timers bgp 5 15\n
+    \  distance bgp 20 200 200\n   neighbor default send-community\n   neighbor DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    peer group\n   neighbor DC1-BLLF-EBGP-PEERS-IT-DCVRF remote-as 65120.11200\n   neighbor
+    DC1-BLLF-EBGP-PEERS-IT-DCVRF default-originate\n   neighbor DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    maximum-routes 0\n   neighbor DC1-BLLF-EBGP-PEERS-OTVRF peer group\n   neighbor
+    DC1-BLLF-EBGP-PEERS-OTVRF remote-as 65120.11200\n   neighbor DC1-BLLF-EBGP-PEERS-OTVRF
+    default-originate\n   neighbor DC1-BLLF-EBGP-PEERS-OTVRF maximum-routes 0\n   neighbor
+    DC2-BLLF-EBGP-PEERS-IT-DCVRF peer group\n   neighbor DC2-BLLF-EBGP-PEERS-IT-DCVRF
+    remote-as 65120.12200\n   neighbor DC2-BLLF-EBGP-PEERS-IT-DCVRF default-originate\n
+    \  neighbor DC2-BLLF-EBGP-PEERS-IT-DCVRF maximum-routes 0\n   neighbor DC2-BLLF-EBGP-PEERS-OTVRF
+    peer group\n   neighbor DC2-BLLF-EBGP-PEERS-OTVRF remote-as 65120.12200\n   neighbor
+    DC2-BLLF-EBGP-PEERS-OTVRF default-originate\n   neighbor DC2-BLLF-EBGP-PEERS-OTVRF
+    maximum-routes 0\n   neighbor DMZFW-EBGP-PEERS-ehsVRF peer group\n   neighbor
+    DMZFW-EBGP-PEERS-ehsVRF remote-as 65120.98\n   neighbor DMZFW-EBGP-PEERS-ehsVRF
+    maximum-routes 0\n   neighbor DMZFW-EBGP-PEERS-GnetVRF peer group\n   neighbor
+    DMZFW-EBGP-PEERS-GnetVRF remote-as 65120.98\n   neighbor DMZFW-EBGP-PEERS-GnetVRF
+    maximum-routes 0\n   neighbor DMZFW-EBGP-PEERS-IoTVRF peer group\n   neighbor
+    DMZFW-EBGP-PEERS-IoTVRF remote-as 65120.98\n   neighbor DMZFW-EBGP-PEERS-IoTVRF
+    maximum-routes 0\n   neighbor IPv4-UNDERLAY-PEERS peer group\n   neighbor IT-BL-EBGP-PEERS-IoTVRF
+    peer group\n   neighbor IT-BL-EBGP-PEERS-IoTVRF remote-as 65120.31200\n   neighbor
+    IT-BL-EBGP-PEERS-IoTVRF default-originate\n   neighbor IT-BL-EBGP-PEERS-IoTVRF
+    maximum-routes 0\n   neighbor IT-BLLF-EBGP-PEERS-ITVRF peer group\n   neighbor
+    IT-BLLF-EBGP-PEERS-ITVRF remote-as 65120.31200\n   neighbor IT-BLLF-EBGP-PEERS-ITVRF
+    default-originate\n   neighbor IT-BLLF-EBGP-PEERS-ITVRF maximum-routes 0\n   neighbor
+    MISC-CORES-EBGP-PEERS-ehsVRF peer group\n   neighbor MISC-CORES-EBGP-PEERS-ehsVRF
+    remote-as 65120.10\n   neighbor MISC-CORES-EBGP-PEERS-ehsVRF maximum-routes 0\n
+    \  neighbor MISC-CORES-EBGP-PEERS-GnetVRF peer group\n   neighbor MISC-CORES-EBGP-PEERS-GnetVRF
+    remote-as 65120.10\n   neighbor MISC-CORES-EBGP-PEERS-GnetVRF maximum-routes 0\n
+    \  neighbor MISC-CORES-EBGP-PEERS-ITVRF peer group\n   neighbor MISC-CORES-EBGP-PEERS-ITVRF
+    remote-as 65120.10\n   neighbor MISC-CORES-EBGP-PEERS-ITVRF default-originate\n
+    \  neighbor MISC-CORES-EBGP-PEERS-ITVRF maximum-routes 0\n   neighbor MISC-CORES-EBGP-PEERS-OTVRF
+    peer group\n   neighbor MISC-CORES-EBGP-PEERS-OTVRF remote-as 65120.10\n   neighbor
+    MISC-CORES-EBGP-PEERS-OTVRF default-originate\n   neighbor MISC-CORES-EBGP-PEERS-OTVRF
+    maximum-routes 0\n   neighbor MLAG-IPv4-UNDERLAY-PEER peer group\n   neighbor
+    MLAG-IPv4-UNDERLAY-PEER remote-as 65120.1\n   neighbor MLAG-IPv4-UNDERLAY-PEER
+    next-hop-self\n   neighbor MLAG-IPv4-UNDERLAY-PEER description ISMCR02A\n   neighbor
+    MLAG-IPv4-UNDERLAY-PEER send-community\n   neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes
+    12000\n   neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in\n   neighbor
+    SCADAFW-EBGP-PEERS peer group\n   neighbor SCADAFW-EBGP-PEERS remote-as 65120.60\n
+    \  neighbor SCADAFW-EBGP-PEERS maximum-routes 0\n   neighbor VENDORFW-EBGP-PEERS
+    peer group\n   neighbor VENDORFW-EBGP-PEERS remote-as 65120.48\n   neighbor VENDORFW-EBGP-PEERS
+    maximum-routes 0\n   neighbor WANFW-EBGP-PEERS peer group\n   neighbor WANFW-EBGP-PEERS
+    remote-as 65120.40\n   neighbor WANFW-EBGP-PEERS maximum-routes 0\n   neighbor
+    192.168.0.3 peer group MLAG-IPv4-UNDERLAY-PEER\n   neighbor 192.168.0.3 description
+    ISMCR02A\n   redistribute connected route-map RM-LOCAL-NETWORKS\n   !\n   address-family
+    ipv4\n      neighbor MLAG-IPv4-UNDERLAY-PEER activate\n   !\n   vrf ehs\n      router-id
+    172.21.0.245\n      update wait-install\n      neighbor 10.210.241.33 peer group
+    MISC-CORES-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.33 description ISMITMSC01A-Eth49/1-ehsVRF\n
+    \     neighbor 10.210.241.35 peer group MISC-CORES-EBGP-PEERS-ehsVRF\n      neighbor
+    10.210.241.35 description ISMITMSC02A-Eth49/1-ehsVRF\n      neighbor 10.210.241.126
+    peer group DMZFW-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.126 description
+    DMZFW-VIP-ehsVRF\n      neighbor 10.210.241.126 route-map RM-ehs-10.210.241.126-SET-NEXT-HOP-OUT
+    out\n      neighbor 192.168.0.5 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.241.33 activate\n         neighbor 10.210.241.35
+    activate\n         neighbor 10.210.241.126 activate\n   !\n   vrf Gnet\n      router-id
+    172.21.0.245\n      update wait-install\n      neighbor 10.210.241.41 peer group
+    MISC-CORES-EBGP-PEERS-GnetVRF\n      neighbor 10.210.241.41 description ISMITMSC01A-Eth49/1-GnetVRF\n
+    \     neighbor 10.210.241.43 peer group MISC-CORES-EBGP-PEERS-GnetVRF\n      neighbor
+    10.210.241.43 description ISMITMSC02A-Eth49/1-GnetVRF\n      neighbor 10.210.241.134
+    peer group DMZFW-EBGP-PEERS-GnetVRF\n      neighbor 10.210.241.134 description
+    DMZFW-VIP-GnetVRF\n      neighbor 10.210.241.134 route-map RM-Gnet-10.210.241.134-SET-NEXT-HOP-OUT
+    out\n      neighbor 192.168.0.5 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.241.41 activate\n         neighbor 10.210.241.43
+    activate\n         neighbor 10.210.241.134 activate\n   !\n   vrf IoT\n      router-id
+    172.21.0.245\n      update wait-install\n      neighbor 10.210.241.9 peer group
+    IT-BLLF-EBGP-PEERS-IoTVRF\n      neighbor 10.210.241.9 description ISMS1ITBL01A-Eth1/1-IoTVRF\n
+    \     neighbor 10.210.241.13 peer group IT-BLLF-EBGP-PEERS-IoTVRF\n      neighbor
+    10.210.241.13 description ISMS1ITBL02A-Eth1/1-IoTVRF\n      neighbor 10.210.241.78
+    peer group DMZFW-EBGP-PEERS-IoTVRF\n      neighbor 10.210.241.78 description DMZFW-VIP-IoTVRF\n
+    \     neighbor 10.210.241.78 route-map RM-DMZFW-IoTVRF-OUT out\n      neighbor
+    192.168.0.5 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute connected route-map
+    RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family ipv4\n
+    \        neighbor 10.210.241.9 activate\n         neighbor 10.210.241.13 activate\n
+    \        neighbor 10.210.241.78 activate\n   !\n   vrf IT\n      router-id 172.21.0.245\n
+    \     update wait-install\n      neighbor 10.210.241.1 peer group IT-BLLF-EBGP-PEERS-ITVRF\n
+    \     neighbor 10.210.241.1 description ISMS1ITBL01A-Eth1/1-ITVRF\n      neighbor
+    10.210.241.5 peer group IT-BLLF-EBGP-PEERS-ITVRF\n      neighbor 10.210.241.5
+    description ISMS1ITBL02A-Eth1/1-ITVRF\n      neighbor 10.210.241.17 peer group
+    MISC-CORES-EBGP-PEERS-ITVRF\n      neighbor 10.210.241.17 description ISMITMSC01A-Eth49/1-ITVRF\n
+    \     neighbor 10.210.241.21 peer group MISC-CORES-EBGP-PEERS-ITVRF\n      neighbor
+    10.210.241.21 description ISMITMSC02A-Eth49/1-ITVRF\n      neighbor 10.210.241.70
+    peer group WANFW-EBGP-PEERS\n      neighbor 10.210.241.70 description WANFW-IP-ITVRF\n
+    \     neighbor 10.210.241.70 route-map RM-WANFW-ITVRF-OUT out\n      neighbor
+    10.210.241.86 peer group SCADAFW-EBGP-PEERS\n      neighbor 10.210.241.86 description
+    SCADAFW-IP-ITVRF\n      neighbor 192.168.0.5 peer group MLAG-IPv4-UNDERLAY-PEER\n
+    \     redistribute connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n
+    \     !\n      address-family ipv4\n         neighbor 10.210.241.1 activate\n
+    \        neighbor 10.210.241.5 activate\n         neighbor 10.210.241.17 activate\n
+    \        neighbor 10.210.241.21 activate\n         neighbor 10.210.241.70 activate\n
+    \        neighbor 10.210.241.86 activate\n   !\n   vrf IT-DC\n      router-id
+    172.21.0.245\n      update wait-install\n      neighbor 10.210.226.25 peer group
+    DC1-BLLF-EBGP-PEERS-IT-DCVRF\n      neighbor 10.210.226.25 description DC1-BL1-Eth1/1-IT-DCVRF\n
+    \     neighbor 10.210.226.29 peer group DC1-BLLF-EBGP-PEERS-IT-DCVRF\n      neighbor
+    10.210.226.29 description DC1-BL2-Eth1/1-IT-DCVRF\n      neighbor 10.210.226.70
+    peer group WANFW-EBGP-PEERS\n      neighbor 10.210.226.70 description WANFW-IP-IT-DCVRF\n
+    \     neighbor 10.210.226.70 route-map RM-WANFW-IT-DCVRF-OUT out\n      neighbor
+    10.210.234.17 peer group DC2-BLLF-EBGP-PEERS-IT-DCVRF\n      neighbor 10.210.234.17
+    description DC2-BL1-Eth1/1-IT-DCVRF\n      neighbor 10.210.234.21 peer group DC2-BLLF-EBGP-PEERS-IT-DCVRF\n
+    \     neighbor 10.210.234.21 description DC2-BL2-Eth1/1-IT-DCVRF\n      neighbor
+    192.168.0.5 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute connected route-map
+    RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family ipv4\n
+    \        neighbor 10.210.226.25 activate\n         neighbor 10.210.226.29 activate\n
+    \        neighbor 10.210.226.70 activate\n         neighbor 10.210.234.17 activate\n
+    \        neighbor 10.210.234.21 activate\n   !\n   vrf OT\n      router-id 172.21.0.245\n
+    \     update wait-install\n      neighbor 10.210.226.1 peer group DC1-BLLF-EBGP-PEERS-OTVRF\n
+    \     neighbor 10.210.226.1 description DC1-BL1-OTVRF\n      neighbor 10.210.226.5
+    peer group DC1-BLLF-EBGP-PEERS-OTVRF\n      neighbor 10.210.226.5 description
+    DC1-BL2-OTVRF\n      neighbor 10.210.234.1 peer group DC2-BLLF-EBGP-PEERS-OTVRF\n
+    \     neighbor 10.210.234.1 description DC2-BL1-OTVRF\n      neighbor 10.210.234.5
+    peer group DC2-BLLF-EBGP-PEERS-OTVRF\n      neighbor 10.210.234.5 description
+    DC2-BL2-OTVRF\n      neighbor 10.210.241.25 peer group MISC-CORES-EBGP-PEERS-OTVRF\n
+    \     neighbor 10.210.241.25 description ISMITMSC01A-Eth49/1-OTVRF\n      neighbor
+    10.210.241.29 peer group MISC-CORES-EBGP-PEERS-OTVRF\n      neighbor 10.210.241.29
+    description ISMITMSC02A-Eth49/1-OTVRF\n      neighbor 10.210.249.67 peer group
+    WANFW-EBGP-PEERS\n      neighbor 10.210.249.67 description WANFW-IP-OTVRF\n      neighbor
+    10.210.249.67 route-map RM-WANFW-OTVRF-OUT out\n      neighbor 10.210.249.78 peer
+    group VENDORFW-EBGP-PEERS\n      neighbor 10.210.249.78 description VENDORFW-IP-OTVRF\n
+    \     neighbor 192.168.0.5 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.226.1 activate\n         neighbor 10.210.226.5
+    activate\n         neighbor 10.210.234.1 activate\n         neighbor 10.210.234.5
+    activate\n         neighbor 10.210.241.25 activate\n         neighbor 10.210.241.29
+    activate\n         neighbor 10.210.249.67 activate\n         neighbor 10.210.249.78
+    activate\n!\nip tacacs vrf mgmt source-interface Management0\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_ISMCR02A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll dir\nalias
+    q exit\nalias senz show interface counter error | nz\nalias shmc show int | awk
+    '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz show interface
+    counter | nz\nalias spd show port-channel %1 detail all\nalias sqnz show interface
+    counter queue | nz\nalias srnz show interface counter rate | nz\nalias shterminattr
+    show version detail | grep TerminAttr-core\n\n!\ndaemon TerminAttr\n   exec /usr/bin/TerminAttr
+    -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910 -cvauth=token,/tmp/token
+    -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nswitchport default mode
+    routed\n!\nvlan internal order ascending range 1006 1199\n!\nload-interval default
+    30\n!\ninterface defaults\n   ethernet\n      shutdown\n   mtu 9214\n!\ntransceiver
+    qsfp default-mode 4x10G\n!\nservice routing protocols model multi-agent\n!\nlogging
+    buffered 10000 debugging\nlogging trap debugging\nno logging console\nlogging
+    monitor debugging\nlogging synchronous level all\nlogging vrf mgmt host ents.itg.ti.com
+    514 protocol tcp\nlogging format timestamp high-resolution\nlogging format hostname
+    fqdn\nlogging facility local7\nlogging vrf mgmt source-interface Management0\n!\nhostname
+    ISMCR02A\nip domain lookup vrf mgmt source-interface Management0\nip name-server
+    vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns domain itg.ti.com\n!\nntp
+    local-interface vrf mgmt Management0\nntp server vrf mgmt 10.188.255.18\nntp server
+    vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp server vrf mgmt
+    137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server vrf mgmt 158.218.8.155\nntp
+    server vrf mgmt 172.16.44.10\nntp server vrf mgmt 172.16.169.44\nntp server vrf
+    mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server engineID
+    local 7c88f7a1a3667c1f5a49cadd5c1892bab732ba4e\nsnmp-server location SM_CORE_MISC_FABRIC
+    [SM_CORE_MISC_FABRIC] ISMCR02A\nsnmp-server engineID remote entstrap.itg.ti.com
+    536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com 536576306E65406363652424\nsnmp-server
+    vrf mgmt local-interface Management0\nsnmp-server community 6XTUe5ZyUN0xQ25MNvdg
+    rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH ro ENTS-SNMP_Access\nsnmp-server
+    community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server community Oij0ENt7meI3wjK2rxNv
+    ro Statseeker-SNMP_Access\nsnmp-server community r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server
+    community vhbqmu2JRJQcjfX99inm ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3
+    ro NetDisco-SNMP_Access\nsnmp-server group network-admin v3 auth\nsnmp-server
+    group network-operator v3 auth\nsnmp-server user SNMPManager network-admin v3
+    localized 7c88f7a1a3667c1f5a49cadd5c1892bab732ba4e auth sha f5a7b12ce0caf277234c385895b05e22210a8498
+    priv aes f5a7b12ce0caf277234c385895b05e22\nsnmp-server enable traps\nsnmp-server
+    vrf mgmt\n!\nspanning-tree mode mstp\nno spanning-tree vlan-id 4093-4094\nspanning-tree
+    mst 0 priority 4096\n!\ntacacs-server host 172.31.225.29 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    host 172.31.226.32 vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server
+    policy unknown-mandatory-attribute ignore\ntacacs-server timeout 20\n!\naaa group
+    server tacacs+ tacacs_servers\n   server 172.31.226.29 vrf mgmt\n   server 172.32.226.32
+    vrf mgmt\n!\naaa authentication login default group tacacs_servers local\naaa
+    authentication login console local\naaa authentication enable default group tacacs_servers
+    local\naaa authorization exec default group tacacs_servers local\naaa accounting
+    commands 1,15 default start-stop group tacacs_servers\n!\nenable password sha512
+    test\nno aaa root\n!\nusername networkpw privilege 15 role network-admin secret
+    sha512 test\n!\nclock timezone UTC\n!\nvlan 510\n   name WANFW-TRANSIT-IT-DCVRF\n!\nvlan
+    525\n   name WANFW-TRANSIT-ITVRF\n!\nvlan 533\n   name WANFW-TRANSIT-OTVRF\n!\nvlan
+    541\n   name SCADAFW-TRANSIT-ITVRF\n!\nvlan 542\n   name VENDORFW-TRANSIT-OTVRF\n!\nvlan
+    581\n   name DMZFW-TRANSIT-ehsVRF\n!\nvlan 589\n   name DMZFW-TRANSIT-GnetVRF\n!\nvlan
+    633\n   name IoTFW-TRANSIT-IoTVRF\n!\nvlan 4087\n   name MLAG_iBGP_Gnet\n   trunk
+    group MLAG\n!\nvlan 4088\n   name MLAG_iBGP_ehs\n   trunk group MLAG\n!\nvlan
+    4089\n   name MLAG_iBGP_IoT\n   trunk group MLAG\n!\nvlan 4090\n   name MLAG_iBGP_IT\n
+    \  trunk group MLAG\n!\nvlan 4091\n   name MLAG_iBGP_IT-DC\n   trunk group MLAG\n!\nvlan
+    4092\n   name MLAG_iBGP_OT\n   trunk group MLAG\n!\nvlan 4093\n   name LEAF_PEER_L3\n
+    \  trunk group MLAG\n!\nvlan 4094\n   name MLAG_PEER\n   trunk group MLAG\n!\nvrf
+    instance ehs\n!\nvrf instance Gnet\n!\nvrf instance IoT\n!\nvrf instance IT\n!\nvrf
+    instance IT-DC\n!\nvrf instance mgmt\n!\nvrf instance OT\n!\ninterface Port-Channel51\n
+    \  description [L]_ISMPAN98_MLAG PortChannel to DMZ Firewalls\n   no shutdown\n
+    \  switchport\n   switchport trunk allowed vlan 581,589,633\n   switchport mode
+    trunk\n   mlag 51\n!\ninterface Port-Channel52\n   description [L]_ISMPAN60_MLAG
+    PortChannel to SCADA Firewalls\n   no shutdown\n   switchport\n   switchport access
+    vlan 541\n   mlag 52\n!\ninterface Port-Channel53\n   description [L]_ISMTMGPAN48_MLAG
+    PortChannel to Vendor Firewalls\n   no shutdown\n   switchport\n   switchport
+    access vlan 542\n   mlag 53\n!\ninterface Port-Channel61\n   description [L]_ISMPAN99_MLAG
+    PortChannel to DMZ Firewalls\n   no shutdown\n   switchport\n   switchport trunk
+    allowed vlan 581,589,633\n   switchport mode trunk\n   mlag 61\n!\ninterface Port-Channel62\n
+    \  description [L]_ISMPAN61_MLAG PortChannel to SCADA Firewalls\n   no shutdown\n
+    \  switchport\n   switchport access vlan 541\n   mlag 62\n!\ninterface Port-Channel63\n
+    \  description [L]_ISMTMGPAN49_MLAG PortChannel to Vendor Firewalls\n   no shutdown\n
+    \  switchport\n   switchport access vlan 542\n   mlag 63\n!\ninterface Port-Channel351\n
+    \  description [L]_ISMTMGPAN40_MLAG PortChannel to WAN Firewalls\n   no shutdown\n
+    \  switchport\n   switchport trunk allowed vlan 525,510,533\n   switchport mode
+    trunk\n   mlag 351\n!\ninterface Port-Channel451\n   description [L]_ISMTMGPAN41_MLAG
+    PortChannel to WAN Firewalls\n   no shutdown\n   switchport\n   switchport trunk
+    allowed vlan 525,510,533\n   switchport mode trunk\n   mlag 451\n!\ninterface
+    Port-Channel4094\n   description [L]_MLAG_PEER_ISMCR01A_Po3481\n   no shutdown\n
+    \  switchport\n   switchport mode trunk\n   switchport trunk group MLAG\n!\ninterface
+    Ethernet3/1/1\n   no shutdown\n   no switchport\n!\ninterface Ethernet3/1/1.510\n
+    \  description [L]_ISMDC1BL01A-Eth2/1-IT-DCVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 510\n   vrf IT-DC\n   ip address 10.210.226.26/31\n!\ninterface Ethernet3/1/1.533\n
+    \  description [L]_ISMDC1BL01A-Eth2/1-OT-VRF\n   no shutdown\n   encapsulation
+    dot1q vlan 533\n   vrf OT\n   ip address 10.210.226.2/31\n!\ninterface Ethernet3/2/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet3/2/1.510\n   description
+    [L]_ISMDC2BL01A-Eth2/1-IT-DCVRF\n   no shutdown\n   encapsulation dot1q vlan 510\n
+    \  vrf IT-DC\n   ip address 10.210.234.18/31\n!\ninterface Ethernet3/2/1.533\n
+    \  description [L]_ISMDC2BL01A-Eth2/1-OT-VRF\n   no shutdown\n   encapsulation
+    dot1q vlan 533\n   vrf OT\n   ip address 10.210.234.2/31\n!\ninterface Ethernet3/3/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet3/3/1.525\n   description
+    [L]_ISMS1ITBL01A-Eth2/1-ITVRF\n   no shutdown\n   encapsulation dot1q vlan 525\n
+    \  vrf IT\n   ip address 10.210.241.2/31\n!\ninterface Ethernet3/3/1.633\n   description
+    [L]_ISMS1ITBL01A-Eth2/1-IoTVRF\n   no shutdown\n   encapsulation dot1q vlan 633\n
+    \  vrf IoT\n   ip address 10.210.241.10/31\n!\ninterface Ethernet3/4/1\n   no
+    shutdown\n   no switchport\n!\ninterface Ethernet3/4/1.525\n   description [L]_ISMITMSC01A-Eth50/1-ITVRF\n
+    \  no shutdown\n   encapsulation dot1q vlan 525\n   vrf IT\n   ip address 10.210.241.18/31\n!\ninterface
+    Ethernet3/4/1.533\n   description [L]_ISMITMSC01A-Eth50/1-OTVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 533\n   vrf OT\n   ip address 10.210.241.26/31\n!\ninterface
+    Ethernet3/4/1.581\n   description [L]_ISMITMSC01A-Eth50/1-ehsVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 581\n   vrf ehs\n   ip address 10.210.241.36/31\n!\ninterface
+    Ethernet3/4/1.589\n   description [L]_ISMITMSC01A-Eth50/1-GnetVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 589\n   vrf Gnet\n   ip address 10.210.241.44/31\n!\ninterface
+    Ethernet3/5/1\n   description [L]_ISMTMGPAN40\n   no shutdown\n   speed 100g\n
+    \  channel-group 351 mode active\n!\ninterface Ethernet3/48/1\n   description
+    [L]_MLAG_PEER_ISMCR01A_Ethernet3/48/1\n   no shutdown\n   channel-group 4094 mode
+    active\n!\ninterface Ethernet4/1/1\n   no shutdown\n   no switchport\n!\ninterface
+    Ethernet4/1/1.510\n   description [L]_ISMDC1BL02A-Eth2/1-IT-DCVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 510\n   vrf IT-DC\n   ip address 10.210.226.30/31\n!\ninterface
+    Ethernet4/1/1.533\n   description [L]_ISMDC1BL02A-Eth2/1-OT-VRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 533\n   vrf OT\n   ip address 10.210.226.6/31\n!\ninterface
+    Ethernet4/2/1\n   no shutdown\n   no switchport\n!\ninterface Ethernet4/2/1.510\n
+    \  description [L]_ISMDC2BL02A-Eth2/1-IT-DCVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 510\n   vrf IT-DC\n   ip address 10.210.234.22/31\n!\ninterface Ethernet4/2/1.533\n
+    \  description [L]_ISMDC2BL02A-Eth2/1-OT-VRF\n   no shutdown\n   encapsulation
+    dot1q vlan 533\n   vrf OT\n   ip address 10.210.234.6/31\n!\ninterface Ethernet4/3/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet4/3/1.525\n   description
+    [L]_ISMS1ITBL02A-Eth2/1-ITVRF\n   no shutdown\n   encapsulation dot1q vlan 525\n
+    \  vrf IT\n   ip address 10.210.241.6/31\n!\ninterface Ethernet4/3/1.633\n   description
+    [L]_ISMS1ITBL02A-Eth2/1-IoTVRF\n   no shutdown\n   encapsulation dot1q vlan 633\n
+    \  vrf IoT\n   ip address 10.210.241.14/31\n!\ninterface Ethernet4/4/1\n   no
+    shutdown\n   no switchport\n!\ninterface Ethernet4/4/1.525\n   description [L]_ISMITMSC02A-Eth50/1-ITVRF\n
+    \  no shutdown\n   encapsulation dot1q vlan 525\n   vrf IT\n   ip address 10.210.241.22/31\n!\ninterface
+    Ethernet4/4/1.533\n   description [L]_ISMITMSC02A-Eth50/1-OTVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 533\n   vrf OT\n   ip address 10.210.241.30/31\n!\ninterface
+    Ethernet4/4/1.581\n   description [L]_ISMITMSC02A-Eth50/1-ehsVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 581\n   vrf ehs\n   ip address 10.210.241.38/31\n!\ninterface
+    Ethernet4/4/1.589\n   description [L]_ISMITMSC02A-Eth50/1-GnetVRF\n   no shutdown\n
+    \  encapsulation dot1q vlan 589\n   vrf Gnet\n   ip address 10.210.241.46/31\n!\ninterface
+    Ethernet4/5/1\n   description [L]_ISMTMGPAN41\n   no shutdown\n   speed 100g\n
+    \  channel-group 451 mode active\n!\ninterface Ethernet4/48/1\n   description
+    [L]_MLAG_PEER_ISMCR01A_Ethernet4/48/1\n   no shutdown\n   channel-group 4094 mode
+    active\n!\ninterface Ethernet5/1\n   description [L]_ISMPAN98\n   no shutdown\n
+    \  speed 10g\n   channel-group 51 mode active\n!\ninterface Ethernet5/2\n   description
+    [L]_ISMPAN60\n   no shutdown\n   speed 25g\n   channel-group 52 mode active\n!\ninterface
+    Ethernet5/3\n   description [L]_ISMTMGPAN48\n   no shutdown\n   speed 25g\n   channel-group
+    53 mode active\n!\ninterface Ethernet6/1\n   description [L]_ISMPAN99\n   no shutdown\n
+    \  speed 10g\n   channel-group 61 mode active\n!\ninterface Ethernet6/2\n   description
+    [L]_ISMPAN61\n   no shutdown\n   speed 25g\n   channel-group 62 mode active\n!\ninterface
+    Ethernet6/3\n   description [L]_ISMTMGPAN49\n   no shutdown\n   speed 25g\n   channel-group
+    63 mode active\n!\ninterface Loopback0\n   description Router_ID\n   no shutdown\n
+    \  ip address 172.21.0.246/32\n!\ninterface Management0\n   description oob_management\n
+    \  no shutdown\n   vrf mgmt\n   ip address 10.210.80.73/21\n!\ninterface Vlan510\n
+    \  description WANFW-TRANSIT-IT-DCVRF\n   no shutdown\n   vrf IT-DC\n   ip address
+    10.210.226.67/29\n   ip virtual-router address 10.210.226.65\n   no ip proxy-arp\n
+    \  no autostate\n\n!\ninterface Vlan525\n   description WANFW-TRANSIT-ITVRF\n
+    \  no shutdown\n   vrf IT\n   ip address 10.210.241.67/29\n   ip virtual-router
+    address 10.210.241.65\n   no ip proxy-arp\n   no autostate\n\n!\ninterface Vlan533\n
+    \  description WANFW-TRANSIT-OTVRF\n   no shutdown\n   vrf OT\n   ip address 10.210.249.67/29\n
+    \  ip virtual-router address 10.210.249.65\n   no ip proxy-arp\n   no autostate\n\n!\ninterface
+    Vlan541\n   description SCADAFW-TRANSIT-ITVRF\n   no shutdown\n   vrf IT\n   ip
+    address 10.210.241.83/29\n   ip virtual-router address 10.210.241.81\n   no ip
+    proxy-arp\n   no autostate\n\n!\ninterface Vlan542\n   description VENDORFW-TRANSIT-OTVRF\n
+    \  no shutdown\n   vrf OT\n   ip address 10.210.249.75/29\n   ip virtual-router
+    address 10.210.249.73\n   no ip proxy-arp\n   no autostate\n\n!\ninterface Vlan581\n
+    \  description DMZFW-TRANSIT-ehsVRF\n   no shutdown\n   vrf ehs\n   ip address
+    10.210.241.123/29\n   ip virtual-router address 10.210.241.121\n   no ip proxy-arp\n
+    \  no autostate\n\n!\ninterface Vlan589\n   description DMZFW-TRANSIT-GnetVRF\n
+    \  no shutdown\n   vrf Gnet\n   ip address 10.210.241.131/29\n   ip virtual-router
+    address 10.210.241.129\n   no ip proxy-arp\n   no autostate\n\n!\ninterface Vlan633\n
+    \  description IoTFW-TRANSIT-IoTVRF\n   no shutdown\n   vrf IoT\n   ip address
+    10.210.241.75/29\n   ip virtual-router address 10.210.241.73\n   no ip proxy-arp\n
+    \  no autostate\n\n!\ninterface Vlan4087\n   description MLAG_PEER_L3_iBGP: vrf
+    Gnet\n   no shutdown\n   mtu 9214\n   vrf Gnet\n   ip address 192.168.0.5/31\n!\ninterface
+    Vlan4088\n   description MLAG_PEER_L3_iBGP: vrf ehs\n   no shutdown\n   mtu 9214\n
+    \  vrf ehs\n   ip address 192.168.0.5/31\n!\ninterface Vlan4089\n   description
+    MLAG_PEER_L3_iBGP: vrf IoT\n   no shutdown\n   mtu 9214\n   vrf IoT\n   ip address
+    192.168.0.5/31\n!\ninterface Vlan4090\n   description MLAG_PEER_L3_iBGP: vrf IT\n
+    \  no shutdown\n   mtu 9214\n   vrf IT\n   ip address 192.168.0.5/31\n!\ninterface
+    Vlan4091\n   description MLAG_PEER_L3_iBGP: vrf IT-DC\n   no shutdown\n   mtu
+    9214\n   vrf IT-DC\n   ip address 192.168.0.5/31\n!\ninterface Vlan4092\n   description
+    MLAG_PEER_L3_iBGP: vrf OT\n   no shutdown\n   mtu 9214\n   vrf OT\n   ip address
+    192.168.0.5/31\n!\ninterface Vlan4093\n   description MLAG_PEER_L3_PEERING\n   no
+    shutdown\n   mtu 9214\n   ip address 192.168.0.3/31\n!\ninterface Vlan4094\n   description
+    MLAG_PEER\n   no shutdown\n   mtu 9214\n   no autostate\n   ip address 192.168.0.1/31\n!\nip
+    virtual-router mac-address 00:aa:aa:aa:aa:aa\n!\nip access-list standard Airwave-SNMP_Access\n
+    \  10 permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard
+    Ansible-ACL_SM\n   10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark
+    dlecvp02\n   40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit
+    host 10.64.41.27\n   70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90
+    remark dsmcvp02\n   100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120
+    permit host 10.210.80.9\n   130 remark ents\n   140 permit host 172.31.227.10\n
+    \  150 remark tilde\n   160 permit host 172.31.226.25\n   170 remark dotdot\n
+    \  180 permit host 172.31.225.12\n!\nip access-list standard ENTS-SNMP_Access\n
+    \  10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n   30 permit
+    host 172.31.225.12\n   40 deny any log\n!\nip access-list standard NetBrain-SNMP_Access\n
+    \  10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n   30 permit
+    host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any log\n!\nip
+    access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n   20
+    permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard SevOne-SNMP_Access\n
+    \  10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n   30 permit
+    host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit host 172.31.225.61\n
+    \  60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n   80  permit
+    host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit host 172.31.225.66\n
+    \  110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n   130  permit
+    host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit host 172.31.225.87\n
+    \  160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n   180  permit
+    host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit host 172.31.226.100\n
+    \  210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n   230
+    \ permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\n!\nip
+    routing\nip routing vrf ehs\nip routing vrf Gnet\nip routing vrf IoT\nip routing
+    vrf IT\nip routing vrf IT-DC\nno ip routing vrf mgmt\nip routing vrf OT\n!\nip
+    prefix-list PL-FW-ALLOW-NETWORKS\n   seq 10 permit 172.21.0.0/22 eq 32\n   seq
+    20 permit 192.168.160.0/20 eq 32\n   seq 30 permit 192.0.2.0/24 eq 32\n   seq
+    40 permit 198.51.100.0/24 eq 32\n!\nip prefix-list PL-FW-DENY-HOST-ROUTES\n   seq
+    10 deny 0.0.0.0/0 ge 30\n!\nip prefix-list PL-LOCAL-NETWORKS\n   seq 10 permit
+    10.208.0.0/13 le 29\n   seq 20 permit 172.21.0.0/22 eq 32\n   seq 30 permit 192.168.160.0/20
+    eq 32\n!\nmlag configuration\n   domain-id MLAG\n   local-interface Vlan4094\n
+    \  peer-address 192.168.0.0\n   peer-link Port-Channel4094\n   reload-delay mlag
+    900\n   reload-delay non-mlag 1020\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\nip
+    route vrf ehs 0.0.0.0/0 10.210.241.126 225 name ISMPAN98&99-ehsVRF metric 225\nip
+    route vrf Gnet 0.0.0.0/0 10.210.241.134 225 name ISMPAN98&99-GnetVRF metric 225\nip
+    route vrf IoT 0.0.0.0/0 10.210.241.78 225 name ISMPAN98&99-IoTVRF metric 225\nip
+    route vrf IT 0.0.0.0/0 10.210.241.70 225 name ISMTMGPAN40&41-ITVRF metric 225\nip
+    route vrf IT-DC 0.0.0.0/0 10.210.226.70 225 name ISMTMGPAN40&41-IT-DCVRF metric
+    225\nip route vrf OT 0.0.0.0/0 10.210.249.67 225 name ISMTMGPAN40&41-OTVRF metric
+    225\n!\nroute-map RM-ehs-10.210.241.126-SET-NEXT-HOP-OUT permit 10\n   set ip
+    next-hop 10.210.241.121\n!\nroute-map RM-Gnet-10.210.241.134-SET-NEXT-HOP-OUT
+    permit 10\n   set ip next-hop 10.210.241.129\n!\nroute-map RM-LOCAL-NETWORKS permit
+    10\n   match ip address prefix-list PL-LOCAL-NETWORKS\n!\nroute-map RM-MLAG-PEER-IN
+    permit 10\n   description Make routes learned over MLAG Peer-link less preferred
+    on spines to ensure optimal routing\n   set origin incomplete\n!\nroute-map RM-WANFW-IoTVRF-OUT
+    permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-IoTVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-IoTVRF-OUT permit 30\n   set ip next-hop 110.210.241.73\n!\nroute-map
+    RM-WANFW-IT-DCVRF-OUT permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-IT-DCVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-IT-DCVRF-OUT permit 30\n   set ip next-hop 10.210.226.65\n!\nroute-map
+    RM-WANFW-ITVRF-OUT permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-ITVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-ITVRF-OUT permit 30\n   set ip next-hop 10.210.241.65\n!\nroute-map RM-WANFW-OTVRF-OUT
+    permit 10\n   match ip address prefix-list PL-FW-ALLOW-NETWORKS\n!\nroute-map
+    RM-WANFW-OTVRF-OUT permit 20\n   match ip address prefix-list PL-FW-DENY-HOST-ROUTES\n!\nroute-map
+    RM-WANFW-OTVRF-OUT permit 30\n   set ip next-hop 10.210.249.65\n!\nrouter bgp
+    65120.1\n   router-id 172.21.0.246\n   maximum-paths 128 ecmp 128\n   update wait-install\n
+    \  no bgp default ipv4-unicast\n   bgp asn notation asdot\n   timers bgp 5 15\n
+    \  distance bgp 20 200 200\n   neighbor default send-community\n   neighbor DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    peer group\n   neighbor DC1-BLLF-EBGP-PEERS-IT-DCVRF remote-as 65120.11200\n   neighbor
+    DC1-BLLF-EBGP-PEERS-IT-DCVRF default-originate\n   neighbor DC1-BLLF-EBGP-PEERS-IT-DCVRF
+    maximum-routes 0\n   neighbor DC1-BLLF-EBGP-PEERS-OTVRF peer group\n   neighbor
+    DC1-BLLF-EBGP-PEERS-OTVRF remote-as 65120.11200\n   neighbor DC1-BLLF-EBGP-PEERS-OTVRF
+    default-originate\n   neighbor DC1-BLLF-EBGP-PEERS-OTVRF maximum-routes 0\n   neighbor
+    DC2-BLLF-EBGP-PEERS-IT-DCVRF peer group\n   neighbor DC2-BLLF-EBGP-PEERS-IT-DCVRF
+    remote-as 65120.12200\n   neighbor DC2-BLLF-EBGP-PEERS-IT-DCVRF default-originate\n
+    \  neighbor DC2-BLLF-EBGP-PEERS-IT-DCVRF maximum-routes 0\n   neighbor DC2-BLLF-EBGP-PEERS-OTVRF
+    peer group\n   neighbor DC2-BLLF-EBGP-PEERS-OTVRF remote-as 65120.12200\n   neighbor
+    DC2-BLLF-EBGP-PEERS-OTVRF default-originate\n   neighbor DC2-BLLF-EBGP-PEERS-OTVRF
+    maximum-routes 0\n   neighbor DMZFW-EBGP-PEERS-ehsVRF peer group\n   neighbor
+    DMZFW-EBGP-PEERS-ehsVRF remote-as 65120.98\n   neighbor DMZFW-EBGP-PEERS-ehsVRF
+    maximum-routes 0\n   neighbor DMZFW-EBGP-PEERS-GnetVRF peer group\n   neighbor
+    DMZFW-EBGP-PEERS-GnetVRF remote-as 65120.98\n   neighbor DMZFW-EBGP-PEERS-GnetVRF
+    maximum-routes 0\n   neighbor DMZFW-EBGP-PEERS-IoTVRF peer group\n   neighbor
+    DMZFW-EBGP-PEERS-IoTVRF remote-as 65120.98\n   neighbor DMZFW-EBGP-PEERS-IoTVRF
+    maximum-routes 0\n   neighbor IPv4-UNDERLAY-PEERS peer group\n   neighbor IT-BL-EBGP-PEERS-IoTVRF
+    peer group\n   neighbor IT-BL-EBGP-PEERS-IoTVRF remote-as 65120.31200\n   neighbor
+    IT-BL-EBGP-PEERS-IoTVRF default-originate\n   neighbor IT-BL-EBGP-PEERS-IoTVRF
+    maximum-routes 0\n   neighbor IT-BLLF-EBGP-PEERS-ITVRF peer group\n   neighbor
+    IT-BLLF-EBGP-PEERS-ITVRF remote-as 65120.31200\n   neighbor IT-BLLF-EBGP-PEERS-ITVRF
+    default-originate\n   neighbor IT-BLLF-EBGP-PEERS-ITVRF maximum-routes 0\n   neighbor
+    MISC-CORES-EBGP-PEERS-ehsVRF peer group\n   neighbor MISC-CORES-EBGP-PEERS-ehsVRF
+    remote-as 65120.10\n   neighbor MISC-CORES-EBGP-PEERS-ehsVRF maximum-routes 0\n
+    \  neighbor MISC-CORES-EBGP-PEERS-GnetVRF peer group\n   neighbor MISC-CORES-EBGP-PEERS-GnetVRF
+    remote-as 65120.10\n   neighbor MISC-CORES-EBGP-PEERS-GnetVRF maximum-routes 0\n
+    \  neighbor MISC-CORES-EBGP-PEERS-ITVRF peer group\n   neighbor MISC-CORES-EBGP-PEERS-ITVRF
+    remote-as 65120.10\n   neighbor MISC-CORES-EBGP-PEERS-ITVRF default-originate\n
+    \  neighbor MISC-CORES-EBGP-PEERS-ITVRF maximum-routes 0\n   neighbor MISC-CORES-EBGP-PEERS-OTVRF
+    peer group\n   neighbor MISC-CORES-EBGP-PEERS-OTVRF remote-as 65120.10\n   neighbor
+    MISC-CORES-EBGP-PEERS-OTVRF default-originate\n   neighbor MISC-CORES-EBGP-PEERS-OTVRF
+    maximum-routes 0\n   neighbor MLAG-IPv4-UNDERLAY-PEER peer group\n   neighbor
+    MLAG-IPv4-UNDERLAY-PEER remote-as 65120.1\n   neighbor MLAG-IPv4-UNDERLAY-PEER
+    next-hop-self\n   neighbor MLAG-IPv4-UNDERLAY-PEER description ISMCR01A\n   neighbor
+    MLAG-IPv4-UNDERLAY-PEER send-community\n   neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes
+    12000\n   neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in\n   neighbor
+    SCADAFW-EBGP-PEERS peer group\n   neighbor SCADAFW-EBGP-PEERS remote-as 65120.60\n
+    \  neighbor SCADAFW-EBGP-PEERS maximum-routes 0\n   neighbor VENDORFW-EBGP-PEERS
+    peer group\n   neighbor VENDORFW-EBGP-PEERS remote-as 65120.48\n   neighbor VENDORFW-EBGP-PEERS
+    maximum-routes 0\n   neighbor WANFW-EBGP-PEERS peer group\n   neighbor WANFW-EBGP-PEERS
+    remote-as 65120.40\n   neighbor WANFW-EBGP-PEERS maximum-routes 0\n   neighbor
+    192.168.0.2 peer group MLAG-IPv4-UNDERLAY-PEER\n   neighbor 192.168.0.2 description
+    ISMCR01A\n   redistribute connected route-map RM-LOCAL-NETWORKS\n   !\n   address-family
+    ipv4\n      neighbor MLAG-IPv4-UNDERLAY-PEER activate\n   !\n   vrf ehs\n      router-id
+    172.21.0.246\n      update wait-install\n      neighbor 10.210.241.37 peer group
+    MISC-CORES-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.37 description ISMITMSC01A-Eth50/1-ehsVRF\n
+    \     neighbor 10.210.241.39 peer group MISC-CORES-EBGP-PEERS-ehsVRF\n      neighbor
+    10.210.241.39 description ISMITMSC02A-Eth50/1-ehsVRF\n      neighbor 10.210.241.126
+    peer group DMZFW-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.126 description
+    DMZFW-VIP-ehsVRF\n      neighbor 10.210.241.126 route-map RM-ehs-10.210.241.126-SET-NEXT-HOP-OUT
+    out\n      neighbor 192.168.0.4 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.241.37 activate\n         neighbor 10.210.241.39
+    activate\n         neighbor 10.210.241.126 activate\n   !\n   vrf Gnet\n      router-id
+    172.21.0.246\n      update wait-install\n      neighbor 10.210.241.45 peer group
+    MISC-CORES-EBGP-PEERS-GnetVRF\n      neighbor 10.210.241.45 description ISMITMSC01A-Eth50/1-GnetVRF\n
+    \     neighbor 10.210.241.47 peer group MISC-CORES-EBGP-PEERS-GnetVRF\n      neighbor
+    10.210.241.47 description ISMITMSC02A-Eth50/1-GnetVRF\n      neighbor 10.210.241.134
+    peer group DMZFW-EBGP-PEERS-GnetVRF\n      neighbor 10.210.241.134 description
+    DMZFW-VIP-GnetVRF\n      neighbor 10.210.241.134 route-map RM-Gnet-10.210.241.134-SET-NEXT-HOP-OUT
+    out\n      neighbor 192.168.0.4 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.241.45 activate\n         neighbor 10.210.241.47
+    activate\n         neighbor 10.210.241.134 activate\n   !\n   vrf IoT\n      router-id
+    172.21.0.246\n      update wait-install\n      neighbor 10.210.241.11 peer group
+    IT-BLLF-EBGP-PEERS-IoTVRF\n      neighbor 10.210.241.11 description ISMS1ITBL01A-Eth2/1-IoTVRF\n
+    \     neighbor 10.210.241.15 peer group IT-BLLF-EBGP-PEERS-IoTVRF\n      neighbor
+    10.210.241.15 description ISMS1ITBL02A-Eth2/1-IoTVRF\n      neighbor 10.210.241.78
+    peer group DMZFW-EBGP-PEERS-IoTVRF\n      neighbor 10.210.241.78 description DMZFW-VIP-IoTVRF\n
+    \     neighbor 10.210.241.78 route-map RM-DMZFW-IoTVRF-OUT out\n      neighbor
+    192.168.0.4 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute connected route-map
+    RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family ipv4\n
+    \        neighbor 10.210.241.11 activate\n         neighbor 10.210.241.15 activate\n
+    \        neighbor 10.210.241.78 activate\n   !\n   vrf IT\n      router-id 172.21.0.246\n
+    \     update wait-install\n      neighbor 10.210.241.3 peer group IT-BLLF-EBGP-PEERS-ITVRF\n
+    \     neighbor 10.210.241.3 description ISMS1ITBL01A-Eth2/1-ITVRF\n      neighbor
+    10.210.241.7 peer group IT-BLLF-EBGP-PEERS-ITVRF\n      neighbor 10.210.241.7
+    description ISMS1ITBL02A-Eth2/1-ITVRF\n      neighbor 10.210.241.19 peer group
+    MISC-CORES-EBGP-PEERS-ITVRF\n      neighbor 10.210.241.19 description ISMITMSC01A-Eth50/1-ITVRF\n
+    \     neighbor 10.210.241.23 peer group MISC-CORES-EBGP-PEERS-ITVRF\n      neighbor
+    10.210.241.23 description ISMITMSC02A-Eth50/1-ITVRF\n      neighbor 10.210.241.70
+    peer group WANFW-EBGP-PEERS\n      neighbor 10.210.241.70 description WANFW-IP-ITVRF\n
+    \     neighbor 10.210.241.70 route-map RM-WANFW-ITVRF-OUT out\n      neighbor
+    10.210.241.86 peer group SCADAFW-EBGP-PEERS\n      neighbor 10.210.241.86 description
+    SCADAFW-IP-ITVRF\n      neighbor 192.168.0.4 peer group MLAG-IPv4-UNDERLAY-PEER\n
+    \     redistribute connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n
+    \     !\n      address-family ipv4\n         neighbor 10.210.241.3 activate\n
+    \        neighbor 10.210.241.7 activate\n         neighbor 10.210.241.19 activate\n
+    \        neighbor 10.210.241.23 activate\n         neighbor 10.210.241.70 activate\n
+    \        neighbor 10.210.241.86 activate\n   !\n   vrf IT-DC\n      router-id
+    172.21.0.246\n      update wait-install\n      neighbor 10.210.226.27 peer group
+    DC1-BLLF-EBGP-PEERS-IT-DCVRF\n      neighbor 10.210.226.27 description DC1-BL1-Eth2/1-IT-DCVRF\n
+    \     neighbor 10.210.226.31 peer group DC1-BLLF-EBGP-PEERS-IT-DCVRF\n      neighbor
+    10.210.226.31 description DC1-BL2-Eth2/1-IT-DCVRF\n      neighbor 10.210.226.70
+    peer group WANFW-EBGP-PEERS\n      neighbor 10.210.226.70 description WANFW-IP-IT-DCVRF\n
+    \     neighbor 10.210.226.70 route-map RM-WANFW-IT-DCVRF-OUT out\n      neighbor
+    10.210.234.19 peer group DC2-BLLF-EBGP-PEERS-IT-DCVRF\n      neighbor 10.210.234.19
+    description DC2-BL1-Eth2/1-IT-DCVRF\n      neighbor 10.210.234.23 peer group DC2-BLLF-EBGP-PEERS-IT-DCVRF\n
+    \     neighbor 10.210.234.23 description DC2-BL2-Eth2/1-IT-DCVRF\n      neighbor
+    192.168.0.4 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute connected route-map
+    RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family ipv4\n
+    \        neighbor 10.210.226.27 activate\n         neighbor 10.210.226.31 activate\n
+    \        neighbor 10.210.226.70 activate\n         neighbor 10.210.234.19 activate\n
+    \        neighbor 10.210.234.23 activate\n   !\n   vrf OT\n      router-id 172.21.0.246\n
+    \     update wait-install\n      neighbor 10.210.226.3 peer group DC1-BLLF-EBGP-PEERS-OTVRF\n
+    \     neighbor 10.210.226.3 description DC1-BL1-OTVRF\n      neighbor 10.210.226.7
+    peer group DC1-BLLF-EBGP-PEERS-OTVRF\n      neighbor 10.210.226.7 description
+    DC1-BL2-OTVRF\n      neighbor 10.210.234.3 peer group DC2-BLLF-EBGP-PEERS-OTVRF\n
+    \     neighbor 10.210.234.3 description DC2-BL1-OTVRF\n      neighbor 10.210.234.7
+    peer group DC2-BLLF-EBGP-PEERS-OTVRF\n      neighbor 10.210.234.7 description
+    DC2-BL2-OTVRF\n      neighbor 10.210.241.27 peer group MISC-CORES-EBGP-PEERS-OTVRF\n
+    \     neighbor 10.210.241.27 description ISMITMSC01A-Eth50/1-OTVRF\n      neighbor
+    10.210.241.31 peer group MISC-CORES-EBGP-PEERS-OTVRF\n      neighbor 10.210.241.31
+    description ISMITMSC02A-Eth50/1-OTVRF\n      neighbor 10.210.249.67 peer group
+    WANFW-EBGP-PEERS\n      neighbor 10.210.249.67 description WANFW-IP-OTVRF\n      neighbor
+    10.210.249.67 route-map RM-WANFW-OTVRF-OUT out\n      neighbor 10.210.249.78 peer
+    group VENDORFW-EBGP-PEERS\n      neighbor 10.210.249.78 description VENDORFW-IP-OTVRF\n
+    \     neighbor 192.168.0.4 peer group MLAG-IPv4-UNDERLAY-PEER\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.226.3 activate\n         neighbor 10.210.226.7
+    activate\n         neighbor 10.210.234.3 activate\n         neighbor 10.210.234.7
+    activate\n         neighbor 10.210.241.27 activate\n         neighbor 10.210.241.31
+    activate\n         neighbor 10.210.249.67 activate\n         neighbor 10.210.249.78
+    activate\n!\nip tacacs vrf mgmt source-interface Management0\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_ISMITMSC01A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll
+    dir\nalias q exit\nalias senz show interface counter error | nz\nalias shmc show
+    int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz
+    show interface counter | nz\nalias spd show port-channel %1 detail all\nalias
+    sqnz show interface counter queue | nz\nalias srnz show interface counter rate
+    | nz\nalias shterminattr show version detail | grep TerminAttr-core\n\n!\ndaemon
+    TerminAttr\n   exec /usr/bin/TerminAttr -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910
+    -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nip dhcp relay information
+    option\n!\nswitchport default mode routed\n!\nvlan internal order ascending range
+    1006 1199\n!\nload-interval default 30\n!\ninterface defaults\n   ethernet\n      shutdown\n
+    \  mtu 9214\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols
+    model multi-agent\n!\nlogging buffered 10000 debugging\nlogging trap debugging\nno
+    logging console\nlogging monitor debugging\nlogging synchronous level all\nlogging
+    vrf mgmt host ents.itg.ti.com 514 protocol tcp\nlogging format timestamp high-resolution\nlogging
+    format hostname fqdn\nlogging facility local7\nlogging vrf mgmt source-interface
+    Management1\n!\nhostname ISMITMSC01A\nip domain lookup vrf mgmt source-interface
+    Management1\nip name-server vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns
+    domain itg.ti.com\n!\nntp local-interface vrf mgmt Management1\nntp server vrf
+    mgmt 10.188.255.18\nntp server vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp
+    server vrf mgmt 137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server
+    vrf mgmt 158.218.8.155\nntp server vrf mgmt 172.16.44.10\nntp server vrf mgmt
+    172.16.169.44\nntp server vrf mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server
+    engineID local 60c954d1b8576a8d5a3a08c7f6f65e3da509ce35\nsnmp-server location
+    SM_CORE_MISC_FABRIC [SM_CORE_MISC_FABRIC] ISMITMSC01A\nsnmp-server engineID remote
+    entstrap.itg.ti.com 536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com
+    536576306E65406363652424\nsnmp-server vrf mgmt local-interface Management1\nsnmp-server
+    community 6XTUe5ZyUN0xQ25MNvdg rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH
+    ro ENTS-SNMP_Access\nsnmp-server community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server
+    community Oij0ENt7meI3wjK2rxNv ro Statseeker-SNMP_Access\nsnmp-server community
+    r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server community vhbqmu2JRJQcjfX99inm
+    ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3 ro NetDisco-SNMP_Access\nsnmp-server
+    group network-admin v3 auth\nsnmp-server group network-operator v3 auth\nsnmp-server
+    user SNMPManager network-admin v3 localized 60c954d1b8576a8d5a3a08c7f6f65e3da509ce35
+    auth sha 266762d901d09386588cd405e63e0b9219b9aaae priv aes 266762d901d09386588cd405e63e0b92\nsnmp-server
+    enable traps\nsnmp-server vrf mgmt\n!\nspanning-tree mode mstp\nno spanning-tree
+    vlan-id 4093-4094\nspanning-tree mst 0 priority 4096\n!\ntacacs-server host 172.31.225.29
+    vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server host 172.31.226.32
+    vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server policy unknown-mandatory-attribute
+    ignore\ntacacs-server timeout 20\n!\naaa group server tacacs+ tacacs_servers\n
+    \  server 172.31.226.29 vrf mgmt\n   server 172.32.226.32 vrf mgmt\n!\naaa authentication
+    login default group tacacs_servers local\naaa authentication login console local\naaa
+    authentication enable default group tacacs_servers local\naaa authorization exec
+    default group tacacs_servers local\naaa accounting commands 1,15 default start-stop
+    group tacacs_servers\n!\nenable password sha512 test\nno aaa root\n!\nusername
+    networkpw privilege 15 role network-admin secret sha512 test\n!\nclock timezone
+    UTC\n!\nvlan 387\n   name 10.210.103.64/28_IB1-Vlan\n!\nvlan 4093\n   name LEAF_PEER_L3\n
+    \  trunk group MLAG\n!\nvlan 4094\n   name MLAG_PEER\n   trunk group MLAG\n!\nvrf
+    instance ehs\n!\nvrf instance Gnet\n!\nvrf instance IT\n!\nvrf instance mgmt\n!\nvrf
+    instance OT\n!\ninterface Port-Channel1\n   description [L]_OSMAMC01W_Po\n   no
+    shutdown\n   mtu 1500\n   switchport\n   switchport trunk allowed vlan 851,863,971,862,852\n
+    \  switchport trunk native vlan 851\n   switchport mode trunk\n   mlag 1\n!\ninterface
+    Port-Channel3\n   description [L]_OSMAMC02W_Po\n   no shutdown\n   mtu 1500\n
+    \  switchport\n   switchport trunk allowed vlan 851,863,971,862,852\n   switchport
+    trunk native vlan 851\n   switchport mode trunk\n   mlag 3\n!\ninterface Port-Channel4094\n
+    \  description [L]_MLAG_PEER_ISMITMSC02A_Po551\n   no shutdown\n   switchport\n
+    \  switchport mode trunk\n   switchport trunk group MLAG\n!\ninterface Ethernet1\n
+    \  description [L]_OSMAMC01W\n   no shutdown\n   channel-group 1 mode active\n!\ninterface
+    Ethernet2\n   description [L]_OSMAMC01W\n   no shutdown\n   channel-group 1 mode
+    active\n!\ninterface Ethernet3\n   description [L]_OSMAMC02W\n   no shutdown\n
+    \  channel-group 3 mode active\n!\ninterface Ethernet4\n   description [L]_OSMAMC02W\n
+    \  no shutdown\n   channel-group 3 mode active\n!\ninterface Ethernet5\n   description
+    [L]_OSMIBSD01\n   no shutdown\n   switchport access vlan 387\n   switchport mode
+    access\n   switchport\n!\ninterface Ethernet6\n   description [L]_OSMIBSD01\n
+    \  no shutdown\n   switchport access vlan 387\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet49/1\n   no shutdown\n   no switchport\n!\ninterface Ethernet49/1.525\n
+    \  description [L]_ISMCR01A-Eth3/4/1-ITVRF\n   no shutdown\n   encapsulation dot1q
+    vlan 525\n   vrf IT\n   ip address 10.210.241.16/31\n!\ninterface Ethernet49/1.533\n
+    \  description [L]_ISMCR01A-Eth3/4/1-OTVRF\n   no shutdown\n   encapsulation dot1q
+    vlan 533\n   vrf OT\n   ip address 10.210.241.24/31\n!\ninterface Ethernet49/1.581\n
+    \  description [L]_ISMCR01A-Eth3/4/1-ehsVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 581\n   vrf ehs\n   ip address 10.210.241.33/31\n!\ninterface Ethernet49/1.589\n
+    \  description [L]_ISMCR01A-Eth3/4/1-GnetVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 589\n   vrf Gnet\n   ip address 10.210.241.41/31\n!\ninterface Ethernet50/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet50/1.525\n   description
+    [L]_ISMCR02A-Eth3/4/1-ITVRF\n   no shutdown\n   encapsulation dot1q vlan 525\n
+    \  vrf IT\n   ip address 10.210.241.18/31\n!\ninterface Ethernet50/1.533\n   description
+    [L]_ISMCR02A-Eth3/4/1-OTVRF\n   no shutdown\n   encapsulation dot1q vlan 533\n
+    \  vrf OT\n   ip address 10.210.241.26/31\n!\ninterface Ethernet50/1.581\n   description
+    [L]_ISMCR02A-Eth3/4/1-ehsVRF\n   no shutdown\n   encapsulation dot1q vlan 581\n
+    \  vrf ehs\n   ip address 10.210.241.35/31\n!\ninterface Ethernet50/1.589\n   description
+    [L]_ISMCR02A-Eth3/4/1-GnetVRF\n   no shutdown\n   encapsulation dot1q vlan 589\n
+    \  vrf Gnet\n   ip address 10.210.241.43/31\n!\ninterface Ethernet55/1\n   description
+    [L]_MLAG_PEER_ISMITMSC02A_Ethernet55/1\n   no shutdown\n   channel-group 4094
+    mode active\n!\ninterface Ethernet56/1\n   description [L]_MLAG_PEER_ISMITMSC02A_Ethernet56/1\n
+    \  no shutdown\n   channel-group 4094 mode active\n!\ninterface Loopback0\n   description
+    Router_ID\n   no shutdown\n   ip address 172.21.0.241/32\n!\ninterface Management1\n
+    \  description oob_management\n   no shutdown\n   vrf mgmt\n   ip address 10.210.80.74/21\n!\ninterface
+    Vlan387\n   description 10.210.103.64/28_IB1-Vlan\n   no shutdown\n   vrf IT\n
+    \  ip address 10.210.103.65/28\n   no ip proxy-arp\n   no autostate\n\n!\ninterface
+    Vlan4093\n   description MLAG_PEER_L3_PEERING\n   no shutdown\n   mtu 9214\n   ip
+    address 192.168.0.2/31\n!\ninterface Vlan4094\n   description MLAG_PEER\n   no
+    shutdown\n   mtu 9214\n   no autostate\n   ip address 192.168.0.0/31\n!\nip virtual-router
+    mac-address 00:aa:aa:aa:aa:aa\n!\nip access-list standard Airwave-SNMP_Access\n
+    \  10 permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard
+    Ansible-ACL_SM\n   10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark
+    dlecvp02\n   40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit
+    host 10.64.41.27\n   70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90
+    remark dsmcvp02\n   100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120
+    permit host 10.210.80.9\n   130 remark ents\n   140 permit host 172.31.227.10\n
+    \  150 remark tilde\n   160 permit host 172.31.226.25\n   170 remark dotdot\n
+    \  180 permit host 172.31.225.12\n!\nip access-list standard ENTS-SNMP_Access\n
+    \  10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n   30 permit
+    host 172.31.225.12\n   40 deny any log\n!\nip access-list standard NetBrain-SNMP_Access\n
+    \  10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n   30 permit
+    host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any log\n!\nip
+    access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n   20
+    permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard SevOne-SNMP_Access\n
+    \  10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n   30 permit
+    host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit host 172.31.225.61\n
+    \  60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n   80  permit
+    host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit host 172.31.225.66\n
+    \  110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n   130  permit
+    host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit host 172.31.225.87\n
+    \  160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n   180  permit
+    host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit host 172.31.226.100\n
+    \  210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n   230
+    \ permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\n!\nip
+    routing\nip routing vrf ehs\nip routing vrf Gnet\nip routing vrf IT\nno ip routing
+    vrf mgmt\nip routing vrf OT\n!\nip prefix-list PL-LOCAL-NETWORKS\n   seq 10 permit
+    10.208.0.0/13 le 29\n   seq 20 permit 172.21.0.0/22 eq 32\n   seq 30 permit 192.168.160.0/20
+    eq 32\n   seq 40 permit 10.74.56.0/21\n   seq 50 permit 10.70.38.0/23\n   seq
+    60 permit 10.72.40.0/24\n!\nmlag configuration\n   domain-id MLAG\n   local-interface
+    Vlan4094\n   peer-address 192.168.0.1\n   peer-link Port-Channel4094\n   reload-delay
+    mlag 300\n   reload-delay non-mlag 330\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\nip
+    route vrf IT 10.4.12.119/32 137.167.10.129 name Gnet-Captive-Portal\n!\nroute-map
+    RM-captive-portal permit 10\n   match ip address prefix-list PL-captive-portal\n
+    \  set distance 10\n!\nroute-map RM-guest-net permit 10\n   match ip address prefix-list
+    PL-guest-net\n   set distance 10\n!\nroute-map RM-LOCAL-NETWORKS permit 10\n   match
+    ip address prefix-list PL-LOCAL-NETWORKS\n!\nroute-map RM-MLAG-PEER-IN permit
+    10\n   description Make routes learned over MLAG Peer-link less preferred on spines
+    to ensure optimal routing\n   set origin incomplete\n!\nrouter bgp 65120.10\n
+    \  router-id 172.21.0.241\n   maximum-paths 128 ecmp 128\n   update wait-install\n
+    \  no bgp default ipv4-unicast\n   bgp asn notation asdot\n   timers bgp 5 15\n
+    \  distance bgp 20 200 200\n   neighbor default send-community\n   neighbor CAMPUS-CORES-EBGP-PEERS-ehsVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-ehsVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-ehsVRF maximum-routes 0\n   neighbor CAMPUS-CORES-EBGP-PEERS-GnetVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-GnetVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-GnetVRF maximum-routes 0\n   neighbor CAMPUS-CORES-EBGP-PEERS-ITVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-ITVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-ITVRF maximum-routes 0\n   neighbor CAMPUS-CORES-EBGP-PEERS-OTVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-OTVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-OTVRF maximum-routes 0\n   neighbor IB-iBGP-PEERS-ITVRF
+    peer group\n   neighbor IB-iBGP-PEERS-ITVRF remote-as 65120.10\n   neighbor IB-iBGP-PEERS-ITVRF
+    maximum-routes 0\n   neighbor IPv4-UNDERLAY-PEERS peer group\n   neighbor MLAG-IPv4-UNDERLAY-PEER
+    peer group\n   neighbor MLAG-IPv4-UNDERLAY-PEER remote-as 65120.10\n   neighbor
+    MLAG-IPv4-UNDERLAY-PEER next-hop-self\n   neighbor MLAG-IPv4-UNDERLAY-PEER description
+    ISMITMSC02A\n   neighbor MLAG-IPv4-UNDERLAY-PEER send-community\n   neighbor MLAG-IPv4-UNDERLAY-PEER
+    maximum-routes 12000\n   neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN
+    in\n   neighbor 192.168.0.3 peer group MLAG-IPv4-UNDERLAY-PEER\n   neighbor 192.168.0.3
+    description ISMITMSC02A\n   redistribute connected route-map RM-LOCAL-NETWORKS\n
+    \  !\n   address-family ipv4\n      neighbor MLAG-IPv4-UNDERLAY-PEER activate\n
+    \  !\n   vrf ehs\n      router-id 172.21.0.241\n      update wait-install\n      neighbor
+    10.210.241.32 peer group CAMPUS-CORES-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.32
+    description ISMCR01A-Eth3/4/1-ehsVRF\n      neighbor 10.210.241.34 peer group
+    CAMPUS-CORES-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.34 description ISMCR02A-Eth3/4/1-ehsVRF\n
+    \     redistribute connected route-map RM-LOCAL-NETWORKS\n      !\n      address-family
+    ipv4\n         neighbor 10.210.241.32 activate\n         neighbor 10.210.241.34
+    activate\n   !\n   vrf Gnet\n      router-id 172.21.0.241\n      update wait-install\n
+    \     neighbor 10.210.241.40 peer group CAMPUS-CORES-EBGP-PEERS-GnetVRF\n      neighbor
+    10.210.241.40 description ISMCR01A-Eth3/4/1-GnetVRF\n      neighbor 10.210.241.42
+    peer group CAMPUS-CORES-EBGP-PEERS-GnetVRF\n      neighbor 10.210.241.42 description
+    ISMCR02A-Eth3/4/1-GnetVRF\n      redistribute connected route-map RM-LOCAL-NETWORKS\n
+    \     !\n      address-family ipv4\n         neighbor 10.210.241.40 activate\n
+    \        neighbor 10.210.241.42 activate\n   !\n   vrf IT\n      router-id 172.21.0.241\n
+    \     update wait-install\n      neighbor 10.210.103.70 peer group IB-iBGP-PEERS-ITVRF\n
+    \     neighbor 10.210.103.70 description OSMIBSD01-LAN1&2-ITVRF\n      neighbor
+    10.210.241.17 peer group CAMPUS-CORES-EBGP-PEERS-ITVRF\n      neighbor 10.210.241.17
+    description ISMCR01A-Eth3/4/1-ITVRF\n      neighbor 10.210.241.19 peer group CAMPUS-CORES-EBGP-PEERS-ITVRF\n
+    \     neighbor 10.210.241.19 description ISMCR02A-Eth3/4/1-ITVRF\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.103.70 activate\n         neighbor 10.210.241.17
+    activate\n         neighbor 10.210.241.19 activate\n   !\n   vrf OT\n      router-id
+    172.21.0.241\n      update wait-install\n      neighbor 10.210.241.25 peer group
+    CAMPUS-CORES-EBGP-PEERS-OTVRF\n      neighbor 10.210.241.25 description ISMCR01A-Eth3/4/1-OTVRF\n
+    \     neighbor 10.210.241.27 peer group CAMPUS-CORES-EBGP-PEERS-OTVRF\n      neighbor
+    10.210.241.27 description ISMCR02A-Eth3/4/1-OTVRF\n      redistribute connected
+    route-map RM-LOCAL-NETWORKS\n      !\n      address-family ipv4\n         neighbor
+    10.210.241.25 activate\n         neighbor 10.210.241.27 activate\n!\nrouter general\n
+    \  vrf Gnet\n      leak routes source-vrf IT subscribe-policy RM-captive-portal\n
+    \     exit\n   !\n   vrf IT\n      leak routes source-vrf Gnet subscribe-policy
+    RM-guest-net\n      exit\n   !\n   exit\n!\nip tacacs vrf mgmt source-interface
+    Management1\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+  AVD-SM_CORE_MISC_FABRIC-_ISMITMSC02A: "!RANCID-CONTENT-TYPE: arista\n!\nalias ll
+    dir\nalias q exit\nalias senz show interface counter error | nz\nalias shmc show
+    int | awk '/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }'\nalias snz
+    show interface counter | nz\nalias spd show port-channel %1 detail all\nalias
+    sqnz show interface counter queue | nz\nalias srnz show interface counter rate
+    | nz\nalias shterminattr show version detail | grep TerminAttr-core\n\n!\ndaemon
+    TerminAttr\n   exec /usr/bin/TerminAttr -cvaddr=10.210.80.7:9910,10.210.80.8:9910,10.210.80.9:9910
+    -cvauth=token,/tmp/token -cvvrf=mgmt -cvgnmi -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata
+    -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent -taillogs -cvconfig\n   no
+    shutdown\n!\ndhcp relay\n   tunnel requests disabled\n!\nip dhcp relay information
+    option\n!\nswitchport default mode routed\n!\nvlan internal order ascending range
+    1006 1199\n!\nload-interval default 30\n!\ninterface defaults\n   ethernet\n      shutdown\n
+    \  mtu 9214\n!\ntransceiver qsfp default-mode 4x10G\n!\nservice routing protocols
+    model multi-agent\n!\nlogging buffered 10000 debugging\nlogging trap debugging\nno
+    logging console\nlogging monitor debugging\nlogging synchronous level all\nlogging
+    vrf mgmt host ents.itg.ti.com 514 protocol tcp\nlogging format timestamp high-resolution\nlogging
+    format hostname fqdn\nlogging facility local7\nlogging vrf mgmt source-interface
+    Management1\n!\nhostname ISMITMSC02A\nip domain lookup vrf mgmt source-interface
+    Management1\nip name-server vrf mgmt 192.0.2.2\nip name-server vrf mgmt 192.0.2.3\ndns
+    domain itg.ti.com\n!\nntp local-interface vrf mgmt Management1\nntp server vrf
+    mgmt 10.188.255.18\nntp server vrf mgmt 134.183.87.87\nntp server vrf mgmt 137.167.66.10\nntp
+    server vrf mgmt 137.167.210.21\nntp server vrf mgmt 157.170.147.6\nntp server
+    vrf mgmt 158.218.8.155\nntp server vrf mgmt 172.16.44.10\nntp server vrf mgmt
+    172.16.169.44\nntp server vrf mgmt 172.24.254.250\nntp server vrf mgmt 172.31.225.25\n!\nsnmp-server
+    engineID local 8a571bede2c6450432f039b9a5227caeaa9d0fcb\nsnmp-server location
+    SM_CORE_MISC_FABRIC [SM_CORE_MISC_FABRIC] ISMITMSC02A\nsnmp-server engineID remote
+    entstrap.itg.ti.com 536E4D705454\nsnmp-server engineID remote sevonenms.itg.ti.com
+    536576306E65406363652424\nsnmp-server vrf mgmt local-interface Management1\nsnmp-server
+    community 6XTUe5ZyUN0xQ25MNvdg rw ENTS-SNMP_Access\nsnmp-server community 8dp6e0eJW9DipeJRxreH
+    ro ENTS-SNMP_Access\nsnmp-server community HBHpL2ILnbWbuXuhYPiW ro SevOne-SNMP_Access\nsnmp-server
+    community Oij0ENt7meI3wjK2rxNv ro Statseeker-SNMP_Access\nsnmp-server community
+    r0gQaBrsDNEfgtKWsWmV ro NetBrain-SNMP_Access\nsnmp-server community vhbqmu2JRJQcjfX99inm
+    ro Airwave-SNMP_Access\nsnmp-server community z778eYOT4g2god0qT8A3 ro NetDisco-SNMP_Access\nsnmp-server
+    group network-admin v3 auth\nsnmp-server group network-operator v3 auth\nsnmp-server
+    user SNMPManager network-admin v3 localized 8a571bede2c6450432f039b9a5227caeaa9d0fcb
+    auth sha c899b1ccc627804a6b65ee5d2128785436c971e0 priv aes c899b1ccc627804a6b65ee5d21287854\nsnmp-server
+    enable traps\nsnmp-server vrf mgmt\n!\nspanning-tree mode mstp\nno spanning-tree
+    vlan-id 4093-4094\nspanning-tree mst 0 priority 4096\n!\ntacacs-server host 172.31.225.29
+    vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server host 172.31.226.32
+    vrf mgmt key 7 096D5C584C521659255F533D7B36036674\ntacacs-server policy unknown-mandatory-attribute
+    ignore\ntacacs-server timeout 20\n!\naaa group server tacacs+ tacacs_servers\n
+    \  server 172.31.226.29 vrf mgmt\n   server 172.32.226.32 vrf mgmt\n!\naaa authentication
+    login default group tacacs_servers local\naaa authentication login console local\naaa
+    authentication enable default group tacacs_servers local\naaa authorization exec
+    default group tacacs_servers local\naaa accounting commands 1,15 default start-stop
+    group tacacs_servers\n!\nenable password sha512 test\nno aaa root\n!\nusername
+    networkpw privilege 15 role network-admin secret sha512 test\n!\nclock timezone
+    UTC\n!\nvlan 403\n   name 10.210.103.80/28_IB2-Vlan\n!\nvlan 4093\n   name LEAF_PEER_L3\n
+    \  trunk group MLAG\n!\nvlan 4094\n   name MLAG_PEER\n   trunk group MLAG\n!\nvrf
+    instance ehs\n!\nvrf instance Gnet\n!\nvrf instance IT\n!\nvrf instance mgmt\n!\nvrf
+    instance OT\n!\ninterface Port-Channel1\n   description [L]_OSMAMC01W_Po\n   no
+    shutdown\n   mtu 1500\n   switchport\n   switchport trunk allowed vlan 851,863,971,862,852\n
+    \  switchport trunk native vlan 851\n   switchport mode trunk\n   mlag 1\n!\ninterface
+    Port-Channel3\n   description [L]_OSMAMC02W_Po\n   no shutdown\n   mtu 1500\n
+    \  switchport\n   switchport trunk allowed vlan 851,863,971,862,852\n   switchport
+    trunk native vlan 851\n   switchport mode trunk\n   mlag 3\n!\ninterface Port-Channel4094\n
+    \  description [L]_MLAG_PEER_ISMITMSC01A_Po551\n   no shutdown\n   switchport\n
+    \  switchport mode trunk\n   switchport trunk group MLAG\n!\ninterface Ethernet1\n
+    \  description [L]_OSMAMC01W\n   no shutdown\n   channel-group 1 mode active\n!\ninterface
+    Ethernet2\n   description [L]_OSMAMC01W\n   no shutdown\n   channel-group 1 mode
+    active\n!\ninterface Ethernet3\n   description [L]_OSMAMC02W\n   no shutdown\n
+    \  channel-group 3 mode active\n!\ninterface Ethernet4\n   description [L]_OSMAMC02W\n
+    \  no shutdown\n   channel-group 3 mode active\n!\ninterface Ethernet5\n   description
+    [L]_OSMIBSD02\n   no shutdown\n   switchport access vlan 403\n   switchport mode
+    access\n   switchport\n!\ninterface Ethernet6\n   description [L]_OSMIBSD02\n
+    \  no shutdown\n   switchport access vlan 403\n   switchport mode access\n   switchport\n!\ninterface
+    Ethernet49/1\n   no shutdown\n   no switchport\n!\ninterface Ethernet49/1.525\n
+    \  description [L]_ISMCR01A-Eth4/4/1-ITVRF\n   no shutdown\n   encapsulation dot1q
+    vlan 525\n   vrf IT\n   ip address 10.210.241.20/31\n!\ninterface Ethernet49/1.533\n
+    \  description [L]_ISMCR01A-Eth4/4/1-OTVRF\n   no shutdown\n   encapsulation dot1q
+    vlan 533\n   vrf OT\n   ip address 10.210.241.28/31\n!\ninterface Ethernet49/1.581\n
+    \  description [L]_ISMCR01A-Eth4/4/1-ehsVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 581\n   vrf ehs\n   ip address 10.210.241.37/31\n!\ninterface Ethernet49/1.589\n
+    \  description [L]_ISMCR01A-Eth4/4/1-GnetVRF\n   no shutdown\n   encapsulation
+    dot1q vlan 589\n   vrf Gnet\n   ip address 10.210.241.45/31\n!\ninterface Ethernet50/1\n
+    \  no shutdown\n   no switchport\n!\ninterface Ethernet50/1.525\n   description
+    [L]_ISMCR02A-Eth4/4/1-ITVRF\n   no shutdown\n   encapsulation dot1q vlan 525\n
+    \  vrf IT\n   ip address 10.210.241.22/31\n!\ninterface Ethernet50/1.533\n   description
+    [L]_ISMCR02A-Eth4/4/1-OTVRF\n   no shutdown\n   encapsulation dot1q vlan 533\n
+    \  vrf OT\n   ip address 10.210.241.30/31\n!\ninterface Ethernet50/1.581\n   description
+    [L]_ISMCR02A-Eth4/4/1-ehsVRF\n   no shutdown\n   encapsulation dot1q vlan 581\n
+    \  vrf ehs\n   ip address 10.210.241.39/31\n!\ninterface Ethernet50/1.589\n   description
+    [L]_ISMCR02A-Eth4/4/1-GnetVRF\n   no shutdown\n   encapsulation dot1q vlan 589\n
+    \  vrf Gnet\n   ip address 10.210.241.47/31\n!\ninterface Ethernet55/1\n   description
+    [L]_MLAG_PEER_ISMITMSC01A_Ethernet55/1\n   no shutdown\n   channel-group 4094
+    mode active\n!\ninterface Ethernet56/1\n   description [L]_MLAG_PEER_ISMITMSC01A_Ethernet56/1\n
+    \  no shutdown\n   channel-group 4094 mode active\n!\ninterface Loopback0\n   description
+    Router_ID\n   no shutdown\n   ip address 172.21.0.242/32\n!\ninterface Management1\n
+    \  description oob_management\n   no shutdown\n   vrf mgmt\n   ip address 10.210.80.75/21\n!\ninterface
+    Vlan403\n   description 10.210.103.80/28_IB2-Vlan\n   no shutdown\n   vrf IT\n
+    \  ip address 10.210.103.81/28\n   no ip proxy-arp\n   no autostate\n\n!\ninterface
+    Vlan4093\n   description MLAG_PEER_L3_PEERING\n   no shutdown\n   mtu 9214\n   ip
+    address 192.168.0.3/31\n!\ninterface Vlan4094\n   description MLAG_PEER\n   no
+    shutdown\n   mtu 9214\n   no autostate\n   ip address 192.168.0.1/31\n!\nip virtual-router
+    mac-address 00:aa:aa:aa:aa:aa\n!\nip access-list standard Airwave-SNMP_Access\n
+    \  10 permit host 172.31.226.33\n   20 deny any log\n!\nip access-list standard
+    Ansible-ACL_SM\n   10 remark dlecvp01\n   20 permit host 10.180.68.99\n   30 remark
+    dlecvp02\n   40 permit host 10.180.68.98\n   50 remark dflcvp01\n   60 permit
+    host 10.64.41.27\n   70 remark dsmcvp01\n   80 permit host 10.210.80.7\n   90
+    remark dsmcvp02\n   100 permit host 10.210.80.8\n   110 remark dsmcvp03\n   120
+    permit host 10.210.80.9\n   130 remark ents\n   140 permit host 172.31.227.10\n
+    \  150 remark tilde\n   160 permit host 172.31.226.25\n   170 remark dotdot\n
+    \  180 permit host 172.31.225.12\n!\nip access-list standard ENTS-SNMP_Access\n
+    \  10 permit host 172.31.226.25\n   20 permit host 172.31.227.10\n   30 permit
+    host 172.31.225.12\n   40 deny any log\n!\nip access-list standard NetBrain-SNMP_Access\n
+    \  10 permit host 172.31.226.55\n   20 permit host 172.31.225.43\n   30 permit
+    host 172.31.226.49\n   40 permit host 172.31.226.54\n   50 deny any log\n!\nip
+    access-list standard NetDisco-SNMP_Access\n   10 permit host 172.31.226.24\n   20
+    permit host 172.31.226.53\n   30 deny any log\n!\nip access-list standard SevOne-SNMP_Access\n
+    \  10 permit host 172.31.225.47\n   20 permit host 172.31.225.53\n   30 permit
+    host 172.31.225.54\n   40 permit host 172.31.225.60\n   50  permit host 172.31.225.61\n
+    \  60  permit host 172.31.225.62\n   70  permit host 172.31.225.63\n   80  permit
+    host 172.31.225.64\n   90  permit host 172.31.225.65\n   100  permit host 172.31.225.66\n
+    \  110  permit host 172.31.225.67\n   120  permit host 172.31.225.68\n   130  permit
+    host 172.31.225.69\n   140  permit host 172.31.225.86\n   150  permit host 172.31.225.87\n
+    \  160  permit host 172.31.225.88\n   170  permit host 172.31.225.89\n   180  permit
+    host 172.31.225.90\n   190  permit host 172.31.225.91\n   200  permit host 172.31.226.100\n
+    \  210  permit host 172.31.226.101\n   220  permit host 172.31.226.102\n   230
+    \ permit host 172.31.226.55\n   240  permit host 172.31.226.58\n   250  permit
+    host 172.31.226.59\n   260  permit host 172.31.226.63\n   270  permit host 172.31.226.68\n
+    \  280  permit host 172.31.226.74\n   290  permit host 172.31.226.75\n   300  permit
+    host 172.31.226.76\n   310  permit host 172.31.226.77\n   320  permit host 172.31.226.79\n
+    \  330  permit host 172.31.226.87\n   340  permit host 172.31.226.90\n   350  permit
+    host 172.31.226.91\n   360  permit host 172.31.226.97\n   370  permit host 172.31.226.98\n
+    \  380  permit host 172.31.226.99\n   390 deny any log\n!\nip access-list standard
+    Statseeker-SNMP_Access\n   10 permit host 172.31.226.35\n   20 deny any log\n!\nip
+    routing\nip routing vrf ehs\nip routing vrf Gnet\nip routing vrf IT\nno ip routing
+    vrf mgmt\nip routing vrf OT\n!\nip prefix-list PL-LOCAL-NETWORKS\n   seq 10 permit
+    10.208.0.0/13 le 29\n   seq 20 permit 172.21.0.0/22 eq 32\n   seq 30 permit 192.168.160.0/20
+    eq 32\n   seq 40 permit 10.74.56.0/21\n   seq 50 permit 10.70.38.0/23\n   seq
+    60 permit 10.72.40.0/24\n!\nmlag configuration\n   domain-id MLAG\n   local-interface
+    Vlan4094\n   peer-address 192.168.0.0\n   peer-link Port-Channel4094\n   reload-delay
+    mlag 300\n   reload-delay non-mlag 330\n!\nip route vrf mgmt 0.0.0.0/0 10.210.80.1\nip
+    route vrf IT 10.4.12.119/32 137.167.10.129 name Gnet-Captive-Portal\n!\nroute-map
+    RM-captive-portal permit 10\n   match ip address prefix-list PL-captive-portal\n
+    \  set distance 10\n!\nroute-map RM-guest-net permit 10\n   match ip address prefix-list
+    PL-guest-net\n   set distance 10\n!\nroute-map RM-LOCAL-NETWORKS permit 10\n   match
+    ip address prefix-list PL-LOCAL-NETWORKS\n!\nroute-map RM-MLAG-PEER-IN permit
+    10\n   description Make routes learned over MLAG Peer-link less preferred on spines
+    to ensure optimal routing\n   set origin incomplete\n!\nrouter bgp 65120.10\n
+    \  router-id 172.21.0.242\n   maximum-paths 128 ecmp 128\n   update wait-install\n
+    \  no bgp default ipv4-unicast\n   bgp asn notation asdot\n   timers bgp 5 15\n
+    \  distance bgp 20 200 200\n   neighbor default send-community\n   neighbor CAMPUS-CORES-EBGP-PEERS-ehsVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-ehsVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-ehsVRF maximum-routes 0\n   neighbor CAMPUS-CORES-EBGP-PEERS-GnetVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-GnetVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-GnetVRF maximum-routes 0\n   neighbor CAMPUS-CORES-EBGP-PEERS-ITVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-ITVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-ITVRF maximum-routes 0\n   neighbor CAMPUS-CORES-EBGP-PEERS-OTVRF
+    peer group\n   neighbor CAMPUS-CORES-EBGP-PEERS-OTVRF remote-as 65120.1\n   neighbor
+    CAMPUS-CORES-EBGP-PEERS-OTVRF maximum-routes 0\n   neighbor IB-iBGP-PEERS-ITVRF
+    peer group\n   neighbor IB-iBGP-PEERS-ITVRF remote-as 65120.10\n   neighbor IB-iBGP-PEERS-ITVRF
+    maximum-routes 0\n   neighbor IPv4-UNDERLAY-PEERS peer group\n   neighbor MLAG-IPv4-UNDERLAY-PEER
+    peer group\n   neighbor MLAG-IPv4-UNDERLAY-PEER remote-as 65120.10\n   neighbor
+    MLAG-IPv4-UNDERLAY-PEER next-hop-self\n   neighbor MLAG-IPv4-UNDERLAY-PEER description
+    ISMITMSC01A\n   neighbor MLAG-IPv4-UNDERLAY-PEER send-community\n   neighbor MLAG-IPv4-UNDERLAY-PEER
+    maximum-routes 12000\n   neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN
+    in\n   neighbor 192.168.0.2 peer group MLAG-IPv4-UNDERLAY-PEER\n   neighbor 192.168.0.2
+    description ISMITMSC01A\n   redistribute connected route-map RM-LOCAL-NETWORKS\n
+    \  !\n   address-family ipv4\n      neighbor MLAG-IPv4-UNDERLAY-PEER activate\n
+    \  !\n   vrf ehs\n      router-id 172.21.0.242\n      update wait-install\n      neighbor
+    10.210.241.36 peer group CAMPUS-CORES-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.36
+    description ISMCR01A-Eth4/4/1-ehsVRF\n      neighbor 10.210.241.38 peer group
+    CAMPUS-CORES-EBGP-PEERS-ehsVRF\n      neighbor 10.210.241.38 description ISMCR02A-Eth4/4/1-ehsVRF\n
+    \     redistribute connected route-map RM-LOCAL-NETWORKS\n      !\n      address-family
+    ipv4\n         neighbor 10.210.241.36 activate\n         neighbor 10.210.241.38
+    activate\n   !\n   vrf Gnet\n      router-id 172.21.0.242\n      update wait-install\n
+    \     neighbor 10.210.241.44 peer group CAMPUS-CORES-EBGP-PEERS-GnetVRF\n      neighbor
+    10.210.241.44 description ISMCR01A-Eth4/4/1-GnetVRF\n      neighbor 10.210.241.46
+    peer group CAMPUS-CORES-EBGP-PEERS-GnetVRF\n      neighbor 10.210.241.46 description
+    ISMCR02A-Eth4/4/1-GnetVRF\n      redistribute connected route-map RM-LOCAL-NETWORKS\n
+    \     !\n      address-family ipv4\n         neighbor 10.210.241.44 activate\n
+    \        neighbor 10.210.241.46 activate\n   !\n   vrf IT\n      router-id 172.21.0.242\n
+    \     update wait-install\n      neighbor 10.210.103.86 peer group IB-iBGP-PEERS-ITVRF\n
+    \     neighbor 10.210.103.86 description OSMIBSD02-LAN1&2-ITVRF\n      neighbor
+    10.210.241.21 peer group CAMPUS-CORES-EBGP-PEERS-ITVRF\n      neighbor 10.210.241.21
+    description ISMCR01A-Eth4/4/1-ITVRF\n      neighbor 10.210.241.23 peer group CAMPUS-CORES-EBGP-PEERS-ITVRF\n
+    \     neighbor 10.210.241.23 description ISMCR02A-Eth4/4/1-ITVRF\n      redistribute
+    connected route-map RM-LOCAL-NETWORKS\n      redistribute static\n      !\n      address-family
+    ipv4\n         neighbor 10.210.103.86 activate\n         neighbor 10.210.241.21
+    activate\n         neighbor 10.210.241.23 activate\n   !\n   vrf OT\n      router-id
+    172.21.0.242\n      update wait-install\n      neighbor 10.210.241.29 peer group
+    CAMPUS-CORES-EBGP-PEERS-OTVRF\n      neighbor 10.210.241.29 description ISMCR01A-Eth4/4/1-OTVRF\n
+    \     neighbor 10.210.241.31 peer group CAMPUS-CORES-EBGP-PEERS-OTVRF\n      neighbor
+    10.210.241.31 description ISMCR02A-Eth4/4/1-OTVRF\n      redistribute connected
+    route-map RM-LOCAL-NETWORKS\n      !\n      address-family ipv4\n         neighbor
+    10.210.241.29 activate\n         neighbor 10.210.241.31 activate\n!\nrouter general\n
+    \  vrf Gnet\n      leak routes source-vrf IT subscribe-policy RM-captive-portal\n
+    \     exit\n   !\n   vrf IT\n      leak routes source-vrf Gnet subscribe-policy
+    RM-guest-net\n      exit\n   !\n   exit\n!\nip tacacs vrf mgmt source-interface
+    Management1\n!\nbanner login\n----------------------------------------------------------------------------\n---
+    \  UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n
+    \   This is a private computing system for use only by authorized users.\n         If
+    you do not have authorization, discontinue at once.\n\nYour use of this system,
+    and all information or communications stored or\ntransmitted on it by you, with
+    or without authority, or in excess of your\nauthority, is subject to review, monitoring,
+    and recording by system\npersonnel, without notice or permission. Any information
+    or data thus\nobtained by system personnel also is subject to review by law enforcement\nand
+    judicial officials in connection with the investigation or prosecution\nof possible
+    criminal activity involving the system.\n\nIf you now continue use of the system,
+    you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n\n!\nmanagement
+    api http-commands\n   protocol https\n   no protocol http\n   no shutdown\n   !\n
+    \  vrf mgmt\n      no shutdown\n      ip access-group Ansible-ACL_SM\n!\nmanagement
+    console\n   idle-timeout 30\n!\nmanagement ssh\n   idle-timeout 30\n   no shutdown\n
+    \  !\n   vrf mgmt\n      no shutdown\n!\nlogging event congestion-drops interval
+    600\nno logging repeat-messages\nlogging level all debugging\nlogging event link-status
+    global\nservice unsupported-transceiver TexasInstruments ffd6c10c\n\n!\nend\n"
+cvp_topology:
+  CAMPUS_CORES:
+    devices:
+    - ISMCR01A
+    - ISMCR02A
+    parent_container: SM_CORE_MISC_FABRIC
+  DMZ_SEGMENT:
+    devices:
+    - HSMDMZ100A
+    - HSMDMZ101A
+    parent_container: SM_CORE_MISC_FABRIC
+  MISC_CORES:
+    devices:
+    - ISMITMSC01A
+    - ISMITMSC02A
+    parent_container: SM_CORE_MISC_FABRIC
+  SHERMAN_FABRIC:
+    devices: []
+    parent_container: Tenant
+  SM_CORE_MISC_FABRIC:
+    devices: []
+    parent_container: SHERMAN_FABRIC
+  VENDOR_SEGMENT:
+    devices:
+    - HSMVND01A
+    - HS00BOT01A
+    - HS00BOT02A
+    parent_container: SM_CORE_MISC_FABRIC
+  WAN_SEGMENT:
+    devices:
+    - HSMWAN40A
+    - HSMWAN41A
+    parent_container: SM_CORE_MISC_FABRIC

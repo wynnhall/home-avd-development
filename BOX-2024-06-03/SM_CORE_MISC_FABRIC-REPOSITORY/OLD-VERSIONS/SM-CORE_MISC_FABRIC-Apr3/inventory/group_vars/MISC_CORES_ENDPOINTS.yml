@@ -1,0 +1,9 @@
+---
+# port_profiles: 
+#   TRUNK_10G_IoT_ROUTERS:
+#     mode: trunk
+#     speed: 10g
+#     spanning_tree_portfast: edge
+#     vlans: 100
+
+# access_points:

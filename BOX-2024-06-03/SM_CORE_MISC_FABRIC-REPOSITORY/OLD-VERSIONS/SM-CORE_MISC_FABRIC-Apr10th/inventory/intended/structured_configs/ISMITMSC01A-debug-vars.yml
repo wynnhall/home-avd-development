@@ -1,0 +1,1396 @@
+custom_structured_configuration_aliases: 'alias ll dir
+
+  alias q exit
+
+  alias senz show interface counter error | nz
+
+  alias shmc show int | awk ''/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }''
+
+  alias snz show interface counter | nz
+
+  alias spd show port-channel %1 detail all
+
+  alias sqnz show interface counter queue | nz
+
+  alias srnz show interface counter rate | nz
+
+  alias shterminattr show version detail | grep TerminAttr-core
+
+  '
+custom_structured_configuration_aaa_server_groups:
+- name: tacacs_servers
+  type: tacacs+
+  servers:
+  - server: 172.31.226.29
+    vrf: mgmt
+  - server: 172.32.226.32
+    vrf: mgmt
+custom_structured_configuration_aaa_accounting:
+  commands:
+    default:
+    - commands: 1,15
+      type: start-stop
+      group: tacacs_servers
+custom_structured_configuration_aaa_authentication:
+  login:
+    default: group tacacs_servers local
+    console: local
+  enable:
+    default: group tacacs_servers local
+  policies:
+    local:
+      allow_nopassword: false
+custom_structured_configuration_aaa_authorization:
+  exec:
+    default: group tacacs_servers local
+custom_structured_configuration_tacacs_servers:
+  timeout: 20
+  hosts:
+  - host: 172.31.225.29
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  - host: 172.31.226.32
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+ip_tacacs_source_interfaces:
+- name: '{{ custom_mgmt_interface }}'
+  vrf: mgmt
+ip_domain_lookup:
+  source_interfaces:
+  - name: '{{ custom_mgmt_interface }}'
+    vrf: mgmt
+custom_structured_configuration_local_users:
+- name: newtorkpw
+  privilege: 15
+  role: network-admin
+  sha512_password: test
+custom_structured_configuration_enable_password:
+  hash_algorithm: sha512
+  key: test
+custom_structured_configuration_ip_name_servers:
+- ip_address: 192.0.2.2
+  vrf: mgmt
+- ip_address: 192.0.2.3
+  vrf: mgmt
+custom_structured_configuration_dns_domain: itg.ti.com
+timezone: UTC
+custom_structured_configuration_ntp:
+  local_interface:
+    name: '{{ custom_mgmt_interface }}'
+    vrf: mgmt
+  servers:
+  - name: 172.16.169.44
+    vrf: mgmt
+    preferred: false
+  - name: 157.170.147.6
+    vrf: mgmt
+  - name: 172.31.225.25
+    vrf: mgmt
+  - name: 137.167.66.10
+    vrf: mgmt
+  - name: 134.183.87.87
+    vrf: mgmt
+  - name: 172.16.44.10
+    vrf: mgmt
+  - name: 10.188.255.18
+    vrf: mgmt
+  - name: 137.167.210.21
+    vrf: mgmt
+  - name: 158.218.8.155
+    vrf: mgmt
+  - name: 172.24.254.250
+    vrf: mgmt
+custom_structured_configuration_standard_access_lists:
+- name: Airwave-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.33
+  - sequence: 20
+    action: deny any log
+- name: ENTS-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.25
+  - sequence: 20
+    action: permit host 172.31.227.10
+  - sequence: 30
+    action: permit host 172.31.225.12
+  - sequence: 40
+    action: deny any log
+- name: NetBrain-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.55
+  - sequence: 20
+    action: permit host 172.31.225.43
+  - sequence: 30
+    action: permit host 172.31.226.49
+  - sequence: 40
+    action: permit host 172.31.226.54
+  - sequence: 50
+    action: deny any log
+- name: NetDisco-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.24
+  - sequence: 20
+    action: permit host 172.31.226.53
+  - sequence: 30
+    action: deny any log
+- name: SevOne-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.225.47
+  - sequence: 20
+    action: permit host 172.31.225.53
+  - sequence: 30
+    action: permit host 172.31.225.54
+  - sequence: 40
+    action: permit host 172.31.225.60
+  - sequence: 50
+    action: ' permit host 172.31.225.61'
+  - sequence: 60
+    action: ' permit host 172.31.225.62'
+  - sequence: 70
+    action: ' permit host 172.31.225.63'
+  - sequence: 80
+    action: ' permit host 172.31.225.64'
+  - sequence: 90
+    action: ' permit host 172.31.225.65'
+  - sequence: 100
+    action: ' permit host 172.31.225.66'
+  - sequence: 110
+    action: ' permit host 172.31.225.67'
+  - sequence: 120
+    action: ' permit host 172.31.225.68'
+  - sequence: 130
+    action: ' permit host 172.31.225.69'
+  - sequence: 140
+    action: ' permit host 172.31.225.86'
+  - sequence: 150
+    action: ' permit host 172.31.225.87'
+  - sequence: 160
+    action: ' permit host 172.31.225.88'
+  - sequence: 170
+    action: ' permit host 172.31.225.89'
+  - sequence: 180
+    action: ' permit host 172.31.225.90'
+  - sequence: 190
+    action: ' permit host 172.31.225.91'
+  - sequence: 200
+    action: ' permit host 172.31.226.100'
+  - sequence: 210
+    action: ' permit host 172.31.226.101'
+  - sequence: 220
+    action: ' permit host 172.31.226.102'
+  - sequence: 230
+    action: ' permit host 172.31.226.55'
+  - sequence: 240
+    action: ' permit host 172.31.226.58'
+  - sequence: 250
+    action: ' permit host 172.31.226.59'
+  - sequence: 260
+    action: ' permit host 172.31.226.63'
+  - sequence: 270
+    action: ' permit host 172.31.226.68'
+  - sequence: 280
+    action: ' permit host 172.31.226.74'
+  - sequence: 290
+    action: ' permit host 172.31.226.75'
+  - sequence: 300
+    action: ' permit host 172.31.226.76'
+  - sequence: 310
+    action: ' permit host 172.31.226.77'
+  - sequence: 320
+    action: ' permit host 172.31.226.79'
+  - sequence: 330
+    action: ' permit host 172.31.226.87'
+  - sequence: 340
+    action: ' permit host 172.31.226.90'
+  - sequence: 350
+    action: ' permit host 172.31.226.91'
+  - sequence: 360
+    action: ' permit host 172.31.226.97'
+  - sequence: 370
+    action: ' permit host 172.31.226.98'
+  - sequence: 380
+    action: ' permit host 172.31.226.99'
+  - sequence: 390
+    action: deny any log
+- name: Statseeker-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.35
+  - sequence: 20
+    action: deny any log
+- name: Ansible-ACL_SM
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: remark dlecvp01
+  - sequence: 20
+    action: permit host 10.180.68.99
+  - sequence: 30
+    action: remark dlecvp02
+  - sequence: 40
+    action: permit host 10.180.68.98
+  - sequence: 50
+    action: remark dflcvp01
+  - sequence: 60
+    action: permit host 10.64.41.27
+  - sequence: 70
+    action: remark dsmcvp01
+  - sequence: 80
+    action: permit host 10.210.80.7
+  - sequence: 90
+    action: remark dsmcvp02
+  - sequence: 100
+    action: permit host 10.210.80.8
+  - sequence: 110
+    action: remark dsmcvp03
+  - sequence: 120
+    action: permit host 10.210.89.9
+  - sequence: 130
+    action: remark ents
+  - sequence: 140
+    action: permit host 172.31.227.10
+  - sequence: 150
+    action: remark tilde
+  - sequence: 160
+    action: permit host 172.31.226.25
+  - sequence: 170
+    action: remark dotdot
+  - sequence: 180
+    action: permit host 172.31.225.12
+snmp_settings:
+  location: true
+  enable_mgmt_interface_vrf: true
+  compute_local_engineid: true
+  compute_local_engineid_source: hostname_and_ip
+  compute_v3_user_localized_key: true
+  users:
+  - name: SNMPManager
+    group: network-admin
+    version: v3
+    auth: sha
+    auth_passphrase: Cspd7xhEsCOZiB_8csNA
+    priv: aes
+    priv_passphrase: Cspd7xhEsCOZiB_8csNA
+  communities:
+  - name: vhbqmu2JRJQcjfX99inm
+    access: ro
+    access_list_ipv4:
+      name: Airwave-SNMP_Access
+  - name: 8dp6e0eJW9DipeJRxreH
+    access: ro
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: 6XTUe5ZyUN0xQ25MNvdg
+    access: rw
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: r0gQaBrsDNEfgtKWsWmV
+    access: ro
+    access_list_ipv4:
+      name: NetBrain-SNMP_Access
+  - name: z778eYOT4g2god0qT8A3
+    access: ro
+    access_list_ipv4:
+      name: NetDisco-SNMP_Access
+  - name: HBHpL2ILnbWbuXuhYPiW
+    access: ro
+    access_list_ipv4:
+      name: SevOne-SNMP_Access
+  - name: Oij0ENt7meI3wjK2rxNv
+    access: ro
+    access_list_ipv4:
+      name: Statseeker-SNMP_Access
+  groups:
+  - name: network-admin
+    version: v3
+    authentication: auth
+  - name: network-operator
+    version: v3
+    authentication: auth
+custom_structured_configuration_snmp_server:
+  engine_ids:
+    remotes:
+    - id: 536E4D705454
+      address: entstrap.itg.ti.com
+    - id: 536576306E65406363652424
+      address: sevonenms.itg.ti.com
+  local_interfaces:
+  - name: '{{ custom_mgmt_interface }}'
+    vrf: mgmt
+custom_structured_configuration_management_api_http:
+  enable_http: false
+  enable_https: true
+  enable_vrfs:
+  - name: mgmt
+    access_group: Ansible-ACL_SM
+custom_structured_configuration_management_console:
+  idle_timeout: 15
+custom_structured_configuration_management_ssh:
+  idle_timeout: 15
+  enable: true
+  vrfs:
+  - name: mgmt
+    enable: true
+custom_structured_configuration_logging:
+  console: disabled
+  monitor: debugging
+  buffered:
+    size: 10000
+    level: debugging
+  trap: debugging
+  synchronous:
+    level: all
+  format:
+    timestamp: high-resolution
+    hostname: fqdn
+    sequence_numbers: false
+  facility: local7
+  vrfs:
+  - name: mgmt
+    source_interface: '{{ custom_mgmt_interface }}'
+    hosts:
+    - name: ents.itg.ti.com
+      protocol: tcp
+      ports:
+      - 514
+eos_cli: 'logging event congestion-drops interval 600
+
+  no logging repeat-messages
+
+  logging level all debugging
+
+  '
+banners:
+  login: "----------------------------------------------------------------------------\n---   UNAUTHORIZED USE MAY RESULT IN CIVIL AND/OR CRIMINAL PROSECUTION   ---\n----------------------------------------------------------------------------\n\n    This is a private computing system for use only by authorized users.\n         If you do not have authorization, discontinue at once.\n\nYour use of this system, and all information or communications stored or\ntransmitted on it by you, with or without authority, or in excess of your\nauthority, is subject to review, monitoring, and recording by system\npersonnel, without notice or permission. Any information or data thus\nobtained by system personnel also is subject to review by law enforcement\nand judicial officials in connection with the investigation or prosecution\nof possible criminal activity involving the system.\n\nIf you now continue use of the system, you expressly consent to these\nconditions of use.\n\n----------------------------------------------------------------------------\nEOF\n"
+custom_structured_configuration_daemon_terminattr:
+  cvaddrs:
+  - 10.10.10.10:9910
+  - 10.10.10.11:9910
+  - 10.10.10.12:9910
+  cvauth:
+    method: token
+    token_file: /tmp/token
+  cvvrf: mgmt
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+custom_structured_configuration_interface_defaults:
+  ethernet:
+    shutdown: true
+  mtu: 9214
+custom_structured_configuration_switchport_default:
+  mode: routed
+custom_structured_configuration_internal_vlan_order:
+  allocation: ascending
+  range:
+    beginning: 3500
+    ending: 4000
+load_interval:
+  default: 30
+vault:
+  users:
+    networkpw:
+      sha512_password: test
+    cvpadmin:
+      password: test
+  enable:
+    password: test
+  bgp:
+    password: test
+Misc-Core-Tenant-IT:
+- name: Misc-Core-Tenant-IT
+  vrfs:
+  - name: IT
+    mlag_ibgp_peering_vlan: '4090'
+    mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+    l3_interfaces:
+    - interfaces:
+      - Ethernet49/1.130
+      - Ethernet50/1.130
+      - Ethernet49/1.130
+      - Ethernet50/1.130
+      nodes:
+      - ISMITMSC01A
+      - ISMITMSC01A
+      - ISMITMSC02A
+      - ISMITMSC02A
+      ip_addresses:
+      - 10.210.241.17/31
+      - 10.210.241.19/31
+      - 10.210.241.21/31
+      - 10.210.241.23/31
+      descriptions:
+      - ISMCR01A-Eth3/4/1-ITVRF
+      - ISMCR02A-Eth3/4/1-ITVRF
+      - ISMCR01A-Eth4/4/1-ITVRF
+      - ISMCR02A-Eth4/4/1-ITVRF
+    bgp_peer_groups:
+    - name: CAMPUS-CORES-EBGP-PEERS-ITVRF
+      nodes:
+      - ISMITMSC01A
+      - ISMITMSC02A
+      remote_as: '65120.1'
+      maximum_routes: 0
+      password: MWwyz+Qs/gNHsRTGPI3uh3dePyazx+u1B1khXxwufTc=
+    bgp_peers:
+    - ip_address: 10.210.241.18
+      description: ISMCR01A-Eth3/4/1-ITVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+      nodes:
+      - ISMITMSC01A
+    - ip_address: 10.210.241.20
+      description: ISMCR02A-Eth3/4/1-ITVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+      nodes:
+      - ISMITMSC01A
+    - ip_address: 10.210.241.22
+      description: ISMCR01A-Eth4/4/1-ITVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+      nodes:
+      - ISMITMSC02A
+    - ip_address: 10.210.241.24
+      description: ISMCR02A-Eth4/4/1-ITVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+      nodes:
+      - ISMITMSC02A
+Misc-Core-Tenant-OT:
+- name: Misc-Core-Tenant-OT
+  vrfs:
+  - name: OT
+    mlag_ibgp_peering_vlan: '4092'
+    mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+    l3_interfaces:
+    - interfaces:
+      - Ethernet49/1.100
+      - Ethernet50/1.100
+      - Ethernet49/1.100
+      - Ethernet50/1.100
+      nodes:
+      - ISMITMSC01A
+      - ISMITMSC01A
+      - ISMITMSC02A
+      - ISMITMSC02A
+      ip_addresses:
+      - 10.210.241.25/31
+      - 10.210.241.27/31
+      - 10.210.241.29/31
+      - 10.210.241.31/31
+      descriptions:
+      - ISMCR01A-Eth3/4/1-OTVRF
+      - ISMCR02A-Eth3/4/1-OTVRF
+      - ISMCR01A-Eth4/4/1-OTVRF
+      - ISMCR02A-Eth4/4/1-OTVRF
+    bgp_peer_groups:
+    - name: CAMPUS-CORES-EBGP-PEERS-OTVRF
+      nodes:
+      - ISMITMSC01A
+      - ISMITMSC02A
+      remote_as: '65120.1'
+      maximum_routes: 0
+      password: jg1TFI31SxhESp9EYt1ENH3BQsvZFe7DS3bS4JmcQek=
+    bgp_peers:
+    - ip_address: 10.210.241.25
+      description: ISMCR01A-Eth3/4/1-OTVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+      nodes:
+      - ISMITMSC01A
+    - ip_address: 10.210.241.27
+      description: ISMCR02A-Eth3/4/1-OTVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+      nodes:
+      - ISMITMSC01A
+    - ip_address: 10.210.241.29
+      description: ISMCR01A-Eth4/4/1-OTVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+      nodes:
+      - ISMITMSC02A
+    - ip_address: 10.210.241.31
+      description: ISMCR02A-Eth4/4/1-OTVRF
+      peer_group: CAMPUS-CORES-EBGP-PEERS-OTVRF
+      nodes:
+      - ISMITMSC02A
+network_services_keys:
+- name: Misc-Core-Tenant-OT
+- name: Misc-Core-Tenant-IT
+new_network_services_bgp_vrf_config: true
+bgp_peer_groups:
+  ipv4_underlay_peers:
+    name: CAMPUS-CORES-EBGP-PEERS-OTVRF
+node_type_keys:
+- key: l3leaf
+  type: l3leaf
+  connected_endpoints: true
+  default_evpn_role: none
+  mlag_support: true
+  network_services:
+    l2: true
+    l3: true
+  vtep: false
+- key: l2leaf
+  type: l2leaf
+  connected_endpoints: true
+  mlag_support: true
+  network_services:
+    l2: true
+  underlay_router: false
+  uplink_type: port-channel
+fabric_name: CORE_MISC_FABRIC
+mgmt_gateway: 10.210.80.1
+mgmt_interface_vrf: mgmt
+custom_mgmt_interface: '{{ switch.mgmt_interface }}'
+design:
+  type: l3ls-evpn
+underlay_routing_protocol: ebgp
+overlay_routing_protocol: none
+l3leaf:
+  defaults:
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
+    mlag_interfaces_speed: 100g
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    vtep: false
+    bgp_defaults:
+    - bgp asn notation asdot
+    - timers bgp 5 15
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+  node_groups:
+  - group: CAMPUS_CORES
+    platform: 7800R3
+    bgp_as: '65120.1'
+    loopback_ipv4_pool: 172.21.0.27/30
+    mlag_interfaces:
+    - Ethernet3/48/1
+    - Ethernet4/48/1
+    nodes:
+    - name: ISMCR01A
+      id: 1
+      mgmt_ip: 10.210.80.72/21
+    - name: ISMCR02A
+      id: 2
+      mgmt_ip: 10.210.80.73/21
+  - group: MISC_CORES
+    platform: 7050X3
+    bgp_as: '65120.10'
+    loopback_ipv4_pool: 172.21.1.28/30
+    mlag_interfaces:
+    - Ethernet55/1
+    - Ethernet56/1
+    nodes:
+    - name: ISMITMSC01A
+      id: 1
+      mgmt_ip: 10.210.80.74/21
+    - name: ISMITMSC02A
+      id: 2
+      mgmt_ip: 10.210.80.75/21
+l2leaf:
+  defaults:
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+  node_groups:
+  - group: WAN_SEGMENT
+    mlag_interfaces_speed: 100g
+    nodes:
+    - name: HSMWAN40A
+      platform: 7280R3
+      mlag_interfaces:
+      - Ethernet55/1
+      - Ethernet56/1
+      id: 1
+      mgmt_ip: 10.210.80.76/21
+    - name: HSMWAN41A
+      platform: 7280R3
+      mlag_interfaces:
+      - Ethernet55/1
+      - Ethernet56/1
+      id: 2
+      mgmt_ip: 10.210.80.77/21
+  - group: DMZ_SEGMENT
+    mlag_interfaces_speed: 25g
+    nodes:
+    - name: HSMDMZ100A
+      platform: 722XP
+      mlag_interfaces:
+      - Ethernet55
+      - Ethernet56
+      id: 1
+      mgmt_ip: 10.210.80.78/21
+    - name: HSMDMZ101A
+      platform: 722XP
+      mlag_interfaces:
+      - Ethernet55
+      - Ethernet56
+      id: 2
+      mgmt_ip: 10.210.80.79/24
+  - group: VENDOR_SEGMENT
+    mlag: false
+    nodes:
+    - name: HSMVND01A
+      platform: 758
+      id: 1
+      mgmt_ip: 10.210.80.80/21
+      filter:
+        tags:
+        - VENDOR
+    - name: HS00BOT01A
+      platform: 722XP
+      id: 2
+      mgmt_ip: 10.210.80.81/21
+      filter:
+        tags:
+        - BOT1
+    - name: HS00BOT02A
+      platform: 722XP
+      id: 3
+      mgmt_ip: 10.210.80.82/21
+      filter:
+        tags:
+        - BOT2
+fabric_ip_addressing:
+  mlag:
+    algorithm: same_subnet
+inventory_file: /workspaces/CORE-MISC-FABRIC/AVD-PS-solution-guide/inventory/inventory.yml
+inventory_dir: /workspaces/CORE-MISC-FABRIC/AVD-PS-solution-guide/inventory
+ansible_host: 10.210.80.74/21
+type: l3leaf
+inventory_hostname: ISMITMSC01A
+inventory_hostname_short: ISMITMSC01A
+group_names:
+- CORE_MISC_FABRIC
+- MISC_CORES
+- MISC_CORES_TENANTS
+- SHERMAN_FABRIC
+ansible_facts:
+  avd_switch_facts:
+    ISMCR01A:
+      switch:
+        id: 1
+        type: l3leaf
+        platform: 7800R3
+        is_deployed: true
+        mgmt_interface: Management0
+        mgmt_ip: 10.210.80.72/21
+        mpls_lsr: false
+        loopback_ipv4_pool: 172.21.0.27/30
+        bgp_as: '65120.1'
+        underlay_routing_protocol: ebgp
+        group: CAMPUS_CORES
+        router_id: 172.21.0.25
+        mlag_peer: ISMCR02A
+        mlag_port_channel_id: 3481
+        mlag_interfaces:
+        - Ethernet3/48/1
+        - Ethernet4/48/1
+        mlag_ip: 192.168.0.0
+        mlag_l3_ip: 192.168.0.2
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_role: none
+        mpls_overlay_role: none
+        overlay:
+          peering_address: 172.21.0.25
+          evpn_mpls: false
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: 10,20,30,40,110,310
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    ISMCR02A:
+      switch:
+        id: 2
+        type: l3leaf
+        platform: 7800R3
+        is_deployed: true
+        mgmt_interface: Management0
+        mgmt_ip: 10.210.80.73/21
+        mpls_lsr: false
+        loopback_ipv4_pool: 172.21.0.27/30
+        bgp_as: '65120.1'
+        underlay_routing_protocol: ebgp
+        group: CAMPUS_CORES
+        router_id: 172.21.0.26
+        mlag_peer: ISMCR01A
+        mlag_port_channel_id: 3481
+        mlag_interfaces:
+        - Ethernet3/48/1
+        - Ethernet4/48/1
+        mlag_ip: 192.168.0.1
+        mlag_l3_ip: 192.168.0.3
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_role: none
+        mpls_overlay_role: none
+        overlay:
+          peering_address: 172.21.0.26
+          evpn_mpls: false
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: 10,20,30,40,110,310
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    ISMITMSC01A:
+      switch:
+        id: 1
+        type: l3leaf
+        platform: 7050X3
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.74/21
+        mpls_lsr: false
+        loopback_ipv4_pool: 172.21.1.28/30
+        bgp_as: '65120.10'
+        underlay_routing_protocol: ebgp
+        group: MISC_CORES
+        router_id: 172.21.1.29
+        mlag_peer: ISMITMSC02A
+        mlag_port_channel_id: 551
+        mlag_interfaces:
+        - Ethernet55/1
+        - Ethernet56/1
+        mlag_ip: 192.168.0.0
+        mlag_l3_ip: 192.168.0.2
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_role: none
+        mpls_overlay_role: none
+        overlay:
+          peering_address: 172.21.1.29
+          evpn_mpls: false
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    ISMITMSC02A:
+      switch:
+        id: 2
+        type: l3leaf
+        platform: 7050X3
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.75/21
+        mpls_lsr: false
+        loopback_ipv4_pool: 172.21.1.28/30
+        bgp_as: '65120.10'
+        underlay_routing_protocol: ebgp
+        group: MISC_CORES
+        router_id: 172.21.1.30
+        mlag_peer: ISMITMSC01A
+        mlag_port_channel_id: 551
+        mlag_interfaces:
+        - Ethernet55/1
+        - Ethernet56/1
+        mlag_ip: 192.168.0.1
+        mlag_l3_ip: 192.168.0.3
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_role: none
+        mpls_overlay_role: none
+        overlay:
+          peering_address: 172.21.1.30
+          evpn_mpls: false
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: ''
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HSMWAN40A:
+      switch:
+        id: 1
+        type: l2leaf
+        platform: 7280R3
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.76/21
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: WAN_SEGMENT
+        mlag_peer: HSMWAN41A
+        mlag_port_channel_id: 551
+        mlag_interfaces:
+        - Ethernet55/1
+        - Ethernet56/1
+        mlag_ip: 192.168.0.0
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: 100,200
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HSMWAN41A:
+      switch:
+        id: 2
+        type: l2leaf
+        platform: 7280R3
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.77/21
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: WAN_SEGMENT
+        mlag_peer: HSMWAN40A
+        mlag_port_channel_id: 551
+        mlag_interfaces:
+        - Ethernet55/1
+        - Ethernet56/1
+        mlag_ip: 192.168.0.1
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: 100,200
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HSMDMZ100A:
+      switch:
+        id: 1
+        type: l2leaf
+        platform: 722XP
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.78/21
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: DMZ_SEGMENT
+        mlag_peer: HSMDMZ101A
+        mlag_port_channel_id: 55
+        mlag_interfaces:
+        - Ethernet55
+        - Ethernet56
+        mlag_ip: 192.168.0.0
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: '100'
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HSMDMZ101A:
+      switch:
+        id: 2
+        type: l2leaf
+        platform: 722XP
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.79/24
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: DMZ_SEGMENT
+        mlag_peer: HSMDMZ100A
+        mlag_port_channel_id: 55
+        mlag_interfaces:
+        - Ethernet55
+        - Ethernet56
+        mlag_ip: 192.168.0.1
+        mlag_switch_ids:
+          primary: 1
+          secondary: 2
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: '100'
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HSMVND01A:
+      switch:
+        id: 1
+        type: l2leaf
+        platform: '758'
+        is_deployed: true
+        mgmt_interface: Management0
+        mgmt_ip: 10.210.80.80/21
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: VENDOR_SEGMENT
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: '100'
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HS00BOT01A:
+      switch:
+        id: 2
+        type: l2leaf
+        platform: 722XP
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.81/21
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: VENDOR_SEGMENT
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: '200'
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+    HS00BOT02A:
+      switch:
+        id: 3
+        type: l2leaf
+        platform: 722XP
+        is_deployed: true
+        mgmt_interface: Management1
+        mgmt_ip: 10.210.80.82/21
+        mpls_lsr: false
+        underlay_routing_protocol: ebgp
+        group: VENDOR_SEGMENT
+        evpn_route_servers: []
+        max_parallel_uplinks: 1
+        max_uplink_switches: 0
+        uplinks: []
+        uplink_peers: []
+        vlans: '300'
+        local_endpoint_trunk_groups: []
+        endpoint_trunk_groups: []
+  avd_overlay_peers: {}
+  avd_topology_peers: {}
+avd_switch_facts:
+  ISMCR01A:
+    switch:
+      id: 1
+      type: l3leaf
+      platform: 7800R3
+      is_deployed: true
+      mgmt_interface: Management0
+      mgmt_ip: 10.210.80.72/21
+      mpls_lsr: false
+      loopback_ipv4_pool: 172.21.0.27/30
+      bgp_as: '65120.1'
+      underlay_routing_protocol: ebgp
+      group: CAMPUS_CORES
+      router_id: 172.21.0.25
+      mlag_peer: ISMCR02A
+      mlag_port_channel_id: 3481
+      mlag_interfaces:
+      - Ethernet3/48/1
+      - Ethernet4/48/1
+      mlag_ip: 192.168.0.0
+      mlag_l3_ip: 192.168.0.2
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_role: none
+      mpls_overlay_role: none
+      overlay:
+        peering_address: 172.21.0.25
+        evpn_mpls: false
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: 10,20,30,40,110,310
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  ISMCR02A:
+    switch:
+      id: 2
+      type: l3leaf
+      platform: 7800R3
+      is_deployed: true
+      mgmt_interface: Management0
+      mgmt_ip: 10.210.80.73/21
+      mpls_lsr: false
+      loopback_ipv4_pool: 172.21.0.27/30
+      bgp_as: '65120.1'
+      underlay_routing_protocol: ebgp
+      group: CAMPUS_CORES
+      router_id: 172.21.0.26
+      mlag_peer: ISMCR01A
+      mlag_port_channel_id: 3481
+      mlag_interfaces:
+      - Ethernet3/48/1
+      - Ethernet4/48/1
+      mlag_ip: 192.168.0.1
+      mlag_l3_ip: 192.168.0.3
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_role: none
+      mpls_overlay_role: none
+      overlay:
+        peering_address: 172.21.0.26
+        evpn_mpls: false
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: 10,20,30,40,110,310
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  ISMITMSC01A:
+    switch:
+      id: 1
+      type: l3leaf
+      platform: 7050X3
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.74/21
+      mpls_lsr: false
+      loopback_ipv4_pool: 172.21.1.28/30
+      bgp_as: '65120.10'
+      underlay_routing_protocol: ebgp
+      group: MISC_CORES
+      router_id: 172.21.1.29
+      mlag_peer: ISMITMSC02A
+      mlag_port_channel_id: 551
+      mlag_interfaces:
+      - Ethernet55/1
+      - Ethernet56/1
+      mlag_ip: 192.168.0.0
+      mlag_l3_ip: 192.168.0.2
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_role: none
+      mpls_overlay_role: none
+      overlay:
+        peering_address: 172.21.1.29
+        evpn_mpls: false
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  ISMITMSC02A:
+    switch:
+      id: 2
+      type: l3leaf
+      platform: 7050X3
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.75/21
+      mpls_lsr: false
+      loopback_ipv4_pool: 172.21.1.28/30
+      bgp_as: '65120.10'
+      underlay_routing_protocol: ebgp
+      group: MISC_CORES
+      router_id: 172.21.1.30
+      mlag_peer: ISMITMSC01A
+      mlag_port_channel_id: 551
+      mlag_interfaces:
+      - Ethernet55/1
+      - Ethernet56/1
+      mlag_ip: 192.168.0.1
+      mlag_l3_ip: 192.168.0.3
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_role: none
+      mpls_overlay_role: none
+      overlay:
+        peering_address: 172.21.1.30
+        evpn_mpls: false
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: ''
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HSMWAN40A:
+    switch:
+      id: 1
+      type: l2leaf
+      platform: 7280R3
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.76/21
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: WAN_SEGMENT
+      mlag_peer: HSMWAN41A
+      mlag_port_channel_id: 551
+      mlag_interfaces:
+      - Ethernet55/1
+      - Ethernet56/1
+      mlag_ip: 192.168.0.0
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: 100,200
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HSMWAN41A:
+    switch:
+      id: 2
+      type: l2leaf
+      platform: 7280R3
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.77/21
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: WAN_SEGMENT
+      mlag_peer: HSMWAN40A
+      mlag_port_channel_id: 551
+      mlag_interfaces:
+      - Ethernet55/1
+      - Ethernet56/1
+      mlag_ip: 192.168.0.1
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: 100,200
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HSMDMZ100A:
+    switch:
+      id: 1
+      type: l2leaf
+      platform: 722XP
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.78/21
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: DMZ_SEGMENT
+      mlag_peer: HSMDMZ101A
+      mlag_port_channel_id: 55
+      mlag_interfaces:
+      - Ethernet55
+      - Ethernet56
+      mlag_ip: 192.168.0.0
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: '100'
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HSMDMZ101A:
+    switch:
+      id: 2
+      type: l2leaf
+      platform: 722XP
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.79/24
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: DMZ_SEGMENT
+      mlag_peer: HSMDMZ100A
+      mlag_port_channel_id: 55
+      mlag_interfaces:
+      - Ethernet55
+      - Ethernet56
+      mlag_ip: 192.168.0.1
+      mlag_switch_ids:
+        primary: 1
+        secondary: 2
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: '100'
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HSMVND01A:
+    switch:
+      id: 1
+      type: l2leaf
+      platform: '758'
+      is_deployed: true
+      mgmt_interface: Management0
+      mgmt_ip: 10.210.80.80/21
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: VENDOR_SEGMENT
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: '100'
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HS00BOT01A:
+    switch:
+      id: 2
+      type: l2leaf
+      platform: 722XP
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.81/21
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: VENDOR_SEGMENT
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: '200'
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+  HS00BOT02A:
+    switch:
+      id: 3
+      type: l2leaf
+      platform: 722XP
+      is_deployed: true
+      mgmt_interface: Management1
+      mgmt_ip: 10.210.80.82/21
+      mpls_lsr: false
+      underlay_routing_protocol: ebgp
+      group: VENDOR_SEGMENT
+      evpn_route_servers: []
+      max_parallel_uplinks: 1
+      max_uplink_switches: 0
+      uplinks: []
+      uplink_peers: []
+      vlans: '300'
+      local_endpoint_trunk_groups: []
+      endpoint_trunk_groups: []
+avd_overlay_peers: {}
+avd_topology_peers: {}
+avd_requirements:
+  failed: false
+  changed: false
+playbook_dir: /workspaces/CORE-MISC-FABRIC/AVD-PS-solution-guide/playbooks
+ansible_playbook_python: /usr/local/bin/python
+ansible_config_file: /workspaces/CORE-MISC-FABRIC/AVD-PS-solution-guide/ansible.cfg
+groups:
+  all:
+  - cv_ztp
+  - cv_server
+  - ISMCR01A
+  - ISMCR02A
+  - ISMITMSC01A
+  - ISMITMSC02A
+  - HSMWAN40A
+  - HSMWAN41A
+  - HSMDMZ100A
+  - HSMDMZ101A
+  - HSMVND01A
+  - HS00BOT01A
+  - HS00BOT02A
+  ungrouped: []
+  CVP:
+  - cv_ztp
+  - cv_server
+  SHERMAN_FABRIC:
+  - ISMCR01A
+  - ISMCR02A
+  - ISMITMSC01A
+  - ISMITMSC02A
+  - HSMWAN40A
+  - HSMWAN41A
+  - HSMDMZ100A
+  - HSMDMZ101A
+  - HSMVND01A
+  - HS00BOT01A
+  - HS00BOT02A
+  CORE_MISC_FABRIC:
+  - ISMCR01A
+  - ISMCR02A
+  - ISMITMSC01A
+  - ISMITMSC02A
+  - HSMWAN40A
+  - HSMWAN41A
+  - HSMDMZ100A
+  - HSMDMZ101A
+  - HSMVND01A
+  - HS00BOT01A
+  - HS00BOT02A
+  CAMPUS_CORES:
+  - ISMCR01A
+  - ISMCR02A
+  MISC_CORES:
+  - ISMITMSC01A
+  - ISMITMSC02A
+  WAN_SEGMENT:
+  - HSMWAN40A
+  - HSMWAN41A
+  DMZ_SEGMENT:
+  - HSMDMZ100A
+  - HSMDMZ101A
+  VENDOR_SEGMENT:
+  - HSMVND01A
+  - HS00BOT01A
+  - HS00BOT02A
+  CORE_TENANTS:
+  - ISMCR01A
+  - ISMCR02A
+  MISC_CORES_TENANTS:
+  - ISMITMSC01A
+  - ISMITMSC02A
+omit: __omit_place_holder__b22b642d9a16ba04783d15e9311dc459cc4c2603
+ansible_version:
+  string: 2.16.3
+  full: 2.16.3
+  major: 2
+  minor: 16
+  revision: 3
+ansible_check_mode: false
+ansible_diff_mode: false
+ansible_forks: 5
+ansible_inventory_sources:
+- /workspaces/CORE-MISC-FABRIC/AVD-PS-solution-guide/inventory/inventory.yml
+ansible_skip_tags: []
+ansible_run_tags:
+- build
+ansible_verbosity: 0

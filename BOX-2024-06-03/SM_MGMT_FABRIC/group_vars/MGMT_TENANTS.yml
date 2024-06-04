@@ -1,0 +1,167 @@
+---
+
+# All management vlans on Spine switches.
+
+svi_profiles:
+  - profile: svi_l3_defaults
+    raw_eos_cli: |
+      no ip proxy-arp
+      no autostate
+
+tenants:
+  - name: MGMT_TENANTS
+    vrfs:
+      - name: default
+        ip_helpers:
+          - ip_helper: 158.218.194.13
+          - ip_helper: 172.16.169.30
+        svis:
+          - id: 461
+            name: '10.211.240.0/22-SM1-Mgmt' # TBA
+            tags: [SM1]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.211.240.1
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.211.240.2/22
+              - node: ismmgtsp02a
+                ip_address: 10.211.240.3/22
+          - id: 462
+            name: '10.215.241.0/24-ADMIN-Mgmt' #TBA
+            tags: [ADMIN]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.215.241.1
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.215.241.2/24
+              - node: ismmgtsp02a
+                ip_address: 10.215.241.3/24
+          - id: 463
+            name: '10.215.242.0/23-SUPPORT-Mgmt'
+            tags: [SUPPORT]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.215.242.1
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.215.242.2/23
+              - node: ismmgtsp02a
+                ip_address: 10.215.242.3/23
+          - id: 300
+            name: '10.210.80.0/21-DC&MDF-Mgmt'
+            tags: [DC&MDF]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.80.1
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.210.80.2/21
+              - node: ismmgtsp02a
+                ip_address: 10.210.80.3/21
+          - id: 308
+            name: '10.210.88.0/23-OOB-Mgmt'
+            tags: [OOB]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.88.1
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.210.88.2/23
+              - node: ismmgtsp02a
+                ip_address: 10.210.88.3/23
+          - id: 443
+            name: '10.210.223.0/24-DMF-Mgmt'
+            tags: [DMF]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.223.1
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.210.223.2/24
+              - node: ismmgtsp02a
+                ip_address: 10.210.223.3/24
+          - id: 549
+            name: 'MGMTFW-TRANSIT-DEFAULTVRF'
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.89
+            nodes:
+              - node: ismmgtsp01a
+                ip_address: 10.210.241.90/29
+              - node: ismmgtsp02a
+                ip_address: 10.210.241.91/29
+        bgp_peer_groups:
+          - name: MGMTFW-EBGP-PEERS
+            nodes: [ismmgtsp01a, ismmgtsp02a]
+            remote_as: "65120.511"
+            maximum_routes: 0
+        bgp_peers:
+          - ip_address: 10.210.241.94
+            peer_group: MGMTFW-EBGP-PEERS
+            nodes:
+                - ismmgtsp01a
+                - ismmgtsp02a
+            description: ismmgtpan01-02
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+            set_ipv4_next_hop: 10.210.241.89
+        # leveraging structured_config to add PLs & RMs from cli_gen to eos_designs tenants.vrfs and also to Add RM to the default "reditribute connected" under router.bgp   
+        structured_config:
+          prefix_lists:
+            - name: PL-MGMT-NETWORKS
+              sequence_numbers:
+                - sequence: 10
+                  action: permit 10.211.240.0/22
+                - sequence: 20
+                  action: permit 10.215.241.0/24
+                - sequence: 30
+                  action: permit 10.215.242.0/23
+                - sequence: 40
+                  action: permit 10.210.80.0/21
+                - sequence: 50
+                  action: permit 10.210.88.0/23
+                - sequence: 60
+                  action: permit 10.210.223.0/24
+                - sequence: 70
+                  action: permit 10.210.241.88/29
+          route_maps:
+            - name: RM-MGMT-NETWORKS
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - ip address prefix-list PL-MGMT-NETWORKS
+          router_bgp:
+            redistribute_routes:
+              - source_protocol: connected
+                route_map: RM-MGMT-NETWORKS
+            peer_groups:
+              - name: IPv4-UNDERLAY-PEERS
+                type: null
+                maximum_routes: null
+                send_community: null
+            address_family_ipv4:
+              peer_groups:
+                - name: IPv4-UNDERLAY-PEERS
+                  activate: null
+          eos_cli: |
+            router bgp 65120.510
+              no neighbor IPv4-UNDERLAY-PEERS peer group
+        static_routes:
+          - destination_address_prefix: 0.0.0.0/0
+            gateway: 10.210.241.94
+            name: ISMMGTPAN01-02
+            metric: 225
+            distance: 225
+            nodes:
+              - ismmgtsp01a
+              - ismmgtsp02a
+        redistribute_static: false

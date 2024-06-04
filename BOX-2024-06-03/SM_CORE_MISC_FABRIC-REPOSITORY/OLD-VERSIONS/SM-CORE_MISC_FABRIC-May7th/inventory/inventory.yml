@@ -1,0 +1,80 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_server:
+          # section for CVP primary node address
+          ansible_httpapi_host: 10.210.80.7
+          ansible_host: 10.210.80.7
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: false
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          fabric_name: FABRIC
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+    SHERMAN_FABRIC:
+      children:
+        SM-CORE_MISC_FABRIC:
+          children:
+            CAMPUS_CORES:
+              hosts:
+                ISMCR01A:
+                  ansible_host: 10.210.80.72
+                  type: l3leaf
+                ISMCR02A:
+                  ansible_host: 10.210.80.73
+                  type: l3leaf
+            MISC_CORES:
+              hosts:
+                ISMITMSC01A:
+                  ansible_host: 10.210.80.74
+                  type: l3leaf
+                ISMITMSC02A:
+                  ansible_host: 10.210.80.75
+                  type: l3leaf
+            WAN_SEGMENT:
+              hosts:
+                HSMWAN40A:
+                  ansible_host: 10.210.80.76
+                  type: l2leaf
+                HSMWAN41A:
+                  ansible_host: 10.210.80.77
+                  type: l2leaf
+            DMZ_SEGMENT:
+              hosts:
+                HSMDMZ100A:
+                  ansible_host: 10.210.80.78
+                  type: l2leaf
+                HSMDMZ101A:
+                  ansible_host: 10.210.80.79
+                  type: l2leaf
+            VENDOR_SEGMENT:
+              hosts:
+                HSMVND01A:
+                  ansible_host: 10.210.80.80
+                  type: l2leaf
+                HS00BOT01A:
+                  ansible_host: 10.215.241.20
+                  type: l2leaf
+                HS00BOT02A:
+                  ansible_host: 10.215.241.21
+                  type: l2leaf
+
+    CORE_TENANTS:
+      children:
+        CAMPUS_CORES:
+    MISC_CORES_TENANTS:
+      children:
+        MISC_CORES:
+  
+    MISC_CORES_ENDPOINTS:
+      children:
+        MISC_CORES:
+
+    sFLOW:
+      children:
+        CAMPUS_CORES:
+    
