@@ -38,15 +38,15 @@ SM_MGMT_FABRIC-deploy: ## Run ansible playbook to deploy configs to CVP
 ################################################################################
 .PHONY: SM_CORE_MISC_FABRIC-build
 SM_CORE_MISC_FABRIC-build: ## Run ansible-playbook to build SM_CORE_MISC_FABRIC
-	ansible-playbook playbooks/build.yml -i sm/SM_CORE_MISC_FABRIC-REPOSITORY/inventory.yml --ask-vault-pass -e fabric_name=SM_CORE_MISC_FABRIC
+	ansible-playbook playbooks/build.yml -i sm/SM_CORE_MISC_FABRIC/inventory.yml --ask-vault-pass -e fabric_name=SM_CORE_MISC_FABRIC
 
 .PHONY: SM_CORE_MISC_FABRIC-clean
 SM_CORE_MISC_FABRIC-clean: ## Run ansible-playbook to remove intended/ directories and re-build cleanly SM_CORE_MISC_FABRIC
-	ansible-playbook playbooks/clean.yml -i sm/SM_CORE_MISC_FABRIC-REPOSITORY/inventory.yml --ask-vault-pass -e fabric_name=SM_CORE_MISC_FABRIC
+	ansible-playbook playbooks/clean.yml -i sm/SM_CORE_MISC_FABRIC/inventory.yml --ask-vault-pass -e fabric_name=SM_CORE_MISC_FABRIC
 
 .PHONY: SM_CORE_MISC_FABRIC-deploy
 SM_CORE_MISC_FABRIC-deploy: ## Run ansible playbook to deploy configs to CVP
-	ansible-playbook playbooks/deploy.yml -i sm/SM_CORE_MISC_FABRIC-REPOSITORY/inventory.yml --ask-vault-pass -e "fabric_name=SM_CORE_MISC_FABRIC container_root=SM"
+	ansible-playbook playbooks/deploy.yml -i sm/SM_CORE_MISC_FABRIC/inventory.yml --ask-vault-pass -e "fabric_name=SM_CORE_MISC_FABRIC container_root=SM"
 
 
 ################################################################################
