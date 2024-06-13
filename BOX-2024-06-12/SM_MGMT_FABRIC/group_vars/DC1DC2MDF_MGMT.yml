@@ -1,0 +1,7 @@
+---
+inband_mgmt_subnet: 10.210.80.0/21
+inband_mgmt_gateway: 10.210.80.1
+inband_mgmt_interface: vlan300
+inband_mgmt_vrf: default
+inband_mgmt_vlan: 300
+inband_mgmt_description: 10.210.80.0/21-DC&MDF-Mgmt

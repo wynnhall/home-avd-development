@@ -1,0 +1,5 @@
+# SM1-OT Tenants Networks
+# Documentation of Tenant specific information - Vlans/VRFs
+
+network_services_keys:
+  - name: S1-OT-Tenant-OT

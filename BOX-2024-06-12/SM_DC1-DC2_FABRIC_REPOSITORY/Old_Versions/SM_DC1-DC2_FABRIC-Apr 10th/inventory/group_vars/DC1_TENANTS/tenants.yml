@@ -1,0 +1,8 @@
+---
+# DC1 Tenants Networks
+# Documentation of Tenant specific information - Vlans/VRFs
+
+network_services_keys:
+  - name: DC1-Tenant-OT
+  - name: DC1-Tenant-IT-DC
+

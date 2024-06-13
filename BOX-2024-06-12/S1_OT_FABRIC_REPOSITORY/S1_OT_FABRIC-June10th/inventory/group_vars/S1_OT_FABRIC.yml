@@ -1,0 +1,1206 @@
+---
+# L3LS Fabric Values - update these values with caution,
+# SOME CHANGES COULD BE DISRUPTIVE.
+
+fabric_name: S1_OT_FABRIC
+
+description_prefix: "[L]"
+#sflow collector
+sflow_dest: sflowle03
+
+
+design:
+  type: l3ls-evpn
+
+# Fabric CVP Variables for global.yml
+cvp_host_1_name: dsmcvp01
+cvp_host_1_ip: 10.210.80.7
+cvp_host_2_name: dsmcvp02
+cvp_host_2_ip: 10.210.80.8
+cvp_host_3_name: dsmcvp03
+cvp_host_3_ip: 10.210.80.9
+
+#address-locking:
+address_locking:
+  locked_address:
+    # Configure enforcement for locked IPv4 addresses.
+    ipv4_enforcement_disabled: true
+
+mgmt_interface_vrf: mgmt
+custom_mgmt_interface: "{{ switch.mgmt_interface }}"
+
+# Disable vlan aware bundles
+evpn_vlan_aware_bundles: false
+
+# This feature allows IPv6 underlay routing protocol with RFC5549 addresses to be used along with IPv4 advertisements as VXLAN tunnel endpoints.
+underlay_rfc5549: true
+
+bgp_maximum_paths: 128
+bgp_ecmp: 128
+
+# To change the Trunk Group - LEAF_PEER_L3 used for MLAG L3 peering VLAN (Typically VLAN 4093) and MLAg VLAN - MLAG the same .
+trunk_groups:
+  mlag_l3:
+    name: "MLAG"
+# Spine Switches
+spine:
+  defaults:
+    platform: 7368X4
+    bgp_as: "65120.21100"
+    loopback_ipv4_pool: 172.21.3.0/24
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - graceful-restart restart-time 300
+      - graceful-restart
+      - neighbor default send-community
+  node_groups:
+    - group: S1_OT_SPINES
+      mgmt_gateway: 10.210.80.1
+      nodes:
+        - name: isms1otsp01a
+          id: 1
+          mgmt_ip: 10.210.80.67/21
+        - name: isms1otsp02a
+          id: 2
+          mgmt_ip: 10.210.80.68/21
+        - name: isms1otsp03a
+          id: 3
+          mgmt_ip: 10.210.80.69/21
+
+# Leaf switch groups
+# A maximum of two nodes can form a leaf group
+# When two nodes are in a leaf group this will automatically form mlag pair
+l3leaf:
+  defaults:
+    platform: 7050X3
+    mgmt_gateway: 10.211.240.1
+    # virtual router mac for VNIs assigned to Leaf switches
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    loopback_ipv4_pool: 172.21.3.0/24
+    loopback_ipv4_offset: 3
+    vtep_loopback_ipv4_pool: 10.210.248.0/24
+    uplink_switches: [ isms1otsp01a, isms1otsp02a, isms1otsp03a ]
+    uplink_interfaces: [ Ethernet49/1, Ethernet50/1, Ethernet51/1 ]
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
+    mlag_port_channel_id: 4094
+    mlag_domain_id: MLAG
+    mlag_interfaces: [ Ethernet55/1, Ethernet56/1 ]
+    spanning_tree_priority: 4096
+    spanning_tree_mode: mstp
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - neighbor default send-community
+  node_groups:
+    - group: S1_VTEP_1JOT_01
+      bgp_as: "65120.21201"
+      nodes:
+        - name: is11jotagg01aa
+          id: 1
+          mgmt_ip: 10.211.240.26/22
+          uplink_switch_interfaces: [ Ethernet4/1/1, Ethernet4/1/1, Ethernet4/1/1 ]
+        - name: is11jotagg01ba
+          id: 2
+          mgmt_ip: 10.211.240.27/22
+          uplink_switch_interfaces: [ Ethernet5/1/1, Ethernet5/1/1, Ethernet5/1/1 ]
+    - group: S1_VTEP_1JOT_02
+      bgp_as: "65120.21202"
+      nodes:
+        - name: is11jotagg02aa
+          id: 3
+          mgmt_ip: 10.211.240.28/22
+          uplink_switch_interfaces: [ Ethernet6/1/1, Ethernet6/1/1, Ethernet6/1/1 ]
+        - name: is11jotagg02ba
+          id: 4
+          mgmt_ip: 10.211.240.29/22
+          uplink_switch_interfaces: [ Ethernet7/1/1, Ethernet7/1/1, Ethernet7/1/1 ]
+    - group: S1_VTEP_1GOT_01
+      bgp_as: "65120.21203"
+      nodes:
+        - name: is11gotagg01aa
+          id: 5
+          mgmt_ip: 10.211.240.30/22
+          uplink_switch_interfaces: [ Ethernet8/1/1, Ethernet8/1/1, Ethernet8/1/1 ]
+        - name: is11gotagg01ba
+          id: 6
+          mgmt_ip: 10.211.240.31/22
+          uplink_switch_interfaces: [ Ethernet9/1/1, Ethernet9/1/1, Ethernet9/1/1 ]
+    - group: S1_VTEP_1GOT_02
+      bgp_as: "65120.21204"
+      nodes:
+        - name: is11gotagg02aa
+          id: 7
+          mgmt_ip: 10.211.240.32/22
+          uplink_switch_interfaces: [ Ethernet2/2/1, Ethernet2/2/1, Ethernet2/2/1 ]
+        - name: is11gotagg02ba
+          id: 8
+          mgmt_ip: 10.211.240.33/22
+          uplink_switch_interfaces: [ Ethernet3/2/1, Ethernet3/2/1, Ethernet3/2/1 ]
+    - group: S1_VTEP_1COT_01
+      bgp_as: "65120.21205"
+      nodes:
+        - name: is11cotagg01aa
+          id: 9
+          mgmt_ip: 10.211.240.34/22
+          uplink_switch_interfaces: [ Ethernet4/2/1, Ethernet4/2/1, Ethernet4/2/1 ]
+        - name: is11cotagg01ba
+          id: 10
+          mgmt_ip: 10.211.240.35/22
+          uplink_switch_interfaces: [ Ethernet5/2/1, Ethernet5/2/1, Ethernet5/2/1 ]
+    - group: S1_VTEP_1COT_02
+      bgp_as: "65120.21206"
+      nodes:
+        - name: is11cotagg02aa
+          id: 11
+          mgmt_ip: 10.211.240.36/22
+          uplink_switch_interfaces: [ Ethernet6/2/1, Ethernet6/2/1, Ethernet6/2/1 ]
+        - name: is11cotagg02ba
+          id: 12
+          mgmt_ip: 10.211.240.37/22
+          uplink_switch_interfaces: [ Ethernet7/2/1, Ethernet7/2/1, Ethernet7/2/1 ]
+    - group: S1_VTEP_1AOT_01
+      bgp_as: "65120.21207"
+      nodes:
+        - name: is11aotagg01aa
+          id: 13
+          mgmt_ip: 10.211.240.38/22
+          uplink_switch_interfaces: [ Ethernet8/2/1, Ethernet8/2/1, Ethernet8/2/1 ]
+        - name: is11aotagg01ba
+          id: 14
+          mgmt_ip: 10.211.240.39/22
+          uplink_switch_interfaces: [ Ethernet9/2/1, Ethernet9/2/1, Ethernet9/2/1 ]
+    - group: S1_VTEP_1AOT_02
+      bgp_as: "65120.21208"
+      nodes:
+        - name: is11aotagg02aa
+          id: 15
+          mgmt_ip: 10.211.240.40/22
+          uplink_switch_interfaces: [ Ethernet2/3/1, Ethernet2/3/1, Ethernet2/3/1 ]
+        - name: is11aotagg02ba
+          id: 16
+          mgmt_ip: 10.211.240.41/22
+          uplink_switch_interfaces: [ Ethernet3/3/1, Ethernet3/3/1, Ethernet3/3/1 ]
+    - group: S1_VTEP_1JWOT_01
+      bgp_as: "65120.21209"
+      nodes:
+        - name: is11jwotagg01aa
+          id: 17
+          mgmt_ip: 10.211.240.42/22
+          uplink_switch_interfaces: [ Ethernet4/3/1, Ethernet4/3/1, Ethernet4/3/1 ]
+        - name: is11jwotagg01ba
+          id: 18
+          mgmt_ip: 10.211.240.43/22
+          uplink_switch_interfaces: [ Ethernet5/3/1, Ethernet5/3/1, Ethernet5/3/1 ]
+    - group: S1_VTEP_1GWOT_01
+      bgp_as: "65120.21210"
+      nodes:
+        - name: is11gwotagg01aa
+          id: 19
+          mgmt_ip: 10.211.240.44/22
+          uplink_switch_interfaces: [ Ethernet6/3/1, Ethernet6/3/1, Ethernet6/3/1 ]
+        - name: is11gwotagg01ba
+          id: 20
+          mgmt_ip: 10.211.240.45/22
+          uplink_switch_interfaces: [ Ethernet7/3/1, Ethernet7/3/1, Ethernet7/3/1  ]
+    - group: S1_VTEP_1EWOT_01
+      bgp_as: "65120.21211"
+      nodes:
+        - name: is11ewotagg01aa
+          id: 21
+          mgmt_ip: 10.211.240.46/22
+          uplink_switch_interfaces: [ Ethernet8/3/1, Ethernet8/3/1, Ethernet8/3/1 ]
+        - name: is11ewotagg01ba
+          id: 22
+          mgmt_ip: 10.211.240.47/22
+          uplink_switch_interfaces: [ Ethernet9/3/1, Ethernet9/3/1, Ethernet9/3/1 ]
+    - group: S1_VTEP_1CWOT_01
+      bgp_as: "65120.21212"
+      nodes:
+        - name: is11cwotagg01aa
+          id: 23
+          mgmt_ip: 10.211.240.48/22
+          uplink_switch_interfaces: [ Ethernet2/4/1, Ethernet2/4/1, Ethernet2/4/1 ]
+        - name: is11cwotagg01ba
+          id: 24
+          mgmt_ip: 10.211.240.49/22
+          uplink_switch_interfaces: [ Ethernet3/4/1, Ethernet3/4/1, Ethernet3/4/1 ]
+    - group: S1_VTEP_1KEOT_01
+      bgp_as: "65120.21213"
+      nodes:
+        - name: is11keotagg01aa
+          id: 25
+          mgmt_ip: 10.211.240.50/22
+          uplink_switch_interfaces: [ Ethernet4/4/1, Ethernet4/4/1, Ethernet4/4/1 ]
+        - name: is11keotagg01ba
+          id: 26
+          mgmt_ip: 10.211.240.51/22
+          uplink_switch_interfaces: [ Ethernet5/4/1, Ethernet5/4/1, Ethernet5/4/1 ]
+    - group: S1_VTEP_1HEOT_01
+      bgp_as: "65120.21214"
+      nodes:
+        - name: is11heotagg01aa
+          id: 27
+          mgmt_ip: 10.211.240.52/22
+          uplink_switch_interfaces: [ Ethernet6/4/1, Ethernet6/4/1, Ethernet6/4/1 ]
+        - name: is11heotagg01ba
+          id: 28
+          mgmt_ip: 10.211.240.53/22
+          uplink_switch_interfaces: [ Ethernet7/4/1, Ethernet7/4/1, Ethernet7/4/1 ]
+    - group: S1_VTEP_1DEOT_01
+      bgp_as: "65120.21215"
+      nodes:
+        - name: is11deotagg01aa
+          id: 29
+          mgmt_ip: 10.211.240.54/22
+          uplink_switch_interfaces: [ Ethernet8/4/1, Ethernet8/4/1, Ethernet8/4/1 ]
+        - name: is11deotagg01ba
+          id: 30
+          mgmt_ip: 10.211.240.55/22
+          uplink_switch_interfaces: [ Ethernet9/4/1, Ethernet9/4/1, Ethernet9/4/1 ]
+    - group: S1_VTEP_1BEOT_01
+      bgp_as: "65120.21216"
+      nodes:
+        - name: is11beotagg01aa
+          id: 31
+          mgmt_ip: 10.211.240.56/22
+          uplink_switch_interfaces: [ Ethernet2/5/1, Ethernet2/5/1, Ethernet2/5/1 ]
+        - name: is11beotagg01ba
+          id: 32
+          mgmt_ip: 10.211.240.57/22
+          uplink_switch_interfaces: [ Ethernet3/5/1, Ethernet3/5/1, Ethernet3/5/1 ]
+    - group: S1_VTEP_3XNOT_01
+      bgp_as: "65120.21217"
+      mgmt_gateway: 10.215.242.1
+      nodes:
+        - name: ism3xnotagg01aa
+          id: 33
+          mgmt_ip: 10.215.242.25/23
+          uplink_switch_interfaces: [ Ethernet4/5/1, Ethernet4/5/1, Ethernet4/5/1 ]
+        - name: ism3xnotagg01ba
+          id: 34
+          mgmt_ip: 10.215.242.26/23
+          uplink_switch_interfaces: [ Ethernet5/5/1, Ethernet5/5/1, Ethernet5/5/1 ]
+    - group: S1_VTEP_3XOT_01
+      bgp_as: "65120.21218"
+      mgmt_gateway: 10.215.242.1
+      nodes:
+        - name: ism3xotagg01aa
+          id: 35
+          mgmt_ip: 10.215.242.27/23
+          uplink_switch_interfaces: [ Ethernet6/5/1, Ethernet6/5/1, Ethernet6/5/1 ]
+        - name: ism3xotagg01ba
+          id: 36
+          mgmt_ip: 10.215.242.28/23
+          uplink_switch_interfaces: [ Ethernet7/5/1, Ethernet7/5/1, Ethernet7/5/1 ]
+    - group: S1_OT_BLEAFS
+      mgmt_gateway: 10.210.80.1
+      platform: 7280R3
+      uplink_interfaces: [ Ethernet25/1, Ethernet26/1, Ethernet27/1 ]
+      mlag_interfaces: [ Ethernet31/1, Ethernet32/1 ]
+      bgp_as: "65120.21200"
+      nodes:
+        - name: isms1otbl01aa
+          id: 37
+          mgmt_ip: 10.210.80.70/21
+          uplink_switch_interfaces: [ Ethernet2/1/1, Ethernet2/1/1, Ethernet2/1/1 ]
+        - name: isms1otbl01ba
+          id: 38
+          mgmt_ip: 10.210.80.71/21
+          uplink_switch_interfaces: [ Ethernet3/1/1, Ethernet3/1/1, Ethernet3/1/1 ]
+
+l2leaf:
+  defaults:
+    spanning_tree_priority: 16384
+    spanning_tree_mode: mstp
+    platform: 722XP
+    mlag: false
+    uplink_interfaces: [ Ethernet49, Ethernet50 ]
+    # uplink_interface_speed: forced 10000full
+    mgmt_gateway: 10.211.240.1
+  node_groups:
+    - group: S1_L2LF_JOT01-13A
+      uplink_switches: [ is11jotagg01aa, is11jotagg01ba ]
+      nodes:
+        - name: hs11jot01a
+          id: 1
+          mgmt_ip: 10.211.240.58/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11jot02a
+          id: 2
+          mgmt_ip: 10.211.240.59/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11jot03a
+          id: 3
+          mgmt_ip:	10.211.240.60/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11jot04a
+          id: 4
+          mgmt_ip:	10.211.240.61/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11jot05a
+          id: 5
+          mgmt_ip:	10.211.240.62/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11jot06a
+          id: 6
+          mgmt_ip:	10.211.240.63/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11jot07a
+          id: 7
+          mgmt_ip:	10.211.240.64/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11jot08a
+          id: 8
+          mgmt_ip:	10.211.240.65/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11jot09a
+          id: 9
+          mgmt_ip:	10.211.240.66/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11jot10a
+          id: 10
+          mgmt_ip:	10.211.240.67/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11jot11a
+          id: 11
+          mgmt_ip:	10.211.240.68/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11jot12a
+          id: 12
+          mgmt_ip:	10.211.240.69/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+        - name: hs11jot13a
+          id: 13
+          mgmt_ip: 10.211.240.70/22
+          uplink_switch_interfaces: [ Ethernet13, Ethernet13 ]
+    - group: S1_L2LF_JOT14-25A
+      uplink_switches: [ is11jotagg02aa, is11jotagg02ba ]
+      nodes:  
+        - name: hs11jot14a
+          id: 14
+          mgmt_ip: 10.211.240.71/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11jot15a
+          id: 15
+          mgmt_ip:	10.211.240.72/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+      # PHASE-2 devices
+        - name: hs11jot16a
+          id: 16
+          mgmt_ip:	10.211.240.73/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11jot17a
+          id: 17
+          mgmt_ip:	10.211.240.74/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11jot18a
+          id: 18
+          mgmt_ip:	10.211.240.75/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11jot19a
+          id: 19
+          mgmt_ip:	10.211.240.76/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11jot20a
+          id: 20
+          mgmt_ip:	10.211.240.77/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11jot21a
+          id: 21
+          mgmt_ip:	10.211.240.78/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11jot22a
+          id: 22
+          mgmt_ip:	10.211.240.79/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11jot23a
+          id: 23
+          mgmt_ip:	10.211.240.80/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11jot24a
+          id: 24
+          mgmt_ip: 10.211.240.81/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11jot25a
+          id: 25
+          mgmt_ip:	10.211.240.82/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+    - group: S1_L2LF_GOT01-13A
+      uplink_switches: [ is11gotagg01aa, is11gotagg01ba ]
+      nodes:
+        - name: hs11got01a
+          id: 1
+          mgmt_ip:	10.211.240.83/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11got02a
+          id: 2
+          mgmt_ip:	10.211.240.84/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11got03a
+          id: 3
+          mgmt_ip:	10.211.240.85/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11got04a
+          id: 4
+          mgmt_ip:	10.211.240.86/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11got05a
+          id: 5
+          mgmt_ip:	10.211.240.87/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11got06a
+          id: 6
+          mgmt_ip:	10.211.240.88/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11got07a
+          id: 7
+          mgmt_ip:	10.211.240.89/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11got08a
+          id: 8
+          mgmt_ip:	10.211.240.90/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11got09a
+          id: 9
+          mgmt_ip:	10.211.240.91/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11got10a
+          id: 10
+          mgmt_ip:	10.211.240.92/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11got11a
+          id: 11
+          mgmt_ip:	10.211.240.93/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11got12a
+          id: 12
+          mgmt_ip:	10.211.240.94/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+        - name: hs11got13a
+          id: 13
+          mgmt_ip:	10.211.240.95/22
+          uplink_switch_interfaces: [ Ethernet13, Ethernet13 ]
+    - group: S1_L2LF_GOT014-25A
+      uplink_switches: [ is11gotagg02aa, is11gotagg02ba ]
+      nodes:
+        - name: hs11got14a
+          id: 14
+          mgmt_ip:	10.211.240.96/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11got15a
+          id: 15
+          mgmt_ip:	10.211.240.97/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+      # PHASE-2 devices
+        - name: hs11got16a
+          id: 16
+          mgmt_ip:	10.211.240.98/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11got17a
+          id: 17
+          mgmt_ip:	10.211.240.99/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11got18a
+          id: 18
+          mgmt_ip:	10.211.240.100/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11got19a
+          id: 19
+          mgmt_ip:	10.211.240.101/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11got20a
+          id: 20
+          mgmt_ip:	10.211.240.102/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11got21a
+          id: 21
+          mgmt_ip:	10.211.240.103/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11got22a
+          id: 22
+          mgmt_ip:	10.211.240.104/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11got23a
+          id: 23
+          mgmt_ip:	10.211.240.105/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11got24a
+          id: 24
+          mgmt_ip:	10.211.240.106/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11got25a
+          id: 25
+          mgmt_ip:	10.211.240.107/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+    - group: S1_L2LF_COT001-13A
+      uplink_switches: [ is11cotagg01aa, is11cotagg01ba ]
+      nodes:
+        - name: hs11cot01a
+          id: 1
+          mgmt_ip:	10.211.240.108/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11cot02a
+          id: 2
+          mgmt_ip:	10.211.240.109/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11cot03a
+          id: 3
+          mgmt_ip:	10.211.240.110/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11cot04a
+          id: 4
+          mgmt_ip:	10.211.240.111/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11cot05a
+          id: 5
+          mgmt_ip:	10.211.240.112/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11cot06a
+          id: 6
+          mgmt_ip:	10.211.240.113/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11cot07a
+          id: 7
+          mgmt_ip:	10.211.240.114/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11cot08a
+          id: 8
+          mgmt_ip:	10.211.240.115/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11cot09a
+          id: 9
+          mgmt_ip:	10.211.240.116/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11cot10a
+          id: 10
+          mgmt_ip:	10.211.240.117/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11cot11a
+          id: 11
+          mgmt_ip:	10.211.240.118/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11cot12a
+          id: 12
+          mgmt_ip:	10.211.240.119/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+        - name: hs11cot13a
+          id: 13
+          mgmt_ip:	10.211.240.120/22
+          uplink_switch_interfaces: [ Ethernet13, Ethernet13 ]
+    - group: S1_L2LF_COT14-25A
+      uplink_switches: [ is11cotagg02aa, is11cotagg02ba ]
+      nodes:  
+        - name: hs11cot14a
+          id: 14
+          mgmt_ip:	10.211.240.121/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11cot15a
+          id: 15
+          mgmt_ip:	10.211.240.122/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+      # PHASE-2 devices
+        - name: hs11cot16a
+          id: 16
+          mgmt_ip:	10.211.240.123/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11cot17a
+          id: 17
+          mgmt_ip:	10.211.240.124/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11cot18a
+          id: 18
+          mgmt_ip:	10.211.240.125/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11cot19a
+          id: 19
+          mgmt_ip:	10.211.240.126/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11cot20a
+          id: 20
+          mgmt_ip:	10.211.240.127/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11cot21a
+          id: 21
+          mgmt_ip:	10.211.240.128/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11cot22a
+          id: 22
+          mgmt_ip:	10.211.240.129/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11cot23a
+          id: 23
+          mgmt_ip:	10.211.240.130/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11cot24a
+          id: 24
+          mgmt_ip:	10.211.240.131/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11cot25a
+          id: 25
+          mgmt_ip:	10.211.240.132/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+    - group: S1_L2LF_AOT01-13A
+      uplink_switches: [ is11aotagg01aa, is11aotagg01ba ]
+      nodes:
+        - name: hs11aot01a
+          id: 1
+          mgmt_ip:	10.211.240.133/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11aot02a
+          id: 2
+          mgmt_ip:	10.211.240.134/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11aot03a
+          id: 3
+          mgmt_ip:	10.211.240.135/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11aot04a
+          id: 4
+          mgmt_ip:	10.211.240.136/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11aot05a
+          id: 5
+          mgmt_ip:	10.211.240.137/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11aot06a
+          id: 6
+          mgmt_ip:	10.211.240.138/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11aot07a
+          id: 7
+          mgmt_ip:	10.211.240.139/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11aot08a
+          id: 8
+          mgmt_ip:	10.211.240.140/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11aot09a
+          id: 9
+          mgmt_ip:	10.211.240.141/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11aot10a
+          id: 10
+          mgmt_ip:	10.211.240.142/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11aot11a
+          id: 11
+          mgmt_ip:	10.211.240.143/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11aot12a
+          id: 12
+          mgmt_ip:	10.211.240.144/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+        - name: hs11aot13a
+          id: 13
+          mgmt_ip:	10.211.240.145/22
+          uplink_switch_interfaces: [ Ethernet13, Ethernet13 ]
+    - group: S1_L2LF_AOT14-25A
+      uplink_switches: [ is11aotagg02aa, is11aotagg02ba ]
+      nodes:  
+        - name: hs11aot14a
+          id: 14
+          mgmt_ip:	10.211.240.146/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11aot15a
+          id: 15
+          mgmt_ip:	10.211.240.147/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+      # PHASE-2 devices
+        - name: hs11aot16a
+          id: 16
+          mgmt_ip:	10.211.240.148/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11aot17a
+          id: 17
+          mgmt_ip:	10.211.240.149/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11aot18a
+          id: 18
+          mgmt_ip:	10.211.240.150/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs11aot19a
+          id: 19
+          mgmt_ip:	10.211.240.151/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11aot20a
+          id: 20
+          mgmt_ip:	10.211.240.152/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11aot21a
+          id: 21
+          mgmt_ip:	10.211.240.153/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11aot22a
+          id: 22
+          mgmt_ip:	10.211.240.154/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11aot23a
+          id: 23
+          mgmt_ip:	10.211.240.155/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+        - name: hs11aot24a
+          id: 24
+          mgmt_ip:	10.211.240.156/22
+          uplink_switch_interfaces: [ Ethernet11, Ethernet11 ]
+        - name: hs11aot25a
+          id: 25
+          mgmt_ip:	10.211.240.157/22
+          uplink_switch_interfaces: [ Ethernet12, Ethernet12 ]
+    - group: S1_L2LF_JWOT01-10A
+      uplink_switches: [ is11jwotagg01aa, is11jwotagg01ba ]
+      nodes:
+        - name: hs11jwot01a
+          id: 1
+          mgmt_ip: 10.211.240.158/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11jwot02a
+          id: 2
+          mgmt_ip: 10.211.240.159/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11jwot03a
+          id: 3
+          mgmt_ip:	10.211.240.160/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11jwot04a
+          id: 4
+          mgmt_ip:	10.211.240.161/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11jwot05a
+          id: 5
+          mgmt_ip:	10.211.240.162/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11jwot06a
+          id: 6
+          mgmt_ip:	10.211.240.163/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11jwot07a
+          id: 7
+          mgmt_ip:	10.211.240.164/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11jwot08a
+          id: 8
+          mgmt_ip:	10.211.240.165/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11jwot09a
+          id: 9
+          mgmt_ip:	10.211.240.166/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11jwot10a
+          id: 10
+          mgmt_ip:	10.211.240.167/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_GWOT01-10A
+      uplink_switches: [ is11gwotagg01aa, is11gwotagg01ba ]
+      nodes:
+        - name: hs11gwot01a
+          id: 1
+          mgmt_ip:	10.211.240.168/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11gwot02a
+          id: 2
+          mgmt_ip:	10.211.240.169/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11gwot03a
+          id: 3
+          mgmt_ip:	10.211.240.170/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11gwot04a
+          id: 4
+          mgmt_ip:	10.211.240.171/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11gwot05a
+          id: 5
+          mgmt_ip:	10.211.240.172/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11gwot06a
+          id: 6
+          mgmt_ip:	10.211.240.173/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11gwot07a
+          id: 7
+          mgmt_ip:	10.211.240.174/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11gwot08a
+          id: 8
+          mgmt_ip:	10.211.240.175/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11gwot09a
+          id: 9
+          mgmt_ip:	10.211.240.176/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11gwot10a
+          id: 10
+          mgmt_ip:	10.211.240.177/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_EWOT01-10A
+      uplink_switches: [ is11ewotagg01aa, is11ewotagg01ba ]
+      nodes:
+        - name: hs11ewot01a
+          id: 1
+          mgmt_ip: 10.211.240.178/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11ewot02a
+          id: 2
+          mgmt_ip: 10.211.240.179/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11ewot03a
+          id: 3
+          mgmt_ip: 10.211.240.180/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11ewot04a
+          id: 4
+          mgmt_ip: 10.211.240.181/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11ewot05a
+          id: 5
+          mgmt_ip: 10.211.240.182/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11ewot06a
+          id: 6
+          mgmt_ip: 10.211.240.183/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11ewot07a
+          id: 7
+          mgmt_ip: 10.211.240.184/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11ewot08a
+          id: 8
+          mgmt_ip: 10.211.240.185/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11ewot09a
+          id: 9
+          mgmt_ip: 10.211.240.186/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11ewot10a
+          id: 10
+          mgmt_ip: 10.211.240.187/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_CWOT01-10A
+      uplink_switches: [ is11cwotagg01aa, is11cwotagg01ba ]
+      nodes:
+        - name: hs11cwot01a
+          id: 1
+          mgmt_ip:	10.211.240.188/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11cwot02a
+          id: 2
+          mgmt_ip:	10.211.240.189/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11cwot03a
+          id: 3
+          mgmt_ip:	10.211.240.190/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11cwot04a
+          id: 4
+          mgmt_ip:	10.211.240.191/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11cwot05a
+          id: 5
+          mgmt_ip:	10.211.240.192/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11cwot06a
+          id: 6
+          mgmt_ip:	10.211.240.193/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11cwot07a
+          id: 7
+          mgmt_ip:	10.211.240.194/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11cwot08a
+          id: 8
+          mgmt_ip:	10.211.240.195/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11cwot09a
+          id: 9
+          mgmt_ip:	10.211.240.196/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11cwot10a
+          id: 10
+          mgmt_ip:	10.211.240.197/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_KEOT01-10A
+      uplink_switches: [ is11keotagg01aa, is11keotagg01ba ]
+      nodes:
+        - name: hs11keot01a
+          id: 1
+          mgmt_ip:	10.211.240.198/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11keot02a
+          id: 2
+          mgmt_ip:	10.211.240.199/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11keot03a
+          id: 3
+          mgmt_ip:	10.211.240.200/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11keot04a
+          id: 4
+          mgmt_ip:	10.211.240.201/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11keot05a
+          id: 5
+          mgmt_ip:	10.211.240.202/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11keot06a
+          id: 6
+          mgmt_ip:	10.211.240.203/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11keot07a
+          id: 7
+          mgmt_ip:	10.211.240.204/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11keot08a
+          id: 8
+          mgmt_ip:	10.211.240.205/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11keot09a
+          id: 9
+          mgmt_ip:	10.211.240.206/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11keot10a
+          id: 10
+          mgmt_ip:	10.211.240.207/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_HEOT01-10A
+      uplink_switches: [ is11heotagg01aa, is11heotagg01ba ]
+      nodes:
+        - name: hs11heot01a
+          id: 1
+          mgmt_ip:	10.211.240.208/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11heot02a
+          id: 2
+          mgmt_ip:	10.211.240.209/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11heot03a
+          id: 3
+          mgmt_ip:	10.211.240.210/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11heot04a
+          id: 4
+          mgmt_ip:	10.211.240.211/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11heot05a
+          id: 5
+          mgmt_ip:	10.211.240.212/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11heot06a
+          id: 6
+          mgmt_ip:	10.211.240.213/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11heot07a
+          id: 7
+          mgmt_ip:	10.211.240.214/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11heot08a
+          id: 8
+          mgmt_ip:	10.211.240.215/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11heot09a
+          id: 9
+          mgmt_ip:	10.211.240.216/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11heot10a
+          id: 10
+          mgmt_ip:	10.211.240.217/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_DEOT01-10A
+      uplink_switches: [ is11deotagg01aa, is11deotagg01ba ]
+      nodes:
+        - name: hs11deot01a
+          id: 1
+          mgmt_ip:	10.211.240.218/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11deot02a
+          id: 2
+          mgmt_ip:	10.211.240.219/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11deot03a
+          id: 3
+          mgmt_ip:	10.211.240.220/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11deot04a
+          id: 4
+          mgmt_ip:	10.211.240.221/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11deot05a
+          id: 5
+          mgmt_ip:	10.211.240.222/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11deot06a
+          id: 6
+          mgmt_ip:	10.211.240.223/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11deot07a
+          id: 7
+          mgmt_ip:	10.211.240.224/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11deot08a
+          id: 8
+          mgmt_ip:	10.211.240.225/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11deot09a
+          id: 9
+          mgmt_ip:	10.211.240.226/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11deot10a
+          id: 10
+          mgmt_ip:	10.211.240.227/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_BEOT01-10A
+      uplink_switches: [ is11beotagg01aa, is11beotagg01ba ]
+      nodes:
+        - name: hs11beot01a
+          id: 1
+          mgmt_ip:	10.211.240.228/22
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs11beot02a
+          id: 2
+          mgmt_ip:	10.211.240.229/22
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs11beot03a
+          id: 3
+          mgmt_ip:	10.211.240.230/22
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs11beot04a
+          id: 4
+          mgmt_ip:	10.211.240.231/22
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs11beot05a
+          id: 5
+          mgmt_ip:	10.211.240.232/22
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+      # PHASE-2 devices
+        - name: hs11beot06a
+          id: 6
+          mgmt_ip:	10.211.240.233/22
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs11beot07a
+          id: 7
+          mgmt_ip:	10.211.240.234/22
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs11beot08a
+          id: 8
+          mgmt_ip:	10.211.240.235/22
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+        - name: hs11beot09a
+          id: 9
+          mgmt_ip:	10.211.240.236/22
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs11beot10a
+          id: 10
+          mgmt_ip:	10.211.240.237/22
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_3XNOT01-10A
+      mgmt_gateway: 10.215.242.1
+      uplink_switches: [ ism3xnotagg01aa, ism3xnotagg01ba ]
+      nodes:
+        - name: hsm3xnot01a
+          id: 1
+          mgmt_ip: 10.215.242.29/23
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hsm3xnot02a
+          id: 2
+          mgmt_ip:	10.215.242.30/23
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hsm3xnot03a
+          id: 3
+          mgmt_ip:	10.215.242.31/23
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hsm3xnot04a
+          id: 4
+          mgmt_ip:	10.215.242.32/23
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hsm3xnot05a
+          id: 5
+          mgmt_ip:	10.215.242.33/23
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hsm3xnot06a
+          id: 6
+          mgmt_ip:	10.215.242.34/23
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hsm3xnot07a
+          id: 7
+          mgmt_ip:	10.215.242.35/23
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hsm3xnot08a
+          id: 8
+          mgmt_ip:	10.215.242.36/23
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+      # PHASE-2 devices
+        - name: hsm3xnot09a
+          id: 9
+          mgmt_ip:	10.215.242.37/23
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hsm3xnot10a
+          id: 10
+          mgmt_ip:	10.215.242.38/23
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+    - group: S1_L2LF_3XSOT01-10A
+      mgmt_gateway: 10.211.240.1
+      uplink_switches: [ ism3xsotagg01a, ism3xsotagg02a ]
+      nodes:
+        - name: hs13xsot01a
+          id: 1
+          mgmt_ip:	10.215.242.45/23
+          uplink_switch_interfaces: [ Ethernet1, Ethernet1 ]
+        - name: hs13xsot02a
+          id: 2
+          mgmt_ip:	10.215.242.46/23
+          uplink_switch_interfaces: [ Ethernet2, Ethernet2 ]
+        - name: hs13xsot03a
+          id: 3
+          mgmt_ip:	10.215.242.47/23
+          uplink_switch_interfaces: [ Ethernet3, Ethernet3 ]
+        - name: hs13xsot04a
+          id: 4
+          mgmt_ip:	10.215.242.48/23
+          uplink_switch_interfaces: [ Ethernet4, Ethernet4 ]
+        - name: hs13xsot05a
+          id: 5
+          mgmt_ip:	10.215.242.49/23
+          uplink_switch_interfaces: [ Ethernet5, Ethernet5 ]
+        - name: hs13xsot06a
+          id: 6
+          mgmt_ip:	10.215.242.50/23
+          uplink_switch_interfaces: [ Ethernet6, Ethernet6 ]
+        - name: hs13xsot07a
+          id: 7
+          mgmt_ip:	10.215.242.51/23
+          uplink_switch_interfaces: [ Ethernet7, Ethernet7 ]
+        - name: hs13xsot08a
+          id: 8
+          mgmt_ip:	10.215.242.52/23
+          uplink_switch_interfaces: [ Ethernet8, Ethernet8 ]
+      # PHASE-2 devices
+        - name: hs13xsot09a
+          id: 9
+          mgmt_ip:	10.215.242.53/23
+          uplink_switch_interfaces: [ Ethernet9, Ethernet9 ]
+        - name: hs13xsot10a
+          id: 10
+          mgmt_ip:	10.215.242.54/23
+          uplink_switch_interfaces: [ Ethernet10, Ethernet10 ]
+
+p2p_uplinks_mtu: 9214
+
+# Adjust default bfd values
+bfd_multihop:
+  interval: 300
+  min_rx: 300
+  multiplier: 3
+
+fabric_ip_addressing:
+  mlag:
+    algorithm: same_subnet

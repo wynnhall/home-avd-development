@@ -1,0 +1,49 @@
+---
+cvp_devices:
+  - fqdn: HSMDMZ100A
+    parentContainerName: DMZ_SEGMENT
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_HSMDMZ100A
+  - fqdn: HSMDMZ101A
+    parentContainerName: DMZ_SEGMENT
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_HSMDMZ101A
+  - fqdn: HSMWAN40A
+    parentContainerName: WAN_SEGMENT
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_HSMWAN40A
+  - fqdn: HSMWAN41A
+    parentContainerName: WAN_SEGMENT
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_HSMWAN41A
+  - fqdn: ISMCR01A
+    parentContainerName: CAMPUS_CORES
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_ISMCR01A
+  - fqdn: ISMCR02A
+    parentContainerName: CAMPUS_CORES
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_ISMCR02A
+  - fqdn: ISMITMSC01A
+    parentContainerName: MISC_CORES
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_ISMITMSC01A
+  - fqdn: ISMITMSC02A
+    parentContainerName: MISC_CORES
+    configlets:
+      - AVD-SM_CORE_MISC_FABRIC-_ISMITMSC02A
+cvp_containers:
+  CAMPUS_CORES:
+    parentContainerName: SM_CORE_MISC_FABRIC
+  DMZ_SEGMENT:
+    parentContainerName: SM_CORE_MISC_FABRIC
+  MISC_CORES:
+    parentContainerName: SM_CORE_MISC_FABRIC
+  SHERMAN_FABRIC:
+    parentContainerName: Tenant
+  SM_CORE_MISC_FABRIC:
+    parentContainerName: SHERMAN_FABRIC
+  VENDOR_SEGMENT:
+    parentContainerName: SM_CORE_MISC_FABRIC
+  WAN_SEGMENT:
+    parentContainerName: SM_CORE_MISC_FABRIC

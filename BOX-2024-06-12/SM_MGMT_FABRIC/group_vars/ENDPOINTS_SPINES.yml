@@ -1,0 +1,238 @@
+---
+
+firewalls:
+  - name: ISMMGTPAN01
+    adapters:
+      - endpoint_ports: [Eth1/15, Eth1/16]
+        switch_ports: [Ethernet3/25, Ethernet3/25]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-FIREWALL
+        speed: 10g
+        port_channel:
+          mode: active
+  - name: ISMMGTPAN02
+    adapters:
+      - endpoint_ports: [Eth1/15, Eth1/16]
+        switch_ports: [Ethernet4/25, Ethernet4/25]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-FIREWALL
+        port_channel:
+          mode: active
+
+servers:
+  - name: OS11JOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/26, Ethernet3/26]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11JOGTS02
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/26, Ethernet4/26]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11GOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/26, Ethernet5/26]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11GOGTS02
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/26, Ethernet6/26]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11COGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/26, Ethernet7/26]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11COGTS02
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/27, Ethernet3/27]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11AOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/27, Ethernet4/27]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11AOGTS02
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/27, Ethernet5/27]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11JWOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/27, Ethernet6/27]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11GWOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/27, Ethernet7/27]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11EWOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/28, Ethernet3/28]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11CWOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/28, Ethernet4/28]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11KEOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/28, Ethernet5/28]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11HEOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/28, Ethernet6/28]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11DEOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/28, Ethernet7/28]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS11BEOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/29, Ethernet3/29]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSM0WOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/29, Ethernet4/29]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSM1WOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/29, Ethernet5/29]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSM2WOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/29, Ethernet6/29]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSM3XNOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/29, Ethernet7/29]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSM3XSOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/30, Ethernet3/30]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSM3WOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/30, Ethernet4/30]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS00AOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/30, Ethernet5/30]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS00BOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/30, Ethernet6/30]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS00COGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/30, Ethernet7/30]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS01BOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/31, Ethernet3/31]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS02OGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/31, Ethernet4/31]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS02BOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/31, Ethernet5/31]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS03AOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/31, Ethernet6/31]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OS03BOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/31, Ethernet7/31]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSMPGOGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/32, Ethernet3/32]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSMMDF1OGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet4/32, Ethernet4/32]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSMDF1OGTS02
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet5/32, Ethernet5/32]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSMMDF2OGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet6/32, Ethernet6/32]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSMDC1OGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet7/32, Ethernet7/32]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308
+  - name: OSMDC2OGTS01
+    adapters:
+      - endpoint_ports: [NET1, NET2]
+        switch_ports: [Ethernet3/33, Ethernet3/33]
+        switches: [ismmgtsp01a, ismmgtsp02a]
+        profile: PP-OG_vl308

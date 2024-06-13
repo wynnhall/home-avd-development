@@ -1,0 +1,25 @@
+---
+network_ports:
+  - switches: 
+      - hsm3xnot01a
+      - hsm3xnot02a
+      - hsm3xnot03a
+      - hsm3xnot04a
+      - hsm3xnot05a
+      - hsm3xnot06a
+      - hsm3xnot07a
+      - hsm3xnot08a
+      - hsm3xnot09a
+      - hsm3xnot10a
+    switch_ports:
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-vl349

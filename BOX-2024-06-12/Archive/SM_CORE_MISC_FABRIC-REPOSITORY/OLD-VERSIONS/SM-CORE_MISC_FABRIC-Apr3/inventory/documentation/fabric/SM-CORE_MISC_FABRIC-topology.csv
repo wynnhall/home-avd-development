@@ -1,0 +1,7 @@
+Node Type,Node,Node Interface,Peer Type,Peer Node,Peer Interface,Node Interface Enabled
+l2leaf,HS00BOT01A,Ethernet49,firewall,ISMTMGPAN48,Eth1/13,True
+l2leaf,HS00BOT01A,Ethernet50,firewall,ISMTMGPAN49,Eth1/13,True
+l2leaf,HS00BOT02A,Ethernet49,firewall,ISMTMGPAN48,Eth1/13,True
+l2leaf,HS00BOT02A,Ethernet50,firewall,ISMTMGPAN49,Eth1/13,True
+l2leaf,HSMVND01A,Ethernet1/1,firewall,ISMTMGPAN48,Eth1/25,True
+l2leaf,HSMVND01A,Ethernet2/1,firewall,ISMTMGPAN49,Eth1/25,True

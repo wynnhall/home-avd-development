@@ -1,0 +1,19 @@
+---
+
+network_ports:
+  - switches: 
+    - hsm0wmgt01a
+    - hsm1wmgt01a
+    - hsm2wmgt01a
+    - hsm3xnmgt01a
+    - hsm3xsmgt01a
+    - hsm3wmgt01a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-SUPPORT_vl463
+    description: VL463-SUPPORT-Mgmt

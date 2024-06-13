@@ -1,0 +1,492 @@
+hostname: ISM3XSIT01A
+is_deployed: true
+router_bgp:
+  as: '65120.31318'
+  router_id: 172.21.2.25
+  bgp_defaults:
+  - bgp asn notation asdot
+  - distance bgp 20 200 200
+  - timers bgp 5 15
+  - graceful-restart restart-time 300
+  - graceful-restart
+  - neighbor default send-community
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 128
+    ecmp: 128
+  updates:
+    wait_install: true
+  peer_groups:
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    password: lYf7tVi5NbZljyLMQyOQbYl35gwDRTk1ibSsKUab6oo=
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    password: IrKqXpmTIGo/Lxb38l+nZmTNCHtlQWe6i/K9H4O+KbQ=
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+  address_family_ipv4:
+    peer_groups:
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+      next_hop:
+        address_family_ipv6:
+          enabled: true
+          originate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  neighbor_interfaces:
+  - name: Ethernet1/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31100'
+    peer: ISMS1ITSP01A
+    description: ISMS1ITSP01A_Ethernet6/4/1
+  - name: Ethernet1/2/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31100'
+    peer: ISMS1ITSP02A
+    description: ISMS1ITSP02A_Ethernet6/4/1
+  - name: Ethernet2/1/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.31100'
+    peer: ISMS1ITSP03A
+    description: ISMS1ITSP03A_Ethernet6/4/1
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  neighbors:
+  - ip_address: 172.21.2.1
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMS1ITSP01A
+    description: ISMS1ITSP01A
+    remote_as: '65120.31100'
+  - ip_address: 172.21.2.2
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMS1ITSP02A
+    description: ISMS1ITSP02A
+    remote_as: '65120.31100'
+  - ip_address: 172.21.2.3
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: ISMS1ITSP03A
+    description: ISMS1ITSP03A
+    remote_as: '65120.31100'
+  vrfs:
+  - name: IoT
+    router_id: 172.21.2.25
+    rd: 172.21.2.25:5004
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - 5004:5004
+      export:
+      - address_family: evpn
+        route_targets:
+        - 5004:5004
+    redistribute_routes:
+    - source_protocol: connected
+  - name: IT
+    router_id: 172.21.2.25
+    rd: 172.21.2.25:5003
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - 5003:5003
+      export:
+      - address_family: evpn
+        route_targets:
+        - 5003:5003
+    redistribute_routes:
+    - source_protocol: connected
+  vlans:
+  - id: 224
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10224
+    route_targets:
+      both:
+      - 10224:10224
+    redistribute_routes:
+    - learned
+  - id: 225
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10225
+    route_targets:
+      both:
+      - 10225:10225
+    redistribute_routes:
+    - learned
+  - id: 227
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10227
+    route_targets:
+      both:
+      - 10227:10227
+    redistribute_routes:
+    - learned
+  - id: 243
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10243
+    route_targets:
+      both:
+      - 10243:10243
+    redistribute_routes:
+    - learned
+  - id: 245
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10245
+    route_targets:
+      both:
+      - 10245:10245
+    redistribute_routes:
+    - learned
+  - id: 247
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10247
+    route_targets:
+      both:
+      - 10247:10247
+    redistribute_routes:
+    - learned
+  - id: 305
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10305
+    route_targets:
+      both:
+      - 10305:10305
+    redistribute_routes:
+    - learned
+  - id: 307
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10307
+    route_targets:
+      both:
+      - 10307:10307
+    redistribute_routes:
+    - learned
+  - id: 309
+    tenant: IT-Tenant-IoT
+    rd: 172.21.2.25:10309
+    route_targets:
+      both:
+      - 10309:10309
+    redistribute_routes:
+    - learned
+  - id: 221
+    tenant: IT-Tenant-IT
+    rd: 172.21.2.25:10221
+    route_targets:
+      both:
+      - 10221:10221
+    redistribute_routes:
+    - learned
+  - id: 237
+    tenant: IT-Tenant-IT
+    rd: 172.21.2.25:10237
+    route_targets:
+      both:
+      - 10237:10237
+    redistribute_routes:
+    - learned
+  - id: 250
+    tenant: IT-Tenant-IT
+    rd: 172.21.2.25:10250
+    route_targets:
+      both:
+      - 10250:10250
+    redistribute_routes:
+    - learned
+  - id: 337
+    tenant: IT-Tenant-IT
+    rd: 172.21.2.25:10337
+    route_targets:
+      both:
+      - 10337:10337
+    redistribute_routes:
+    - learned
+  - id: 951
+    tenant: IT-Tenant-IT
+    rd: 172.21.2.25:10951
+    route_targets:
+      both:
+      - 10951:10951
+    redistribute_routes:
+    - learned
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 10.215.242.15
+service_routing_protocols_model: multi-agent
+ipv6_unicast_routing: true
+ip_routing_ipv6_interfaces: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+vrfs:
+- name: mgmt
+  ip_routing: false
+- name: IoT
+  tenant: IT-Tenant-IoT
+  ip_routing: true
+- name: IT
+  tenant: IT-Tenant-IT
+  ip_routing: true
+management_interfaces:
+- name: Management0
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 10.215.242.15/23
+  gateway: 10.215.242.15
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+  enable_https: true
+ethernet_interfaces:
+- name: Ethernet1/1/1
+  peer: ISMS1ITSP01A
+  peer_interface: Ethernet6/4/1
+  peer_type: spine
+  description: '[L]_P2P_LINK_TO_ISMS1ITSP01A_Ethernet6/4/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet1/2/1
+  peer: ISMS1ITSP02A
+  peer_interface: Ethernet6/4/1
+  peer_type: spine
+  description: '[L]_P2P_LINK_TO_ISMS1ITSP02A_Ethernet6/4/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet2/1/1
+  peer: ISMS1ITSP03A
+  peer_interface: Ethernet6/4/1
+  peer_type: spine
+  description: '[L]_P2P_LINK_TO_ISMS1ITSP03A_Ethernet6/4/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 172.21.2.25/32
+- name: Loopback1
+  description: VTEP_VXLAN_Tunnel_Source
+  shutdown: false
+  ip_address: 10.210.240.25/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 172.21.2.0/24 eq 32
+  - sequence: 20
+    action: permit 10.210.240.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+vlans:
+- id: 224
+  name: 10.211.3.0/23_SM1-AV
+  tenant: IT-Tenant-IoT
+- id: 225
+  name: 10.211.4.0/23_SM1-Security
+  tenant: IT-Tenant-IoT
+- id: 227
+  name: 10.211.6.0/23_SM1-BMS
+  tenant: IT-Tenant-IoT
+- id: 243
+  name: 10.215.18.0/24_S0-AV
+  tenant: IT-Tenant-IoT
+- id: 245
+  name: 10.215.20.0/24_S0-Security
+  tenant: IT-Tenant-IoT
+- id: 247
+  name: 10.215.22.0/24_S0-BMS
+  tenant: IT-Tenant-IoT
+- id: 305
+  name: 10.215.80.0/24_SM-AV
+  tenant: IT-Tenant-IoT
+- id: 307
+  name: 10.215.82.0/24_SM-Security
+  tenant: IT-Tenant-IoT
+- id: 309
+  name: 10.215.84.0/24_SM-BMS
+  tenant: IT-Tenant-IoT
+- id: 221
+  name: 10.211.0.0/23_SM1-UtilityYards
+  tenant: IT-Tenant-IT
+- id: 237
+  name: 10.211.16.0/20_SM1-Wired-LAN
+  tenant: IT-Tenant-IT
+- id: 250
+  name: 10.215.0.0/20_S0-Wired-LAN
+  tenant: IT-Tenant-IT
+- id: 337
+  name: 10.215.64.0/20_SM-Wired-LAN
+  tenant: IT-Tenant-IT
+- id: 951
+  name: 10.70.32.0/24_SM-GuestNet(Wired)
+  tenant: IT-Tenant-IT
+ip_igmp_snooping:
+  globally_enabled: false
+ip_virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+vlan_interfaces:
+- name: Vlan224
+  tenant: IT-Tenant-IoT
+  description: 10.211.3.0/23_SM1-AV
+  shutdown: false
+  ip_address_virtual: 10.211.3.1/23
+  vrf: IoT
+- name: Vlan225
+  tenant: IT-Tenant-IoT
+  description: 10.211.4.0/23_SM1-Security
+  shutdown: false
+  ip_address_virtual: 10.211.4.1/23
+  vrf: IoT
+- name: Vlan227
+  tenant: IT-Tenant-IoT
+  description: 10.211.6.0/23_SM1-BMS
+  shutdown: false
+  ip_address_virtual: 10.211.6.1/23
+  vrf: IoT
+- name: Vlan243
+  tenant: IT-Tenant-IoT
+  description: 10.215.18.0/24_S0-AV
+  shutdown: false
+  ip_address_virtual: 10.215.18.1/24
+  vrf: IoT
+- name: Vlan245
+  tenant: IT-Tenant-IoT
+  description: 10.215.20.0/24_S0-Security
+  shutdown: false
+  ip_address_virtual: 10.215.20.1/24
+  vrf: IoT
+- name: Vlan247
+  tenant: IT-Tenant-IoT
+  description: 10.215.22.0/24_S0-BMS
+  shutdown: false
+  ip_address_virtual: 10.215.22.1/24
+  vrf: IoT
+- name: Vlan305
+  tenant: IT-Tenant-IoT
+  description: 10.215.80.0/24_SM-AV
+  shutdown: false
+  ip_address_virtual: 10.215.80.1/24
+  vrf: IoT
+- name: Vlan307
+  tenant: IT-Tenant-IoT
+  description: 10.215.82.0/24_SM-Security
+  shutdown: false
+  ip_address_virtual: 10.215.82.1/24
+  vrf: IoT
+- name: Vlan309
+  tenant: IT-Tenant-IoT
+  description: 10.215.84.0/24_SM-BMS
+  shutdown: false
+  ip_address_virtual: 10.215.84.1/24
+  vrf: IoT
+- name: Vlan221
+  tenant: IT-Tenant-IT
+  description: 10.211.0.0/23_SM1-UtilityYards
+  shutdown: false
+  ip_address_virtual: 10.211.0.1/23
+  vrf: IT
+- name: Vlan237
+  tenant: IT-Tenant-IT
+  description: 10.211.16.0/20_SM1-Wired-LAN
+  shutdown: false
+  ip_address_virtual: 10.211.16.1/20
+  vrf: IT
+- name: Vlan250
+  tenant: IT-Tenant-IT
+  description: 10.215.0.0/20_S0-Wired-LAN
+  shutdown: false
+  ip_address_virtual: 10.215.0.1/20
+  vrf: IT
+- name: Vlan337
+  tenant: IT-Tenant-IT
+  description: 10.215.64.0/20_SM-Wired-LAN
+  shutdown: false
+  ip_address_virtual: 10.215.64.1/20
+  vrf: IT
+- name: Vlan951
+  tenant: IT-Tenant-IT
+  description: 10.70.32.0/24_SM-GuestNet(Wired)
+  shutdown: false
+  ip_address_virtual: 10.70.32.1/24
+  vrf: IT
+vxlan_interface:
+  Vxlan1:
+    description: ISM3XSIT01A_VTEP
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      vlans:
+      - id: 224
+        vni: 10224
+      - id: 225
+        vni: 10225
+      - id: 227
+        vni: 10227
+      - id: 243
+        vni: 10243
+      - id: 245
+        vni: 10245
+      - id: 247
+        vni: 10247
+      - id: 305
+        vni: 10305
+      - id: 307
+        vni: 10307
+      - id: 309
+        vni: 10309
+      - id: 221
+        vni: 10221
+      - id: 237
+        vni: 10237
+      - id: 250
+        vni: 10250
+      - id: 337
+        vni: 10337
+      - id: 951
+        vni: 10951
+      vrfs:
+      - name: IoT
+        vni: 5004
+      - name: IT
+        vni: 5003
+metadata:
+  platform: '758'

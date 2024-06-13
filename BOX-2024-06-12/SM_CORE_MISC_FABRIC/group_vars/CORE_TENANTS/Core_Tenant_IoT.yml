@@ -1,0 +1,103 @@
+---
+Core_Tenant_IoT:
+  - name: "Core_Tenant_IoT"
+    vrfs:
+      - name: IoT
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          633:
+            name: INET-IoTFW-TRANSIT-IoTVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.73
+            nodes:
+              - node: ismcr01a
+                ip_address: 10.210.241.74/29
+              - node: ismcr02a
+                ip_address: 10.210.241.75/29
+        l3_interfaces:
+          - interfaces:
+                - Ethernet3/3/1.633
+                - Ethernet4/3/1.633
+                - Ethernet3/3/1.633
+                - Ethernet4/3/1.633
+            nodes:
+                - ismcr01a
+                - ismcr01a
+                - ismcr02a
+                - ismcr02a
+            ip_addresses:
+                - 10.210.241.8/31
+                - 10.210.241.12/31
+                - 10.210.241.10/31
+                - 10.210.241.14/31
+            descriptions:
+              - '[L]_isms1itbl01a-Eth1/1-IoTVRF'
+              - '[L]_isms1itbl02a-Eth1/1-IoTVRF'
+              - '[L]_isms1itbl01a-Eth2/1-IoTVRF'
+              - '[L]_isms1itbl02a-Eth2/1-IoTVRF'
+        bgp_peer_groups:
+          - name: IT-BL-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr01a
+              - ismcr02a
+            remote_as: "65120.31200"
+            # Originate default from firewalls towards IT Border Leaf switches in IoT VRF
+            default_originate:
+              enabled: true
+            maximum_routes: 0
+          # to the IoT Firewall
+          - name: INET-IoTFW-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr01a
+              - ismcr02a
+            remote_as: "65120.98"
+            maximum_routes: 0
+        bgp_peers:
+          - ip_address: 10.210.241.9
+            description: isms1itbl01a-Eth1/1-IoTVRF
+            peer_group: IT-BL-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr01a
+          - ip_address: 10.210.241.13
+            description: isms1itbl02a-Eth1/1-IoTVRF
+            peer_group: IT-BL-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr01a
+          - ip_address: 10.210.241.11
+            description: isms1itbl01a-Eth2/1-IoTVRF
+            peer_group: IT-BL-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr02a
+          - ip_address: 10.210.241.15
+            description: isms1itbl02a-Eth2/1-IoTVRF
+            peer_group: IT-BL-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr02a
+          #INET-IoTFW FWL EBGP PEERS
+          - ip_address: 10.210.241.78
+            description: INET-IoTFW-VIP-IoTVRF
+            peer_group: INET-IoTFW-EBGP-PEERS-IoTVRF
+            nodes:
+              - ismcr01a
+              - ismcr02a
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+            # set_ipv4_next_hop: 10.210.241.73
+            route_map_out: RM-INET-IoTFW-IoTVRF-OUT
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IoT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+        static_routes:
+        - destination_address_prefix: 0.0.0.0/0
+          gateway: 10.210.241.78
+          name: ismpan98-99-IoTVRF
+          metric: 225
+          distance: 225
+          nodes:
+            - ismcr01a
+            - ismcr02a

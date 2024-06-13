@@ -1,0 +1,47 @@
+---
+
+port_profiles: 
+  TRUNK_10G_IoT_ROUTERS:
+    mode: trunk
+    speed: 10g
+    spanning_tree_portfast: edge
+    vlans: 100
+  TRUNK_10G_IoT_FW:
+    mode: trunk
+    speed: 10g
+    spanning_tree_portfast: edge
+    vlans: 100
+
+tenants:
+  - name: IoT_SEGMENT
+    l2vlans:
+      - id: 100
+        name: 'IoT-FW-TRANSIT'
+
+routers:
+  - name: IOT-Router1 #TBA
+    adapters:
+      - endpoint_ports: [ Eth0, Eth1 ] #TBA
+        switch_ports: [ Ethernet49, Ethernet49 ]
+        switches: [ HSMDMZ100A, HSMDMZ101A ]
+        profile: TRUNK_10G_IoT_ROUTERS
+  - name: IOT-Router2 #TBA
+    adapters:
+      - endpoint_ports: [ Eth0, Eth1 ] #TBA
+        switch_ports: [ Ethernet50, Ethernet50 ]
+        switches: [ HSMDMZ100A, HSMDMZ101A ]
+        profile: TRUNK_10G_IoT_ROUTERS
+
+firewalls:
+  - name: ISMPAN98
+    adapters:
+      - endpoint_ports: [ Eth13, Eth14 ]
+        switch_ports: [ Ethernet51, Ethernet51 ]
+        switches: [ HSMDMZ100A, HSMDMZ101A ]
+        profile: TRUNK_10G_IoT_FW
+  - name: ISMPAN99
+    adapters:
+      - endpoint_ports: [ Eth13, Eth14 ]
+        switch_ports: [ Ethernet52, Ethernet52 ]
+        switches: [ HSMDMZ100A, HSMDMZ101A ]
+        profile: TRUNK_10G_IoT_FW

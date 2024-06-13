@@ -1,0 +1,6 @@
+---
+# DC2 Tenants Networks
+
+network_services_keys:
+  - name: DC2-Tenant-OT
+  - name: DC2-Tenant-IT-DC

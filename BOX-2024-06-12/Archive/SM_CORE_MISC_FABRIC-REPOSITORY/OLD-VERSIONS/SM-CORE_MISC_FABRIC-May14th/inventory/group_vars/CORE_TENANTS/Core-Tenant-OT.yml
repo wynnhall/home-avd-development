@@ -1,0 +1,229 @@
+---
+Core-Tenant-OT:
+  - name: "Core-Tenant-OT"
+    vrfs:
+      - name: OT
+        mlag_ibgp_peering_vlan: "4092"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          533:
+            name: WANFW-TRANSIT-OTVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.249.65
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.249.66/29
+              - node: ISMCR02A
+                ip_address: 10.210.249.67/29
+          542:
+            name: VENDORFW-TRANSIT-OTVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.249.73
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.249.74/29
+              - node: ISMCR02A
+                ip_address: 10.210.249.75/29
+        l3_interfaces:
+          - interfaces:
+              # to the DC-Borders 
+                - Ethernet3/1/1.533
+                - Ethernet4/1/1.533
+                - Ethernet3/2/1.533
+                - Ethernet4/2/1.533
+                - Ethernet3/1/1.533
+                - Ethernet4/1/1.533
+                - Ethernet3/2/1.533
+                - Ethernet4/2/1.533
+              # to the Misc-Core 
+                - Ethernet3/4/1.533
+                - Ethernet4/4/1.533
+                - Ethernet3/4/1.533
+                - Ethernet4/4/1.533
+            nodes:
+            # to the DC-Borders 
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+                - ISMCR02A
+                - ISMCR02A
+              # to the Misc-Core 
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+            # to the DC-Borders 
+                - 10.210.226.0/31
+                - 10.210.226.4/31
+                - 10.210.234.0/31
+                - 10.210.234.4/31
+                - 10.210.226.2/31
+                - 10.210.226.6/31
+                - 10.210.234.2/31
+                - 10.210.234.6/31
+              # to the Misc-Core 
+                - 10.210.241.24/31
+                - 10.210.241.28/31
+                - 10.210.241.26/31
+                - 10.210.241.30/31
+            descriptions:
+            # to the DC-Borders 
+              - '[L]_ISMDC1BL01A-Eth1/1-OT-VRF'
+              - '[L]_ISMDC1BL02A-Eth1/1-OT-VRF'
+              - '[L]_ISMDC2BL01A-Eth1/1-OT-VRF'
+              - '[L]_ISMDC2BL02A-Eth1/1-OT-VRF'
+              - '[L]_ISMDC1BL01A-Eth2/1-OT-VRF'
+              - '[L]_ISMDC1BL02A-Eth2/1-OT-VRF'
+              - '[L]_ISMDC2BL01A-Eth2/1-OT-VRF'
+              - '[L]_ISMDC2BL02A-Eth2/1-OT-VRF'
+              # to the Misc-Core 
+              - '[L]_ISMITMSC01A-Eth49/1-OTVRF'
+              - '[L]_ISMITMSC02A-Eth49/1-OTVRF'
+              - '[L]_ISMITMSC01A-Eth50/1-OTVRF'
+              - '[L]_ISMITMSC02A-Eth50/1-OTVRF'
+        bgp_peer_groups:
+        # to the DC-Borders 
+          - name: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.11200"
+            # Originate default from firewalls towards DC1 Border Leafs in OT VRF
+            default_originate:
+              enabled: true
+            maximum_routes: 0
+          - name: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.12200"
+            # Originate default from firewalls towards DC2 Border Leafs in OT VRF
+            default_originate:
+              enabled: true
+            maximum_routes: 0
+          # to the WAN Firewall
+          - name: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.40"
+            maximum_routes: 0
+          # to the Vendor Firewall
+          - name: VENDORFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.48"
+            maximum_routes: 0
+          # to the Misc-Core 
+          - name: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.10"
+            # Originate default from firewalls towards Misc-Cores in OT VRF
+            default_originate:
+              enabled: true
+            maximum_routes: 0
+        bgp_peers:
+        # to the DC-Borders 
+          - ip_address: 10.210.226.1
+            description: DC1-BL1-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.226.5
+            description: DC1-BL2-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.226.3
+            description: DC1-BL1-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.226.7
+            description: DC1-BL2-OTVRF
+            peer_group: DC1-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.234.1
+            description: DC2-BL1-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.234.5
+            description: DC2-BL2-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.234.3
+            description: DC2-BL1-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.234.7
+            description: DC2-BL2-OTVRF
+            peer_group: DC2-BLLF-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          # to the Misc-Core 
+          - ip_address: 10.210.241.25
+            description: ISMITMSC01A-Eth49/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.29
+            description: ISMITMSC02A-Eth49/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.27
+            description: ISMITMSC01A-Eth50/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.31
+            description: ISMITMSC02A-Eth50/1-OTVRF
+            peer_group: MISC-CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ISMCR02A
+          #WAN Firewall neighbors
+          - ip_address: 10.210.249.67
+            description: WANFW-IP-OTVRF
+            peer_group: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            route_map_out: RM-WANFW-OTVRF-OUT
+          #VENDOR Firewall neighbors
+          - ip_address: 10.210.249.78
+            description: VENDORFW-IP-OTVRF
+            peer_group: VENDORFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: OT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+        static_routes:
+          - destination_address_prefix: 0.0.0.0/0
+            gateway: 10.210.249.67
+            name: ISMTMGPAN40&41-OTVRF
+            metric: 225
+            distance: 225
+            nodes:
+              - ISMCR01A
+              - ISMCR02A

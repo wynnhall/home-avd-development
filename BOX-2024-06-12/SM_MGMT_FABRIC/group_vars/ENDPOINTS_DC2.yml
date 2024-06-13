@@ -1,0 +1,501 @@
+---
+
+network_ports:
+  - switches: 
+    - hsmdc2mgt01a
+    - hsmdc2mgt02a
+    - hsmdc2mgt03a
+    - hsmdc2mgt04a
+    - hsmdc2mgt05a
+    - hsmdc2mgt06a
+    - hsmdc2mgt07a
+    - hsmdc2mgt08a
+    - hsmdc2mgt09a
+    - hsmdc2mgt10a
+    switch_ports: 
+      - Ethernet1-48
+      - Ethernet11-46
+      - Ethernet12-46
+      - Ethernet12-46
+      - Ethernet12-46
+      - Ethernet12-46
+      - Ethernet10-39,41-46
+      - Ethernet1-48
+      - Ethernet5-46
+      - Ethernet1-48
+    profile: PP-DC1/DC2/MDF_vl300
+    description: VL300-DC1/DC2/MDF-Mgmt
+
+servers:
+  # Rack G6 -- hsmdc2mgt02a
+  - name: S2VH001
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH002
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH003
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH004
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet4]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH005
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet5]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH006
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet6]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH007
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet7]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH008
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet8]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH009
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet9]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: S2VH010
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet10]
+        switches: [hsmdc2mgt02a]
+        profile: PP-ILO_vl316
+  - name: HSMDC2G601AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt02a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2G601BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt02a]
+        profile: PP-DC1/DC2/MDF_vl300
+  
+  # Rack G7 -- hsmdc2mgt03a
+  - name: S2LRACA011
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH012
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH013
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH014
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet4]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH015
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet5]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH016
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet6]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH017
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet7]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH018
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet8]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH019
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet9]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2VH020
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet10]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: S2NBU02
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet11]
+        switches: [hsmdc2mgt03a]
+        profile: PP-ILO_vl316
+  - name: HSMDC2G701AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt03a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2G701BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt03a]
+        profile: PP-DC1/DC2/MDF_vl300
+  
+  # Rack G8 -- hsmdc2mgt04a
+  - name: S2LRACA021
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH022
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH023
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH024
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet4]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH025
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet5]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH026
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet6]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH027
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet7]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH028
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet8]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH029
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet9]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2VH030
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet10]
+        switches: [hsmdc2mgt04a]
+        profile: PP-ILO_vl316
+  - name: S2NBU03
+    adapters:
+      - endpoint_ports: [NMGT,NMGT,NMGT]
+        switch_ports: [Ethernet11,Ethernet11,Ethernet11]
+        switches: [hsmdc2mgt04a,hsmdc2mgt05a,hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: HSMDC2G801AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt04a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2G801BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt04a]
+        profile: PP-DC1/DC2/MDF_vl300
+  
+  # Rack G9 -- hsmdc2mgt05a
+  - name: S2LRACA031
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH032
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH033
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH034
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet4]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH035
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet5]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH036
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet6]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH037
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet7]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH038
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet8]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH039
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet9]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: S2VH040
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet10]
+        switches: [hsmdc2mgt05a]
+        profile: PP-ILO_vl316
+  - name: HSMDC2G901AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt05a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2G901BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt05a]
+        profile: PP-DC1/DC2/MDF_vl300
+
+  # Rack G10 -- hsmdc2mgt06a
+  - name: S2LRACB041
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH042
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH043
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH044
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet4]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH045
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet5]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH046
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet6]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH047
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet7]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH048
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet8]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH049
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet9]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: S2VH050
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet10]
+        switches: [hsmdc2mgt06a]
+        profile: PP-ILO_vl316
+  - name: HSMDC2G1001AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt06a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2G1001BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt06a]
+        profile: PP-DC1/DC2/MDF_vl300
+
+  # Rack F4 (NMS) -- hsmdc2mgt07a
+  - name: S2VHNMS01
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt07a]
+        profile: PP-ILO_vl316
+      - endpoint_ports: [P1,P2]
+        switch_ports: [Ethernet6,Ethernet8]
+        switches: [hsmdc2mgt07a,hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: S2VHNMS02
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt07a]
+        profile: PP-ILO_vl316
+      - endpoint_ports: [P1,P2]
+        switch_ports: [Ethernet7,Ethernet9]
+        switches: [hsmdc2mgt07a,hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: OSMIBSD02
+    adapters:
+      - endpoint_ports: [MGMT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: SMVHCVPTEMP
+    adapters:
+      - endpoint_ports: [P1,P2]
+        switch_ports: [Ethernet4,Ethernet5]
+        switches: [hsmdc2mgt07a,hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: TEMP_SENSOR_2
+    adapters:
+      - endpoint_ports: [LAN]
+        switch_ports: [Ethernet40]
+        switches: [hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2F401AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2F401BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt07a]
+        profile: PP-DC1/DC2/MDF_vl300
+  
+  # Rack F6 -- hsmdc2mgt09a
+  - name: S2VHMGMT01
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet1]
+        switches: [hsmdc2mgt09a]
+        profile: PP-ILO_vl316
+  - name: S2VHMGMT02
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet2]
+        switches: [hsmdc2mgt09a]
+        profile: PP-ILO_vl316
+  - name: S2VHMGMT03
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet3]
+        switches: [hsmdc2mgt09a]
+        profile: PP-ILO_vl316
+  - name: S2VHMGMT04
+    adapters:
+      - endpoint_ports: [NMGT]
+        switch_ports: [Ethernet4]
+        switches: [hsmdc2mgt09a]
+        profile: PP-ILO_vl316
+  - name: HSMDC2F601AA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet47]
+        switches: [hsmdc2mgt09a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: HSMDC2F601BA
+    adapters:
+      - endpoint_ports: [MGMT1]
+        switch_ports: [Ethernet48]
+        switches: [hsmdc2mgt09a]
+        profile: PP-DC1/DC2/MDF_vl300
+

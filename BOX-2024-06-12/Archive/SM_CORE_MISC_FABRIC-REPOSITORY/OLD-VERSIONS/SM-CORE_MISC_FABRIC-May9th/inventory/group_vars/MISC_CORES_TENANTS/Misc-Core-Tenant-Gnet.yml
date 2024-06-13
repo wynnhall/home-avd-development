@@ -1,0 +1,112 @@
+---
+Misc-Core-Tenant-Gnet:
+  - name: "Misc-Core-Tenant-Gnet"
+    vrfs:
+      - name: Gnet
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          971:
+            name: 10.70.38.0/23_SM-GUESTNT-WIRELES
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.70.38.1
+            nodes:
+              - node: ISMITMSC01A
+                ip_address: 10.70.38.2/23
+              - node: ISMITMSC02A
+                ip_address: 10.70.38.3/23
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.589
+                - Ethernet50/1.589
+                - Ethernet49/1.589
+                - Ethernet50/1.589
+            nodes:
+                - ISMITMSC01A
+                - ISMITMSC01A
+                - ISMITMSC02A
+                - ISMITMSC02A
+            ip_addresses: 
+                - 10.210.241.41/31
+                - 10.210.241.43/31
+                - 10.210.241.45/31
+                - 10.210.241.47/31
+            descriptions:
+              - '[L]_ISMCR01A-Eth3/4/1-GnetVRF'
+              - '[L]_ISMCR02A-Eth3/4/1-GnetVRF'
+              - '[L]_ISMCR01A-Eth4/4/1-GnetVRF'
+              - '[L]_ISMCR02A-Eth4/4/1-GnetVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMITMSC01A
+              - ISMITMSC02A
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.40
+            description: ISMCR01A-Eth3/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.42
+            description: ISMCR02A-Eth3/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMITMSC01A
+          - ip_address: 10.210.241.44
+            description: ISMCR01A-Eth4/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMITMSC02A
+          - ip_address: 10.210.241.46
+            description: ISMCR02A-Eth4/4/1-GnetVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ISMITMSC02A
+        structured_config:
+          route_maps:
+            - name: RM-captive-portal
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - ip address prefix-list PL-captive-portal
+                  set:
+                    - distance 10
+            - name: RM-guest-net
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - ip address prefix-list PL-guest-net
+                  set:
+                    - distance 10
+          router_bgp:
+            vrfs:
+              - name: Gnet
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+          router_general:
+            vrfs:
+              - name: IT
+                leak_routes:
+                  - source_vrf: Gnet
+                    subscribe_policy: RM-guest-net
+              - name: Gnet
+                leak_routes:
+                  - source_vrf: IT
+                    subscribe_policy: RM-captive-portal
+        ip_helpers:
+            - ip_helper: 10.210.103.70
+              source_interface: Loopback0
+              source_vrf: IT
+            - ip_helper: 10.210.103.86
+              source_interface: Loopback0
+              source_vrf: IT
+        

@@ -1,0 +1,132 @@
+---
+Misc_Core_Tenant_IT:
+  - name: "Misc_Core_Tenant_IT"
+    vrfs:
+      - name: IT
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          851:
+            name: 10.215.160.0/19-SM-HALEKOA
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.215.160.1
+            nodes:
+              - node: ismitmsc01a
+                ip_address: 10.215.160.2/19
+              - node: ismitmsc02a
+                ip_address: 10.215.160.3/19
+          387:
+            name: 10.210.103.64/28-IB1-Vlan
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.103.65
+            nodes:
+              - node: ismitmsc01a
+                ip_address: 10.210.103.66/28
+              - node: ismitmsc02a
+                ip_address: 10.210.103.67/28
+          403:
+            name: 10.210.103.80/28-IB2-Vlan
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.103.81
+            nodes:
+              - node: ismitmsc01a
+                ip_address: 10.210.103.82/28
+              - node: ismitmsc02a
+                ip_address: 10.210.103.83/28
+        # Connections to Core switches
+        l3_interfaces:
+          - interfaces:
+              # to the CORES 
+                - Ethernet49/1.525
+                - Ethernet50/1.525
+                - Ethernet49/1.525
+                - Ethernet50/1.525
+            nodes:
+                - ismitmsc01a
+                - ismitmsc01a
+                - ismitmsc02a
+                - ismitmsc02a
+            ip_addresses: 
+                - 10.210.241.17/31
+                - 10.210.241.19/31
+                - 10.210.241.21/31
+                - 10.210.241.23/31
+            descriptions:
+              - '[L]_ismcr01a-Eth3/4/1-ITVRF'
+              - '[L]_ismcr02a-Eth3/4/1-ITVRF'
+              - '[L]_ismcr01a-Eth4/4/1-ITVRF'
+              - '[L]_ismcr02a-Eth4/4/1-ITVRF'
+        bgp_peer_groups: 
+        # to the CAMPUS_CORES
+          - name: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc01a
+              - ismitmsc02a
+            remote_as: "65120.1"
+            maximum_routes: 0
+          - name: IB-iBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc01a
+              - ismitmsc02a
+            remote_as: "65120.10"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES
+          - ip_address: 10.210.241.16
+            description: ismcr01a-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc01a
+          - ip_address: 10.210.241.18
+            description: ismcr02a-Eth3/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc01a
+          - ip_address: 10.210.241.20
+            description: ismcr01a-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc02a
+          - ip_address: 10.210.241.22
+            description: ismcr02a-Eth4/4/1-ITVRF
+            peer_group: CAMPUS-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc02a
+        # IB appliances iBGP neighbors
+          - ip_address: 10.210.103.70
+            description: OSMIBSD01-LAN1&2-ITVRF
+            peer_group: IB-iBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc01a
+          - ip_address: 10.210.103.86
+            description: OSMIBSD02-LAN1&2-ITVRF
+            peer_group: IB-iBGP-PEERS-ITVRF
+            nodes:
+              - ismitmsc02a
+        static_routes:
+          - destination_address_prefix: 10.4.12.119/32
+            gateway: 10.210.241.16
+            name: Gnet-Captive-Portal
+          - destination_address_prefix: 10.4.12.119/32
+            gateway: 10.210.241.20
+            name: Gnet-Captive-Portal
+        redistribute_static: false
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+    l2vlans:
+      - id: 387
+        name: '10.210.103.64/28-IB1-Vlan'
+        tags: ["IB1"]
+      - id: 403
+        name: '10.210.103.80/28-IB2-Vlan'
+        tags: ["IB2"]

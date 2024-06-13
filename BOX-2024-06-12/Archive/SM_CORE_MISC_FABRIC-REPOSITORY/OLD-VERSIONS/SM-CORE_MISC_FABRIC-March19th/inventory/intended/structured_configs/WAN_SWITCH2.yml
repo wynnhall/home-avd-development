@@ -1,0 +1,309 @@
+hostname: WAN_SWITCH2
+is_deployed: true
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 192.168.0.124
+service_routing_protocols_model: multi-agent
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: '4094'
+clock:
+  timezone: UTC
+vrfs:
+- name: mgmt
+  ip_routing: false
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 192.168.0.124/24
+  gateway: 192.168.0.124
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+    access_group: API-Access
+  enable_https: true
+  enable_http: false
+ip_tacacs_source_interfaces:
+- name: Management1
+  vrf: mgmt
+ip_domain_lookup:
+  source_interfaces:
+  - name: Management1
+    vrf: mgmt
+ntp:
+  local_interface:
+    name: Management1
+    vrf: mgmt
+  servers:
+  - name: 10.188.255.18
+    vrf: mgmt
+    preferred: true
+  - name: 134.183.87.87
+    vrf: mgmt
+  - name: 137.167.66.10
+    vrf: mgmt
+  - name: 137.167.210.21
+    vrf: mgmt
+  - name: 157.170.1.4
+    vrf: mgmt
+  - name: 157.170.147.6
+    vrf: mgmt
+  - name: 158.218.8.155
+    vrf: mgmt
+  - name: 172.16.34.55
+    vrf: mgmt
+  - name: 172.24.170.104
+    vrf: mgmt
+  - name: 172.31.225.25
+    vrf: mgmt
+snmp_server:
+  engine_ids:
+    local: b31db7a6bc848ae7e6ac0ec59bd608114724f2fc
+    remotes:
+    - id: 536E4D705454
+      address: entstrap.itg.ti.com
+    - id: 536576306E65406363652424
+      address: sevonenms.itg.ti.com
+  location: CORE_MISC_FABRIC WAN_SWITCH2
+  users:
+  - name: SNMPManager
+    group: network-admin
+    version: v3
+    localized: b31db7a6bc848ae7e6ac0ec59bd608114724f2fc
+    auth: sha
+    auth_passphrase: 0e19022d1888ff69e51d1c7ae185af01fa8c7d7b
+    priv: aes
+    priv_passphrase: 0e19022d1888ff69e51d1c7ae185af01
+  vrfs:
+  - name: mgmt
+    enable: true
+  local_interfaces:
+  - name: Management1
+    vrf: mgmt
+  communities:
+  - name: z778eYOT4g2god0qT8A3
+    access: ro
+    access_list_ipv4:
+      name: NetDisco-SNMP_Access
+  - name: vhbqmu2JRJQcjfX99inm
+    access: ro
+    access_list_ipv4:
+      name: Airwave-SNMP_Access
+  groups:
+  - name: network-admin
+    version: v3
+    authentication: auth
+  - name: network-operator
+    version: v3
+    authentication: auth
+vlans:
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  ip_address: 192.168.0.1/31
+  no_autostate: true
+  mtu: 9214
+port_channel_interfaces:
+- name: Port-Channel551
+  description: MLAG_PEER_WAN_SWITCH1_Po551
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - MLAG
+ethernet_interfaces:
+- name: Ethernet55/1
+  peer: WAN_SWITCH1
+  peer_interface: Ethernet55/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_WAN_SWITCH1_Ethernet55/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 551
+    mode: active
+- name: Ethernet56/1
+  peer: WAN_SWITCH1
+  peer_interface: Ethernet56/1
+  peer_type: mlag_peer
+  description: MLAG_PEER_WAN_SWITCH1_Ethernet56/1
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 551
+    mode: active
+mlag_configuration:
+  domain_id: WAN_SEGMENT
+  local_interface: Vlan4094
+  peer_address: 192.168.0.0
+  peer_link: Port-Channel551
+  reload_delay_mlag: '900'
+  reload_delay_non_mlag: '1020'
+ip_igmp_snooping:
+  globally_enabled: true
+metadata:
+  platform: 7280R3
+aliases: 'alias ll dir
+
+  alias q exit
+
+  alias senz show interface counter error | nz
+
+  alias shmc show int | awk ''/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }''
+
+  alias snz show interface counter | nz
+
+  alias spd show port-channel %1 detail all
+
+  alias sqnz show interface counter queue | nz
+
+  alias srnz show interface counter rate | nz
+
+  alias shterminattr show version detail | grep TerminAttr-core
+
+  '
+aaa_server_groups:
+- name: tacacs_servers
+  type: tacacs+
+  servers:
+  - server: 172.31.226.29
+    vrf: mgmt
+  - server: 172.32.226.32
+    vrf: mgmt
+aaa_accounting:
+  commands:
+    default:
+    - commands: 1,15
+      type: start-stop
+      group: tacacs_servers
+aaa_authentication:
+  login:
+    default: group tacacs_servers local
+    console: local
+  enable:
+    default: group tacacs_servers local
+  policies:
+    local:
+      allow_nopassword: false
+aaa_authorization:
+  exec:
+    default: group tacacs_servers local
+tacacs_servers:
+  timeout: 20
+  hosts:
+  - host: 172.31.225.29
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  - host: 172.31.226.32
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+local_users:
+- name: newtorkpw
+  privilege: 15
+  role: network-admin
+  sha512_password: test
+enable_password:
+  hash_algorithm: sha512
+  key: test
+ip_name_servers:
+- ip_address: 192.0.2.2
+  vrf: mgmt
+- ip_address: 192.0.2.3
+  vrf: mgmt
+dns_domain: itg.ti.com
+standard_access_lists:
+- name: NetDisco-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.24
+  - sequence: 20
+    action: permit host 172.31.226.53
+  - sequence: 30
+    action: deny any log
+- name: Airwave-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.33
+  - sequence: 20
+    action: deny any log
+- name: API-Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 1.1.1.1
+  - sequence: 20
+    action: deny any log
+management_console:
+  idle_timeout: 15
+management_ssh:
+  idle_timeout: 15
+  enable: true
+  vrfs:
+  - name: mgmt
+    enable: true
+logging:
+  console: disabled
+  monitor: debugging
+  buffered:
+    size: 10000
+    level: debugging
+  trap: debugging
+  synchronous:
+    level: all
+  format:
+    timestamp: high-resolution
+    hostname: fqdn
+    sequence_numbers: false
+  facility: local7
+  vrfs:
+  - name: mgmt
+    source_interface: Management1
+    hosts:
+    - name: ents.itg.ti.com
+      protocol: tcp
+      ports:
+      - 514
+daemon_terminattr:
+  cvaddrs:
+  - 10.10.10.10:9910
+  - 10.10.10.11:9910
+  - 10.10.10.12:9910
+  cvauth:
+    method: token
+    token_file: /tmp/token
+  cvvrf: mgmt
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+interface_defaults:
+  ethernet:
+    shutdown: true
+  mtu: 9214
+switchport_default:
+  mode: routed
+internal_vlan_order:
+  allocation: ascending
+  range:
+    beginning: 3600
+    ending: 4000

@@ -1,0 +1,99 @@
+---
+Core_Tenant_Gnet:
+  - name: "Core_Tenant_Gnet"
+    vrfs:
+      - name: Gnet
+        enable_mlag_ibgp_peering_vrfs: false
+        svis:
+          589:
+            name: INET-IoTFW-TRANSIT-GnetVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.129
+            nodes:
+              - node: ismcr01a
+                ip_address: 10.210.241.130/29
+              - node: ismcr02a
+                ip_address: 10.210.241.131/29
+        l3_interfaces:
+          - interfaces:
+                - Ethernet3/4/1.589
+                - Ethernet4/4/1.589
+                - Ethernet3/4/1.589
+                - Ethernet4/4/1.589
+            nodes:
+                - ismcr01a
+                - ismcr01a
+                - ismcr02a
+                - ismcr02a
+            ip_addresses:
+                - 10.210.241.40/31
+                - 10.210.241.44/31
+                - 10.210.241.42/31
+                - 10.210.241.46/31
+            descriptions:
+              - '[L]_ismitmsc01a-Eth49/1-GnetVRF'
+              - '[L]_ismitmsc02a-Eth49/1-GnetVRF'
+              - '[L]_ismitmsc01a-Eth50/1-GnetVRF'
+              - '[L]_ismitmsc02a-Eth50/1-GnetVRF'
+        bgp_peer_groups:
+          - name: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr01a
+              - ismcr02a
+            remote_as: "65120.10"
+            maximum_routes: 0
+          # to the INET/IoT Firewall
+          - name: INET-IoTFW-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr01a
+              - ismcr02a
+            remote_as: "65120.98"
+            maximum_routes: 0
+        bgp_peers:
+          # to the Misc-Core 
+          - ip_address: 10.210.241.41
+            description: ismitmsc01a-Eth49/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr01a
+          - ip_address: 10.210.241.45
+            description: ismitmsc02a-Eth49/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr01a
+          - ip_address: 10.210.241.43
+            description: ismitmsc01a-Eth50/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr02a
+          - ip_address: 10.210.241.47
+            description: ismitmsc02a-Eth50/1-GnetVRF
+            peer_group: MISC-CORES-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr02a
+          - ip_address: 10.210.241.134
+            description: INET-IoTFW-VIP-GnetVRF
+            peer_group: INET-IoTFW-EBGP-PEERS-GnetVRF
+            nodes:
+              - ismcr01a
+              - ismcr02a
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+            set_ipv4_next_hop: 10.210.241.129
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: Gnet
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+        static_routes:
+        - destination_address_prefix: 0.0.0.0/0
+          gateway: 10.210.241.134
+          name: ismpan98-99-GnetVRF
+          metric: 225
+          distance: 225
+          nodes:
+            - ismcr01a
+            - ismcr02a

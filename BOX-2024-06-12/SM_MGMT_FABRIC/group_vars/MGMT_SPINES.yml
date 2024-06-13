@@ -1,0 +1,24 @@
+---
+type: l3spine
+
+new_network_services_bgp_vrf_config: true
+  
+mgmt_gateway: null
+mgmt_interface: null
+
+inband_mgmt_subnet: 10.210.80.0/21
+inband_mgmt_gateway: 10.210.80.1
+inband_mgmt_interface: vlan300
+inband_mgmt_vlan: 300
+inband_mgmt_vrf: default
+
+#redundancy protocol for modular devices
+redundancy:
+  # Redundancy Protocol
+  protocol: "sso"
+
+hardware:
+  speed_groups:
+    - speed_group: 3/7-12,4/7-12,5/7-12,6/7-12,7/7-12
+      # Serdes speed like "10g" or "25g".
+      serdes: 10g

@@ -1,0 +1,46 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Clone the repository
+      ansible.builtin.git:
+        repo: https://gitlab.aristanetworks.com/spandana/ti-shared.git
+        dest: ../Global_Vars
+        clone: yes
+        update: no
+        force: yes
+
+    - name: Pull the latest changes
+      ansible.builtin.git:
+        repo: https://gitlab.aristanetworks.com/spandana/ti-shared.git
+        dest: ../Global_Vars
+        clone: no
+        update: yes
+        force: yes
+
+- hosts: CORE_MISC_FABRIC
+  gather_facts: false
+  tasks:
+    - name: generate intended variables
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.eos_designs
+
+    - name: generate device intended config and documentation
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.eos_cli_config_gen
+
+- hosts: cv_server
+  tasks:
+    - name: upload cvp configlets
+      import_role:
+        name: arista.avd.cvp_configlet_upload
+      vars:
+        configlet_directory: 'configlets/'
+        file_extension: 'txt'
+        configlets_cvp_prefix: 'AVD'
+
+    - name: deploy configuration via CVP
+      import_role:
+        name: arista.avd.eos_config_deploy_cvp

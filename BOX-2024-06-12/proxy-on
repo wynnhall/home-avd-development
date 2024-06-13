@@ -1,0 +1,2 @@
+export http_proxy="http://webproxy.ext.ti.com:80"
+export https_proxy="http://webproxy.ext.ti.com:80"

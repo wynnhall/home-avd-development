@@ -1,0 +1,86 @@
+---
+# DC2_IT-DC VRF Related configs
+
+DC2_Tenant_IT-DC:
+  - name: "DC2_Tenant_IT-DC"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "IT-DC"
+        vrf_vni: 5002
+        svis:
+          322:
+            name: 10.210.102.0/24-NVR/SEC-DC2 #NVR/Security DC2
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.102.1/24
+          316:
+            name: 10.210.96.0/22-SRVER/RIBLOE-MGMT #Server/Ribloe Mgmt
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.96.1/22
+      # L3 p2p subinterfaces to CAMPUS_CORE switches in IT-DC VRF
+        l3_interfaces:
+          - interfaces:
+              # to the CAMPUS_CORES
+                - Ethernet1/1.510
+                - Ethernet2/1.510
+                - Ethernet1/1.510
+                - Ethernet2/1.510
+            nodes:
+            # to the CAMPUS_CORES
+                - ismdc2bl01aa
+                - ismdc2bl01aa
+                - ismdc2bl01ba
+                - ismdc2bl01ba
+            ip_addresses:
+            # to the CAMPUS_CORES 
+                - 10.210.234.17/31
+                - 10.210.234.19/31
+                - 10.210.234.21/31
+                - 10.210.234.23/31
+            descriptions:
+            # to the CAMPUS_CORES
+              - '[L]_ismcr01a-Eth3/2/1-IT-DCVRF'
+              - '[L]_ismcr02a-Eth3/2/1-IT-DCVRF'
+              - '[L]_ismcr01a-Eth4/2/1-IT-DCVRF'
+              - '[L]_ismcr02a-Eth4/2/1-IT-DCVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES 
+          - name: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc2bl01aa
+              - ismdc2bl01ba
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES 
+          - ip_address: 10.210.234.16
+            description: ismcr01a-Eth3/2/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc2bl01aa
+          - ip_address: 10.210.234.18
+            description: ismcr02a-Eth3/2/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc2bl01aa
+          - ip_address: 10.210.234.20
+            description: ismcr01a-Eth4/2/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc2bl01ba
+          - ip_address: 10.210.234.22
+            description: ismcr02a-Eth4/2/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc2bl01ba
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IT-DC
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS

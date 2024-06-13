@@ -1,0 +1,184 @@
+---
+# Modifying the default node_types & custom descriptions
+node_type_keys:
+  - key: l3leaf
+    type: l3leaf
+    connected_endpoints: true
+    default_evpn_role: none
+    mlag_support: true
+    network_services:
+      l2: true
+      l3: true
+    vtep: false
+    interface_descriptions:
+      underlay_ethernet_interfaces: 'custom_templates/interface_descriptions/underlay/ethernet-interfaces.j2'
+      underlay_port_channel_interfaces: 'custom_templates/interface_descriptions/underlay/port-channel-interfaces.j2'
+      mlag_ethernet_interfaces: 'custom_templates/interface_descriptions/mlag/ethernet-interfaces.j2'
+      mlag_port_channel_interfaces: 'custom_templates/interface_descriptions/mlag/port-channel-interfaces.j2'
+      connected_endpoints_ethernet_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/ethernet-interfaces.j2'
+      connected_endpoints_port_channel_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/port-channel-interfaces.j2'
+  - key: l2leaf
+    type: l2leaf
+    connected_endpoints: true
+    mlag_support: true
+    network_services:
+      l2: true
+    underlay_router: false
+    uplink_type: port-channel
+    interface_descriptions:
+      underlay_ethernet_interfaces: 'custom_templates/interface_descriptions/underlay/ethernet-interfaces.j2'
+      underlay_port_channel_interfaces: 'custom_templates/interface_descriptions/underlay/port-channel-interfaces.j2'
+      mlag_ethernet_interfaces: 'custom_templates/interface_descriptions/mlag/ethernet-interfaces.j2'
+      mlag_port_channel_interfaces: 'custom_templates/interface_descriptions/mlag/port-channel-interfaces.j2'
+      connected_endpoints_ethernet_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/ethernet-interfaces.j2'
+      connected_endpoints_port_channel_interfaces: 'custom_templates/interface_descriptions/connected_endpoints/port-channel-interfaces.j2'
+
+description_prefix: "[L]"
+
+#sflow collector
+sflow_dest: sflowle03
+
+# Fabric_Name - must match an Ansible Inventory Group
+fabric_name: SM_CORE_MISC_FABRIC
+
+# Fabric CVP Variables for global.yml
+cvp_host_1_name: dsmcvp01
+cvp_host_1_ip: 10.210.80.7
+cvp_host_2_name: dsmcvp02
+cvp_host_2_ip: 10.210.80.8
+cvp_host_3_name: dsmcvp03
+cvp_host_3_ip: 10.210.80.9
+
+# Design Type to generate config for individual switches - Not an actaul L3LS 
+design:
+  type: l3ls-evpn
+
+bgp_maximum_paths: 128
+bgp_ecmp: 128
+
+# Management settings
+mgmt_interface_vrf: mgmt
+custom_mgmt_interface: "{{ switch.mgmt_interface }}"
+
+# Routing settings to enable bgp and disable EVPN settings
+underlay_routing_protocol: ebgp
+overlay_routing_protocol: none
+
+# To change the Trunk Group - LEAF_PEER_L3 used for MLAG L3 peering VLAN (Typically VLAN 4093) and MLAg VLAN - MLAG the same .
+trunk_groups:
+  mlag_l3:
+    name: "MLAG"
+
+ip_dhcp_relay:
+  information_option: true
+
+l3leaf:
+  defaults:
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
+    mlag_port_channel_id: 4094
+    mlag_domain_id: MLAG
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    vtep: false
+    mgmt_gateway: 10.210.80.1
+    bgp_defaults:
+      - bgp asn notation asdot
+      - timers bgp 5 15
+      - distance bgp 20 200 200
+      - neighbor default send-community
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    rack: '[SM_CORE_MISC_FABRIC]'
+  node_groups:
+    - group: CAMPUS_CORES
+      platform: 7800R3
+      bgp_as: "65120.1"
+      loopback_ipv4_pool: 172.21.0.244/30
+      mlag_interfaces: 
+        - Ethernet3/48/1
+        - Ethernet4/48/1
+      nodes:
+        - name: ismcr01a
+          id: 1
+          mgmt_ip: 10.210.80.72/21
+        - name: ismcr02a
+          id: 2
+          mgmt_ip: 10.210.80.73/21
+    - group: MISC_CORES
+      platform: 7050X3
+      bgp_as: "65120.10"
+      loopback_ipv4_pool: 172.21.0.240/30
+      mlag_interfaces:
+        - Ethernet55/1
+        - Ethernet56/1
+      nodes:
+        - name: ismitmsc01a
+          id: 1
+          mgmt_ip: 10.210.80.74/21
+        - name: ismitmsc02a
+          id: 2
+          mgmt_ip: 10.210.80.75/21
+
+l2leaf:
+  defaults:
+    mlag: false
+    spanning_tree_mode: mstp
+    spanning_tree_priority: 4096
+    mgmt_gateway: 10.210.80.1
+    rack: '[SM_CORE_MISC_FABRIC]'
+  node_groups:
+    - group: WAN_SEGMENT
+      platform: 7280R3
+      nodes:
+        - name: hsmwan40a
+          id: 1
+          mgmt_ip: 10.210.80.76/21
+          filter:
+            tags: [WAN1]
+        - name: hsmwan41a
+          id: 2
+          mgmt_ip: 10.210.80.77/21
+          filter:
+            tags: [WAN2]
+    - group: INET_IoT_SEGMENT
+      platform: 722XP
+      nodes:
+        - name: hsmdmz100a
+          id: 1
+          mgmt_ip: 10.210.80.78/21
+          filter:
+            tags: [INET-IoT1]
+        - name: hsmdmz101a
+          id: 2
+          mgmt_ip: 10.210.80.79/21
+          filter:
+            tags: [INET-IoT2]
+    - group: VENDOR_SEGMENT
+      nodes:
+        - name: hsmvnd01A
+          platform: 758
+          id: 1
+          mgmt_ip: 10.210.80.80/21
+          mgmt_gateway: 10.210.80.1
+          filter:
+            tags: [VENDOR]
+        - name: hs00bot01a
+          platform: 722XP
+          id: 2
+          mgmt_ip: 10.210.241.20/21
+          mgmt_gateway: 10.210.241.1
+          filter:
+            tags: [BOT1]
+        - name: hs00bot02a
+          platform: 722XP
+          id: 3
+          mgmt_ip: 10.210.241.21/21
+          mgmt_gateway: 10.210.241.1
+          filter:
+            tags: [BOT2]
+    
+fabric_ip_addressing:
+  mlag:
+    algorithm: same_subnet
+
+p2p_uplinks_mtu: 9214

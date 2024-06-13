@@ -1,0 +1,83 @@
+---
+Core-Tenant-IoT:
+  - name: "Core-Tenant-IoT"
+    vrfs:
+      - name: IoT
+        mlag_ibgp_peering_vlan: "4089"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          40:
+            name: IoTFW-TRANSIT-IoTVRF
+            enabled: true
+            ip_virtual_router_addresses:
+              - 10.210.241.73
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.241.74/29
+              - node: ISMCR02A
+                ip_address: 10.210.241.75/29
+        l3_interfaces:
+          - interfaces:
+                - Ethernet3/3/1.40
+                - Ethernet4/3/1.40
+                - Ethernet3/3/1.40
+                - Ethernet4/3/1.40
+            nodes:
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+                - 10.210.241.8/31
+                - 10.210.241.12/31
+                - 10.210.241.10/31
+                - 10.210.241.14/31
+            descriptions:
+              - ISMS1ITBL01A-Eth1/1-IoTVRF
+              - ISMS1ITBL02A-Eth1/1-IoTVRF
+              - ISMS1ITBL01A-Eth2/1-IoTVRF
+              - ISMS1ITBL02A-Eth2/1-IoTVRF
+        bgp_peer_groups:
+          - name: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.31200"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='IT-BLLF-EBGP-PEERS-IoTVRF') }}"
+          # to the IoT Firewall
+          - name: IoTFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.98"
+            maximum_routes: 0
+            password: "{{ '{{ vault.bgp.password }}' | arista.avd.encrypt(passwd_type='bgp', key='IoTFW-EBGP-PEERS') }}"
+        bgp_peers:
+          - ip_address: 10.210.241.8
+            description: ISMS1ITBL01A-Eth1/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.12
+            description: ISMS1ITBL02A-Eth1/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.10
+            description: ISMS1ITBL01A-Eth2/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.14
+            description: ISMS1ITBL02A-Eth2/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.78
+            description: WANFW-VIP-IoTVRF
+            peer_group: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            set_ipv4_next_hop: 10.210.241.73

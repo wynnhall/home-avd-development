@@ -1,0 +1,21 @@
+---
+
+- hosts: sFLOW
+  tasks:
+    - name: generate sFLOW config to only sFLOW group devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../Global_Variables/sFLOW.yml"
+
+- hosts: SM-CORE_MISC_FABRIC
+  gather_facts: false
+  tasks:
+    - name: generate intended variables
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.eos_designs
+    - name: generate device intended config and documentation
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.eos_cli_config_gen
+

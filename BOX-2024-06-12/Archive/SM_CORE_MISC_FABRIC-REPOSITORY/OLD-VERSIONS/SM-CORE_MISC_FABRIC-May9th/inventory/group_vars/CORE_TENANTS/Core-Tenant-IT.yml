@@ -1,0 +1,177 @@
+---
+Core-Tenant-IT:
+  - name: "Core-Tenant-IT"
+    vrfs:
+      - name: IT
+        mlag_ibgp_peering_vlan: "4090"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          525:
+            name: WANFW-TRANSIT-ITVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.65
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.241.66/29
+              - node: ISMCR02A
+                ip_address: 10.210.241.67/29
+          541:
+            name: SCADAFW-TRANSIT-ITVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.81
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.241.82/29
+              - node: ISMCR02A
+                ip_address: 10.210.241.83/29
+        l3_interfaces:
+          - interfaces:
+              # to the IT-Border Leaf switches 
+                - Ethernet3/3/1.525
+                - Ethernet4/3/1.525
+                - Ethernet3/3/1.525
+                - Ethernet4/3/1.525
+              # to the Misc-Core 
+                - Ethernet3/4/1.525
+                - Ethernet4/4/1.525
+                - Ethernet3/4/1.525
+                - Ethernet4/4/1.525
+            nodes:
+            # to the IT-Border Leaf switches 
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            # to the Misc-Core 
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+            # to the IT-Border Leaf switches 
+                - 10.210.241.0/31
+                - 10.210.241.4/31
+                - 10.210.241.2/31
+                - 10.210.241.6/31
+            # to the Misc-Core 
+                - 10.210.241.16/31
+                - 10.210.241.20/31
+                - 10.210.241.18/31
+                - 10.210.241.22/31
+            descriptions:
+            # to the IT-Border Leaf switches 
+              - '[L]_ISMS1ITBL01A-Eth1/1-ITVRF'
+              - '[L]_ISMS1ITBL02A-Eth1/1-ITVRF'
+              - '[L]_ISMS1ITBL01A-Eth2/1-ITVRF'
+              - '[L]_ISMS1ITBL02A-Eth2/1-ITVRF'
+            # to the Misc-Core 
+              - '[L]_ISMITMSC01A-Eth49/1-ITVRF'
+              - '[L]_ISMITMSC02A-Eth49/1-ITVRF'
+              - '[L]_ISMITMSC01A-Eth50/1-ITVRF'
+              - '[L]_ISMITMSC02A-Eth50/1-ITVRF'
+        bgp_peer_groups:
+        # to the IT-Border Leaf switches 
+          - name: IT-BLLF-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.31200"
+            maximum_routes: 0
+            # Originate default from firewalls towards IT Border Leaf switches in IT VRF
+            default_originate:
+              enabled: true
+          - name: MISC-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.10"
+            # Originate default from firewalls towards  MISC Cores in IT-DC VRF
+            default_originate:
+              enabled: true
+            maximum_routes: 0 
+        # to the SCADA Firewall
+          - name: SCADAFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.60"
+            maximum_routes: 0
+        bgp_peers:
+        # to the IT-Borders 
+          - ip_address: 10.210.241.1
+            description: ISMS1ITBL01A-Eth1/1-ITVRF
+            peer_group: IT-BLLF-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.5
+            description: ISMS1ITBL02A-Eth1/1-ITVRF
+            peer_group: IT-BLLF-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.3
+            description: ISMS1ITBL01A-Eth2/1-ITVRF
+            peer_group: IT-BLLF-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.7
+            description: ISMS1ITBL02A-Eth2/1-ITVRF
+            peer_group: IT-BLLF-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR02A
+          # to the Misc-Core 
+          - ip_address: 10.210.241.17
+            description: ISMITMSC01A-Eth49/1-ITVRF
+            peer_group: MISC-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.21
+            description: ISMITMSC02A-Eth49/1-ITVRF
+            peer_group: MISC-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.19
+            description: ISMITMSC01A-Eth50/1-ITVRF
+            peer_group: MISC-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.23
+            description: ISMITMSC02A-Eth50/1-ITVRF
+            peer_group: MISC-CORES-EBGP-PEERS-ITVRF
+            nodes:
+              - ISMCR02A
+          #WAN Firewall neighbors
+          - ip_address: 10.210.241.70
+            description: WANFW-IP-ITVRF
+            peer_group: WANFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            route_map_out: RM-WANFW-ITVRF-OUT
+                    #SCADA Firewall neighbors
+          - ip_address: 10.210.241.86
+            description: SCADAFW-IP-ITVRF
+            peer_group: SCADAFW-EBGP-PEERS
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+        static_routes:
+          - destination_address_prefix: 0.0.0.0/0
+            gateway: 10.210.241.70
+            name: ISMTMGPAN40&41-ITVRF
+            metric: 225
+            distance: 225
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+

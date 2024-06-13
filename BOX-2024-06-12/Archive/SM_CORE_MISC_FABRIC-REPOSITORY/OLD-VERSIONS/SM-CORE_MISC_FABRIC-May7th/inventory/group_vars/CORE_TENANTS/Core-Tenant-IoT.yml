@@ -1,0 +1,128 @@
+---
+Core-Tenant-IoT:
+  - name: "Core-Tenant-IoT"
+    vrfs:
+      - name: IoT
+        mlag_ibgp_peering_vlan: "4089"
+        mlag_ibgp_peering_ipv4_pool: 192.168.0.4/31
+        svis:
+          633:
+            name: IoTFW-TRANSIT-IoTVRF
+            enabled: true
+            profile: svi_l3_defaults
+            ip_virtual_router_addresses:
+              - 10.210.241.73
+            nodes:
+              - node: ISMCR01A
+                ip_address: 10.210.241.74/29
+              - node: ISMCR02A
+                ip_address: 10.210.241.75/29
+        l3_interfaces:
+          - interfaces:
+                - Ethernet3/3/1.633
+                - Ethernet4/3/1.633
+                - Ethernet3/3/1.633
+                - Ethernet4/3/1.633
+            nodes:
+                - ISMCR01A
+                - ISMCR01A
+                - ISMCR02A
+                - ISMCR02A
+            ip_addresses:
+                - 10.210.241.8/31
+                - 10.210.241.12/31
+                - 10.210.241.10/31
+                - 10.210.241.14/31
+            descriptions:
+              - '[L]_ISMS1ITBL01A-Eth1/1-IoTVRF'
+              - '[L]_ISMS1ITBL02A-Eth1/1-IoTVRF'
+              - '[L]_ISMS1ITBL01A-Eth2/1-IoTVRF'
+              - '[L]_ISMS1ITBL02A-Eth2/1-IoTVRF'
+        bgp_peer_groups:
+          - name: IT-BL-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.31200"
+            # Originate default from firewalls towards IT Border Leaf switches in IoT VRF
+            default_originate:
+              enabled: true
+            maximum_routes: 0
+          # to the IoT Firewall
+          - name: DMZFW-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            remote_as: "65120.98"
+            maximum_routes: 0
+        bgp_peers:
+          - ip_address: 10.210.241.9
+            description: ISMS1ITBL01A-Eth1/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.13
+            description: ISMS1ITBL02A-Eth1/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+          - ip_address: 10.210.241.11
+            description: ISMS1ITBL01A-Eth2/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR02A
+          - ip_address: 10.210.241.15
+            description: ISMS1ITBL02A-Eth2/1-IoTVRF
+            peer_group: IT-BLLF-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR02A
+          #DMZ FWL EBGP PEERS
+          - ip_address: 10.210.241.78
+            description: DMZFW-VIP-IoTVRF
+            peer_group: DMZFW-EBGP-PEERS-IoTVRF
+            nodes:
+              - ISMCR01A
+              - ISMCR02A
+            # changing next hop change is recommended via an outgoing route-map on sessions to the firewall for a faster failover
+            # set_ipv4_next_hop: 10.210.241.73
+            route_map_out: RM-DMZFW-IoT-VRF-OUT
+        structured_config:
+          prefix_lists:
+            - name: PL-LOCAL-NETWORKS-IoTVRF
+              sequence_numbers:
+                - sequence: 10
+                  action: permit 10.210.241.72/29
+                - sequence: 20
+                  action: permit 10.210.241.8/29
+          route_maps:
+            - name: RM-LOCAL-NETWORKS-IoTVRF
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - "ip address prefix-list PL-LOCAL-NETWORKS-IoTVRF"
+            - name: RM-DMZFW-IoT-VRF-OUT
+              sequence_numbers:
+                - sequence: 10
+                  type: permit
+                  match:
+                    - "ip address prefix-list PL-DMZFW-DENY-HOST-ROUTES"
+                - sequence: 20
+                  type: permit
+                  set:
+                    - ip next-hop 10.210.241.73
+          router_bgp:
+            vrfs:
+              - name: IoT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS-IoTVRF
+        static_routes:
+        - destination_address_prefix: 0.0.0.0/0
+          gateway: 10.210.241.78
+          name: ISMPAN98&99-IoTVRF
+          metric: 225
+          distance: 225
+          nodes:
+            - ISMCR01A
+            - ISMCR02A

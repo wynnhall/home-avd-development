@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Clone the repository
+      ansible.builtin.git:
+        repo: https://gitlab.aristanetworks.com/spandana/ti-shared.git
+        dest: ../Global_Vars
+        clone: yes
+        update: no
+        force: yes
+
+    - name: Pull the latest changes
+      ansible.builtin.git:
+        repo: https://gitlab.aristanetworks.com/spandana/ti-shared.git
+        dest: ../Global_Vars
+        clone: no
+        update: yes
+        force: yes

@@ -1,0 +1,55 @@
+---
+connected_endpoints_keys:
+  - key: servers
+    type: server
+  - key: firewalls
+    type: firewall
+  - key: routers
+    type: router
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP-DC1/DC2/MDF_vl300
+    mode: access
+    vlans: "300"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-OOB-MGMT_vl308
+    mode: access
+    vlans: "308"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-OG_vl308
+    mode: access
+    vlans: "308"
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+  - profile: PP-ILO_vl316
+    mode: access
+    vlans: "316"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-DMF_vl443
+    mode: access
+    vlans: "443"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-SM1_vl461
+    mode: access
+    vlans: "461"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-ADMIN_vl462
+    mode: access
+    vlans: "462"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-SUPPORT_vl463
+    mode: access
+    vlans: "463"
+    parent_profile: PP-DEFAULTS
+  - profile: PP-FIREWALL
+    mode: access
+    vlans: "549"
+

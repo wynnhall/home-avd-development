@@ -1,0 +1,11 @@
+---
+
+network_ports:
+  - switches: 
+    - hsmmdf1mgt01a
+    - hsmmdf2mgt01a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-DC1/DC2/MDF_vl300
+    description: VL300-DC1/DC2/MDF-Mgmt    

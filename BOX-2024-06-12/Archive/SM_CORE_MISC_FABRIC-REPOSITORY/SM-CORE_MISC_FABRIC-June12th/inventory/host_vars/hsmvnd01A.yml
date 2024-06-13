@@ -1,0 +1,6 @@
+---
+
+#redundancy protocol for modular devices
+redundancy:
+  # Redundancy Protocol
+  protocol: "sso"

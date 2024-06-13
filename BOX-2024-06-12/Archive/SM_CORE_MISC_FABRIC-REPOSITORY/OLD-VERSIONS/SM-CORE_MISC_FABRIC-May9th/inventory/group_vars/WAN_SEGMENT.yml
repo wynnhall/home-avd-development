@@ -1,0 +1,120 @@
+---
+
+port_profiles: 
+  - profile: PP-WAN1_vl440
+    mode: access
+    vlans: 440
+  - profile: PP-WAN2_vl504
+    mode: access
+    vlans: 504
+
+tenants:
+  - name: WAN_SEGMENT
+    l2vlans:
+      - id: 440
+        name: 'WAN1-TRANSIT'
+      - id: 504
+        name: 'WAN2-TRANSIT'
+
+routers:
+  - name: ISMRR40
+    adapters:
+      - endpoint_ports: [ Te0/0/5 ]
+        switch_ports: [ Ethernet11 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+        speed: 10g
+      - endpoint_ports: [ Te0/0/9 ]
+        switch_ports: [ Ethernet11 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+        speed: 10g
+  - name: ISMRR41
+    adapters:
+      - endpoint_ports: [ Te0/0/5 ]
+        switch_ports: [ Ethernet12 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+        speed: 10g
+      - endpoint_ports: [ Te0/0/9 ]
+        switch_ports: [ Ethernet12 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+        speed: 10g
+
+firewalls:
+#WAN firewall
+  - name: ISMTMGPAN40
+    adapters:
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet1 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+      - endpoint_ports: [ Eth1/14 ]
+        switch_ports: [ Ethernet1 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+  - name: ISMTMGPAN41
+    adapters:
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet2 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+      - endpoint_ports: [ Eth1/14 ]
+        switch_ports: [ Ethernet2 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+#Mgmt Firewall
+  - name: ISMMGTPAN01
+    adapters:
+      - endpoint_ports: [ Eth1/21 ]
+        switch_ports: [ Ethernet5 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+      - endpoint_ports: [ Eth1/22 ]
+        switch_ports: [ Ethernet5 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+  - name: ISMMGTPAN02
+    adapters:
+      - endpoint_ports: [ Eth1/21 ]
+        switch_ports: [ Ethernet6 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+      - endpoint_ports: [ Eth1/22 ]
+        switch_ports: [ Ethernet6 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+#DMZ Firewall
+  - name: ISMPAN98
+    adapters:
+      - endpoint_ports: [ Eth1/15 ]
+        switch_ports: [ Ethernet7 ] 
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+        speed: 10g
+      - endpoint_ports: [ Eth1/16 ]
+        switch_ports: [ Ethernet7 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+        speed: 10g
+  - name: ISMPAN99
+    adapters:
+      - endpoint_ports: [ Eth1/15 ]
+        switch_ports: [ Ethernet8 ]
+        switches: [ HSMWAN40A ]
+        profile: PP-WAN1_vl440
+        speed: 10g
+      - endpoint_ports: [ Eth1/16 ]
+        switch_ports: [ Ethernet8 ]
+        switches: [ HSMWAN41A ]
+        profile: PP-WAN2_vl504
+        speed: 10g
+
+# monitor_sessions:
+#   - name: SPANSession-to-WAN-FilterSwitch
+#     sources:
+#       - name: Ethernet1-48
+#         direction: "both"
+#     destinations:
+#       - Ethernet53/1

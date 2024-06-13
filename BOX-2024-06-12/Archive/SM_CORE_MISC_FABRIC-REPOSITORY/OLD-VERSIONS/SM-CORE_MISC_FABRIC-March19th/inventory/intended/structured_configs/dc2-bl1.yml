@@ -1,0 +1,247 @@
+hostname: dc2-bl1
+is_deployed: false
+router_bgp:
+  as: '65120.12200'
+  router_id: 172.10.0.3
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 4
+    ecmp: 4
+  updates:
+    wait_install: true
+  peer_groups:
+  - name: P2P-VRF-EBGP-PEERS
+    type: ipv4
+    maximum_routes: 12000
+    send_community: all
+  address_family_ipv4:
+    peer_groups:
+    - name: P2P-VRF-EBGP-PEERS
+      activate: true
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  neighbors:
+  - ip_address: 10.10.10.5
+    peer_group: P2P-VRF-EBGP-PEERS
+    remote_as: '65120.1'
+    peer: CORE1
+    description: CORE1_Ethernet3/2
+  - ip_address: 10.10.10.17
+    peer_group: P2P-VRF-EBGP-PEERS
+    remote_as: '65120.1'
+    peer: CORE2
+    description: CORE2_Ethernet3/2
+  vrfs:
+  - name: IoT
+    router_id: 172.10.0.3
+    neighbors:
+    - ip_address: 10.10.10.5
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE1_Ethernet3/2.400_vrf_IoT
+    - ip_address: 10.10.10.17
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE2_Ethernet3/2.400_vrf_IoT
+  - name: IT
+    router_id: 172.10.0.3
+    neighbors:
+    - ip_address: 10.10.10.5
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE1_Ethernet3/2.300_vrf_IT
+    - ip_address: 10.10.10.17
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE2_Ethernet3/2.300_vrf_IT
+  - name: IT-DC
+    router_id: 172.10.0.3
+    neighbors:
+    - ip_address: 10.10.10.5
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE1_Ethernet3/2.200_vrf_IT-DC
+    - ip_address: 10.10.10.17
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE2_Ethernet3/2.200_vrf_IT-DC
+  - name: OT
+    router_id: 172.10.0.3
+    neighbors:
+    - ip_address: 10.10.10.5
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE1_Ethernet3/2.100_vrf_OT
+    - ip_address: 10.10.10.17
+      peer_group: P2P-VRF-EBGP-PEERS
+      remote_as: '65120.1'
+      description: CORE2_Ethernet3/2.100_vrf_OT
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 192.168.0.5
+service_routing_protocols_model: multi-agent
+ip_routing: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: none
+vrfs:
+- name: mgmt
+  ip_routing: false
+- name: IoT
+  tenant: CORE_TENANTS
+  ip_routing: true
+- name: IT
+  tenant: CORE_TENANTS
+  ip_routing: true
+- name: IT-DC
+  tenant: CORE_TENANTS
+  ip_routing: true
+- name: OT
+  tenant: CORE_TENANTS
+  ip_routing: true
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 192.168.0.5/24
+  gateway: 192.168.0.5
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+  enable_https: true
+ethernet_interfaces:
+- name: Ethernet1/1
+  peer: CORE1
+  peer_interface: Ethernet3/2
+  peer_type: l3leaf
+  description: P2P_LINK_TO_CORE1_Ethernet3/2
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ip_address: 10.10.10.4/31
+- name: Ethernet1/1.400
+  peer: CORE1
+  peer_interface: Ethernet3/2.400
+  peer_type: l3leaf
+  vrf: IoT
+  description: P2P_LINK_TO_CORE1_Ethernet3/2.400_vrf_IoT
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 400
+  mtu: 9214
+  ip_address: 10.10.10.4/31
+- name: Ethernet1/1.300
+  peer: CORE1
+  peer_interface: Ethernet3/2.300
+  peer_type: l3leaf
+  vrf: IT
+  description: P2P_LINK_TO_CORE1_Ethernet3/2.300_vrf_IT
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 300
+  mtu: 9214
+  ip_address: 10.10.10.4/31
+- name: Ethernet1/1.200
+  peer: CORE1
+  peer_interface: Ethernet3/2.200
+  peer_type: l3leaf
+  vrf: IT-DC
+  description: P2P_LINK_TO_CORE1_Ethernet3/2.200_vrf_IT-DC
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 200
+  mtu: 9214
+  ip_address: 10.10.10.4/31
+- name: Ethernet1/1.100
+  peer: CORE1
+  peer_interface: Ethernet3/2.100
+  peer_type: l3leaf
+  vrf: OT
+  description: P2P_LINK_TO_CORE1_Ethernet3/2.100_vrf_OT
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 100
+  mtu: 9214
+  ip_address: 10.10.10.4/31
+- name: Ethernet2/1
+  peer: CORE2
+  peer_interface: Ethernet3/2
+  peer_type: l3leaf
+  description: P2P_LINK_TO_CORE2_Ethernet3/2
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ip_address: 10.10.10.16/31
+- name: Ethernet2/1.400
+  peer: CORE2
+  peer_interface: Ethernet3/2.400
+  peer_type: l3leaf
+  vrf: IoT
+  description: P2P_LINK_TO_CORE2_Ethernet3/2.400_vrf_IoT
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 400
+  mtu: 9214
+  ip_address: 10.10.10.16/31
+- name: Ethernet2/1.300
+  peer: CORE2
+  peer_interface: Ethernet3/2.300
+  peer_type: l3leaf
+  vrf: IT
+  description: P2P_LINK_TO_CORE2_Ethernet3/2.300_vrf_IT
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 300
+  mtu: 9214
+  ip_address: 10.10.10.16/31
+- name: Ethernet2/1.200
+  peer: CORE2
+  peer_interface: Ethernet3/2.200
+  peer_type: l3leaf
+  vrf: IT-DC
+  description: P2P_LINK_TO_CORE2_Ethernet3/2.200_vrf_IT-DC
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 200
+  mtu: 9214
+  ip_address: 10.10.10.16/31
+- name: Ethernet2/1.100
+  peer: CORE2
+  peer_interface: Ethernet3/2.100
+  peer_type: l3leaf
+  vrf: OT
+  description: P2P_LINK_TO_CORE2_Ethernet3/2.100_vrf_OT
+  shutdown: false
+  type: l3dot1q
+  encapsulation_dot1q_vlan: 100
+  mtu: 9214
+  ip_address: 10.10.10.16/31
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 172.10.0.3/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 172.10.0.0/24 eq 32
+route_maps:
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+metadata:
+  platform: veos

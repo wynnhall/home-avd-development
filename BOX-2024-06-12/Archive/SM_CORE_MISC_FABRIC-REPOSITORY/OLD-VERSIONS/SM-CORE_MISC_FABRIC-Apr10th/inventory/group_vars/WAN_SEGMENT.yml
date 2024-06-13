@@ -1,0 +1,93 @@
+---
+
+port_profiles: 
+  ACCESS_10G_WAN_RTRS:
+    mode: trunk
+    speed: 10g
+    spanning_tree_portfast: edge
+    vlans: 565
+  ACCESS_100G_WAN_FW:
+    mode: trunk
+    speed: 100g
+    spanning_tree_portfast: edge
+    vlans: 565
+  ACCESS_100G_MGMT_FW:
+    mode: trunk
+    speed: 100g
+    spanning_tree_portfast: edge
+    vlans: 573
+  ACCESS_100G_DMZ_FW: #TBD with TI
+    mode: trunk
+    speed: 100g
+    spanning_tree_portfast: edge
+    vlans: 100 #TBD with TI
+
+tenants:
+  - name: WAN_SEGMENT
+    l2vlans:
+      - id: 565
+        name: 'WANRTR-WANFW-TRANSIT'
+      - id: 573
+        name: 'WANRTR-MGMTFW-TRANSIT'
+      - id: 100 #TBD with TI
+        name: 'WANRTR-DMZFW-TRANSIT'
+
+routers:
+  - name: WAN-Router1 #TBA
+    adapters:
+      - endpoint_ports: [ Eth0, Eth1 ] #TBA
+        switch_ports: [ Ethernet11, Ethernet11 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_10G_EDGE_ROUTERS
+  - name: WAN-Router2 #TBA
+    adapters:
+      - endpoint_ports: [ Eth0, Eth1 ] #TBA
+        switch_ports: [ Ethernet12, Ethernet12 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_10G_EDGE_ROUTERS
+
+firewalls:
+  - name: ISMTMGPAN40
+    adapters:
+      - endpoint_ports: [ Eth1/21, Eth1/22 ]
+        switch_ports: [ Ethernet1, Ethernet1 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_WAN_FW
+  - name: ISMTMGPAN41
+    adapters:
+      - endpoint_ports: [ Eth1/21, Eth1/22 ]
+        switch_ports: [ Ethernet2, Ethernet2 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_WAN_FW
+  - name: ISMMGTPAN01
+    adapters:
+      - endpoint_ports: [ Eth1/13, Eth1/14 ]
+        switch_ports: [ Ethernet5, Ethernet5 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_MGMT_FW
+  - name: ISMMGTPAN02
+    adapters:
+      - endpoint_ports: [ Eth1/13, Eth1/14 ]
+        switch_ports: [ Ethernet6, Ethernet6 ]
+        switches: [ HSMWAN40A, HSMWAN41A ]
+        profile: TRUNK_100G_MGMT_FW
+  # - name: ISMPAN98
+  #   adapters:
+  #     - endpoint_ports: [ Eth13, Eth14 ] 
+  #       switch_ports: [ Ethernet7, Ethernet7 ]
+  #       switches: [ HSMWAN40A, HSMWAN41A]
+  #       profile: TRUNK_10G_DMZ_FW
+  # - name: ISMPAN99
+  #   adapters:
+  #     - endpoint_ports: [ Eth13, Eth14 ]
+  #       switch_ports: [ Ethernet8, Ethernet8 ]
+  #       switches: [ HSMWAN40A, HSMWAN41A ]
+  #       profile: TRUNK_10G_DMZ_FW
+
+monitor_sessions:
+  - name: SPANSession-to-WAN-FilterSwitch
+    sources:
+      - name: Ethernet1-48
+        direction: "both"
+    destinations:
+      - Ethernet53/1
