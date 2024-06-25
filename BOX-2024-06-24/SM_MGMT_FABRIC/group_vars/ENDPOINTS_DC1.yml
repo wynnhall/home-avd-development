@@ -1,0 +1,101 @@
+---
+
+network_ports:
+  - switches:
+    - hsmdc1mgt01a
+    - hsmdc1mgt02a
+    - hsmdc1mgt03a
+    - hsmdc1mgt04a
+    - hsmdc1mgt05a
+    - hsmdc1mgt06a
+    - hsmdc1mgt07a
+    - hsmdc1mgt08a
+    - hsmdc1mgt09a
+    - hsmdc1mgt10a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-DC1/DC2/MDF_vl300
+    description: VL300-DC1/DC2/MDF-Mgmt
+
+servers:
+
+#
+# Agg Switches
+#
+
+  # Rack ?? -- hsmdc1mgtagg01a
+  - name: ISMDC1BL01A
+    adapters:
+      - endpoint_ports: [Ma1]
+        switch_ports: [Ethernet94]
+        switches: [hsmdc1mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: ISMDC1SP01A
+    adapters:
+      - endpoint_ports: [Ma1]
+        switch_ports: [Ethernet95]
+        switches: [hsmdc1mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: ISMDC1SP03A
+    adapters:
+      - endpoint_ports: [Ma1]
+        switch_ports: [Ethernet96]
+        switches: [hsmdc1mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
+
+  # Rack ?? -- hsmdc1mgtagg02a
+  - name: ISMDC1BL02A
+    adapters:
+      - endpoint_ports: [Ma1]
+        switch_ports: [Ethernet94]
+        switches: [hsmdc1mgtagg02a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: ISMDC1SP02A
+    adapters:
+      - endpoint_ports: [Ma1]
+        switch_ports: [Ethernet95]
+        switches: [hsmdc1mgtagg02a]
+        profile: PP-DC1/DC2/MDF_vl300
+
+#
+# TOR Rack Switches
+#
+
+  # Rack ?? -- hsmdc1mgt01a
+
+
+  # Rack ?? -- hsmdc1mgt02a
+
+
+  # Rack ?? -- hsmdc1mgt03a
+
+
+  # Rack ?? -- hsmdc1mgt04a
+
+
+  # Rack ?? -- hsmdc1mgt05a
+
+
+  # Rack ?? -- hsmdc1mgt06a
+
+
+  # Rack ?? -- hsmdc1mgt07a
+
+
+  # Rack ?? -- hsmdc1mgt08a
+
+
+  # Rack ?? -- hsmdc1mgt09a
+
+
+  # Rack ?? -- hsmdc1mgt10a
+

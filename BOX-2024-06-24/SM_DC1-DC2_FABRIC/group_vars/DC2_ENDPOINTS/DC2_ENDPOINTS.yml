@@ -1,0 +1,64 @@
+---
+
+connected_endpoints_keys:
+  - key: servers_2F401
+    type: server
+  - key: servers_2F501
+    type: server
+  - key: servers_2F601
+    type: server
+  - key: servers_2G401
+    type: server
+  - key: servers_2G601
+    type: server
+  - key: servers_2G701
+    type: server
+  - key: servers_2G801
+    type: server
+  - key: servers_2G901
+    type: server
+  - key: servers_2G1001
+    type: server
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP_DC2_VMware_Workload_Hosts
+    mode: trunk
+    spanning_tree_portfast: edge
+    vlans: 1012,1013,1017,1019,1021,1024
+    parent_profile: PP-DEFAULTS
+  - profile: PP_DC2_VMware_Mgmt_Hosts
+    mode: trunk
+    spanning_tree_portfast: edge
+    vlans: 1014,1015,1016,1011,1018,1020
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl322
+    mode: access
+    vlans: 322
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl238
+    mode: access
+    vlans: 238
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl316
+    mode: access
+    vlans: 316
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl323
+    mode: access
+    vlans: 323
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl355
+    mode: access
+    vlans: 355
+    parent_profile: PP-DEFAULTS
+  - profile: PP_vl451
+    mode: access
+    vlans: 451
+    parent_profile: PP-DEFAULTS

@@ -1,0 +1,25 @@
+---
+network_ports:
+  - switches: 
+    - hs13xsot01a
+    - hs13xsot02a
+    - hs13xsot03a
+    - hs13xsot04a
+    - hs13xsot05a
+    - hs13xsot06a
+    - hs13xsot07a
+    - hs13xsot08a
+    - hs13xsot09a
+    - hs13xsot10a
+    switch_ports:
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-vl349

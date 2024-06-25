@@ -1,0 +1,26 @@
+---
+### group_vars/MISC_CORES_TUNNEL.yml
+
+connected_endpoints_keys:
+  - key: servers
+    type: server
+  - key: firewalls
+    type: firewall
+  - key: routers
+    type: router
+
+tunnel_interfaces:
+  - name: Tunnel2
+    description: "[L]EHS Tunnel to iqdrr90-91-tu280"
+    shutdown: true
+    vrf: ehs
+    ip_address: 10.75.255.174/30
+    source_interface: Loopback0
+    destination: 172.16.173.33
+  - name: Tunnel3
+    description: "[L]GNET Tunnel to iqdrr90-91-tu720"
+    shutdown: true
+    vrf: Gnet
+    ip_address: 10.70.253.222/30
+    source_interface: Loopback2
+    destination:  172.16.173.65

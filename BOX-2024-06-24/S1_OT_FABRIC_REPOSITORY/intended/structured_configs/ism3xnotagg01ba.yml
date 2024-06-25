@@ -1,0 +1,876 @@
+hostname: ism3xnotagg01ba
+is_deployed: false
+router_bgp:
+  as: '65120.21217'
+  router_id: 172.21.3.37
+  bgp_defaults:
+  - bgp asn notation asdot
+  - distance bgp 20 200 200
+  - timers bgp 5 15
+  - neighbor default send-community
+  bgp:
+    default:
+      ipv4_unicast: false
+  maximum_paths:
+    paths: 128
+    ecmp: 128
+  updates:
+    wait_install: true
+  peer_groups:
+  - name: MLAG-IPv4-UNDERLAY-PEER
+    type: ipv4
+    remote_as: '65120.21217'
+    next_hop_self: true
+    description: ism3xnotagg01aa
+    maximum_routes: 12000
+    send_community: all
+    route_map_in: RM-MLAG-PEER-IN
+  - name: IPv4-UNDERLAY-PEERS
+    type: ipv4
+    maximum_routes: 12000
+    send_community: all
+  - name: EVPN-OVERLAY-PEERS
+    type: evpn
+    update_source: Loopback0
+    bfd: true
+    send_community: all
+    maximum_routes: 0
+    ebgp_multihop: 3
+  address_family_ipv4:
+    peer_groups:
+    - name: MLAG-IPv4-UNDERLAY-PEER
+      activate: true
+      next_hop:
+        address_family_ipv6:
+          enabled: true
+          originate: true
+    - name: IPv4-UNDERLAY-PEERS
+      activate: true
+      next_hop:
+        address_family_ipv6:
+          enabled: true
+          originate: true
+    - name: EVPN-OVERLAY-PEERS
+      activate: false
+  neighbor_interfaces:
+  - name: Vlan4093
+    peer_group: MLAG-IPv4-UNDERLAY-PEER
+    peer: ism3xnotagg01aa
+    remote_as: '65120.21217'
+    description: ism3xnotagg01aa
+  - name: Ethernet49/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.21100'
+    peer: isms1otsp01a
+    description: isms1otsp01a_Ethernet5/5/1
+  - name: Ethernet50/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.21100'
+    peer: isms1otsp02a
+    description: isms1otsp02a_Ethernet5/5/1
+  - name: Ethernet51/1
+    peer_group: IPv4-UNDERLAY-PEERS
+    remote_as: '65120.21100'
+    peer: isms1otsp03a
+    description: isms1otsp03a_Ethernet5/5/1
+  redistribute_routes:
+  - source_protocol: connected
+    route_map: RM-CONN-2-BGP
+  address_family_evpn:
+    peer_groups:
+    - name: EVPN-OVERLAY-PEERS
+      activate: true
+  neighbors:
+  - ip_address: 172.21.3.1
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: isms1otsp01a
+    description: isms1otsp01a
+    remote_as: '65120.21100'
+  - ip_address: 172.21.3.2
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: isms1otsp02a
+    description: isms1otsp02a
+    remote_as: '65120.21100'
+  - ip_address: 172.21.3.3
+    peer_group: EVPN-OVERLAY-PEERS
+    peer: isms1otsp03a
+    description: isms1otsp03a
+    remote_as: '65120.21100'
+  vrfs:
+  - name: OT
+    router_id: 172.21.3.37
+    rd: 172.21.3.37:5001
+    route_targets:
+      import:
+      - address_family: evpn
+        route_targets:
+        - 5001:5001
+      export:
+      - address_family: evpn
+        route_targets:
+        - 5001:5001
+    redistribute_routes:
+    - source_protocol: connected
+  vlans:
+  - id: 349
+    tenant: S1_OT_Tenant_OT
+    rd: 172.21.3.37:10349
+    route_targets:
+      both:
+      - 10349:10349
+    redistribute_routes:
+    - learned
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 10.215.242.1
+service_routing_protocols_model: multi-agent
+ipv6_unicast_routing: true
+ip_routing_ipv6_interfaces: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 4096
+  no_spanning_tree_vlan: 4093-4094
+clock:
+  timezone: UTC
+vrfs:
+- name: mgmt
+  ip_routing: false
+- name: OT
+  tenant: S1_OT_Tenant_OT
+  ip_routing: true
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 10.215.242.26/23
+  gateway: 10.215.242.1
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+    access_group: Ansible-ACL_SM
+  enable_https: true
+  enable_http: false
+snmp_server:
+  engine_ids:
+    local: f5f286eee1e283cfaf083b86b1c3f90b6a6ec290
+    remotes:
+    - id: 536E4D705454
+      address: entstrap.itg.ti.com
+    - id: 536576306E65406363652424
+      address: sevonenms.itg.ti.com
+  location: S1_OT_FABRIC ism3xnotagg01ba
+  users:
+  - name: SNMPManager
+    group: network-admin
+    version: v3
+    localized: f5f286eee1e283cfaf083b86b1c3f90b6a6ec290
+    auth: sha
+    auth_passphrase: 82277de6b0acb4ebc0717adf33314e970d5778eb
+    priv: aes
+    priv_passphrase: 82277de6b0acb4ebc0717adf33314e97
+  vrfs:
+  - name: mgmt
+    enable: true
+  communities:
+  - name: vhbqmu2JRJQcjfX99inm
+    access: ro
+    access_list_ipv4:
+      name: Airwave-SNMP_Access
+  - name: 8dp6e0eJW9DipeJRxreH
+    access: ro
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: 6XTUe5ZyUN0xQ25MNvdg
+    access: rw
+    access_list_ipv4:
+      name: ENTS-SNMP_Access
+  - name: r0gQaBrsDNEfgtKWsWmV
+    access: ro
+    access_list_ipv4:
+      name: NetBrain-SNMP_Access
+  - name: z778eYOT4g2god0qT8A3
+    access: ro
+    access_list_ipv4:
+      name: NetDisco-SNMP_Access
+  - name: HBHpL2ILnbWbuXuhYPiW
+    access: ro
+    access_list_ipv4:
+      name: SevOne-SNMP_Access
+  - name: Oij0ENt7meI3wjK2rxNv
+    access: ro
+    access_list_ipv4:
+      name: Statseeker-SNMP_Access
+  groups:
+  - name: network-admin
+    version: v3
+    authentication: auth
+  - name: network-operator
+    version: v3
+    authentication: auth
+  local_interfaces:
+  - name: Management1
+    vrf: mgmt
+  traps:
+    enable: true
+vlans:
+- id: 4093
+  tenant: system
+  name: LEAF_PEER_L3
+  trunk_groups:
+  - MLAG
+- id: 4094
+  tenant: system
+  name: MLAG_PEER
+  trunk_groups:
+  - MLAG
+- id: 349
+  name: 10.211.128.0/19-S1-OT-NETWORK
+  tenant: S1_OT_Tenant_OT
+vlan_interfaces:
+- name: Vlan4093
+  description: MLAG_PEER_L3_PEERING
+  shutdown: false
+  mtu: 9214
+  ipv6_enable: true
+- name: Vlan4094
+  description: MLAG_PEER
+  shutdown: false
+  no_autostate: true
+  mtu: 9214
+  ip_address: 192.168.0.1/31
+- name: Vlan349
+  tenant: S1_OT_Tenant_OT
+  description: 10.211.128.0/19-S1-OT-NETWORK
+  shutdown: false
+  eos_cli: 'no ip proxy-arp
+
+    no autostate'
+  ip_address_virtual: 10.211.128.1/19
+  vrf: OT
+port_channel_interfaces:
+- name: Port-Channel4094
+  description: '[L]_MLAG_PEER_ism3xnotagg01aa_Po551'
+  type: switched
+  shutdown: false
+  mode: trunk
+  trunk_groups:
+  - MLAG
+- name: Port-Channel1
+  description: '[L]_HSM3XNOT01A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 1
+- name: Port-Channel2
+  description: '[L]_HSM3XNOT02A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 2
+- name: Port-Channel3
+  description: '[L]_HSM3XNOT03A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 3
+- name: Port-Channel4
+  description: '[L]_HSM3XNOT04A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 4
+- name: Port-Channel5
+  description: '[L]_HSM3XNOT05A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 5
+- name: Port-Channel6
+  description: '[L]_HSM3XNOT06A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 6
+- name: Port-Channel7
+  description: '[L]_HSM3XNOT07A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 7
+- name: Port-Channel8
+  description: '[L]_HSM3XNOT08A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 8
+- name: Port-Channel9
+  description: '[L]_HSM3XNOT09A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 9
+- name: Port-Channel10
+  description: '[L]_HSM3XNOT10A_Po49'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: '349'
+  mlag: 10
+ethernet_interfaces:
+- name: Ethernet55/1
+  peer: ism3xnotagg01aa
+  peer_interface: Ethernet55/1
+  peer_type: mlag_peer
+  description: '[L]_MLAG_PEER_ism3xnotagg01aa_Ethernet55/1'
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 4094
+    mode: active
+- name: Ethernet56/1
+  peer: ism3xnotagg01aa
+  peer_interface: Ethernet56/1
+  peer_type: mlag_peer
+  description: '[L]_MLAG_PEER_ism3xnotagg01aa_Ethernet56/1'
+  type: port-channel-member
+  shutdown: false
+  channel_group:
+    id: 4094
+    mode: active
+- name: Ethernet1
+  peer: hsm3xnot01a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT01A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 1
+    mode: active
+- name: Ethernet2
+  peer: hsm3xnot02a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT02A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 2
+    mode: active
+- name: Ethernet3
+  peer: hsm3xnot03a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT03A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 3
+    mode: active
+- name: Ethernet4
+  peer: hsm3xnot04a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT04A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 4
+    mode: active
+- name: Ethernet5
+  peer: hsm3xnot05a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT05A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 5
+    mode: active
+- name: Ethernet6
+  peer: hsm3xnot06a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT06A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 6
+    mode: active
+- name: Ethernet7
+  peer: hsm3xnot07a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT07A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 7
+    mode: active
+- name: Ethernet8
+  peer: hsm3xnot08a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT08A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 8
+    mode: active
+- name: Ethernet9
+  peer: hsm3xnot09a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT09A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 9
+    mode: active
+- name: Ethernet10
+  peer: hsm3xnot10a
+  peer_interface: Ethernet50
+  peer_type: l2leaf
+  description: '[L]_HSM3XNOT10A_Ethernet50'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 10
+    mode: active
+- name: Ethernet49/1
+  peer: isms1otsp01a
+  peer_interface: Ethernet5/5/1
+  peer_type: spine
+  description: '[L]_P2P_LINK_TO_ISMS1OTSP01A_Ethernet5/5/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet50/1
+  peer: isms1otsp02a
+  peer_interface: Ethernet5/5/1
+  peer_type: spine
+  description: '[L]_P2P_LINK_TO_ISMS1OTSP02A_Ethernet5/5/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+- name: Ethernet51/1
+  peer: isms1otsp03a
+  peer_interface: Ethernet5/5/1
+  peer_type: spine
+  description: '[L]_P2P_LINK_TO_ISMS1OTSP03A_Ethernet5/5/1'
+  shutdown: false
+  mtu: 9214
+  type: routed
+  ipv6_enable: true
+mlag_configuration:
+  domain_id: MLAG
+  local_interface: Vlan4094
+  peer_address: 192.168.0.0
+  peer_link: Port-Channel4094
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+route_maps:
+- name: RM-MLAG-PEER-IN
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    set:
+    - origin incomplete
+    description: Make routes learned over MLAG Peer-link less preferred on spines to ensure optimal routing
+- name: RM-CONN-2-BGP
+  sequence_numbers:
+  - sequence: 10
+    type: permit
+    match:
+    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+loopback_interfaces:
+- name: Loopback0
+  description: EVPN_Overlay_Peering
+  shutdown: false
+  ip_address: 172.21.3.37/32
+- name: Loopback1
+  description: VTEP_VXLAN_Tunnel_Source
+  shutdown: false
+  ip_address: 10.210.248.36/32
+prefix_lists:
+- name: PL-LOOPBACKS-EVPN-OVERLAY
+  sequence_numbers:
+  - sequence: 10
+    action: permit 172.21.3.0/24 eq 32
+  - sequence: 20
+    action: permit 10.210.248.0/24 eq 32
+router_bfd:
+  multihop:
+    interval: 300
+    min_rx: 300
+    multiplier: 3
+ip_igmp_snooping:
+  globally_enabled: true
+ip_virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+eos_cli: 'logging event congestion-drops interval 600
+
+  no logging repeat-messages
+
+  logging level all debugging
+
+  logging event link-status global
+
+  service unsupported-transceiver TexasInstruments ffd6c10c
+
+  '
+vxlan_interface:
+  Vxlan1:
+    description: ism3xnotagg01ba_VTEP
+    vxlan:
+      udp_port: 4789
+      source_interface: Loopback1
+      virtual_router_encapsulation_mac_address: mlag-system-id
+      vlans:
+      - id: 349
+        vni: 10349
+      vrfs:
+      - name: OT
+        vni: 5001
+metadata:
+  platform: 7050X3
+aliases: 'alias ll dir
+
+  alias q exit
+
+  alias senz show interface counter error | nz
+
+  alias shmc show int | awk ''/^[A-Z]/ { intf = $1 } /, address is/ { print intf, $6 }''
+
+  alias snz show interface counter | nz
+
+  alias spd show port-channel %1 detail all
+
+  alias sqnz show interface counter queue | nz
+
+  alias srnz show interface counter rate | nz
+
+  alias shterminattr show version detail | grep TerminAttr-core
+
+  '
+aaa_server_groups:
+- name: tacacs_servers
+  type: tacacs+
+  servers:
+  - server: 172.31.225.29
+    vrf: mgmt
+  - server: 172.31.226.32
+    vrf: mgmt
+tacacs_servers:
+  timeout: 20
+  hosts:
+  - host: 172.31.225.29
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  - host: 172.31.226.32
+    vrf: mgmt
+    key: 096D5C584C521659255F533D7B36036674
+    key_type: '7'
+  policy_unknown_mandatory_attribute_ignore: true
+aaa_accounting:
+  commands:
+    default:
+    - commands: 1,15
+      type: start-stop
+      group: tacacs_servers
+aaa_authentication:
+  login:
+    default: group tacacs_servers local
+    console: local
+  enable:
+    default: group tacacs_servers local
+  policies:
+    local:
+      allow_nopassword: false
+aaa_authorization:
+  exec:
+    default: group tacacs_servers local
+local_users:
+- name: networkpw
+  privilege: 15
+  role: network-admin
+  sha512_password: $6$jw8oM5dlW5v.Fr./$lzoUKIUYpSh15xYzXZUpshSToBco1i/2MqiJ0I4bs4UDEuffxgL.oU45YVkcGbY1lx5cTAJsMUnPM4.NEeAlJ.
+enable_password:
+  hash_algorithm: sha512
+  key: $6$MT87Q9wZNEXe.WzP$mT.NM1681S1WVKtnYw5/dP56iMGE7NPIupjNDhe7AIQRSN5xnJi4664w1i3kD5aDLdB28nxIERi2vQzgoOuyd1
+ip_name_servers:
+- ip_address: 192.0.2.2
+  vrf: mgmt
+- ip_address: 192.0.2.3
+  vrf: mgmt
+dns_domain: itg.ti.com
+ntp:
+  local_interface:
+    name: Management1
+    vrf: mgmt
+  servers:
+  - name: 172.16.169.44
+    vrf: mgmt
+    preferred: false
+  - name: 157.170.147.6
+    vrf: mgmt
+  - name: 172.31.225.25
+    vrf: mgmt
+  - name: 137.167.66.10
+    vrf: mgmt
+  - name: 134.183.87.87
+    vrf: mgmt
+  - name: 172.16.44.10
+    vrf: mgmt
+  - name: 10.188.255.18
+    vrf: mgmt
+  - name: 137.167.210.21
+    vrf: mgmt
+  - name: 158.218.8.155
+    vrf: mgmt
+  - name: 172.24.254.250
+    vrf: mgmt
+standard_access_lists:
+- name: Airwave-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.33
+  - sequence: 20
+    action: deny any log
+- name: ENTS-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.25
+  - sequence: 20
+    action: permit host 172.31.227.10
+  - sequence: 30
+    action: permit host 172.31.225.12
+  - sequence: 40
+    action: deny any log
+- name: NetBrain-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.55
+  - sequence: 20
+    action: permit host 172.31.225.43
+  - sequence: 30
+    action: permit host 172.31.226.49
+  - sequence: 40
+    action: permit host 172.31.226.54
+  - sequence: 50
+    action: deny any log
+- name: NetDisco-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.24
+  - sequence: 20
+    action: permit host 172.31.226.53
+  - sequence: 30
+    action: deny any log
+- name: SevOne-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.225.47
+  - sequence: 20
+    action: permit host 172.31.225.53
+  - sequence: 30
+    action: permit host 172.31.225.54
+  - sequence: 40
+    action: permit host 172.31.225.60
+  - sequence: 50
+    action: ' permit host 172.31.225.61'
+  - sequence: 60
+    action: ' permit host 172.31.225.62'
+  - sequence: 70
+    action: ' permit host 172.31.225.63'
+  - sequence: 80
+    action: ' permit host 172.31.225.64'
+  - sequence: 90
+    action: ' permit host 172.31.225.65'
+  - sequence: 100
+    action: ' permit host 172.31.225.66'
+  - sequence: 110
+    action: ' permit host 172.31.225.67'
+  - sequence: 120
+    action: ' permit host 172.31.225.68'
+  - sequence: 130
+    action: ' permit host 172.31.225.69'
+  - sequence: 140
+    action: ' permit host 172.31.225.86'
+  - sequence: 150
+    action: ' permit host 172.31.225.87'
+  - sequence: 160
+    action: ' permit host 172.31.225.88'
+  - sequence: 170
+    action: ' permit host 172.31.225.89'
+  - sequence: 180
+    action: ' permit host 172.31.225.90'
+  - sequence: 190
+    action: ' permit host 172.31.225.91'
+  - sequence: 200
+    action: ' permit host 172.31.226.100'
+  - sequence: 210
+    action: ' permit host 172.31.226.101'
+  - sequence: 220
+    action: ' permit host 172.31.226.102'
+  - sequence: 230
+    action: ' permit host 172.31.226.55'
+  - sequence: 240
+    action: ' permit host 172.31.226.58'
+  - sequence: 250
+    action: ' permit host 172.31.226.59'
+  - sequence: 260
+    action: ' permit host 172.31.226.63'
+  - sequence: 270
+    action: ' permit host 172.31.226.68'
+  - sequence: 280
+    action: ' permit host 172.31.226.74'
+  - sequence: 290
+    action: ' permit host 172.31.226.75'
+  - sequence: 300
+    action: ' permit host 172.31.226.76'
+  - sequence: 310
+    action: ' permit host 172.31.226.77'
+  - sequence: 320
+    action: ' permit host 172.31.226.79'
+  - sequence: 330
+    action: ' permit host 172.31.226.87'
+  - sequence: 340
+    action: ' permit host 172.31.226.90'
+  - sequence: 350
+    action: ' permit host 172.31.226.91'
+  - sequence: 360
+    action: ' permit host 172.31.226.97'
+  - sequence: 370
+    action: ' permit host 172.31.226.98'
+  - sequence: 380
+    action: ' permit host 172.31.226.99'
+  - sequence: 390
+    action: deny any log
+- name: Statseeker-SNMP_Access
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: permit host 172.31.226.35
+  - sequence: 20
+    action: deny any log
+- name: Ansible-ACL_SM
+  counters_per_entry: false
+  sequence_numbers:
+  - sequence: 10
+    action: remark dlecvp01
+  - sequence: 20
+    action: permit host 10.180.68.99
+  - sequence: 30
+    action: remark dlecvp02
+  - sequence: 40
+    action: permit host 10.180.68.98
+  - sequence: 50
+    action: remark dflcvp01
+  - sequence: 60
+    action: permit host 10.64.41.27
+  - sequence: 70
+    action: remark dsmcvp01
+  - sequence: 80
+    action: permit host 10.210.80.7
+  - sequence: 90
+    action: remark dsmcvp02
+  - sequence: 100
+    action: permit host 10.210.80.8
+  - sequence: 110
+    action: remark dsmcvp03
+  - sequence: 120
+    action: permit host 10.210.80.9
+  - sequence: 130
+    action: remark ents
+  - sequence: 140
+    action: permit host 172.31.227.10
+  - sequence: 150
+    action: remark tilde
+  - sequence: 160
+    action: permit host 172.31.226.25
+  - sequence: 170
+    action: remark dotdot
+  - sequence: 180
+    action: permit host 172.31.225.12
+management_console:
+  idle_timeout: 30
+management_ssh:
+  idle_timeout: 30
+  enable: true
+  vrfs:
+  - name: mgmt
+    enable: true
+logging:
+  console: disabled
+  monitor: debugging
+  buffered:
+    size: 10000
+    level: debugging
+  trap: debugging
+  synchronous:
+    level: all
+  format:
+    timestamp: high-resolution
+    hostname: fqdn
+    sequence_numbers: false
+  facility: local7
+  vrfs:
+  - name: mgmt
+    source_interface: Management1
+    hosts:
+    - name: ents.itg.ti.com
+      protocol: tcp
+      ports:
+      - 514
+daemon_terminattr:
+  cvaddrs:
+  - 10.210.80.7:9910
+  - 10.210.80.8:9910
+  - 10.210.80.9:9910
+  cvauth:
+    method: token
+    token_file: /tmp/token
+  cvvrf: mgmt
+  smashexcludes: ale,flexCounter,hardware,kni,pulse,strata
+  ingestexclude: /Sysdb/cell/1/agent,/Sysdb/cell/2/agent
+  disable_aaa: true
+  cvgnmi: true
+  cvconfig: true
+interface_defaults:
+  ethernet:
+    shutdown: true
+  mtu: 9236
+switchport_default:
+  mode: routed
+internal_vlan_order:
+  allocation: ascending
+  range:
+    beginning: 3500
+    ending: 4000

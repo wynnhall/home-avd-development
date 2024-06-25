@@ -1,0 +1,25 @@
+---
+network_ports:
+  - switches: 
+      - hs11jwot01a
+      - hs11jwot02a
+      - hs11jwot03a
+      - hs11jwot04a
+      - hs11jwot05a
+      - hs11jwot06a
+      - hs11jwot07a
+      - hs11jwot08a
+      - hs11jwot09a
+      - hs11jwot10a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-vl349

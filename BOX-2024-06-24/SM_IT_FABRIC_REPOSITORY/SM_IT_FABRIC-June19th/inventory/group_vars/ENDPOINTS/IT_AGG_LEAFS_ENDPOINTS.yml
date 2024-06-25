@@ -1,0 +1,8 @@
+# ---
+# servers:
+#   - name: Host3
+#     adapters:
+#       - endpoint_ports: [Ethernet1]
+#         switch_ports: [Ethernet14]
+#         switches: [ismitagg01aa]
+#         profile: PP_vl224

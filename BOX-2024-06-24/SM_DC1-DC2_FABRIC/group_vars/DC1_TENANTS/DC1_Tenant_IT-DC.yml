@@ -1,0 +1,188 @@
+---
+# DC1-IT-DC VRF Related configs
+
+DC1_Tenant_IT-DC:
+  - name: "DC1_Tenant_IT-DC"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "IT-DC"
+        vrf_vni: 5002
+        svis:
+          239:
+            name: 10.210.19.0/24-NAS-ST-PUB-IT-DC #NAS Storage Public Network OT
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.19.1/24
+          321:
+            name: 10.210.101.0/24-NVR/SEC-DC1 #NVR/Security DC1
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.101.1/24
+          323:
+            name: 10.210.103.0/28-DC-METROCL-INTCL #DC Metrocluster InterCluster
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.103.1/28
+          355:
+            name: 10.210.103.32/27-ORCLERAC-PRVNET #Oracle RAC Private Network
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.103.33/27
+          451:
+            name: 10.210.103.128/27-GAD-PNET-iSCSI  #GAD Public Network iSCSI
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.103.129/27
+          1010:
+            name: 10.210.104.0/24-NSX-EDGE-DC1-NET1 #NSX Edge Network  DC1
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.104.1/24
+          1011:
+            name: 10.210.105.0/24-NSX-EDGE-DC1-NET2 #NSX Edge Network  DC1
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.105.1/24
+          1012:
+            name: 10.210.0.0/21-VCF-WL-Edge-TEP  #VCF Wrkld Underlay Edge TEP
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.0.1/21
+          1013:
+            name: 10.210.8.0/21-VCF-WL-Host-TEP #VCF-Wrkld Underlay Host TEP
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.8.1/21
+          1014:
+            name: 10.210.16.0/24-VCF-MU-Edge-TEP #VCF Mgmt Underlay Edge TEP
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.16.1/24
+          1015:
+            name: 10.210.17.0/24-VCF-MU-Host-TEP #VCF Mgmt Underlay Host TEP
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.17.1/24
+          1016:
+            name: 10.210.100.0/24-VCF-MDOMAIN-VSAN #VCF Mgmt Domain VSAN
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.100.1/24
+          1017:
+            name: 10.210.106.0/24-VCF-WD-ESXI-MGMT #VCF Wrld Domain ESXI Mgmt 
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.106.1/24
+          1018:
+            name: 10.210.107.0/24-VC-MD-ESXI-MGMT #VCF Mgmt Domain ESXI Mgmt 
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.107.1/24
+          1019:
+            name: 10.210.108.0/23-VCF-WD-VMOTION #VCF Wrkld Domain V-Motion
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.108.1/23
+          1020:
+            name: 10.210.110.0/24-VCF-MD-VMOTION #VCF Mgmt Domain V-Motion
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.110.1/24
+          1021:
+            name: 10.210.111.0/24-VMWare-FT ##VMWare Fault Tolerance
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.111.1/24
+          1023:
+            name : 10.210.112.0/25-NSX-WL-Edge-Net1
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.112.1/25
+          1024:
+            name : 10.210.112.128/25-NSX-WL-Edge-Net2
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.112.129/24
+        # L3 p2p subinterfaces to CAMPUS_CORE switches in IT-DC VRF
+        l3_interfaces:
+          - interfaces:
+              # to the CAMPUS_CORES
+                - Ethernet1/1.510
+                - Ethernet2/1.510
+                - Ethernet1/1.510
+                - Ethernet2/1.510
+            nodes:
+            # to the CAMPUS_CORES
+                - ismdc1bl01aa
+                - ismdc1bl01aa
+                - ismdc1bl01ba
+                - ismdc1bl01ba
+            ip_addresses:
+            # to the CAMPUS_CORES 
+                - 10.210.226.25/31
+                - 10.210.226.27/31
+                - 10.210.226.29/31
+                - 10.210.226.31/31
+            descriptions:
+            # to the CAMPUS_CORES
+              - '[L]_ismcr01a-Eth3/1/1-IT-DCVRF'
+              - '[L]_ismcr02a-Eth3/1/1-IT-DCVRF'
+              - '[L]_ismcr01a-Eth4/1/1-IT-DCVRF'
+              - '[L]_ismcr02a-Eth4/1/1-IT-DCVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES 
+          - name: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc1bl01aa
+              - ismdc1bl01ba
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES 
+          - ip_address: 10.210.226.24
+            description: ismcr01a-Eth3/1/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc1bl01aa
+          - ip_address: 10.210.226.26
+            description: ismcr02a-Eth3/1/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc1bl01aa
+          - ip_address: 10.210.226.28
+            description: ismcr01a-Eth4/1/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc1bl01ba
+          - ip_address: 10.210.226.30
+            description: ismcr02a-Eth4/1/1-IT-DCVRF
+            peer_group: CORES-EBGP-PEERS-IT-DCVRF
+            nodes:
+              - ismdc1bl01ba
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IT-DC
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS

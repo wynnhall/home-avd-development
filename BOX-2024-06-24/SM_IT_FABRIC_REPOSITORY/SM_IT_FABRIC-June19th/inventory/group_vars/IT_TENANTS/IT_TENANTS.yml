@@ -1,0 +1,32 @@
+# IT Tenants Networks
+# Documentation of Tenant specific information - Vlans/VRFs
+
+network_services_keys:
+  - name: IT-Tenant-IT
+  - name: IT-Tenant-IoT
+  - name: IT-Tenant-inband-mgmt
+
+svi_profiles:
+  - profile: svi_l3_defaults
+    raw_eos_cli: |
+      no ip proxy-arp
+      no autostate
+
+#prefix-lists 
+custom_structured_configuration_prefix_lists:
+  - name: PL-LOCAL-NETWORKS
+    sequence_numbers:
+      - sequence: 10
+        action: "permit 10.208.0.0/13 le 29" # Supernet assigned to SM site
+      - sequence: 20
+        action: "permit 172.21.0.0/22 eq 32" # Supernet for Loopbacks at SM site
+      - sequence: 30
+        action: "permit 192.168.160.0/20 eq 32" # Global Loopbacks
+
+custom_structured_configuration_route_maps:
+  - name: RM-LOCAL-NETWORKS
+    sequence_numbers:
+      - sequence: 10
+        type: permit
+        match:
+          - ip address prefix-list PL-LOCAL-NETWORKS

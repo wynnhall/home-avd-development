@@ -1,0 +1,29 @@
+---
+network_ports:
+  - switches: 
+      - hs11cot01a
+      - hs11cot02a
+      - hs11cot03a
+      - hs11cot04a
+      - hs11cot05a
+      - hs11cot06a
+      - hs11cot07a
+      - hs11cot08a
+      - hs11cot09a
+      - hs11cot10a
+      - hs11cot11a
+      - hs11cot12a
+      - hs11cot13a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-vl349
+    description: VL349-10.211.128.0/19-S1-OT-NET

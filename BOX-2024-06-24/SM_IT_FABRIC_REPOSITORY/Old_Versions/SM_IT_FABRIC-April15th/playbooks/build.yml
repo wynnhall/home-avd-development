@@ -1,0 +1,15 @@
+---
+- name: Manage Arista EOS EVPN/VXLAN Configuration
+  hosts: SM-IT_FABRIC
+  tasks:
+
+    - name: generate intended variables
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.eos_designs
+
+    - name: generate device intended config and documentation
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.eos_cli_config_gen
+

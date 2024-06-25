@@ -1,0 +1,141 @@
+---
+# DC1-OT VRF Related configs
+
+DC1_Tenant_OT:
+  - name: "DC1_Tenant_OT"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "OT"
+        vrf_vni: 5001
+        svis:
+          238:
+            name: 10.210.18.0/24-NAS-ST-PUB-OT #NAS Storage Public Network OT
+            tags: [stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.18.1/24
+          1025:
+            name: 10.210.113.0/25-NSX-WL-EDGE-OT1 #NSX Workload Edge OT Network 1 (peer w/ Arista)  #VCF Wrkld Underlay Edge TEP
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.113.1/25
+          1026:
+            name: 10.210.113.128/25-NSX-WL-EDGE-OT2 #NSX Workload Edge OT Network 1 (peer w/ Arista)  #VCF Wrkld Underlay Edge TEP
+            tags: [non-stretch]
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.113.129/25
+        # L3 p2p subinterfaces to CAMPUS_CORE switches & S1-OT Border leaf switches in OT VRF
+        l3_interfaces:
+          - interfaces:
+              # to the CAMPUS_CORES
+                - Ethernet1/1.533
+                - Ethernet2/1.533
+                - Ethernet1/1.533
+                - Ethernet2/1.533
+              # to the S1-OT Borders
+                - Ethernet5/1.533
+                - Ethernet6/1.533
+                - Ethernet5/1.533
+                - Ethernet6/1.533
+            nodes:
+            # to the CAMPUS_CORES
+                - ismdc1bl01aa
+                - ismdc1bl01aa
+                - ismdc1bl01ba
+                - ismdc1bl01ba
+            # to the S1-OT Borders
+                - ismdc1bl01aa
+                - ismdc1bl01aa
+                - ismdc1bl01ba
+                - ismdc1bl01ba
+            ip_addresses:
+            # to the CAMPUS_CORES 
+                - 10.210.226.1/31
+                - 10.210.226.3/31
+                - 10.210.226.5/31
+                - 10.210.226.7/31
+            # to the S1-OT Borders
+                - 10.210.226.17/31
+                - 10.210.226.19/31
+                - 10.210.226.21/31
+                - 10.210.226.23/31
+            descriptions:
+            # to the CAMPUS_CORES
+              - '[L]_ismcr01a-Eth3/1/1-OTVRF'
+              - '[L]_ismcr02a-Eth3/1/1-OTVRF'
+              - '[L]_ismcr01a-Eth4/1/1-OTVRF'
+              - '[L]_ismcr02a-Eth4/1/1-OTVRF'
+            # to the S1-OT Borders
+              - '[L]_isms1otbl01aa-Eth1/1-OTVRF'
+              - '[L]_isms1otbl01ba-Eth1/1-OTVRF'
+              - '[L]_isms1otbl01aa-Eth2/1-OTVRF'
+              - '[L]_isms1otbl01ba-Eth2/1-OTVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES 
+          - name: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01aa
+              - ismdc1bl01ba
+            remote_as: "65120.1"
+            maximum_routes: 0
+          # to the S1-OT Borders
+          - name: S1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01aa
+              - ismdc1bl01ba
+            remote_as: "65120.21200"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES 
+          - ip_address: 10.210.226.0
+            description: ismcr01a-Eth3/1/1-OTVRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01aa
+          - ip_address: 10.210.226.2
+            description: ismcr02a-Eth3/1/1-OTVRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01aa
+          - ip_address: 10.210.226.4
+            description: ismcr01a-Eth4/1/1-OTVRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01ba
+          - ip_address: 10.210.226.6
+            description: ismcr02a-Eth4/1/1-OTVRF
+            peer_group: CORES-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01ba
+        # to the S1-OT Borders 
+          - ip_address: 10.210.226.16
+            description: isms1otbl01aa-Eth1/1-OTVRF
+            peer_group: S1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01aa
+          - ip_address: 10.210.226.18
+            description: isms1otbl01ba-Eth1/1-OTVRF
+            peer_group: S1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01aa
+          - ip_address: 10.210.226.20
+            description: isms1otbl01aa-Eth2/1-OTVRF
+            peer_group: S1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01ba
+          - ip_address: 10.210.226.22
+            description: isms1otbl01ba-Eth2/1-OTVRF
+            peer_group: S1-OT-BL-EBGP-PEERS-OTVRF
+            nodes:
+              - ismdc1bl01ba
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: OT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+

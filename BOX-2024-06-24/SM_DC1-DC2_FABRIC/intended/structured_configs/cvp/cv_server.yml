@@ -1,0 +1,144 @@
+---
+cvp_devices:
+  - fqdn: ismdc2bl01aa
+    serialNumber: "JPA2335P133"
+    parentContainerName: DC2_VTEP_BLEAFS
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2bl01aa
+  - fqdn: ismdc2bl01ba
+    serialNumber: "JPA2335P122"
+    parentContainerName: DC2_VTEP_BLEAFS
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2bl01ba
+  - fqdn: ismdc2f401aa
+    serialNumber: "JMX2321A05Y"
+    parentContainerName: DC2_VTEP_2F401
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2f401aa
+  - fqdn: ismdc2f401ba
+    serialNumber: "JMX2321A0VX"
+    parentContainerName: DC2_VTEP_2F401
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2f401ba
+  - fqdn: ismdc2f601aa
+    serialNumber: "JMX2321A01K"
+    parentContainerName: DC2_VTEP_2F601
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2f601aa
+  - fqdn: ismdc2f601ba
+    serialNumber: "JMX2321A0XK"
+    parentContainerName: DC2_VTEP_2F601
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2f601ba
+  - fqdn: ismdc2g401aa
+    serialNumber: "JMX2320A1LU"
+    parentContainerName: DC2_VTEP_2G401
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g401aa
+  - fqdn: ismdc2g401ba
+    serialNumber: "JMX2321A051"
+    parentContainerName: DC2_VTEP_2G401
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g401ba
+  - fqdn: ismdc2g601aa
+    serialNumber: "JMX2321BBHL"
+    parentContainerName: DC2_VTEP_2G601
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g601aa
+  - fqdn: ismdc2g601ba
+    serialNumber: "JMX2321A0XP"
+    parentContainerName: DC2_VTEP_2G601
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g601ba
+  - fqdn: ismdc2g701aa
+    serialNumber: "JMX2321BBF2"
+    parentContainerName: DC2_VTEP_2G701
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g701aa
+  - fqdn: ismdc2g701ba
+    serialNumber: "JMX2321A0Z7"
+    parentContainerName: DC2_VTEP_2G701
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g701ba
+  - fqdn: ismdc2g801aa
+    serialNumber: "JMX2321A0WC"
+    parentContainerName: DC2_VTEP_2G801
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g801aa
+  - fqdn: ismdc2g801ba
+    serialNumber: "JMX2321BBH1"
+    parentContainerName: DC2_VTEP_2G801
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2g801ba
+  - fqdn: ismdc2sp01a
+    serialNumber: "FGN23320HTY"
+    parentContainerName: DC2_SPINES
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2sp01a
+  - fqdn: ismdc2sp02a
+    serialNumber: "FGN233205UF"
+    parentContainerName: DC2_SPINES
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2sp02a
+  - fqdn: ismdc2sp03a
+    serialNumber: "FGN23320A74"
+    parentContainerName: DC2_SPINES
+    configlets:
+      - AVD-SM_DC1-DC2_FABRIC-_ismdc2sp03a
+cvp_containers:
+  DC1_LEAF1_2:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF3_4:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF5_6:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF7_8:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF9_10:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF11_12:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF13_14:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF15_16:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_LEAF17_18:
+    parentContainerName: DC1_VTEP_LEAFS
+  DC1_SPINES:
+    parentContainerName: SM_DC1_FABRIC
+  DC1_VTEP_BLEAFS:
+    parentContainerName: SM_DC1_FABRIC
+  DC1_VTEP_LEAFS:
+    parentContainerName: SM_DC1_FABRIC
+  DC2_SPINES:
+    parentContainerName: SM_DC2_FABRIC
+  DC2_VTEP_2F401:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2F501:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2F601:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2G401:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2G601:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2G701:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2G801:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2G901:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_2G1001:
+    parentContainerName: DC2_VTEP_LEAFS
+  DC2_VTEP_BLEAFS:
+    parentContainerName: SM_DC2_FABRIC
+  DC2_VTEP_LEAFS:
+    parentContainerName: SM_DC2_FABRIC
+  SM:
+    parentContainerName: Tenant
+  SM_DC1-DC2_FABRIC:
+    parentContainerName: SM
+  SM_DC1_FABRIC:
+    parentContainerName: SM_DC1-DC2_FABRIC
+  SM_DC2_FABRIC:
+    parentContainerName: SM_DC1-DC2_FABRIC

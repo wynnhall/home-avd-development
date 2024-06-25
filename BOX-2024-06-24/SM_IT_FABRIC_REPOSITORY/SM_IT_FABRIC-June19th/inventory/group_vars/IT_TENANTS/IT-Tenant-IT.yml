@@ -1,0 +1,108 @@
+---
+# IT-Tenant-IT Networks
+
+IT-Tenant-IT:
+  - name: "IT-Tenant-IT"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "IT"
+        vrf_vni: 5003
+        svis:
+          237:	
+            name: 10.211.16.0/20-S1-Wired-LAN
+            enabled: true
+            tags: [S1]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.211.16.1/20
+          337:
+            name: 10.215.64.0/20-SM-Wired-LAN
+            enabled: true
+            tags: [SM]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.64.1/20
+          250:
+            name: 10.215.0.0/20-S0-Wired-LAN
+            enabled: true
+            tags: [S0]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.215.0.1/20
+          951:
+            name: 10.70.32.0/24-SM-GuestNet(Wired)
+            enabled: true
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.70.32.1/24
+        l3_interfaces:
+          - interfaces:
+              # to the CAMPUS_CORES
+                - Ethernet1/1.525
+                - Ethernet2/1.525
+                - Ethernet1/1.525
+                - Ethernet2/1.525
+            nodes:
+            # to the CAMPUS_CORES
+                - isms1itbl01a
+                - isms1itbl01a
+                - isms1itbl02a
+                - isms1itbl02a
+            ip_addresses:
+            # to the CAMPUS_CORES 
+                - 10.210.241.1/31
+                - 10.210.241.3/31
+                - 10.210.241.5/31
+                - 10.210.241.7/31
+            descriptions:
+            # to the CAMPUS_CORES
+              - '[L]_ismcr01a-Eth3/3/1-IT-VRF'
+              - '[L]_ismcr02a-Eth3/3/1-IT-VRF'
+              - '[L]_ismcr01a-Eth4/3/1-IT-VRF'
+              - '[L]_ismcr02a-Eth4/3/1-IT-VRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES 
+          - name: CORES-EBGP-PEERS-IT-VRF
+            nodes:
+              - isms1itbl01a
+              - isms1itbl01a
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES 
+          - ip_address: 10.210.241.0
+            description: ismcr01a-Eth3/3/1-IT-VRF
+            peer_group: CORES-EBGP-PEERS-IT-VRF
+            nodes:
+              - isms1itbl01a
+          - ip_address: 10.210.241.2
+            description: ismcr02a-Eth3/3/1-IT-VRF
+            peer_group: CORES-EBGP-PEERS-IT-VRF
+            nodes:
+              - isms1itbl01a
+          - ip_address: 10.210.241.4
+            description: ismcr01a-Eth4/3/1-IT-VRF
+            peer_group: CORES-EBGP-PEERS-IT-VRF
+            nodes:
+              - isms1itbl02a
+          - ip_address: 10.210.241.6
+            description: ismcr02a-Eth4/3/1-IT-VRF
+            peer_group: CORES-EBGP-PEERS-IT-VRF
+            nodes:
+              - isms1itbl02a
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: IT
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+    l2vlans:
+      237:	
+        name: 10.211.16.0/20-S1-Wired-LAN
+        tags: [S1]
+      337:
+        name: 10.215.64.0/20-SM-Wired-LAN
+        tags: [SM]
+      250:
+        name: 10.215.0.0/20-S0-Wired-LAN
+        tags: [S0]
+      951:
+        name: 10.70.32.0/24-SM-GuestNet(Wired)

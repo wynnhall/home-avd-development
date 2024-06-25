@@ -1,0 +1,422 @@
+---
+# L3LS Fabric Values - update these values with caution,
+# SOME CHANGES COULD BE DISRUPTIVE.
+
+fabric_name: SM_IT_FABRIC
+
+description_prefix: "[L]"
+#sflow collector
+sflow_dest: sflowle03
+
+
+design:
+  type: l3ls-evpn
+
+# Fabric CVP Variables for global.yml
+cvp_host_1_name: dsmcvp01
+cvp_host_1_ip: 10.210.80.7
+cvp_host_2_name: dsmcvp02
+cvp_host_2_ip: 10.210.80.8
+cvp_host_3_name: dsmcvp03
+cvp_host_3_ip: 10.210.80.9
+
+mgmt_interface_vrf: mgmt
+custom_mgmt_interface: "{{ switch.mgmt_interface }}"
+
+# Disable vlan aware bundles
+evpn_vlan_aware_bundles: false
+
+# This feature allows IPv6 underlay routing protocol with RFC5549 addresses to be used along with IPv4 advertisements as VXLAN tunnel endpoints.
+underlay_rfc5549: true
+
+bgp_maximum_paths: 128
+bgp_ecmp: 128
+
+# To change the Trunk Group - LEAF_PEER_L3 used for MLAG L3 peering VLAN (Typically VLAN 4093) and MLAg VLAN - MLAG the same .
+trunk_groups:
+  mlag_l3:
+    name: "MLAG"
+
+# Spine Switches
+spine:
+  defaults:
+    platform: 7300X3
+    bgp_as: "65120.31100"
+    loopback_ipv4_pool: 172.21.2.0/24
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - graceful-restart restart-time 300
+      - graceful-restart
+      - neighbor default send-community
+  node_groups:
+    - group: IT_SPINES
+      nodes:
+        isms1itsp01a:
+          id: 1
+          mgmt_ip: 10.210.80.60/21
+        isms1itsp02a:
+          id: 2
+          mgmt_ip: 10.210.80.61/21
+        isms1itsp03a:
+          id: 3
+          mgmt_ip: 10.210.80.62/21
+
+# Leaf switch groups
+# A maximum of two nodes can form a leaf group
+# When two nodes are in a leaf group this will automatically form mlag pair
+l3leaf:
+  defaults:
+    # virtual router mac for VNIs assigned to Leaf switches
+    virtual_router_mac_address: 00:aa:aa:aa:aa:aa
+    loopback_ipv4_pool: 172.21.2.0/24
+    loopback_ipv4_offset: 3
+    vtep_loopback_ipv4_pool: 10.210.240.0/24
+    uplink_switches: [ isms1itsp01a, isms1itsp02a, isms1itsp03a ]
+    mlag_peer_ipv4_pool: 192.168.0.0/31
+    mlag_peer_l3_ipv4_pool: 192.168.0.2/31
+    mlag_port_channel_id: 4094
+    spanning_tree_priority: 4096
+    spanning_tree_mode: mstp
+    bgp_defaults:
+      - bgp asn notation asdot
+      - distance bgp 20 200 200
+      - timers bgp 5 15
+      - neighbor default send-community
+  node_groups:
+    - group: IT_BLEAFS
+      mgmt_gateway: 10.210.80.1
+      platform: 7280R3
+      uplink_interfaces: [ Ethernet25/1, Ethernet26/1, Ethernet27/1 ]
+      mlag_interfaces: [ Ethernet31/1, Ethernet32/1 ]
+      bgp_as: "65120.31200"
+      nodes:
+        isms1itbl01a:
+          id: 1
+          mgmt_ip: 10.210.80.63/21
+          uplink_switch_interfaces: [ Ethernet3/1/1, Ethernet3/1/1, Ethernet3/1/1 ]
+        isms1itbl02a:
+          id: 2
+          mgmt_ip: 10.210.80.64/21
+          uplink_switch_interfaces: [ Ethernet4/1/1, Ethernet4/1/1, Ethernet4/1/1 ]
+    - group: IT_AGG_LEAFS
+      mgmt_gateway: 10.210.80.1
+      bgp_as: "65120.31201"
+      platform: 7050X3
+      uplink_interfaces: [ Ethernet49/1, Ethernet50/1, Ethernet51/1 ]
+      mlag_interfaces: [ Ethernet55/1, Ethernet56/1 ]
+      nodes:
+        ismitagg01aa:
+          id: 3
+          mgmt_ip: 10.210.80.65/21
+          uplink_switch_interfaces: [ Ethernet5/1/1, Ethernet5/1/1, Ethernet5/1/1 ]
+        ismitagg01ba:
+          id: 4
+          mgmt_ip: 10.210.80.66/21
+          uplink_switch_interfaces: [ Ethernet6/1/1, Ethernet6/1/1, Ethernet6/1/1 ]
+    - group: IT_LEAFS
+      mgmt_gateway: 10.211.240.1
+      loopback_ipv4_pool: 172.21.2.0/24
+      loopback_ipv4_offset: 7
+      vtep_loopback_ipv4_pool: 10.210.240.0/24
+      bgp_as: "65120.31301-31332"
+      platform: '758'
+      uplink_interfaces: [ Ethernet1/1/1, Ethernet1/2/1, Ethernet2/1/1 ]
+      nodes:
+        is11jit01a:
+          id: 1
+          mgmt_ip: 10.211.240.10/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet7/1/1, Ethernet7/1/1, Ethernet7/1/1 ]
+        is11git01a:
+          id: 2
+          mgmt_ip: 10.211.240.11/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet8/1/1, Ethernet8/1/1, Ethernet8/1/1 ]
+        is11cit01a:
+          id: 3
+          mgmt_ip: 10.211.240.12/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet3/2/1, Ethernet3/2/1, Ethernet3/2/1 ]
+        is11ait01a:
+          id: 4
+          mgmt_ip: 10.211.240.13/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet4/2/1, Ethernet4/2/1, Ethernet4/2/1 ]
+        is11jwit01a:
+          id: 5
+          mgmt_ip: 10.211.240.14/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet5/2/1, Ethernet5/2/1, Ethernet5/2/1 ]
+        is11gwit01a:
+          id: 6
+          mgmt_ip: 10.211.240.15/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet6/2/1, Ethernet6/2/1, Ethernet6/2/1 ]
+        is11ewit01a:
+          id: 7
+          mgmt_ip: 10.211.240.16/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet7/2/1, Ethernet7/2/1, Ethernet7/2/1 ]
+        is11cwit01a:
+          id: 8
+          mgmt_ip: 10.211.240.17/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet8/2/1, Ethernet8/2/1, Ethernet8/2/1 ]
+        is11keit01a:	
+          id: 9
+          mgmt_ip: 10.211.240.18/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet3/3/1, Ethernet3/3/1, Ethernet3/3/1 ]
+        is11heit01a:
+          id: 10
+          mgmt_ip:	10.211.240.19/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet4/3/1, Ethernet4/3/1, Ethernet4/3/1 ]
+        is11deit01a:	
+          id: 11
+          mgmt_ip:	10.211.240.20/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet5/3/1, Ethernet5/3/1, Ethernet5/3/1 ]
+        is11beit01a:	
+          id: 12
+          mgmt_ip:	10.211.240.21/22
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [ Ethernet6/3/1, Ethernet6/3/1, Ethernet6/3/1 ]
+        ism0wit01a:	
+          id: 13
+          mgmt_ip:	10.215.242.10/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet7/3/1, Ethernet7/3/1, Ethernet7/3/1 ]
+        ism1wit01a:	
+          id: 14
+          mgmt_ip:	10.215.242.11/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet8/3/1, Ethernet8/3/1, Ethernet8/3/1 ]
+        ism2wit01a:	
+          id: 15
+          mgmt_ip:	10.215.242.12/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet3/4/1, Ethernet3/4/1, Ethernet3/4/1 ]
+        ism3xnit01a:	
+          id: 16
+          mgmt_ip:	10.215.242.13/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet4/4/1, Ethernet4/4/1, Ethernet4/4/1 ]
+        ism3xnit02a:	
+          id: 17
+          mgmt_ip:	10.215.242.14/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet5/4/1, Ethernet5/4/1, Ethernet5/4/1 ]
+        ism3xsit01a:	
+          id: 18
+          mgmt_ip:	10.215.242.15/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet6/4/1, Ethernet6/4/1, Ethernet6/4/1 ]
+        ism3xsit02a:	
+          id: 19
+          mgmt_ip:	10.215.242.16/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet7/4/1, Ethernet7/4/1, Ethernet7/4/1 ]
+        ism3wit01a:	
+          id: 20
+          mgmt_ip:	10.215.242.17/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet8/4/1, Ethernet8/4/1, Ethernet8/4/1 ]
+        is00ait01a:	
+          id: 21
+          mgmt_ip:	10.215.241.10/23
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet3/5/1, Ethernet3/5/1, Ethernet3/5/1 ]
+        is00bit01a:	
+          id: 22
+          mgmt_ip:	10.215.241.11/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet4/5/1, Ethernet4/5/1, Ethernet4/5/1 ]
+        is00cit01a:	
+          id: 23
+          mgmt_ip:	10.215.241.12/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet5/5/1, Ethernet5/5/1, Ethernet5/5/1 ]
+        is01ait01a:	
+          id: 24
+          mgmt_ip:	10.215.241.13/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet6/5/1, Ethernet6/5/1, Ethernet6/5/1 ]
+        is01bit01a:	
+          id: 25
+          mgmt_ip:	10.215.241.14/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet7/5/1, Ethernet7/5/1, Ethernet7/5/1 ]
+        is01cit01a:	
+          id: 26
+          mgmt_ip:	10.215.241.15/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet8/5/1, Ethernet8/5/1, Ethernet8/5/1 ]
+        is02ait01a:	
+          id: 27
+          mgmt_ip:	10.215.241.16/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet3/6/1, Ethernet3/6/1, Ethernet3/6/1 ]
+        is02bit01a:	
+          id: 28
+          mgmt_ip:	10.215.241.17/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet4/6/1, Ethernet4/6/1, Ethernet4/6/1 ]
+        is03ait01a:	
+          id: 29
+          mgmt_ip:	10.215.241.18/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet5/6/1, Ethernet5/6/1, Ethernet5/6/1 ]
+        is03bit01a:	
+          id: 30
+          mgmt_ip:	10.215.241.19/24
+          mgmt_gateway: 10.215.241.1
+          filter:
+            tags: [S0]
+          uplink_switch_interfaces: [ Ethernet6/6/1, Ethernet6/6/1, Ethernet6/6/1 ]
+        ism1yit01a:	
+          id: 31
+          mgmt_ip:	10.215.242.18/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet7/6/1, Ethernet7/6/1, Ethernet7/6/1 ]
+        ism1vit01a:	
+          id: 32
+          mgmt_ip:	10.215.242.19/23
+          mgmt_gateway: 10.215.242.1
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [ Ethernet8/6/1, Ethernet8/6/1, Ethernet8/6/1 ]
+
+l2leaf:
+  defaults:
+    spanning_tree_priority: 16384
+    spanning_tree_mode: mstp
+    platform: 722XP
+    mlag: false
+    uplink_interfaces: [ Ethernet49, Ethernet50 ]
+    uplink_switches: [ ismitagg01aa, ismitagg01ba ]
+    # uplink_interface_speed: forced 10000full
+    mgmt_gateway: 10.215.242.1
+  node_groups:
+    - group: IT_L2LEAFS
+      nodes:
+        hsm2vit01a:
+          id: 33
+          mgmt_ip: 10.215.242.20/23
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [Ethernet1, Ethernet1]
+        hsm2vit02a:
+          id: 34
+          mgmt_ip: 10.215.242.21/23
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [Ethernet2, Ethernet2]
+        hsmpgit01a:
+          id: 35
+          mgmt_ip:	10.215.242.22/23
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [Ethernet3, Ethernet3]
+        hsm3vit01a:
+          id: 36
+          mgmt_ip:	10.215.242.23/23
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [Ethernet4, Ethernet4]
+        hsm3vit02a:
+          id: 37
+          mgmt_ip:	10.215.242.24/23
+          filter:
+            tags: [SM]
+          uplink_switch_interfaces: [Ethernet5, Ethernet5]
+        hs1llkk01a:
+          id: 38
+          mgmt_ip:	10.211.240.22/22
+          mgmt_gateway: 10.211.240.1
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [Ethernet6, Ethernet6]
+        hs1llkk02a:
+          id: 39
+          mgmt_ip:	10.211.240.23/22
+          mgmt_gateway: 10.211.240.1
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [Ethernet7, Ethernet7]
+        hs1cupit01a:
+          id: 40
+          mgmt_ip:	10.211.240.24/22
+          mgmt_gateway: 10.211.240.1
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [Ethernet8, Ethernet8]
+        hs1cupit02a:
+          id: 41
+          mgmt_ip:	10.211.240.25/22
+          mgmt_gateway: 10.211.240.1
+          filter:
+            tags: [S1]
+          uplink_switch_interfaces: [Ethernet9, Ethernet9]
+
+p2p_uplinks_mtu: 9214
+
+# Adjust default bfd values
+bfd_multihop:
+  interval: 300
+  min_rx: 300
+  multiplier: 3
+
+fabric_ip_addressing:
+  mlag:
+    algorithm: same_subnet

@@ -1,0 +1,8 @@
+---
+type: leaf
+
+hardware:
+  speed_groups:
+    - speed_group: 13-24
+      # Serdes speed like "10g" or "25g".
+      serdes: 10g

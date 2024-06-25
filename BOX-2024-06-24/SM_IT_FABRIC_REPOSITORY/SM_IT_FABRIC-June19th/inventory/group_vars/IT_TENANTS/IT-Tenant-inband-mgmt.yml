@@ -1,0 +1,91 @@
+---
+# IT-Tenant-inband-mgmt
+
+IT-Tenant-inband-mgmt:
+  - name: "IT-Tenant-inband-mgmt"
+    mac_vrf_vni_base: 10000
+    enable_mlag_ibgp_peering_vrfs: false
+    vrfs:
+      - name: "IT-Tenant-inband-mgmt"
+        vrf_vni: 5005
+        svis:
+          311:	
+            name: 10.210.91.0/25-inband-mgt-VRF-Tr
+            enabled: true
+            tags: [SM]
+            profile: svi_l3_defaults
+            ip_address_virtual: 10.210.91.1/25
+        l3_interfaces:
+          - interfaces:
+              # to the CAMPUS_CORES
+                - Ethernet1/1.311
+                - Ethernet2/1.311
+                - Ethernet1/1.311
+                - Ethernet2/1.311
+            nodes:
+            # to the CAMPUS_CORES
+                - isms1itbl01a
+                - isms1itbl01a
+                - isms1itbl02a
+                - isms1itbl02a
+            ip_addresses:
+            # to the CAMPUS_CORES 
+                - 10.210.241.49/31
+                - 10.210.241.51/31
+                - 10.210.241.53/31
+                - 10.210.241.55/31
+            descriptions:
+            # to the CAMPUS_CORES
+              - '[L]_ismcr01a-Eth3/3/1-inband-mgmtVRF'
+              - '[L]_ismcr02a-Eth3/3/1-inband-mgmtVRF'
+              - '[L]_ismcr01a-Eth4/3/1-inband-mgmtVRF'
+              - '[L]_ismcr02a-Eth4/3/1-inband-mgmtVRF'
+        bgp_peer_groups:
+        # to the CAMPUS_CORES 
+          - name: CORES-EBGP-PEERS-inband-mgmtVRF
+            nodes:
+              - isms1itbl01a
+              - isms1itbl01a
+            remote_as: "65120.1"
+            maximum_routes: 0
+        bgp_peers:
+        # to the CAMPUS_CORES 
+          - ip_address: 10.210.241.49
+            description: ismcr01a-Eth3/3/1-inband-mgmtVRF
+            peer_group: CORES-EBGP-PEERS-inband-mgmtVRF
+            nodes:
+              - isms1itbl01a
+          - ip_address: 10.210.241.51
+            description: ismcr01a-Eth3/3/1-inband-mgmtVRF
+            peer_group: CORES-EBGP-PEERS-inband-mgmtVRF
+            nodes:
+              - isms1itbl01a
+          - ip_address: 10.210.241.53
+            description: ismcr01a-Eth3/3/1-inband-mgmtVRF
+            peer_group: CORES-EBGP-PEERS-inband-mgmtVRF
+            nodes:
+              - isms1itbl02a
+          - ip_address: 10.210.241.55
+            description: ismcr02a-Eth4/3/1-inband-mgmtVRF
+            peer_group: CORES-EBGP-PEERS-inband-mgmtVRF
+            nodes:
+              - isms1itbl02a
+        structured_config:
+          router_bgp:
+            vrfs:
+              - name: inband-mgmt
+                redistribute_routes:
+                  - source_protocol: connected
+                    route_map: RM-LOCAL-NETWORKS
+    l2vlans:
+      237:	
+        name: 10.211.16.0/20-S1-Wired-LAN
+        tags: [S1]
+      337:
+        name: 10.215.64.0/20-SM-Wired-LAN
+        tags: [SM]
+      250:
+        name: 10.215.0.0/20-S0-Wired-LAN
+        tags: [S0]
+      951:
+        name: 10.70.32.0/24-SM-GuestNet(Wired)

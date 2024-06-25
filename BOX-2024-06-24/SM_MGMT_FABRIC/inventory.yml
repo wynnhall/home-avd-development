@@ -1,0 +1,298 @@
+# inventory.yml
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_server:
+          ansible_httpapi_host: 10.210.80.7
+          ansible_host: 10.210.80.7
+          ansible_user: svc_account
+          ansible_password: "{{ global_vault.users.svc_account.sm_password }}"
+          # ansible_password: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjczNTM2NTE0NzQ0Mzk2MDI0MDEsImRzbiI6ImF2ZGRlcGxveSIsImRzdCI6ImFjY291bnQiLCJleHAiOjE3NDY2NDY5ODYsImlhdCI6MTcxNTExMDk5MSwib2dpIjozLCJvZ24iOiJEZWZhdWx0Iiwic2lkIjoiZGM4Mjg5YWNiY2YwYmEwMDA5ZTI2MzM5ZDkwODg0NzJhMjJlYjlkNjEwOTM3ZjNjNjZhYjNhNGQ2MTRmYmU2Yi1ZZnI5UGUxSXZsV3h2a09UNkF4Umh0WWJYWE5pcmhIR3hEa2V5bHI5In0.eLllhvQkfcDyDaD0gMLTIDx-qeLXe1E7PT5oYGT2kYaFr-zaLUMByXFuRtcCofWYylPIE_eZBGaWXEKM3vdwCfING-ErR9TyGAieO4YAlUezK2pA9WO458pBoxAM9pc-j04Aw6lUfWU-MRImSt103GaMkK16_DK9j92JTeGU08uPCIdLi5N2PWxEUqTEF7zGR8jRzYp3pyrM8pZNYW9Xvg84klO5tPlnv9SY5z-cxD7RuZm3hE1DakVc5kvalt3M3waVwuzDKjjAzPUVXNYIANgbh9TekxNqylfh_oIyntX7u4esiPQ5qEoaLS5P8OjQM5KwMjATyeZYQSGl7-AtQyCEdnrNNHMPY-1n3kuBjcIDACnevDFkWC3CYj3yAzJc4eX45Xo2Kcuf1jP1yOBShgOR1RRxnNgfT2EWrsUwWOiIpsfeprphguKPuqd1sDTRj7jLDCQZGXwZBuzp2JExS7AM-Uu5YptsOBlUMzrzRF7AFbX2eUnD5HevBXpfqe7TUrQSwGuX370eXaM5PbIl8mT28n8jF4SGJ6dSW-53iHHhm8Jhv1DaPisBP8tGRgJ6LQDGuRrMc_MEhsQQLaBB0MPe5nSkoTYatDajxkt4HCvQBVqIgm3sc7kIyjVdtaTYdR-tx_nKu17H-iSghpIduSFeqq_p64-twUVRYLvHZeI"
+          # ansible_user: a0197726
+          # ansible_password: "{{ global.vault.users.cvpadmin.password }}"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+
+    SM:
+      children:
+        SM_MGMT_FABRIC:
+          children:
+            MGMT_SPINES:
+              hosts:
+                ismmgtsp01a:
+                  ansible_host: 10.210.80.99
+                ismmgtsp02a:
+                  ansible_host: 10.210.80.100
+                  serial_number: HNN21255702
+
+            MGMT_LEAFS:
+              children:
+                DC1_MGMT_AGG_LEAFS:
+                  hosts:
+                    hsmdc1mgtagg01a:
+                      ansible_host: 10.210.80.101
+                    hsmdc1mgtagg02a:
+                      ansible_host: 10.210.80.102
+                DC1_MGMT_LEAFS:
+                  hosts:
+                    hsmdc1mgt01a:
+                      ansible_host: 10.210.80.103
+                    hsmdc1mgt02a:
+                      ansible_host: 10.210.80.104
+                    hsmdc1mgt03a:
+                      ansible_host: 10.210.80.105
+                    hsmdc1mgt04a:
+                      ansible_host: 10.210.80.106
+                    hsmdc1mgt05a:
+                      ansible_host: 10.210.80.107
+                    hsmdc1mgt06a:
+                      ansible_host: 10.210.80.108
+                    hsmdc1mgt07a:
+                      ansible_host: 10.210.80.109
+                    hsmdc1mgt08a:
+                      ansible_host: 10.210.80.110
+                    hsmdc1mgt09a:
+                      ansible_host: 10.210.80.111
+                  # Spare Chassis
+                    # hsmdc1mgt10a:
+                    #   ansible_host: 10.210.80.112
+                DC2_MGMT_AGG_LEAFS:
+                  hosts:
+                    hsmdc2mgtagg01a:
+                      ansible_host: 10.210.80.113
+                      serial_number: FGN234406NV
+                    hsmdc2mgtagg02a:
+                      ansible_host: 10.210.80.114
+                      serial_number: FGN23440361
+                DC2_MGMT_LEAFS:
+                  hosts:
+                    hsmdc2mgt01a:
+                      ansible_host: 10.210.80.115
+                      serial_number: HBG234100YU
+                    hsmdc2mgt02a:
+                      ansible_host: 10.210.80.116
+                      serial_number: HBG234100VR
+                    hsmdc2mgt03a:
+                      ansible_host: 10.210.80.117
+                      serial_number: HBG234100WQ
+                    hsmdc2mgt04a:
+                      ansible_host: 10.210.80.118
+                      serial_number: HBG234100Z3
+                    hsmdc2mgt05a:
+                      ansible_host: 10.210.80.119
+                      serial_number: HBG234100XS
+                    hsmdc2mgt06a:
+                      ansible_host: 10.210.80.120
+                      serial_number: HBG234100X5
+                    hsmdc2mgt07a:
+                      ansible_host: 10.210.80.121
+                      serial_number: HBG234100XP
+                    hsmdc2mgt08a:
+                      ansible_host: 10.210.80.122
+                    hsmdc2mgt09a:
+                      ansible_host: 10.210.80.123
+                      serial_number: HBG234100XX
+                    hsmdc2mgt10a:
+                      ansible_host: 10.210.80.124
+                      serial_number: 
+                MDF_MGMT_LEAFS:
+                  hosts:
+                    hsmmdf1mgt01a:
+                      ansible_host: 10.210.80.125
+                    hsmmdf2mgt01a:
+                      ansible_host: 10.210.80.126
+                      serial_number: HBG234100VN
+                SM1_MGMT_LEAFS:
+                  hosts:
+                    hs11jmgt01a:
+                      ansible_host: 10.211.241.14
+                    hs11jmgt02a:
+                      ansible_host: 10.215.241.15
+                    hs11gmgt01a:
+                      ansible_host: 10.215.241.16
+                    hs11gmgt02a:
+                      ansible_host: 10.215.241.17
+                    hs11cmgt01a:
+                      ansible_host: 10.215.241.18
+                    hs11cmgt21a:
+                      ansible_host: 10.215.241.19
+                    hs11amgt01a:
+                      ansible_host: 10.215.241.20
+                    hs11amgt02a:
+                      ansible_host: 10.215.241.21
+                    hs11jwmgt01a:
+                      ansible_host: 10.215.241.22
+                    hs11gwmgt01a:
+                      ansible_host: 10.215.241.23
+                    hs11ewmgt01a:
+                      ansible_host: 10.215.241.24
+                    hs11cwmgt01a:
+                      ansible_host: 10.215.241.25
+                    hs11kemgt01a: 
+                      ansible_host: 10.215.241.26
+                    hs11hemgt01a:
+                      ansible_host: 10.215.241.27
+                    hs11demgt01a:
+                      ansible_host: 10.215.241.28
+                    hs11bemgt01a:
+                      ansible_host: 10.215.241.29
+                SUPPORT_MGMT_LEAFS:
+                  hosts:
+                    hsm0wmgt01a:
+                      ansible_host: 10.215.242.39
+                    hsm1wmgt01a:
+                      ansible_host: 10.215.242.40
+                    hsm2wmgt01a:
+                      ansible_host: 10.215.242.41
+                    hsm3xnmgt01a:
+                      ansible_host: 10.215.242.42
+                    hsm3xsmgt01a:
+                      ansible_host: 10.215.242.43
+                    hsm3wmgt01a:
+                      ansible_host: 10.215.242.44
+                ADMIN_MGMT_LEAFS:
+                  hosts:
+                    hs00amgt01a:
+                      ansible_host: 10.215.241.22
+                    hs00bmgt01a:
+                      ansible_host: 10.215.241.23
+                    hs00cmgt01a:
+                      ansible_host: 10.215.241.24
+                    hs01amgt01a:
+                      ansible_host: 10.215.241.25
+                    hs01bmgt01a:
+                      ansible_host: 10.215.241.26
+                    hs01cmgt01a:
+                      ansible_host: 10.215.241.27
+                    hs02amgt01a:
+                      ansible_host: 10.215.241.28
+                    hs02bmgt01a:
+                      ansible_host: 10.215.241.29
+                    hs03amgt01a:
+                      ansible_host: 10.215.241.30
+                    hs03bmgt01a:
+                      ansible_host: 10.215.241.31
+
+    MGMT_TENANTS:
+      children:
+        MGMT_SPINES:
+        MGMT_LEAFS:
+
+#Groups to assign Endpoint port connections
+    ENDPOINTS:
+      children:
+        ENDPOINTS_SPINES:
+          children:
+            MGMT_SPINES:
+        ENDPOINTS_DC_MDF:
+            children:
+              ENDPOINTS_DC1:
+                children:
+                  DC1_MGMT_AGG_LEAFS:
+                  DC1_MGMT_LEAFS:
+              ENDPOINTS_DC2:
+                children:
+                  DC2_MGMT_AGG_LEAFS:
+                  DC2_MGMT_LEAFS:
+              ENDPOINTS_MDF:
+                children:
+                  MDF_MGMT_LEAFS:
+        ENDPOINTS_SM1:
+          children:
+            SM1_MGMT_LEAFS:
+        ENDPOINTS_SUPPORT:
+          children:
+            SUPPORT_MGMT_LEAFS:
+        ENDPOINTS_ADMIN:
+          children:
+            ADMIN_MGMT_LEAFS:
+
+# Group to assign hardware speed-group
+    MGMT_AGG_LEAFS:
+      children:
+        DC1_MGMT_AGG_LEAFS:
+        DC2_MGMT_AGG_LEAFS:
+
+# Group to assign sFLOW configuration
+    SFLOW:
+      children:
+        MGMT_SPINES:
+
+# Groups to assign inband_mgmt varaibles
+    DC1DC2MDF_MGMT:
+      children:
+        DC1_MGMT_AGG_LEAFS:
+        DC2_MGMT_AGG_LEAFS:
+        DC1_MGMT_LEAFS:
+        DC2_MGMT_LEAFS:
+        MDF_MGMT_LEAFS:
+  
+# Group to include using in-band management
+    INBAND_MGMT:
+      children:
+        SM_MGMT_FABRIC:
+
+# Group to exclude from CVP Task assignment
+    NOTDEPLOYED:
+      # vars:
+      #   is_deployed: false
+      hosts:
+        ismmgtsp01a:
+        # ismmgtsp02a:
+        hsmdc1mgtagg01a:
+        hsmdc1mgtagg02a:
+        hsmdc1mgt01a:
+        hsmdc1mgt02a:
+        hsmdc1mgt03a:
+        hsmdc1mgt04a:
+        hsmdc1mgt05a:
+        hsmdc1mgt06a:
+        hsmdc1mgt07a:
+        hsmdc1mgt08a:
+        hsmdc1mgt09a:
+        hsmdc1mgt10a:
+        hsmdc2mgt05a:
+        hsmdc2mgt06a:
+        hsmdc2mgt08a:
+        hsmdc2mgt10a:
+        hsmmdf1mgt01a:
+        hs11jmgt01a:
+        hs11jmgt02a:
+        hs11gmgt01a:
+        hs11gmgt02a:
+        hs11cmgt01a:
+        hs11cmgt21a:
+        hs11amgt01a:
+        hs11amgt02a:
+        hs11jwmgt01a:
+        hs11gwmgt01a:
+        hs11ewmgt01a:
+        hs11cwmgt01a:
+        hs11kemgt01a: 
+        hs11hemgt01a:
+        hs11demgt01a:
+        hs11bemgt01a:
+        hsm0wmgt01a:
+        hsm1wmgt01a:
+        hsm2wmgt01a:
+        hsm3xnmgt01a:
+        hsm3xsmgt01a:
+        hsm3wmgt01a:
+        hs00amgt01a:
+        hs00bmgt01a:
+        hs00cmgt01a:
+        hs01amgt01a:
+        hs01bmgt01a:
+        hs01cmgt01a:
+        hs02amgt01a:
+        hs02bmgt01a:
+        hs03amgt01a:
+        hs03bmgt01a:
+

@@ -1,0 +1,966 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        cv_server:
+          # section for CVP primary node address
+          ansible_httpapi_host: 10.210.80.7
+          ansible_host: 10.210.80.7
+          ansible_user: svc_account
+          ansible_password: "{{ global_vault.users.svc_account.sm_password }}"
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: false
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          fabric_name: FABRIC
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
+
+    SM:
+      children:
+        # node_groups indented below the fabric var will create containers
+        S1_OT_FABRIC:
+          children:
+            S1_OT_SPINES:
+              hosts:
+                isms1otsp01a:
+                  # ansible_host var required for validation role.
+                  ansible_host: 10.210.80.67
+                isms1otsp02a:
+                  ansible_host: 10.210.80.68
+                  serial_number: JPA2332A1M0
+                isms1otsp03a:
+                  ansible_host: 10.210.80.69
+                  serial_number: JPA2332A1K5
+            S1_OT_BLEAFS:
+              hosts:
+                isms1otbl01aa:
+                  ansible_host: 10.210.80.70
+                isms1otbl01ba:
+                  ansible_host: 10.210.80.71
+                  serial_number: JPA2335P120
+            S1_OT_AGG_LEAFS:
+              children:
+                S1_VTEP_1JOT_01:
+                  hosts:
+                    is11jotagg01aa:
+                      ansible_host:	10.211.240.26
+                      serial_number: JMX2329A7G5
+                    is11jotagg01ba:
+                      ansible_host:	10.211.240.27
+                      serial_number: is11jotagg01ba
+                S1_VTEP_1JOT_02:
+                  hosts:
+                    is11jotagg02aa:
+                      ansible_host:	10.211.240.28
+                      serial_number: JMX2329A62B
+                    is11jotagg02ba:
+                      ansible_host:	10.211.240.29
+                      serial_number: JMX2329A68P
+                S1_VTEP_1GOT_01:
+                  hosts:
+                    is11gotagg01aa:
+                      ansible_host:	10.211.240.30
+                      serial_number: JMX2329A5YK
+                    is11gotagg01ba:
+                      ansible_host:	10.211.240.31
+                      serial_number: JMX2330A6MK
+                S1_VTEP_1GOT_02:
+                  hosts:
+                    is11gotagg02aa:
+                      ansible_host:	10.211.240.32
+                      serial_number: JMX2330A5SY
+                    is11gotagg02ba:
+                      ansible_host:	10.211.240.33
+                      serial_number: JMX2329A7HB
+                S1_VTEP_1COT_01:
+                  hosts:
+                    is11cotagg01aa:
+                      ansible_host:	10.211.240.34
+                    is11cotagg01ba:
+                      ansible_host:	10.211.240.35
+                S1_VTEP_1COT_02:
+                  hosts:
+                    is11cotagg02aa:
+                      ansible_host:	10.211.240.36
+                    is11cotagg02ba:
+                      ansible_host:	10.211.240.37
+                S1_VTEP_1AOT_01:
+                  hosts:
+                    is11aotagg01aa:
+                      ansible_host:	10.211.240.38
+                    is11aotagg01ba:
+                      ansible_host:	10.211.240.39
+                S1_VTEP_1AOT_02:
+                  hosts:
+                    is11aotagg02aa:
+                      ansible_host:	10.211.240.40
+                    is11aotagg02ba:
+                      ansible_host:	10.211.240.41
+                S1_VTEP_1JWOT_01:
+                  hosts:
+                    is11jwotagg01aa:
+                      ansible_host:	10.211.240.42
+                    is11jwotagg01ba:
+                      ansible_host:	10.211.240.43
+                S1_VTEP_1GWOT_01:
+                  hosts:
+                    is11gwotagg01aa:
+                      ansible_host:	10.211.240.44
+                    is11gwotagg01ba:
+                      ansible_host:	10.211.240.45
+                S1_VTEP_1EWOT_01:
+                  hosts:
+                    is11ewotagg01aa:
+                      ansible_host:	10.211.240.46
+                    is11ewotagg01ba:
+                      ansible_host:	10.211.240.47
+                S1_VTEP_1CWOT_01:
+                  hosts:
+                    is11cwotagg01aa:
+                      ansible_host:	10.211.240.48
+                    is11cwotagg01ba:
+                      ansible_host:	10.211.240.49
+                S1_VTEP_1KEOT_01:
+                  hosts:
+                    is11keotagg01aa:
+                      ansible_host:	10.211.240.50
+                    is11keotagg01ba:
+                      ansible_host:	10.211.240.51
+                S1_VTEP_1HEOT_01:
+                  hosts:
+                    is11heotagg01aa:
+                      ansible_host:	10.211.240.52
+                    is11heotagg01ba:
+                      ansible_host:	10.211.240.53
+                S1_VTEP_1DEOT_01:
+                  hosts:
+                    is11deotagg01aa:
+                      ansible_host:	10.211.240.54
+                    is11deotagg01ba:
+                      ansible_host:	10.211.240.55
+                S1_VTEP_1BEOT_01:
+                  hosts:
+                    is11beotagg01aa:
+                      ansible_host:	10.211.240.56
+                    is11beotagg01ba:
+                      ansible_host:	10.211.240.57
+                S1_VTEP_3XNOT_01:
+                  hosts:      
+                    ism3xnotagg01aa:
+                      ansible_host:	10.215.242.25
+                    ism3xnotagg01ba:
+                      ansible_host:	10.215.242.26
+                S1_VTEP_3XOT_01:
+                  hosts:
+                    ism3xotagg01aa:
+                      ansible_host:	10.215.242.27
+                    ism3xotagg01ba:
+                      ansible_host:	10.215.242.28 
+            S1_OT_L2LEAFS:
+              children:
+                S1_L2LF_JOT01-13A:
+                  hosts:
+                    hs11jot01a:
+                      ansible_host: 10.211.240.58
+                      serial_number: hbg234001p4
+                    hs11jot02a:
+                      ansible_host: 10.211.240.59
+                      serial_number: hbg2333048w
+                    hs11jot03a:
+                      ansible_host:	10.211.240.60
+                      serial_number: hbg2333048s
+                    hs11jot04a:
+                      ansible_host:	10.211.240.61
+                      serial_number: hbg2333048u
+                    hs11jot05a:
+                      ansible_host:	10.211.240.62
+                      serial_number: hbg2333046p
+                    hs11jot06a:
+                      ansible_host:	10.211.240.63
+                      serial_number: hbg2333048q
+                    hs11jot07a:
+                      ansible_host:	10.211.240.64
+                      serial_number: hbg2333049a
+                    hs11jot08a:
+                      ansible_host:	10.211.240.65
+                      serial_number: hbg23330499
+                    hs11jot09a:
+                      ansible_host:	10.211.240.66
+                      serial_number: hbg2333048t
+                    hs11jot10a:
+                      ansible_host:	10.211.240.67
+                      serial_number: hbg2332045d
+                    hs11jot11a:
+                      ansible_host:	10.211.240.68
+                      serial_number: hbg2333047e
+                    hs11jot12a:
+                      ansible_host:	10.211.240.69
+                      serial_number: hbg2333047j
+                    hs11jot13a:
+                      ansible_host: 10.211.240.70
+                      serial_number: hbg2333047b
+                S1_L2LF_JOT14-25A:
+                  hosts:
+                    hs11jot14a:
+                      ansible_host: 10.211.240.71
+                      serial_number: hbg2333048k
+                    hs11jot15a:
+                      ansible_host:	10.211.240.72
+                      serial_number: hbg2333048r
+                    # phase-2 devices
+                    hs11jot16a:
+                      ansible_host:	10.211.240.73
+                    hs11jot17a:
+                      ansible_host:	10.211.240.74
+                    hs11jot18a:
+                      ansible_host:	10.211.240.75
+                    hs11jot19a:
+                      ansible_host:	10.211.240.76
+                    hs11jot20a:
+                      ansible_host:	10.211.240.77
+                    hs11jot21a:
+                      ansible_host:	10.211.240.78
+                    hs11jot22a:
+                      ansible_host:	10.211.240.79
+                    hs11jot23a:
+                      ansible_host:	10.211.240.80
+                    hs11jot24a:
+                      ansible_host: 10.211.240.81
+                    hs11jot25a:
+                      ansible_host:	10.211.240.82
+                S1_L2LF_GOT01-13A:
+                  hosts:
+                    hs11got01a:
+                      ansible_host:	10.211.240.83
+                      serial_number: HBG2341010A
+                    hs11got02a:
+                      ansible_host:	10.211.240.84
+                      serial_number: HBG234001PH
+                    hs11got03a:
+                      ansible_host:	10.211.240.85
+                      serial_number: HBG234001M6
+                    hs11got04a:
+                      ansible_host:	10.211.240.86
+                      serial_number: HBG234001LR
+                    hs11got05a:
+                      ansible_host:	10.211.240.87
+                      serial_number: HBG2332041T
+                    hs11got06a:
+                      ansible_host:	10.211.240.88
+                      serial_number: HBG234001R8
+                    hs11got07a:
+                      ansible_host:	10.211.240.89
+                      serial_number: HBG233708ZE
+                    hs11got08a:
+                      ansible_host:	10.211.240.90
+                      serial_number: HBG234001PZ
+                    hs11got09a:
+                      ansible_host:	10.211.240.91
+                      serial_number: HBG234001QY
+                    hs11got10a:
+                      ansible_host:	10.211.240.92
+                      serial_number: HBG234001PF
+                    hs11got11a:
+                      ansible_host:	10.211.240.93
+                      serial_number: HBG2333048M
+                    hs11got12a:
+                      ansible_host:	10.211.240.94
+                      serial_number: HBG233608NS
+                    hs11got13a:
+                      ansible_host:	10.211.240.95
+                      serial_number: HBG234001NY
+                S1_L2LF_GOT14-25A:
+                  hosts:
+                    hs11got14a:
+                      ansible_host:	10.211.240.96
+                      serial_number: HBG234001QQ
+                    hs11got15a:
+                      ansible_host:	10.211.240.97
+                      serial_number: HBG233608JZ
+                    # phase-2 devices
+                    hs11got16a:
+                      ansible_host:	10.211.240.98
+                    hs11got17a:
+                      ansible_host:	10.211.240.99
+                    hs11got18a:
+                      ansible_host:	10.211.240.100
+                    hs11got19a:
+                      ansible_host:	10.211.240.101
+                    hs11got20a:
+                      ansible_host:	10.211.240.102
+                    hs11got21a:
+                      ansible_host:	10.211.240.103
+                    hs11got22a:
+                      ansible_host:	10.211.240.104
+                    hs11got23a:
+                      ansible_host:	10.211.240.105
+                    hs11got24a:
+                      ansible_host:	10.211.240.106
+                    hs11got25a:
+                      ansible_host:	10.211.240.107
+                S1_L2LF_COT01-13A:
+                  hosts:
+                    hs11cot01a:
+                      ansible_host:	10.211.240.108
+                    hs11cot02a:
+                      ansible_host:	10.211.240.109
+                    hs11cot03a:
+                      ansible_host:	10.211.240.110
+                    hs11cot04a:
+                      ansible_host:	10.211.240.111
+                    hs11cot05a:
+                      ansible_host:	10.211.240.112
+                    hs11cot06a:
+                      ansible_host:	10.211.240.113
+                    hs11cot07a:
+                      ansible_host:	10.211.240.114
+                    hs11cot08a:
+                      ansible_host:	10.211.240.115
+                    hs11cot09a:
+                      ansible_host:	10.211.240.116
+                    hs11cot10a:
+                      ansible_host:	10.211.240.117
+                    hs11cot11a:
+                      ansible_host:	10.211.240.118
+                    hs11cot12a:
+                      ansible_host:	10.211.240.119
+                    hs11cot13a:
+                      ansible_host:	10.211.240.120
+                S1_L2LF_COT14-25A:
+                  hosts:
+                    hs11cot14a:
+                      ansible_host:	10.211.240.121
+                    hs11cot15a:
+                      ansible_host:	10.211.240.122
+                    # phase-2 devices
+                    hs11cot16a:
+                      ansible_host:	10.211.240.123
+                    hs11cot17a:
+                      ansible_host:	10.211.240.124
+                    hs11cot18a:
+                      ansible_host:	10.211.240.125
+                    hs11cot19a:
+                      ansible_host:	10.211.240.126
+                    hs11cot20a:
+                      ansible_host:	10.211.240.127
+                    hs11cot21a:
+                      ansible_host:	10.211.240.128
+                    hs11cot22a:
+                      ansible_host:	10.211.240.129
+                    hs11cot23a:
+                      ansible_host:	10.211.240.130
+                    hs11cot24a:
+                      ansible_host:	10.211.240.131
+                    hs11cot25a:
+                      ansible_host:	10.211.240.132
+                S1_L2LF_AOT01-13A:
+                  hosts:
+                    hs11aot01a:
+                      ansible_host:	10.211.240.133
+                    hs11aot02a:
+                      ansible_host:	10.211.240.134
+                    hs11aot03a:
+                      ansible_host:	10.211.240.135
+                    hs11aot04a:
+                      ansible_host:	10.211.240.136
+                    hs11aot05a:
+                      ansible_host:	10.211.240.137
+                    hs11aot06a:
+                      ansible_host:	10.211.240.138
+                    hs11aot07a:
+                      ansible_host:	10.211.240.139
+                    hs11aot08a:
+                      ansible_host:	10.211.240.140
+                    hs11aot09a:
+                      ansible_host:	10.211.240.141
+                    hs11aot10a:
+                      ansible_host:	10.211.240.142
+                    hs11aot11a:
+                      ansible_host:	10.211.240.143
+                    hs11aot12a:
+                      ansible_host:	10.211.240.144
+                    hs11aot13a:
+                      ansible_host:	10.211.240.145
+                S1_L2LF_AOT14-25A:
+                  hosts:
+                    hs11aot14a:
+                      ansible_host:	10.211.240.146
+                    hs11aot15a:
+                      ansible_host:	10.211.240.147
+                    # phase-2 devices
+                    hs11aot16a:
+                      ansible_host:	10.211.240.148
+                    hs11aot17a:
+                      ansible_host:	10.211.240.149
+                    hs11aot18a:
+                      ansible_host:	10.211.240.150
+                    hs11aot19a:
+                      ansible_host:	10.211.240.151
+                    hs11aot20a:
+                      ansible_host:	10.211.240.152
+                    hs11aot21a:
+                      ansible_host:	10.211.240.153
+                    hs11aot22a:
+                      ansible_host:	10.211.240.154
+                    hs11aot23a:
+                      ansible_host:	10.211.240.155
+                    hs11aot24a:
+                      ansible_host:	10.211.240.156
+                    hs11aot25a:
+                      ansible_host:	10.211.240.157
+                S1_L2LF_JWOT01-10A:
+                  hosts:
+                    hs11jwot01a:
+                      ansible_host:	10.211.240.158
+                    hs11jwot02a:
+                      ansible_host:	10.211.240.159
+                    hs11jwot03a:
+                      ansible_host:	10.211.240.160
+                    hs11jwot04a:
+                      ansible_host:	10.211.240.161
+                    hs11jwot05a:
+                      ansible_host:	10.211.240.162
+                    # phase-2 devices
+                    hs11jwot06a:
+                      ansible_host:	10.211.240.163
+                    hs11jwot07a:
+                      ansible_host:	10.211.240.164
+                    hs11jwot08a:
+                      ansible_host:	10.211.240.165
+                    hs11jwot09a:
+                      ansible_host:	10.211.240.166
+                    hs11jwot10a:
+                      ansible_host:	10.211.240.167
+                S1_L2LF_GWOT01-10A:
+                  hosts:
+                    hs11gwot01a:
+                      ansible_host:	10.211.240.168
+                    hs11gwot02a:
+                      ansible_host:	10.211.240.169
+                    hs11gwot03a:
+                      ansible_host:	10.211.240.170
+                    hs11gwot04a:
+                      ansible_host:	10.211.240.171
+                    hs11gwot05a:
+                      ansible_host:	10.211.240.172
+                    # phase-2 devices
+                    hs11gwot06a:
+                      ansible_host:	10.211.240.173
+                    hs11gwot07a:
+                      ansible_host:	10.211.240.174
+                    hs11gwot08a:
+                      ansible_host:	10.211.240.175
+                    hs11gwot09a:
+                      ansible_host:	10.211.240.176
+                    hs11gwot10a:
+                      ansible_host:	10.211.240.177
+                S1_L2LF_EWOT01-10A:
+                  hosts:
+                    hs11ewot01a:
+                      ansible_host:	10.211.240.178
+                    hs11ewot02a:
+                      ansible_host:	10.211.240.179
+                    hs11ewot03a:
+                      ansible_host:	10.211.240.180
+                    hs11ewot04a:
+                      ansible_host:	10.211.240.181
+                    hs11ewot05a:
+                      ansible_host:	10.211.240.182
+                    # phase-2 devices
+                    hs11ewot06a:
+                      ansible_host:	10.211.240.183
+                    hs11ewot07a:
+                      ansible_host:	10.211.240.184
+                    hs11ewot08a:
+                      ansible_host:	10.211.240.185
+                    hs11ewot09a:
+                      ansible_host:	10.211.240.186
+                    hs11ewot10a:
+                      ansible_host:	10.211.240.187
+                S1_L2LF_CWOT01-10A:
+                  hosts:
+                    hs11cwot01a:
+                      ansible_host:	10.211.240.188
+                    hs11cwot02a:
+                      ansible_host:	10.211.240.189
+                    hs11cwot03a:
+                      ansible_host:	10.211.240.190
+                    hs11cwot04a:
+                      ansible_host:	10.211.240.191
+                    hs11cwot05a:
+                      ansible_host:	10.211.240.192
+                    # phase-2 devices
+                    hs11cwot06a:
+                      ansible_host:	10.211.240.193
+                    hs11cwot07a:
+                      ansible_host:	10.211.240.194
+                    hs11cwot08a:
+                      ansible_host:	10.211.240.195
+                    hs11cwot09a:
+                      ansible_host:	10.211.240.196
+                    hs11cwot10a:
+                      ansible_host:	10.211.240.197
+                S1_L2LF_KEOT01-10A:
+                  hosts:
+                    hs11keot01a:
+                      ansible_host:	10.211.240.198
+                    hs11keot02a:
+                      ansible_host:	10.211.240.199
+                    hs11keot03a:
+                      ansible_host:	10.211.240.200
+                    hs11keot04a:
+                      ansible_host:	10.211.240.201
+                    hs11keot05a:
+                      ansible_host:	10.211.240.202
+                    # phase-2 devices
+                    hs11keot06a:
+                      ansible_host:	10.211.240.203
+                    hs11keot07a:
+                      ansible_host:	10.211.240.204
+                    hs11keot08a:
+                      ansible_host:	10.211.240.205
+                    hs11keot09a:
+                      ansible_host:	10.211.240.206
+                    hs11keot10a:
+                      ansible_host:	10.211.240.207
+                S1_L2LF_HEOT01-10A:
+                  hosts:
+                    hs11heot01a:
+                      ansible_host:	10.211.240.208
+                    hs11heot02a:
+                      ansible_host:	10.211.240.209
+                    hs11heot03a:
+                      ansible_host:	10.211.240.210
+                    hs11heot04a:
+                      ansible_host:	10.211.240.211
+                    hs11heot05a:
+                      ansible_host:	10.211.240.212
+                    # phase-2 devices
+                    hs11heot06a:
+                      ansible_host:	10.211.240.213
+                    hs11heot07a:
+                      ansible_host:	10.211.240.214
+                    hs11heot08a:
+                      ansible_host:	10.211.240.215
+                    hs11heot09a:
+                      ansible_host:	10.211.240.216
+                    hs11heot10a:
+                      ansible_host:	10.211.240.217
+                S1_L2LF_DEOT01-10A:
+                  hosts:
+                    hs11deot01a:
+                      ansible_host:	10.211.240.218
+                    hs11deot02a:
+                      ansible_host:	10.211.240.219
+                    hs11deot03a:
+                      ansible_host:	10.211.240.220
+                    hs11deot04a:
+                      ansible_host:	10.211.240.221
+                    hs11deot05a:
+                      ansible_host:	10.211.240.222
+                    # phase-2 devices
+                    hs11deot06a:
+                      ansible_host:	10.211.240.223
+                    hs11deot07a:
+                      ansible_host:	10.211.240.224
+                    hs11deot08a:
+                      ansible_host:	10.211.240.225
+                    hs11deot09a:
+                      ansible_host:	10.211.240.226
+                    hs11deot10a:
+                      ansible_host:	10.211.240.227
+                S1_L2LF_BEOT01-10A:
+                  hosts:
+                    hs11beot01a:
+                      ansible_host:	10.211.240.228
+                    hs11beot02a:
+                      ansible_host:	10.211.240.229
+                    hs11beot03a:
+                      ansible_host:	10.211.240.230
+                    hs11beot04a:
+                      ansible_host:	10.211.240.231
+                    hs11beot05a:
+                      ansible_host:	10.211.240.232
+                    # phase-2 devices
+                    hs11beot06a:
+                      ansible_host:	10.211.240.233
+                    hs11beot07a:
+                      ansible_host:	10.211.240.234
+                    hs11beot08a:
+                      ansible_host:	10.211.240.235
+                    hs11beot09a:
+                      ansible_host:	10.211.240.236
+                    hs11beot10a:
+                      ansible_host:	10.211.240.237
+                S1_L2LF_3XNOT01-10A:
+                  hosts:
+                    hsm3xnot01a:
+                      ansible_host:	10.215.242.29
+                    hsm3xnot02a:
+                      ansible_host:	10.215.242.30
+                    hsm3xnot03a:
+                      ansible_host:	10.215.242.31
+                    hsm3xnot04a:
+                      ansible_host:	10.215.242.32
+                    hsm3xnot05a:
+                      ansible_host:	10.215.242.33
+                    hsm3xnot06a:
+                      ansible_host:	10.215.242.34
+                    hsm3xnot07a:
+                      ansible_host:	10.215.242.35
+                    hsm3xnot08a:
+                      ansible_host:	10.215.242.36
+                    # phase-2 devices
+                    hsm3xnot09a:
+                      ansible_host:	10.215.242.37
+                    hsm3xnot10a:
+                      ansible_host:	10.215.242.38
+                S1_L2LF_3XSOT01-10A:
+                  hosts:
+                    hs13xsot01a:
+                      ansible_host:	10.215.242.45
+                    hs13xsot02a:
+                      ansible_host:	10.215.242.46
+                    hs13xsot03a:
+                      ansible_host:	10.215.242.47
+                    hs13xsot04a:
+                      ansible_host:	10.215.242.48
+                    hs13xsot05a:
+                      ansible_host:	10.215.242.49
+                    hs13xsot06a:
+                      ansible_host:	10.215.242.50
+                    hs13xsot07a:
+                      ansible_host:	10.215.242.51
+                    hs13xsot08a:
+                      ansible_host:	10.215.242.52
+                    # phase-2 devices
+                    hs13xsot09a:
+                      ansible_host:	10.215.242.53
+                    hs13xsot10a:
+                      ansible_host:	10.215.242.54
+    S1_OT_L3LEAFS:
+      children:
+        S1_OT_BLEAFS:
+        S1_OT_AGG_LEAFS:
+    
+    S1_OT_TENANTS:
+      children:
+        S1_OT_BLEAFS:
+        S1_OT_AGG_LEAFS:
+        S1_OT_L2LEAFS:
+
+    SFLOW:
+      children:
+        S1_OT_BLEAFS:
+        S1_OT_AGG_LEAFS:
+
+    S1_OT_ENDPOINTS:
+      children:
+        S1_OT_BLEAFS:
+        S1_OT_AGG_LEAFS:
+        # S1_OT_L2LEAFS:
+        S1_OT_L2LF_ENDPOINTS:
+          children:
+            S1_OT_L2LEAFS:
+
+    INBAND_MGMT:
+
+    NOTDEPLOYED:
+      hosts:
+        isms1otsp01a:
+        isms1otsp02a:
+        isms1otsp03a:
+        # S1_OT_BLEAFS:
+        isms1otbl01aa:
+        # isms1otbl01ba:
+        # S1_OT_AGG_LEAFS:
+        # S1_VTEP_1JOT_01:
+        is11jotagg01aa:
+        is11jotagg01ba:
+        # S1_VTEP_1JOT_02:
+        is11jotagg02aa:
+        is11jotagg02ba:
+        # S1_VTEP_1GOT_01:
+        is11gotagg01aa:
+        is11gotagg01ba:
+        # S1_VTEP_1GOT_02:
+        is11gotagg02aa:
+        is11gotagg02ba:
+        # S1_VTEP_1COT_01:
+        is11cotagg01aa:
+        is11cotagg01ba:
+        # S1_VTEP_1COT_02:
+        is11cotagg02aa:
+        is11cotagg02ba:
+        # S1_VTEP_1AOT_01:
+        is11aotagg01aa:
+        is11aotagg01ba:
+        # S1_VTEP_1AOT_02:
+        is11aotagg02aa:
+        is11aotagg02ba:
+        # S1_VTEP_1JWOT_01:
+        is11jwotagg01aa:
+        is11jwotagg01ba:
+        # S1_VTEP_1GWOT_01:
+        is11gwotagg01aa:
+        is11gwotagg01ba:
+        # S1_VTEP_1EWOT_01:
+        is11ewotagg01aa:
+        is11ewotagg01ba:
+        # S1_VTEP_1CWOT_01:
+        is11cwotagg01aa:
+        is11cwotagg01ba:
+        # S1_VTEP_1KEOT_01:
+        is11keotagg01aa:
+        is11keotagg01ba:
+        # S1_VTEP_1HEOT_01:
+        is11heotagg01aa:
+        is11heotagg01ba:
+        # S1_VTEP_1DEOT_01:
+        is11deotagg01aa:
+        is11deotagg01ba:
+        # S1_VTEP_1BEOT_01:
+        is11beotagg01aa:
+        is11beotagg01ba:
+        # S1_VTEP_3XNOT_01:
+        ism3xnotagg01aa:
+        ism3xnotagg01ba:
+        # S1_VTEP_3XOT_01:
+        ism3xotagg01aa:
+        ism3xotagg01ba:
+        # S1_OT_L2LEAFS:
+        # S1_L2LF_1JOT01-13A:
+        hs11jot01a:
+        hs11jot02a:
+        hs11jot03a:
+        hs11jot04a:
+        hs11jot05a:
+        hs11jot06a:
+        hs11jot07a:
+        hs11jot08a:
+        hs11jot09a:
+        hs11jot10a:
+        hs11jot11a:
+        hs11jot12a:
+        hs11jot13a:
+        # S1_L2LF_JOT14-25A:
+        hs11jot14a:
+        hs11jot15a:
+          # phase-2 devices
+        hs11jot16a:
+        hs11jot17a:
+        hs11jot18a:
+        hs11jot19a:
+        hs11jot20a:
+        hs11jot21a:
+        hs11jot22a:
+        hs11jot23a:
+        hs11jot24a:
+        hs11jot25a:
+        # S1_L2LF_1GOT01-13A:
+        hs11got01a:
+        hs11got02a:
+        hs11got03a:
+        hs11got04a:
+        hs11got05a:
+        hs11got06a:
+        hs11got07a:
+        hs11got08a:
+        hs11got09a:
+        hs11got10a:
+        hs11got11a:
+        hs11got12a:
+        hs11got13a:
+        # S1_L2LF_1GOT14-25A:
+        hs11got14a:
+        hs11got15a:
+          # phase-2 devices
+        hs11got16a:
+        hs11got17a:
+        hs11got18a:
+        hs11got19a:
+        hs11got20a:
+        hs11got21a:
+        hs11got22a:
+        hs11got23a:
+        hs11got24a:
+        hs11got25a:
+        # S1_L2LF_1COT01-13A:
+        hs11cot01a:
+        hs11cot02a:
+        hs11cot03a:
+        hs11cot04a:
+        hs11cot05a:
+        hs11cot06a:
+        hs11cot07a:
+        hs11cot08a:
+        hs11cot09a:
+        hs11cot10a:
+        hs11cot11a:
+        hs11cot12a:
+        hs11cot13a:
+        # S1_L2LF_1COT14-25A:
+        hs11cot14a:
+        hs11cot15a:
+        # phase-2 devices
+        hs11cot16a:
+        hs11cot17a:
+        hs11cot18a:
+        hs11cot19a:
+        hs11cot20a:
+        hs11cot21a:
+        hs11cot22a:
+        hs11cot23a:
+        hs11cot24a:
+        hs11cot25a:
+        # S1_L2LF_1AOT01-13A:
+        hs11aot01a:
+        hs11aot02a:
+        hs11aot03a:
+        hs11aot04a:
+        hs11aot05a:
+        hs11aot06a:
+        hs11aot07a:
+        hs11aot08a:
+        hs11aot09a:
+        hs11aot10a:
+        hs11aot11a:
+        hs11aot12a:
+        hs11aot13a:
+        # S1_L2LF_1AOT14-25A:
+        hs11aot14a:
+        hs11aot15a:
+        # phase-2 devices
+        hs11aot16a:
+        hs11aot17a:
+        hs11aot18a:
+        hs11aot19a:
+        hs11aot20a:
+        hs11aot21a:
+        hs11aot22a:
+        hs11aot23a:
+        hs11aot24a:
+        hs11aot25a:
+        # S1_L2LF_1JWOT01-10A:
+        hs11jwot01a:
+        hs11jwot02a:
+        hs11jwot03a:
+        hs11jwot04a:
+        hs11jwot05a:
+        # phase-2 devices
+        hs11jwot06a:
+        hs11jwot07a:
+        hs11jwot08a:
+        hs11jwot09a:
+        hs11jwot10a:
+        # S1_L2LF_1GWOT01-10A:
+        hs11gwot01a:
+        hs11gwot02a:
+        hs11gwot03a:
+        hs11gwot04a:
+        hs11gwot05a:
+        # phase-2 devices
+        hs11gwot06a:
+        hs11gwot07a:
+        hs11gwot08a:
+        hs11gwot09a:
+        hs11gwot10a:
+        # S1_L2LF_1EWOT01-10A:
+        hs11ewot01a:
+        hs11ewot02a:
+        hs11ewot03a:
+        hs11ewot04a:
+        hs11ewot05a:
+        # phase-2 devices
+        hs11ewot06a:
+        hs11ewot07a:
+        hs11ewot08a:
+        hs11ewot09a:
+        hs11ewot10a:
+        # S1_L2LF_CWOT01-10A:
+        hs11cwot01a:
+        hs11cwot02a:
+        hs11cwot03a:
+        hs11cwot04a:
+        hs11cwot05a:
+        # phase-2 devices
+        hs11cwot06a:
+        hs11cwot07a:
+        hs11cwot08a:
+        hs11cwot09a:
+        hs11cwot10a:
+        # S1_L2LF_KEOT01-10A:
+        hs11keot01a:
+        hs11keot02a:
+        hs11keot03a:
+        hs11keot04a:
+        hs11keot05a:
+        # phase-2 devices
+        hs11keot06a:
+        hs11keot07a:
+        hs11keot08a:
+        hs11keot09a:
+        hs11keot10a:
+        # S1_L2LF_HEOT01-10A:
+        hs11heot01a:
+        hs11heot02a:
+        hs11heot03a:
+        hs11heot04a:
+        hs11heot05a:
+        # phase-2 devices
+        hs11heot06a:
+        hs11heot07a:
+        hs11heot08a:
+        hs11heot09a:
+        hs11heot10a:
+        # S1_L2LF_DEOT01-10A:
+        hs11deot01a:
+        hs11deot02a:
+        hs11deot03a:
+        hs11deot04a:
+        hs11deot05a:
+        # phase-2 devices
+        hs11deot06a:
+        hs11deot07a:
+        hs11deot08a:
+        hs11deot09a:
+        hs11deot10a:
+        # S1_L2LF_BEOT01-10A:
+        hs11beot01a:
+        hs11beot02a:
+        hs11beot03a:
+        hs11beot04a:
+        hs11beot05a:
+        # phase-2 devices
+        hs11beot06a:
+        hs11beot07a:
+        hs11beot08a:
+        hs11beot09a:
+        hs11beot10a:
+        # S1_L2LF_3XNOT01-10A:
+        hsm3xnot01a:
+        hsm3xnot02a:
+        hsm3xnot03a:
+        hsm3xnot04a:
+        hsm3xnot05a:
+        hsm3xnot06a:
+        hsm3xnot07a:
+        hsm3xnot08a:
+        # phase-2 devices
+        hsm3xnot09a:
+        hsm3xnot10a:
+        # S1_L2LF_3XSOT01-10A:
+        hs13xsot01a:
+        hs13xsot02a:
+        hs13xsot03a:
+        hs13xsot04a:
+        hs13xsot05a:
+        hs13xsot06a:
+        hs13xsot07a:
+        hs13xsot08a:
+        # phase-2 devices
+        hs13xsot09a:
+        hs13xsot10a:

@@ -1,0 +1,112 @@
+---
+
+servers_2G601:
+  - name: S2VH001
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet1, Ethernet2 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet1, Ethernet2 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+  
+  - name: S2VH002
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet3, Ethernet4 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet3, Ethernet4 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH003
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH004
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet7, Ethernet8 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet7, Ethernet8 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      
+  - name: S2VH005
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet9, Ethernet10 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet9, Ethernet10 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH006
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet11, Ethernet12 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet11, Ethernet12 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH007
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet13, Ethernet14 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet13, Ethernet14 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH008
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet15, Ethernet16 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet15, Ethernet16 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH009
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet17, Ethernet18 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet17, Ethernet18 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH010
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet19, Ethernet20 ]
+        switches: [ ismdc2g601aa, ismdc2g601aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet19, Ethernet20 ]
+        switches: [ ismdc2g601ba, ismdc2g601ba ]
+        profile: PP_DC2_VMware_Workload_Hosts

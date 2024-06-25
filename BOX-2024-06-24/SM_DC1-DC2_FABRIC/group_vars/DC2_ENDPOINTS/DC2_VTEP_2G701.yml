@@ -1,0 +1,123 @@
+---
+
+servers_2G701:
+  - name: S2LRACA011
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet1, Ethernet2 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet1, Ethernet2 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+  
+  - name: S2VH012
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet3, Ethernet4 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet3, Ethernet4 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH013
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH014
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet7, Ethernet8 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet7, Ethernet8 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      
+  - name: S2VH015
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet9, Ethernet10 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet9, Ethernet10 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH016
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet11, Ethernet12 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet11, Ethernet12 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH017
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet13, Ethernet14 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet13, Ethernet14 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH018
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet15, Ethernet16 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet15, Ethernet16 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH019
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet17, Ethernet18 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet17, Ethernet18 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2VH020
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet19, Ethernet20 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet19, Ethernet20 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts
+
+  - name: S2NBU02
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet21, Ethernet22 ]
+        switches: [ ismdc2g701aa, ismdc2g701aa ]
+        profile: PP_DC2_VMware_Workload_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet21, Ethernet22 ]
+        switches: [ ismdc2g701ba, ismdc2g701ba ]
+        profile: PP_DC2_VMware_Workload_Hosts

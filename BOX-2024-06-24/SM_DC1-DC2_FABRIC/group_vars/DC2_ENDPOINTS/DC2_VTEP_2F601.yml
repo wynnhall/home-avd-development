@@ -1,0 +1,46 @@
+---
+
+servers_2F601:
+  - name: S2VHMGMT01
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet1, Ethernet2 ]
+        switches: [ ismdc2f601aa, ismdc2f601aa ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet1, Ethernet2 ]
+        switches: [ ismdc2f601ba, ismdc2f601ba ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+  
+  - name: S2VHMGMT02
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet3, Ethernet4 ]
+        switches: [ ismdc2f601aa, ismdc2f601aa ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet3, Ethernet4 ]
+        switches: [ ismdc2f601ba, ismdc2f601ba ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+
+  - name: S2VHMGMT03
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet5, Ethernet6 ]
+        switches: [ ismdc2f601aa, ismdc2f601aa ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet5,Ethernet6 ]
+        switches: [ ismdc2f601ba, ismdc2f601ba ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+
+  - name: S2VHMGMT04
+    adapters:
+      - endpoint_ports: [ P1, P2 ]
+        switch_ports: [ Ethernet7, Ethernet8 ]
+        switches: [ ismdc2f601aa, ismdc2f601aa ]
+        profile: PP_DC2_VMware_Mgmt_Hosts
+      - endpoint_ports: [ S1, S2 ]
+        switch_ports: [ Ethernet7,Ethernet8 ]
+        switches: [ ismdc2f601ba, ismdc2f601ba ]
+        profile: PP_DC2_VMware_Mgmt_Hosts

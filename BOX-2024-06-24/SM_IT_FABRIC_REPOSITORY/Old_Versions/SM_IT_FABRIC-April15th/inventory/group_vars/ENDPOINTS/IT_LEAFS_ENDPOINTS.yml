@@ -1,0 +1,23 @@
+# ---
+# servers:
+#   - name: Host1
+#     rack: RackA
+#     adapters:
+#       - endpoint_ports: [Ethernet1, Ethernet2]
+#         switch_ports: [Ethernet4, Ethernet4]
+#         switches: [DC1-L2CL1, DC1-L2CL2]
+#         profile: TRUNK_10G_Compute
+#         port_channel:
+#           description: PortChannel4
+#           mode: active
+
+#   - name: Host2
+#     rack: RackA
+#     adapters:
+#       - endpoint_ports: [Ethernet1, Ethernet2]
+#         switch_ports: [Ethernet5, Ethernet5]
+#         switches: [DC1-L2CL1, DC1-L2CL2]
+#         profile: TRUNK_10G_Compute
+#         port_channel:
+#           description: PortChannel5
+#           mode: active

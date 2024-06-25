@@ -1,0 +1,59 @@
+---
+# Both clone - SHARED repository and build.yml playbooks
+  
+- hosts: localhost
+  gather_facts: false
+  
+  tasks:
+# - hosts: "{{ fabric_name }}"
+#   name: Build Switch configuration
+#   connection: local
+#   gather_facts: no
+#   tasks:
+#     - name: 'Build local folders for output'
+#       tags: [build]
+#       ansible.builtin.import_role:
+#         name: arista.avd.build_output_folders
+
+- name: Include only SFLOW
+  hosts: SFLOW
+  gather_facts: false
+  tasks:
+    - name: generate sFLOW config to only SFLOW group devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/SFLOW.yml"
+
+- name: Include only devices that are using in-band MGMT
+  hosts: INBAND_MGMT
+  gather_facts: false
+  tasks:
+    - name: generate Inband MGMT config to only INBAND_MGMT group of devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/INBAND_MGMT.yml"
+
+
+- name: Include only devices that are deployed
+  hosts: NOTDEPLOYED
+  gather_facts: false
+  tasks:
+    - name: generate CVP Tasks for only NOTDEPLOYED group of devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/NOTDEPLOYED.yml"
+
+- hosts: "{{ fabric_name }}"
+  gather_facts: false
+
+  tasks:
+
+    - name: Generate AVD Structured Configurations and Fabric Documentation
+      ansible.builtin.import_role:
+        name: arista.avd.eos_designs
+
+    - name: Generate Device Configurations and Documentation
+      ansible.builtin.import_role:
+        name: arista.avd.eos_cli_config_gen
+
+      

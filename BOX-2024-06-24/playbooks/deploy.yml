@@ -1,0 +1,25 @@
+---
+- name: Include only devices that are deployed
+  hosts: NOTDEPLOYED
+  gather_facts: false
+  tasks:
+    - name: generate CVP Tasks for only NOTDEPLOYED group of devices
+      include_vars: "{{ item }}"
+      with_items:
+        - "../global-variables/options/NOTDEPLOYED.yml"
+
+- name: Provision CVP
+  hosts: cv_server
+  gather_facts: false
+  # Deploy to CVP
+  tasks:
+    - name: run CVP provisioning
+      import_role:
+        name: arista.avd.eos_config_deploy_cvp
+      vars:
+        cv_collection: v3
+        device_filter: 'all'  # default
+        state: present
+        execute_tasks: false  # Allow verification on CVP via Change Control
+        device_search_key: serialNumber
+

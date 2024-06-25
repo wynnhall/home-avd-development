@@ -1,0 +1,8 @@
+# ---
+# port_profiles:
+
+#   TRUNK_10G_Compute:
+#     mode: trunk
+#     speed: 10g
+#     spanning_tree_portfast: edge
+#     vlans: 10,20,30,40

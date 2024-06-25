@@ -1,0 +1,77 @@
+---
+cvp_devices:
+  - fqdn: hsmdc2mgt01a
+    serialNumber: "HBG234100YU"
+    parentContainerName: DC2_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgt01a
+  - fqdn: hsmdc2mgt02a
+    serialNumber: "HBG234100VR"
+    parentContainerName: DC2_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgt02a
+  - fqdn: hsmdc2mgt03a
+    serialNumber: "HBG234100WQ"
+    parentContainerName: DC2_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgt03a
+  - fqdn: hsmdc2mgt04a
+    serialNumber: "HBG234100Z3"
+    parentContainerName: DC2_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgt04a
+  - fqdn: hsmdc2mgt07a
+    serialNumber: "HBG234100XP"
+    parentContainerName: DC2_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgt07a
+  - fqdn: hsmdc2mgt09a
+    serialNumber: "HBG234100XX"
+    parentContainerName: DC2_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgt09a
+  - fqdn: hsmdc2mgtagg01a
+    serialNumber: "FGN234406NV"
+    parentContainerName: DC2_MGMT_AGG_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgtagg01a
+  - fqdn: hsmdc2mgtagg02a
+    serialNumber: "FGN23440361"
+    parentContainerName: DC2_MGMT_AGG_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmdc2mgtagg02a
+  - fqdn: hsmmdf2mgt01a
+    serialNumber: "HBG234100VN"
+    parentContainerName: MDF_MGMT_LEAFS
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_hsmmdf2mgt01a
+  - fqdn: ismmgtsp02a
+    serialNumber: "HNN21255702"
+    parentContainerName: MGMT_SPINES
+    configlets:
+      - AVD-SM_MGMT_FABRIC-_ismmgtsp02a
+cvp_containers:
+  ADMIN_MGMT_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  DC1_MGMT_AGG_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  DC1_MGMT_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  DC2_MGMT_AGG_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  DC2_MGMT_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  MDF_MGMT_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  MGMT_LEAFS:
+    parentContainerName: SM_MGMT_FABRIC
+  MGMT_SPINES:
+    parentContainerName: SM_MGMT_FABRIC
+  SM1_MGMT_LEAFS:
+    parentContainerName: MGMT_LEAFS
+  SM:
+    parentContainerName: Tenant
+  SM_MGMT_FABRIC:
+    parentContainerName: SM
+  SUPPORT_MGMT_LEAFS:
+    parentContainerName: MGMT_LEAFS

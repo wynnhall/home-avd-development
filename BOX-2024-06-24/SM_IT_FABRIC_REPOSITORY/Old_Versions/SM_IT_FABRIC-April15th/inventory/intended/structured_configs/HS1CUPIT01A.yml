@@ -1,0 +1,107 @@
+hostname: HS1CUPIT01A
+is_deployed: true
+static_routes:
+- vrf: mgmt
+  destination_address_prefix: 0.0.0.0/0
+  gateway: 10.211.240.24
+service_routing_protocols_model: multi-agent
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 16384
+vrfs:
+- name: mgmt
+  ip_routing: false
+management_interfaces:
+- name: Management1
+  description: oob_management
+  shutdown: false
+  vrf: mgmt
+  ip_address: 10.211.240.24/22
+  gateway: 10.211.240.24
+  type: oob
+management_api_http:
+  enable_vrfs:
+  - name: mgmt
+  enable_https: true
+ethernet_interfaces:
+- name: Ethernet49
+  peer: ISMITAGG01A
+  peer_interface: Ethernet8
+  peer_type: l3leaf
+  description: '[L]_ISMITAGG01A_Ethernet8'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 49
+    mode: active
+- name: Ethernet50
+  peer: ISMITAGG02A
+  peer_interface: Ethernet8
+  peer_type: l3leaf
+  description: '[L]_ISMITAGG02A_Ethernet8'
+  shutdown: false
+  type: port-channel-member
+  channel_group:
+    id: 49
+    mode: active
+port_channel_interfaces:
+- name: Port-Channel49
+  description: '[L]_IT_AGG_LEAFS_Po8'
+  type: switched
+  shutdown: false
+  mode: trunk
+  vlans: 221,224-225,227,237,243,245,247,250,305,307,309,337,951
+vlans:
+- id: 224
+  name: 10.211.3.0/23_SM1-AV
+  tenant: IT-Tenant-IoT
+- id: 225
+  name: 10.211.4.0/23_SM1-Security
+  tenant: IT-Tenant-IoT
+- id: 227
+  name: 10.211.6.0/23_SM1-BMS
+  tenant: IT-Tenant-IoT
+- id: 243
+  name: 10.215.18.0/24_S0-AV
+  tenant: IT-Tenant-IoT
+- id: 245
+  name: 10.215.20.0/24_S0-Security
+  tenant: IT-Tenant-IoT
+- id: 247
+  name: 10.215.22.0/24_S0-BMS
+  tenant: IT-Tenant-IoT
+- id: 305
+  name: 10.215.80.0/24_SM-AV
+  tenant: IT-Tenant-IoT
+- id: 307
+  name: 10.215.82.0/24_SM-Security
+  tenant: IT-Tenant-IoT
+- id: 309
+  name: 10.215.84.0/24_SM-BMS
+  tenant: IT-Tenant-IoT
+- id: 221
+  name: 10.211.0.0/23_SM1-UtilityYards
+  tenant: IT-Tenant-IT
+- id: 237
+  name: 10.211.16.0/20_SM1-Wired-LAN
+  tenant: IT-Tenant-IT
+- id: 250
+  name: 10.215.0.0/20_S0-Wired-LAN
+  tenant: IT-Tenant-IT
+- id: 337
+  name: 10.215.64.0/20_SM-Wired-LAN
+  tenant: IT-Tenant-IT
+- id: 951
+  name: 10.70.32.0/24_SM-GuestNet(Wired)
+  tenant: IT-Tenant-IT
+ip_igmp_snooping:
+  globally_enabled: false
+metadata:
+  platform: 722XP

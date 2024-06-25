@@ -1,0 +1,57 @@
+---
+
+port_profiles:
+  - profile: PP-DEFAULTS
+    spanning_tree_portfast: edge
+    spanning_tree_bpduguard: enabled
+    enabled: true
+    raw_eos_cli: |
+      no logging event link-status
+      no snmp trap link-change
+  - profile: PP-vlx #TBA
+    mode: trunk
+    #vlans: 
+    enabled: true
+
+tenants:
+  - name: VENDOR_SEGMENT
+    l2vlans:
+      - id: 100 #TBA
+        tags: [VENDOR]
+        name: VENDOR-VLAN1
+      - id: 200 #TBA
+        tags: [BOT1]
+        name: VENDOR-VLAN2
+      - id: 300 #TBA
+        tags: [BOT2]
+        name: VENDOR-VLAN3
+
+firewalls:
+  - name: ismtmgpan48
+    adapters:
+      - endpoint_ports: [ Eth1/25 ]
+        switch_ports: [ Ethernet1/1 ]
+        switches: [ hsmvnd01A ]
+        profile: PP-vlx
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet49 ]
+        switches: [ hs00bot01a ]
+        profile: PP-vlx
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet49 ]
+        switches: [ hs00bot02a ]
+        profile: PP-vlx
+  - name: ismtmgpan49
+    adapters:
+      - endpoint_ports: [ Eth1/25 ]
+        switch_ports: [ Ethernet2/1 ]
+        switches: [ hsmvnd01A ]
+        profile: PP-vlx
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet50 ]
+        switches: [ hs00bot01a ]
+        profile: PP-vlx
+      - endpoint_ports: [ Eth1/13 ]
+        switch_ports: [ Ethernet50 ]
+        switches: [ hs00bot02a ]
+        profile: PP-vlx

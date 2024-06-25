@@ -1,0 +1,11 @@
+# SM1-OT Tenants Networks
+# Documentation of Tenant specific information - Vlans/VRFs
+
+network_services_keys:
+  - name: S1_OT_Tenant_OT
+
+svi_profiles:
+  - profile: svi_l3_defaults
+    raw_eos_cli: |
+      no ip proxy-arp
+      no autostate

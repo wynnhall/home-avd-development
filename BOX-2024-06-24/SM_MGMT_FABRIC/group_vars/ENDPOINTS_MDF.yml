@@ -1,0 +1,45 @@
+---
+
+network_ports:
+  - switches: 
+    - hsmmdf1mgt01a
+    - hsmmdf2mgt01a
+    switch_ports: 
+      - Ethernet 1-48
+      - Ethernet 1-48
+    profile: PP-DC1/DC2/MDF_vl300
+    description: VL300-DC1/DC2/MDF-Mgmt    
+
+servers:
+
+#
+# Agg Switches
+#
+
+  # Rack ?? -- hsmmdf1mgtagg01a
+  - name: ISMMGTSP01A
+    adapters:
+      - endpoint_ports: [Ma0-SUP1,Ma0-SUP2]
+        switch_ports: [Ethernet1,Ethernet2]
+        switches: [hsmmdf1mgtagg01a,hsmmdf1mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: OSMIBSD01
+    adapters:
+      - endpoint_ports: [IPMI]
+        switch_ports: [Ethernet3]
+        switches: [hsmmdf1mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
+
+  # Rack ?? -- hsmmdf2mgtagg02a
+  - name: ISMMGTSP02A
+    adapters:
+      - endpoint_ports: [Ma0-SUP1,Ma0-SUP2]
+        switch_ports: [Ethernet1,Ethernet2]
+        switches: [hsmmdf2mgtagg01a,hsmmdf2mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
+  - name: OSMIBSD02
+    adapters:
+      - endpoint_ports: [IPMI]
+        switch_ports: [Ethernet3]
+        switches: [hsmmdf2mgtagg01a]
+        profile: PP-DC1/DC2/MDF_vl300
