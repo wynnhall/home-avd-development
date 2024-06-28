@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "avd-development"
+version = "0.1.0"
+description = ""
+authors = ["Jost Luebbe <jost.luebbe@ti.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11.5" # Python3.12 not supported by AVD yet
+ansible = "^9.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
